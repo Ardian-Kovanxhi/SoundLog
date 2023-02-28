@@ -50,13 +50,14 @@ router.get('/:songId', async (req, res) => {
 
     const Comments = await Comment.findAll({ where: { songId } });
 
-    const song = await Song.findByPk(songId)
+    // const song = await Song.findByPk(songId)
 
     // const song = await Song.scope("songDetails").findByPk(songId, {
-    //     include: [
-    //         { model: User, as: 'Owner', attributes: ['id', 'username'] }
-    //     ]
-    // });
+    const song = await Song.findByPk(songId, {
+        include: [
+            { model: User, attributes: ['id', 'username'] }
+        ]
+    });
 
     if (!song) {
         res.statusCode = 404;
