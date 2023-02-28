@@ -16,7 +16,37 @@ module.exports = {
       },
       {
         userId: 2,
+        songId: 1,
+        comment: 'this is a sample comment2'
+      },
+      {
+        userId: 3,
+        songId: 1,
+        comment: 'this is a sample comment3'
+      },
+      {
+        userId: 1,
         songId: 2,
+        comment: 'this is a sample comment'
+      },
+      {
+        userId: 2,
+        songId: 2,
+        comment: 'this is a sample comment2'
+      },
+      {
+        userId: 3,
+        songId: 2,
+        comment: 'this is a sample comment3'
+      },
+      {
+        userId: 1,
+        songId: 3,
+        comment: 'this is a sample comment'
+      },
+      {
+        userId: 2,
+        songId: 3,
         comment: 'this is a sample comment2'
       },
       {
