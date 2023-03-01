@@ -81,7 +81,6 @@ export default function commentsReducer(state = initialState, action) {
     switch (action.type) {
         case READ_COMMENTS: {
             newState = { allComments: {} }
-            // action.comments.Comments.forEach(comment => newState.allComments[comment.id] = comment);
             action.comments.comments.forEach(comment => newState.allComments[comment.id] = comment);
             return newState
         }
