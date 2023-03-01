@@ -4,6 +4,7 @@ import { Switch, Route } from "react-router-dom";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import SelectedSong from "./components/Songs";
+import SongFormPage from "./components/SongFormPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -17,7 +18,8 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
-          <Route path={'/'} component={SelectedSong} />
+          <Route path={'/songs'} component={SongFormPage} />
+          <Route exact path={'/'} component={SelectedSong} />
         </Switch>
       )}
     </>
