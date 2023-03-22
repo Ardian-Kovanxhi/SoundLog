@@ -40,6 +40,7 @@ export const getSongs = () => async dispatch => {
     }
 }
 export const getSong = (songId) => async dispatch => {
+
     const response = await csrfFetch(`/api/songs/${songId}`)
 
     if (response.ok) {
@@ -53,14 +54,23 @@ export const submitSong = (data) => async dispatch => {
 
     const { userId, name, content, img, description } = data
 
+    // const formData = new formData();
+    // formData.append('userId', userId)
+    // formData.append('name', name)
+    // formData.append('description', description)
+    // if (content) formData.append('content', content)
+    // if (img) formData.append('img', img)
+
     const response = await csrfFetch(
         '/api/songs',
         {
             method: 'POST',
             header: {
                 'Content-Type': 'application/json',
+                // 'Content-Type': "multipart/form-data",
                 'XSRF-Token': Cookies.get('XSRF-TOKEN')
             },
+            // body: formData
             body: JSON.stringify({ userId, name, content, img, description })
         }
     )
@@ -97,9 +107,11 @@ export const editSong = (songId, data) => async dispatch => {
 }
 
 export const removeSong = (songId) => async dispatch => {
+    console.log('I WORK 1')
     const response = await csrfFetch(`/api/songs/${songId}`, {
         method: 'DELETE',
     });
+    console.log('I WORK 2')
     if (response.ok) {
         await dispatch(deleteSong());
         return response;

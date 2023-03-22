@@ -1,21 +1,49 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { submitSong } from "../../store/songs";
 import './SongFormPage.css'
 
 export default function SongFormPage() {
     const dispatch = useDispatch();
+    const history = useHistory()
 
-    const User = useSelector(state => state.session.user);
+    const user = useSelector(state => state.session.user);
 
     const [name, setName] = useState('')
     const [content, setContent] = useState('')
-    const [img, setImg] = useState()
+    const [img, setImg] = useState('')
     const [description, setDescription] = useState('')
     const [errors, setErrors] = useState([])
 
+    const updateFile = (e) => {
+        const file = e.target.files[0];
+        if (file) setContent(file);
+    };
+
+    const submitHandler = async (e) => {
+        e.preventDefault();
+
+        if (img === '') setImg(null)
+        if (description === '') setDescription(null)
+
+        const newSong = await dispatch(submitSong({
+            ownerId: user.id,
+            name,
+            content,
+            img,
+            description
+        }))
+
+        // console.log(test)
+        history.push(`/songs/${newSong.id}`)
+        // if (test.id) {
+        // }
+    }
+
     return (
         <div>
-            <form>
+            <form onSubmit={submitHandler}>
                 <div>
                     <label>
                         {'Name: '}
@@ -37,10 +65,11 @@ export default function SongFormPage() {
                         value={content}
                         required
                     />
+                    {/* <input type="file" onChange={updateFile} /> */}
                 </div>
                 <div>
                     <label>
-                        {'Image: '}
+                        {'ImageUrl: '}
                     </label>
                     <input
                         type='text'
@@ -56,7 +85,6 @@ export default function SongFormPage() {
                         type='text'
                         onChange={(e) => setDescription(e.target.value)}
                         value={description}
-                        required
                     />
                 </div>
                 <button>Submit</button>

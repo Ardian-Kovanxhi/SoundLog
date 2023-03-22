@@ -5,6 +5,9 @@ import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import SelectedSong from "./components/Songs";
 import SongFormPage from "./components/SongFormPage";
+import CommentTesting from "./components/CommentFormTesting";
+import SingleSong from "./components/Songs/singleSong";
+import SongEditPage from "./components/SongEditPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -18,6 +21,9 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
+          <Route path={'/comments'} component={CommentTesting} />
+          <Route path={'/songs/:songId/edit'} component={SongEditPage} />
+          <Route path={'/songs/:songId'} component={SingleSong} />
           <Route path={'/songs'} component={SongFormPage} />
           <Route exact path={'/'} component={SelectedSong} />
         </Switch>

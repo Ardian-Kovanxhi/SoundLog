@@ -4,6 +4,13 @@ const { setTokenCookie, requireAuth } = require('../../utils/auth');
 const { User } = require('../../db/models');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
+const asyncHandler = require("express-async-handler");
+const {
+    singleMulterUpload,
+    singlePublicFileUpload,
+    multipleMulterUpload,
+    multiplePublicFileUpload,
+} = require("../../awsS3");
 
 const router = express.Router();
 
@@ -42,5 +49,40 @@ router.post(
         });
     }
 );
+
+// // Sign up
+// router.post(
+//     "/",
+//     singleMulterUpload("image"),
+//     validateSignup,
+//     asyncHandler(async (req, res) => {
+//         const { email, password, username } = req.body;
+//         const profileImageUrl = await singlePublicFileUpload(req.file);
+//         const user = await User.signup({
+//             username,
+//             email,
+//             password,
+//             profileImageUrl,
+//         });
+
+//         setTokenCookie(res, user);
+
+//         return res.json({
+//             user,
+//         });
+//     })
+// );
+
+// router.put(
+//     "/:id",
+//     singleMulterUpload("image"),
+//     asyncHandler(async (req, res) => {
+//         const id = req.params.id;
+//         const profileImageUrl = await singlePublicFileUpload(req.file);
+//         await User.update({ profileImageUrl }, { where: { id } });
+
+//         res.json({ profileImageUrl });
+//     })
+// );
 
 module.exports = router;

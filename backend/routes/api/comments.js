@@ -1,6 +1,6 @@
 const express = require('express');
 
-const { User, Song } = require('../../db/models');
+const { User, Song, Comment } = require('../../db/models');
 const { requireAuth } = require('../../utils/auth');
 
 const router = express.Router();
@@ -52,6 +52,7 @@ router.delete('/:commentId', requireAuth, async (req, res) => {
     const commentId = +req.params.commentId;
 
     const comment = await Comment.findByPk(commentId);
+
 
     if (!comment) {
         res.statusCode = 404;

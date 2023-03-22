@@ -35,7 +35,7 @@ export const getCommentsByUser = () => async dispatch => {
 
 export const createComment = (songId, data) => async dispatch => {
 
-    const { comment } = data
+    // const { comment } = data
 
     const response = await csrfFetch(`/api/songs/${songId}/comments`, {
         method: 'POST',
@@ -44,7 +44,8 @@ export const createComment = (songId, data) => async dispatch => {
             'XSRF-Token': Cookies.get('XSRF-TOKEN')
         },
         body: JSON.stringify({
-            comment
+            // comment
+            comment: data
         })
     })
 
@@ -60,18 +61,18 @@ export const createComment = (songId, data) => async dispatch => {
 }
 
 export const removeComment = (commentId, songId) => async dispatch => {
+
     const response = await csrfFetch(`/api/comments/${commentId}`, {
         method: 'DELETE'
     });
 
+    console.log('reached')
     if (response.ok) {
         const newRev = await csrfFetch(`/api/songs/${songId}/comments`)
         const comments = await newRev.json();
         dispatch(readComments(comments))
         return comments
     }
-    // if (response.ok) {
-    // }
 }
 
 const initialState = { allComments: {} }

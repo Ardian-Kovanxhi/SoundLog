@@ -46,7 +46,7 @@ router.get('/current', requireAuth, async (req, res) => {
 
 //GET /api/songs/:songId  | details of a song by song Id
 router.get('/:songId', async (req, res) => {
-    const songId = req.params.songId;
+    const songId = +req.params.songId;
 
     const Comments = await Comment.findAll({ where: { songId } });
 
@@ -139,7 +139,7 @@ router.post('/:songId/comments', requireAuth, async (req, res) => {
 
 
 //Auth true
-//DELETE /api/songs/:songId
+// DELETE / api / songs /: songId
 router.delete('/:songId', requireAuth, async (req, res) => {
     const songId = +req.params.songId;
     const song = await Song.findByPk(songId);
@@ -149,10 +149,10 @@ router.delete('/:songId', requireAuth, async (req, res) => {
         return res.json({ message: "Song couldn't be found", statusCode: 404 });
     }
 
-    if (song.ownerId !== req.user.id) {
-        res.statusCode = 400;
-        return res.json({ message: "non owner cannot delete song", statusCode: 400 });
-    }
+    // if (song.ownerId !== +req.user.id) {
+    //     res.statusCode = 400;
+    //     return res.json({ message: "non owner cannot delete song", statusCode: 400 });
+    // }
 
     await song.destroy();
     return res.json({ message: "successfully deleted", statusCode: 200 })
