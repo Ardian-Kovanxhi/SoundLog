@@ -9,12 +9,15 @@ export default function SingleSong() {
     const dispatch = useDispatch();
     const history = useHistory()
     const { songId } = useParams();
-    // const songId = 1
-    // const Song = useSelector(state => state.songs.singleSong);
     const Song = useSelector(state => state.songs.singleSong);
     const Comments = useSelector(state => state.comments.allComments);
     const User = useSelector(state => state.session.user)
     const [comment, setComment] = useState('');
+    let disabled = false
+
+    if (User) {
+        disabled = true
+    }
 
     useEffect(() => {
         dispatch(getSong(songId))
@@ -54,7 +57,7 @@ export default function SingleSong() {
             <li>{Song.img}</li>
             <li>{Song.description}</li>
             <div>
-                {Song.userId === User.id ?
+                {disabled ? Song.userId === User.id ?
                     <>
                         <button
                             onClick={(e) => history.push(`/songs/${songId}/edit`)}
@@ -66,7 +69,7 @@ export default function SingleSong() {
                         </div>
                     </>
                     :
-                    null
+                    null : null
                 }
                 ----------------------------------------------------------------------------------
             </div>
@@ -87,7 +90,7 @@ export default function SingleSong() {
                             {el.comment}
                         </li>
 
-                        <div>{el.userId === User.id ?
+                        <div>{disabled ? el.userId === User.id ?
                             <>
                                 <button
                                     onClick={() => history.push(`/songs/${songId}/edit`)}
@@ -96,7 +99,7 @@ export default function SingleSong() {
                                     onClick={() => commentDeleteHandler(el.id)}
                                 >Delete</button>
                             </>
-                            : null}</div>
+                            : null : null}</div>
                     </>
 
                 ))}
