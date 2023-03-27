@@ -60,12 +60,12 @@ export const submitSong = (data) => async dispatch => {
     formData.append('description', description)
     formData.append('img', img)
     if (content) formData.append('content', content)
-
+    console.log(formData.get('content'))
     const response = await csrfFetch(
-        '/api/songs',
+        '/api/songs/',
         {
             method: 'POST',
-            header: {
+            headers: {
                 // 'Content-Type': 'application/json',
                 'Content-Type': "multipart/form-data",
                 'XSRF-Token': Cookies.get('XSRF-TOKEN')
