@@ -3,12 +3,20 @@ import { csrfFetch } from "./csrf";
 
 
 const READ_COMMENTS = 'comments/READ_COMMENTS'
+const READ_COMMENT = 'comment/READ_COMMENT'
 const DELETE_COMMENT = 'comment/DELETE_COMMENT'
 
 const readComments = (comments) => {
     return {
         type: READ_COMMENTS,
         comments
+    }
+}
+
+const readComment = (comment) => {
+    return {
+        type: READ_COMMENT,
+        comment
     }
 }
 
@@ -30,6 +38,16 @@ export const getCommentsByUser = () => async dispatch => {
         const comments = await response.json();
         dispatch(readComments(comments))
         return comments
+    }
+}
+
+export const getCommentById = (commentId) => async dispatch => {
+    const response = await csrfFetch(`/api/comments/${+commentId}`)
+
+    if (response.ok) {
+        const comment = await response.json();
+        dispatch(readComment(comment))
+        return comment
     }
 }
 
@@ -60,6 +78,30 @@ export const createComment = (songId, data) => async dispatch => {
     }
 }
 
+export const editComment = (commentId, data) => async dispatch => {
+
+    const { comment } = data
+
+    const response = await csrfFetch(
+        `/api/comments/${commentId}`,
+        {
+            method: 'PUT',
+            header: {
+                'Content-Type': 'application/json',
+                'XSRF-Token': Cookies.get('XSRF-TOKEN')
+            },
+            body: JSON.stringify({ comment })
+        }
+    )
+
+    if (response.ok) {
+        const edit = await csrfFetch(`/api/comments/${commentId}`);
+        const comment = await edit.json();
+        dispatch(readComment(comment))
+        return comment
+    }
+}
+
 export const removeComment = (commentId, songId) => async dispatch => {
 
     const response = await csrfFetch(`/api/comments/${commentId}`, {
@@ -75,7 +117,7 @@ export const removeComment = (commentId, songId) => async dispatch => {
     }
 }
 
-const initialState = { allComments: {} }
+const initialState = { allComments: {}, singleComment: {} }
 
 export default function commentsReducer(state = initialState, action) {
     let newState;
@@ -83,6 +125,11 @@ export default function commentsReducer(state = initialState, action) {
         case READ_COMMENTS: {
             newState = { allComments: {} }
             action.comments.comments.forEach(comment => newState.allComments[comment.id] = comment);
+            return newState
+        }
+        case READ_COMMENT: {
+            newState = { ...state, singleComment: {} }
+            newState.singleComment = action.comment
             return newState
         }
         case DELETE_COMMENT: {

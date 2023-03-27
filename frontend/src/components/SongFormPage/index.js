@@ -11,15 +11,11 @@ export default function SongFormPage() {
     const user = useSelector(state => state.session.user);
 
     const [name, setName] = useState('')
-    const [content, setContent] = useState('')
+    const [content, setContent] = useState(null)
+    // const [content, setContent] = useState('')
     const [img, setImg] = useState('')
     const [description, setDescription] = useState('')
     const [errors, setErrors] = useState([])
-
-    const updateFile = (e) => {
-        const file = e.target.files[0];
-        if (file) setContent(file);
-    };
 
     const submitHandler = async (e) => {
         e.preventDefault();
@@ -27,7 +23,7 @@ export default function SongFormPage() {
         if (img === '') setImg(null)
         if (description === '') setDescription(null)
 
-        const newSong = await dispatch(submitSong({
+        const newSong = dispatch(submitSong({
             ownerId: user.id,
             name,
             content,
@@ -36,10 +32,16 @@ export default function SongFormPage() {
         }))
 
         // console.log(test)
+
         history.push(`/songs/${newSong.id}`)
         // if (test.id) {
         // }
     }
+
+    const updateFile = (e) => {
+        const file = e.target.files[0];
+        if (file) setContent(file);
+    };
 
     return (
         <div>
@@ -59,13 +61,13 @@ export default function SongFormPage() {
                     <label>
                         {'Song: '}
                     </label>
-                    <input
+                    {/* <input
                         type='text'
                         onChange={(e) => setContent(e.target.value)}
                         value={content}
                         required
-                    />
-                    {/* <input type="file" onChange={updateFile} /> */}
+                    /> */}
+                    <input type="file" onChange={updateFile} />
                 </div>
                 <div>
                     <label>

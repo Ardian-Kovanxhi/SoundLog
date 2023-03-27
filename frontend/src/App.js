@@ -8,6 +8,7 @@ import SongFormPage from "./components/SongFormPage";
 import CommentTesting from "./components/CommentFormTesting";
 import SingleSong from "./components/Songs/singleSong";
 import SongEditPage from "./components/SongEditPage";
+import CommentEditPage from "./components/CommentEditForm";
 
 function App() {
   const dispatch = useDispatch();
@@ -21,7 +22,7 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
-          <Route path={'/comments'} component={CommentTesting} />
+          <Route path={'/songs/:songId/comments/:commentId/edit'} component={CommentEditPage} />
           <Route path={'/songs/:songId/edit'} component={SongEditPage} />
           <Route path={'/songs/:songId'} component={SingleSong} />
           <Route path={'/songs'} component={SongFormPage} />

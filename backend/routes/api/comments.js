@@ -28,6 +28,21 @@ router.get('/current', requireAuth, async (req, res) => {
 
 
 //Auth true
+//GET /api/comments/:commentId | Read comment by id
+router.get('/:commentId', requireAuth, async (req, res) => {
+    const commentId = +req.params.commentId;
+    const commentObj = await Comment.findByPk(commentId);
+
+    if (!commentObj) {
+        res.statusCode = 404;
+        return res.json({ message: "Comment couldn't be found", statusCode: 404 });
+    }
+
+    res.json(commentObj)
+})
+
+
+//Auth true
 //PUT /api/comments/:commentId | Edit comment
 router.put('/:commentId', requireAuth, async (req, res) => {
     const commentId = +req.params.commentId;

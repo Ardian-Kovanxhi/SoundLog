@@ -2,6 +2,7 @@ const express = require('express');
 
 const { Song, User, Comment } = require('../../db/models');
 const { requireAuth } = require('../../utils/auth');
+const { singlePublicFileUpload, singleMulterUpload } = require('../../awsS3')
 
 const router = express.Router();
 
@@ -15,24 +16,30 @@ router.get('/', async (req, res) => {
 });
 
 //POST /api/songs | create a song
-router.post('/', requireAuth, async (req, res) => {
-    const { name, content, img, description } = req.body;
-    const userIdGrabber = req.user.id;
+router.post(
+    '/',
+    requireAuth,
+    singleMulterUpload('song'),
+    async (req, res) => {
+        // const { name, content, img, description } = req.body;
+        const { name, img, description } = req.body;
+        const content = await singlePublicFileUpload(req.file);
+        const userIdGrabber = req.user.id;
 
-    const newSong = await Song.create({
-        userId: userIdGrabber,
-        name,
-        content,
-        img,
-        description
-    })
+        const newSong = await Song.create({
+            userId: userIdGrabber,
+            name,
+            content,
+            img,
+            description
+        })
 
-    // const scoped = await Song.scope("songCreation").findByPk(newSong.id)
+        // const scoped = await Song.scope("songCreation").findByPk(newSong.id)
 
-    res.statusCode = 201;
-    // return res.json(scoped)
-    return res.json(newSong)
-});
+        res.statusCode = 201;
+        // return res.json(scoped)
+        return res.json(newSong)
+    });
 
 
 

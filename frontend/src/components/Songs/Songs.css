@@ -1,0 +1,15 @@
+audio::-webkit-media-controls-panel {
+    width: 500px;
+    background-color: aliceblue;
+    color: red;
+}
+
+audio::-webkit-media-controls-play-button {
+    background-color: #B1D4E0;
+    color: white;
+    border-radius: 50%;
+}
+
+audio::-webkit-media-controls-play-button:hover {
+    background-color: rgba(177, 212, 224, .7);
+}
