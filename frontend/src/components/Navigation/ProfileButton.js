@@ -67,11 +67,11 @@ function ProfileButton({ user }) {
                             onItemClick={closeMenu}
                             modalComponent={<SignupFormModal />}
                         />
-                        <button
+                        {/* <button
                             onClick={() => { dispatch(demoUserLogin()); closeMenu() }}
                         >
                             Demo User
-                        </button>
+                        </button> */}
                     </>
                 )}
             </ul>
