@@ -31,7 +31,7 @@ function App() {
         </Switch>
       )}
 
-      <AudioControls isLoaded={isLoaded} />
+      {/* <AudioControls isLoaded={isLoaded} /> */}
     </>
   );
 }
