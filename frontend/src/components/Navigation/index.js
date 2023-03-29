@@ -9,23 +9,25 @@ function Navigation({ isLoaded }) {
     const history = useHistory()
 
     return (
-        <ul>
-            <li>
-                <NavLink exact to="/">Home</NavLink>
-            </li>
-            <li>
-                <button
-                    onClick={() => history.push('/songs')}
-                >
-                    New Song
-                </button>
-            </li>
-            {isLoaded && (
+        <div >
+            <ul>
                 <li>
-                    <ProfileButton user={sessionUser} />
+                    <NavLink exact to="/">Home</NavLink>
                 </li>
-            )}
-        </ul>
+                <li>
+                    <button
+                        onClick={() => history.push('/songs')}
+                    >
+                        New Song
+                    </button>
+                </li>
+                {isLoaded && (
+                    <li>
+                        <ProfileButton user={sessionUser} />
+                    </li>
+                )}
+            </ul>
+        </div>
     );
 }
 

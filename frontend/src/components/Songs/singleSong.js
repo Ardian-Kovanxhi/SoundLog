@@ -65,7 +65,11 @@ export default function SingleSong() {
                 </audio>
             </li>
             <li>
-                <img src={Song.img} />
+                <img src={
+                    Song.img
+                    ||
+                    'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png'
+                } />
             </li>
             <li>{Song.description}</li>
             <div>

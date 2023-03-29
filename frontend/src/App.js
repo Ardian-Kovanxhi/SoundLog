@@ -9,6 +9,7 @@ import CommentTesting from "./components/CommentFormTesting";
 import SingleSong from "./components/Songs/singleSong";
 import SongEditPage from "./components/SongEditPage";
 import CommentEditPage from "./components/CommentEditForm";
+import AudioControls from './components/AudioControls'
 
 function App() {
   const dispatch = useDispatch();
@@ -29,6 +30,8 @@ function App() {
           <Route exact path={'/'} component={SelectedSong} />
         </Switch>
       )}
+
+      <AudioControls isLoaded={isLoaded} />
     </>
   );
 }
