@@ -17,14 +17,21 @@ export default function SelectedSong() {
     const songArr = Object.values(Songs)
 
     return (
-        <div>
-            {songArr.map(el => (
-                <div
-                    onClick={() => history.push(`/songs/${el.id}`)}
-                >
-                    {el.name}
-                </div>
-            ))}
+        <div className='all-songs-div-container'>
+            <div className='all-songs-div'>
+                {songArr.map(el => (
+                    <div
+                        className='all-songs-single'
+                        onClick={() => history.push(`/songs/${el.id}`)}
+                    >
+                        <img
+                            className='all-songs-single-img'
+                            src={el.img ||
+                                'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png'} />
+                        {el.name}
+                    </div>
+                ))}
+            </div>
         </div>
     )
 }

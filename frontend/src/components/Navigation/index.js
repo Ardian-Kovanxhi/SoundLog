@@ -9,24 +9,34 @@ function Navigation({ isLoaded }) {
     const history = useHistory()
 
     return (
-        <div >
-            <ul>
-                <li>
-                    <NavLink exact to="/">Home</NavLink>
-                </li>
-                <li>
-                    <button
-                        onClick={() => history.push('/songs')}
-                    >
-                        New Song
-                    </button>
-                </li>
-                {isLoaded && (
-                    <li>
-                        <ProfileButton user={sessionUser} />
-                    </li>
-                )}
-            </ul>
+
+        <div className='nav-container'>
+
+            <div className="nav-bar-div">
+                <div
+                    onClick={() => history.push('/')}
+                    className='title-icon-div'
+                >
+                    <img src='https://img.freepik.com/free-icon/log_318-541649.jpg' className='log-icon-img' />
+                    <div className='title-actual'>
+                        SoundLog
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <button
+                            onClick={() => history.push('/songs')}
+                        >
+                            New Song
+                        </button>
+                    </div>
+                    {isLoaded && (
+                        <div>
+                            <ProfileButton user={sessionUser} />
+                        </div>
+                    )}
+                </div>
+            </div>
         </div>
     );
 }

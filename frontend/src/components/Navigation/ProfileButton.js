@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch } from 'react-redux';
 import * as sessionActions from '../../store/session';
-import demoUserLogin from '../../store/session';
 import OpenModalMenuItem from './OpenModalMenuItem';
 import LoginFormModal from '../LoginFormModal';
 import SignupFormModal from '../SignupFormModal';
@@ -41,7 +40,7 @@ function ProfileButton({ user }) {
     const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
 
     return (
-        <>
+        <div>
             <button onClick={openMenu}>
                 <i className="fas fa-user-circle" />
             </button>
@@ -67,15 +66,15 @@ function ProfileButton({ user }) {
                             onItemClick={closeMenu}
                             modalComponent={<SignupFormModal />}
                         />
-                        {/* <button
-                            onClick={() => { dispatch(demoUserLogin()); closeMenu() }}
+                        <button
+                            onClick={() => dispatch(sessionActions.login({ credential: 'demo@user.io', password: 'password' }))}
                         >
                             Demo User
-                        </button> */}
+                        </button>
                     </>
                 )}
             </ul>
-        </>
+        </div>
     );
 }
 

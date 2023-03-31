@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { getSong, editSong } from '../../store/songs'
 import { useSelector, useDispatch } from 'react-redux'
 import { useHistory, useParams } from 'react-router-dom'
+import './SongEditPage.css'
 
 export default function SongEditPage() {
     const dispatch = useDispatch();
@@ -40,7 +41,7 @@ export default function SongEditPage() {
     }
 
     return (
-        <div>
+        <div className='song-edit-div'>
             <form>
                 <div>
                     <label>

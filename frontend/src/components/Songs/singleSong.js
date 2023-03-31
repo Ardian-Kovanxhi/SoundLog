@@ -56,38 +56,42 @@ export default function SingleSong() {
 
 
     return (
-        <div>
-            <li>{Song.id}</li>
-            <li>{Song.name}</li>
-            <li>
-                <audio controls src={Song.content}>
-                    {/* <source src={Song.content} type='audio/mpeg' /> */}
-                </audio>
-            </li>
-            <li>
-                <img src={
-                    Song.img
-                    ||
-                    'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png'
-                } />
-            </li>
-            <li>{Song.description}</li>
-            <div>
-                {User ? Song.userId === User.id ?
-                    <>
-                        <button
-                            onClick={(e) => history.push(`/songs/${songId}/edit`)}
-                        >edit</button>
-                        <div>
+        <div className='single-song-container-div'>
+            <div className='single-song-div'>
+
+                <li>{Song.id}</li>
+                <li>{Song.name}</li>
+                <li>
+                    <audio controls src={Song.content}>
+                        {/* <source src={Song.content} type='audio/mpeg' /> */}
+                    </audio>
+                </li>
+                <li>
+                    <img
+                        className='single-song-img'
+                        src={
+                            Song.img
+                            ||
+                            'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png'
+                        } />
+                </li>
+                <li>{Song.description}</li>
+                <div>
+                    {User ? Song.userId === User.id ?
+                        <>
                             <button
-                                onClick={deleteHandler}
-                            >delete</button>
-                        </div>
-                    </>
-                    :
-                    null : null
-                }
-                ----------------------------------------------------------------------------------
+                                onClick={(e) => history.push(`/songs/${songId}/edit`)}
+                            >edit</button>
+                            <div>
+                                <button
+                                    onClick={deleteHandler}
+                                >delete</button>
+                            </div>
+                        </>
+                        :
+                        null : null
+                    }
+                </div>
             </div>
             {
                 User ?

@@ -9,6 +9,7 @@ export default function SongFormPage() {
     const history = useHistory()
 
     const user = useSelector(state => state.session.user);
+    let test_loading = false
 
     const [name, setName] = useState('')
     const [content, setContent] = useState(null)
@@ -19,11 +20,12 @@ export default function SongFormPage() {
 
     const submitHandler = async (e) => {
         e.preventDefault();
+        test_loading = true
 
         if (img === '') setImg(null)
         if (description === '') setDescription(null)
 
-        const newSong = dispatch(submitSong({
+        const newSong = await dispatch(submitSong({
             ownerId: user.id,
             name,
             content,
@@ -31,11 +33,9 @@ export default function SongFormPage() {
             description
         }))
 
-        // console.log(test)
+
 
         history.push(`/songs/${newSong.id}`)
-        // if (test.id) {
-        // }
     }
 
     const updateFile = (e) => {
@@ -44,7 +44,7 @@ export default function SongFormPage() {
     };
 
     return (
-        <div>
+        <div className="song-form-div">
             <form onSubmit={submitHandler}>
                 <div>
                     <label>

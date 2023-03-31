@@ -19,7 +19,7 @@ function App() {
   }, [dispatch]);
 
   return (
-    <>
+    <div className="page-container-div">
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
@@ -32,7 +32,8 @@ function App() {
       )}
 
       {/* <AudioControls isLoaded={isLoaded} /> */}
-    </>
+
+    </div>
   );
 }
 
