@@ -12,7 +12,7 @@
     display: flex;
     flex-wrap: wrap;
     align-items: baseline;
-    margin-top: 149px;
+    margin-top: 50px;
     width: 1240px;
     height: 100%;
 }
@@ -36,7 +36,7 @@
 .single-song-container-div {
     z-index: 1;
     position: absolute;
-    border-top: 149px white solid;
+    border-top: 50px white solid;
     /* border-bottom: 100px white solid; */
     width: 1240px;
     background-color: white;
@@ -56,15 +56,14 @@
 
 audio::-webkit-media-controls-panel {
     width: 100%;
-    background-color: aliceblue;
-    color: red;
+    background-color: white;
 }
 
 audio::-webkit-media-controls-play-button {
-    background-color: #B1D4E0;
-    color: white;
+    background-color: white;
     border-radius: 50%;
 }
+
 
 audio::-webkit-media-controls-play-button:hover {
     background-color: rgba(177, 212, 224, .7);
@@ -72,7 +71,7 @@ audio::-webkit-media-controls-play-button:hover {
 
 
 @media (max-height: 930px) {
-    .all-songs-div-container {
+    .all-songs-div {
         height: fit-content;
         /* height: 100%; */
     }

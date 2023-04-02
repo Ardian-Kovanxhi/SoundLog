@@ -22,7 +22,7 @@ function Navigation({ isLoaded }) {
                         SoundLog
                     </div>
                 </div>
-                <div>
+                <div className='nav-button-div'>
                     <div>
                         <button
                             onClick={() => history.push('/songs')}
