@@ -18,25 +18,35 @@ export default function SongFormPage() {
     const [description, setDescription] = useState('')
     const [errors, setErrors] = useState([])
 
-    useEffect(() => {
+    // useEffect(() => {
 
+    //     const detected = []
+
+    //     if (content) {
+    //         const fileType = content.name.split('.')[1]
+    //         if (fileType !== 'mp3') {
+    //             detected.push('incorrect file type')
+    //             setErrors(detected)
+    //         }
+    //     }
+    // }, [content])
+
+    const submitHandler = async (e) => {
+        e.preventDefault();
+        test_loading = true
         const detected = []
+
+        if (img === '') setImg(null)
+        if (description === '') setDescription(null)
 
         if (content) {
             const fileType = content.name.split('.')[1]
             if (fileType !== 'mp3') {
                 detected.push('incorrect file type')
                 setErrors(detected)
+                return
             }
         }
-    }, [content])
-
-    const submitHandler = async (e) => {
-        e.preventDefault();
-        test_loading = true
-
-        if (img === '') setImg(null)
-        if (description === '') setDescription(null)
 
         const newSong = await dispatch(submitSong({
             ownerId: user.id,
@@ -58,6 +68,7 @@ export default function SongFormPage() {
 
     return (
         <div className="song-form-div">
+
             <ul>
                 {errors.map(el => (
                     <li>
@@ -65,54 +76,84 @@ export default function SongFormPage() {
                     </li>
                 ))}
             </ul>
-            <form onSubmit={submitHandler}>
-                <div>
-                    <label>
-                        {'Name: '}
-                    </label>
-                    <input
-                        type='text'
-                        onChange={(e) => setName(e.target.value)}
-                        value={name}
-                        required
-                    />
+
+            <form onSubmit={submitHandler} className="new-song-form">
+
+                * required fields
+                <div className="all-content-div">
+
+                    <div className="name-song-desc-div">
+
+                        <div className="song-form-input-fields">
+
+                            <label>
+                                {'Name*'}
+                            </label>
+                            <input
+                                type='text'
+                                onChange={(e) => setName(e.target.value)}
+                                value={name}
+                                required
+                            />
+                        </div>
+
+                        <div className="song-form-input-fields">
+
+                            {'Song* (only accepts mp3 files)'}
+                            <label>
+                                <input className="file-select-input" type="file" accept=".mp3" required onChange={updateFile} />
+                            </label>
+
+                        </div>
+
+                        <div className="song-form-input-fields">
+
+                            <label>
+                                {'Description'}
+                            </label>
+
+                            <textarea
+                                className="song-form-textarea"
+                                type='text'
+                                onChange={(e) => setDescription(e.target.value)}
+                                value={description}
+                            />
+
+                        </div>
+
+                    </div>
+
+                    <div className="new-song-img-assignment">
+
+                        <div className="song-form-input-fields img">
+                            <label>
+                                {'ImageUrl: '}
+                            </label>
+
+                            <input
+                                type='text'
+                                onChange={(e) => setImg(e.target.value)}
+                                value={img}
+                            />
+
+                        </div>
+
+                        <img
+                            className="new-song-img"
+                            src={img || 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png'} />
+
+                    </div>
+
                 </div>
-                <div>
-                    <label>
-                        {'Song: '}
-                    </label>
-                    {/* <input
-                        type='text'
-                        onChange={(e) => setContent(e.target.value)}
-                        value={content}
-                        required
-                    /> */}
-                    <input type="file" onChange={updateFile} />
+
+
+                <div className="song-form-gen-but-div">
+
+                    <button className="song-form-buttons submit">Submit</button>
+
+                    <button onClick={() => history.push('/')} className="song-form-buttons cancel">Cancel</button>
+
                 </div>
-                <img
-                    className="new-song-img"
-                    src={img || 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png'} />
-                <div>
-                    <label>
-                        {'ImageUrl: '}
-                    </label>
-                    <input
-                        type='text'
-                        onChange={(e) => setImg(e.target.value)}
-                        value={img}
-                    />
-                </div>
-                <div>
-                    <label>
-                        {'Description: '}
-                    </label>
-                    <input
-                        type='text'
-                        onChange={(e) => setDescription(e.target.value)}
-                        value={description}
-                    />
-                </div>
-                <button>Submit</button>
             </form>
         </div>
     )

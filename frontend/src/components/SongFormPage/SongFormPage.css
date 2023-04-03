@@ -7,7 +7,87 @@
     height: 100%;
 }
 
+.all-content-div {
+    display: flex;
+    justify-content: space-between;
+    /* margin: 0px 20px; */
+}
+
+.new-song-form {
+    margin: 0px 30px;
+}
+
 .new-song-img {
     width: 500px;
     height: 500px;
+}
+
+.song-form-input-fields {
+    width: 100%;
+    border: lightgray 1px solid;
+    padding: 5px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* .new-song-img-assignment {
+    margin-right: 10px;
+    height: 100%;
+} */
+
+.song-form-input-fields.img {
+    width: 97%;
+    margin-bottom: 10px;
+}
+
+.name-song-desc-div {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-between; */
+    justify-content: space-around;
+    width: 300px;
+}
+
+.song-form-textarea {
+    resize: none;
+    height: 100px;
+    width: 100%;
+}
+
+.song-form-gen-but-div {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.file-select-input {
+    border-radius: 5px;
+    /* background-color: #FF5500; */
+    /* color: white; */
+}
+
+input::file-selector-button {
+    margin: 10px 0px;
+    margin-right: 10px;
+    padding: 10px;
+    /* background-color: transparent; */
+    border-radius: 5px;
+    background-color: forestgreen;
+    color: white;
+    border: 0px;
+}
+
+input::file-selector-button:hover {
+    cursor: pointer;
+}
+
+.song-form-buttons {
+    width: 300px;
+    height: 40px;
+    background-color: forestgreen;
+    color: white;
+    border: 0px;
+    border-radius: 5px;
+    margin: 20px 40px 0px;
 }

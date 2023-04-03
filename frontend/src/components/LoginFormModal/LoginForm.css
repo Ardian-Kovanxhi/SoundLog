@@ -1,0 +1,28 @@
+.log-in-form-container {
+    padding: 30px;
+    width: 300px;
+    height: 400px;
+}
+
+.log-in-form-actual {
+    display: flex;
+    flex-direction: column;
+    /* width: 300px; */
+    height: 100%;
+}
+
+.log-in-form-actual>label {
+    display: flex;
+    flex-direction: column;
+    border: 1px lightgray solid;
+    margin: 20px 0px;
+}
+
+.log-in-form-actual>button {
+    background-color: forestgreen;
+    color: white;
+    border: 0px;
+    border-radius: 5px;
+    padding: 10px 0px;
+    margin: 10px 0px;
+}

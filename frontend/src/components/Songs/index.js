@@ -28,10 +28,10 @@ export default function SelectedSong() {
                             className='all-songs-single-img'
                             src={el.img ||
                                 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png'} />
-                        <div>
+                        <div className='all-songs-song-name'>
                             {el.name}
                         </div>
-                        <div>
+                        <div className='all-songs-username'>
                             {el.User.username}
                         </div>
                     </div>

@@ -1,0 +1,28 @@
+.sign-up-form-container {
+    padding: 30px;
+    width: 300px;
+    height: fit-content;
+}
+
+.sign-up-form-actual {
+    display: flex;
+    flex-direction: column;
+    /* width: 300px; */
+    height: 100%;
+}
+
+.sign-up-form-actual>label {
+    display: flex;
+    flex-direction: column;
+    border: 1px lightgray solid;
+    margin: 10px 0px;
+}
+
+.sign-up-form-actual>button {
+    background-color: forestgreen;
+    color: white;
+    border: 0px;
+    border-radius: 5px;
+    padding: 10px 0px;
+    margin: 10px 0px;
+}

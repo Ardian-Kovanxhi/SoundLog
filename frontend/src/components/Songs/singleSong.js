@@ -78,13 +78,13 @@ export default function SingleSong() {
                                 <div className='pfp-info-div'>
                                     <img className='uploader-pfp' src='https://cdn-icons-png.flaticon.com/512/149/149071.png' />
 
-                                    <div>
+                                    <div className='song-name-uploader-div'>
 
-                                        <div>
+                                        <div className='song-name-div'>
                                             {Song.name}
                                         </div>
 
-                                        <div>
+                                        <div className='song-uploader-div'>
                                             {Uploader}
                                         </div>
 
@@ -96,21 +96,18 @@ export default function SingleSong() {
                             <div>
 
                                 {User ? Song.userId === User.id ?
-                                    <>
-                                        {/* <button
-                                            onClick={(e) => history.push(`/songs/${songId}/edit`)}
-                                        >edit</button> */}
+                                    <div className='edit-delete-buttons-div'>
                                         <OpenModalMenuItem
                                             // itemText="Test"
                                             buttonText='Edit'
                                             modalComponent={<SongEditPage />}
                                         />
-                                        <div>
-                                            <button
-                                                onClick={deleteHandler}
-                                            >delete</button>
-                                        </div>
-                                    </>
+
+                                        <button
+                                            onClick={deleteHandler}
+                                        >Delete</button>
+
+                                    </div>
                                     :
                                     null : null
                                 }
@@ -147,56 +144,72 @@ export default function SingleSong() {
 
 
 
-            {
-                User ?
-                    <form
-                        onSubmit={submitHandler}
-                    >
-                        <input
-                            type='text'
-                            onChange={(e) => setComment(e.target.value)}
-                            value={comment}
-                        />
-                        {/* <button>submit</button> */}
-                    </form>
-                    :
-                    <OpenModalMenuItem
-                        buttonText="If you would like to leave a comment click here to login"
-                        modalComponent={<LoginFormModal />}
-                    />
+            <div className='comments-gen-div'>
 
-            }
-
-            <div>
-
-                {commentArr.map(el => (
-                    <>
-                        <div>
-                            <img className='comment-pfp' src='https://cdn-icons-png.flaticon.com/512/149/149071.png' />
-                            {el.User.username}
-                            <div>
-                                {el.comment}
+                {
+                    User ?
+                        <form
+                            onSubmit={submitHandler}
+                            className='comment-form'
+                        >
+                            <input
+                                type='text'
+                                onChange={(e) => setComment(e.target.value)}
+                                value={comment}
+                                maxLength='100'
+                                placeholder='Write a comment here'
+                            />
+                            <div className='chara-count'>
+                                {`${100 - comment.length} characters left`}
                             </div>
+                            {/* <button>submit</button> */}
+                        </form>
+                        :
+                        <div className='conditional-bar-button'>
+                            <OpenModalMenuItem
+                                buttonText="If you would like to leave a comment click here to login"
+                                modalComponent={<LoginFormModal />}
+                            />
                         </div>
 
-                        <div>{disabled ? el.userId === User.id ?
-                            <>
-                                {/* <button
-                                    onClick={() => history.push(`/songs/${songId}/comments/${el.id}/edit`)}
-                                >Edit</button> */}
-                                <OpenModalMenuItem
-                                    // itemText="Test"
-                                    buttonText='Edit'
-                                    modalComponent={<CommentEditModal commentId={el.id} songId={songId} />}
-                                />
-                                <button
-                                    onClick={() => commentDeleteHandler(el.id)}
-                                >Delete</button>
-                            </>
-                            : null : null}</div>
-                    </>
+                }
 
-                ))}
+
+                <div className='all-comments-div'>
+
+                    {commentArr.map(el => (
+                        <div className='single-comment-div'>
+                            <img className='comment-pfp' src='https://cdn-icons-png.flaticon.com/512/149/149071.png' />
+                            <div>
+                                <div>
+                                    <div className='username-conditional-div'>
+                                        {el.User.username}
+
+                                        {disabled ? el.userId === User.id ?
+                                            <div className='comments-button-div'>
+                                                <OpenModalMenuItem
+                                                    // itemText="Test"
+                                                    buttonText='Edit'
+                                                    modalComponent={<CommentEditModal commentId={el.id} songId={songId} />}
+                                                />
+
+                                                <button
+                                                    onClick={() => commentDeleteHandler(el.id)}
+                                                >Delete</button>
+                                            </div>
+                                            : null : null}
+
+                                    </div>
+                                </div>
+                                <div>
+                                    {el.comment}
+                                </div>
+                            </div>
+
+                        </div>
+
+                    ))}
+                </div>
 
             </div>
 

@@ -1,8 +1,31 @@
-/* .song-edit-div {
+.song-edit-div {
     z-index: 1;
-    position: absolute;
-    background-color: white;
-    border-top: 50px solid white;
-    width: 1240px;
-    height: 100%;
-} */
+    display: flex;
+    margin: 20px;
+}
+
+.song-edit-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 30px;
+}
+
+.edit-img-preview {
+    width: 300px;
+    height: 300px;
+}
+
+.song-edit-textarea {
+    height: 50px;
+    resize: none;
+}
+
+.edit-submit-button {
+    padding: 5px 0px;
+    font-size: medium;
+    border: 0px;
+    border-radius: 5px;
+    background-color: forestgreen;
+    color: white;
+}

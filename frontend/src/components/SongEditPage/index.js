@@ -40,13 +40,13 @@ export default function SongEditPage() {
 
 
         closeModal()
-        // history.push(`/songs/${songId}`)/
+        // history.push(`/songs/${songId}`)
     }
 
     return (
         <div className='song-edit-div'>
-            <form>
-                <div>
+            <form className='song-edit-form'>
+                <div className='song-form-input-fields'>
                     <label>
                         {'Name: '}
                     </label>
@@ -57,22 +57,23 @@ export default function SongEditPage() {
                         required
                     />
                 </div>
-                <div>
+                <div className='song-form-input-fields'>
                     <label>
                         {'Image: '}
                     </label>
                     <input
-                        type='text'
+                        type="url"
                         onChange={(e) => setImage(e.target.value)}
                         value={image}
                         required
                     />
                 </div>
-                <div>
+                <div className='song-form-input-fields textarea'>
                     <label>
                         {'Description: '}
                     </label>
                     <textarea
+                        className='song-edit-textarea'
                         type='text'
                         onChange={(e) => setDescription(e.target.value)}
                         value={description}
@@ -81,10 +82,15 @@ export default function SongEditPage() {
                 </div>
                 <button
                     onClick={submitHandler}
+                    className='edit-submit-button'
                 >
                     Submit
                 </button>
             </form>
+            <img
+                className='edit-img-preview'
+                src={image || 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png'}
+            />
         </div>
     )
 }

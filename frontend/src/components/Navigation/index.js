@@ -26,7 +26,7 @@ function Navigation({ isLoaded }) {
                     </div>
                 </div>
                 <div className='nav-button-div'>
-                    <div>
+                    <div className='modal-but-test'>
                         {/* <button
                             onClick={() => history.push('/songs')}
                         >
@@ -41,7 +41,8 @@ function Navigation({ isLoaded }) {
                                 </button>
                                 :
                                 <OpenModalMenuItem
-                                    buttonText="New Song"
+                                    itemText="New Song"
+                                    buttonText='New Song'
                                     modalComponent={<LoginFormModal />}
                                 />
 

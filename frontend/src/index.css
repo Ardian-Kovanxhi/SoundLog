@@ -16,3 +16,13 @@ body {
 button:hover {
     cursor: pointer;
 }
+
+input {
+    border: 0px;
+    font-size: medium;
+}
+
+textarea {
+    border: 0px;
+    font-size: medium;
+}

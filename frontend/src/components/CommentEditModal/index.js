@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useHistory, useParams } from 'react-router-dom'
 import { editComment, getCommentById, getCommentsBySong } from '../../store/comments';
 import { useModal } from '../../context/Modal'
+import './CommentEditModal.css'
 
 export default function CommentEditModal({ commentId, songId }) {
     // const { songId, commentId } = useParams();
@@ -38,19 +39,24 @@ export default function CommentEditModal({ commentId, songId }) {
     }
 
     return (
-        <div>
-            <form>
-                <div>
-                    <label>
-                        {'Comment: '}
-                    </label>
+        <div className='comment-edit-form-div'>
+            <h1>Edit Comment</h1>
+            <form className='comment-edit-form'>
+
+                <label>
+                    {'Comment: '}
                     <input
                         type='text'
                         onChange={(e) => setComment(e.target.value)}
                         value={comment}
+                        maxLength='100'
                         required
                     />
+                </label>
+                <div className='chara-count'>
+                    {`${100 - comment.length} characters left`}
                 </div>
+
                 <button
                     onClick={submitHandler}
                 >
