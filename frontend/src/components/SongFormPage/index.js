@@ -18,18 +18,13 @@ export default function SongFormPage() {
     const [description, setDescription] = useState('')
     const [errors, setErrors] = useState([])
 
-    // useEffect(() => {
+    useEffect(() => {
 
-    //     const detected = []
+        if (!user) {
+            history.push('/')
+        }
 
-    //     if (content) {
-    //         const fileType = content.name.split('.')[1]
-    //         if (fileType !== 'mp3') {
-    //             detected.push('incorrect file type')
-    //             setErrors(detected)
-    //         }
-    //     }
-    // }, [content])
+    }, [user])
 
     const submitHandler = async (e) => {
         e.preventDefault();
