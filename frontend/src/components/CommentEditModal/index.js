@@ -27,6 +27,10 @@ export default function CommentEditModal({ commentId, songId }) {
     const submitHandler = async (e) => {
         e.preventDefault();
 
+        if (comment.length < 1) {
+            return
+        }
+
         dispatch(editComment(commentId, {
             comment
         }))
@@ -41,6 +45,7 @@ export default function CommentEditModal({ commentId, songId }) {
     return (
         <div className='comment-edit-form-div'>
             <h1>Edit Comment</h1>
+            <h4>must be at leat 1 character long</h4>
             <form className='comment-edit-form'>
 
                 <label>
@@ -50,7 +55,7 @@ export default function CommentEditModal({ commentId, songId }) {
                         onChange={(e) => setComment(e.target.value)}
                         value={comment}
                         maxLength='100'
-                        required
+                        minLength='1'
                     />
                 </label>
                 <div className='chara-count'>

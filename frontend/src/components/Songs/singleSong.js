@@ -157,6 +157,7 @@ export default function SingleSong() {
                                 onChange={(e) => setComment(e.target.value)}
                                 value={comment}
                                 maxLength='100'
+                                required
                                 placeholder='Write a comment here'
                             />
                             <div className='chara-count'>
