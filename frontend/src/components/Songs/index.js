@@ -28,7 +28,12 @@ export default function SelectedSong() {
                             className='all-songs-single-img'
                             src={el.img ||
                                 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png'} />
-                        {el.name}
+                        <div>
+                            {el.name}
+                        </div>
+                        <div>
+                            {el.User.username}
+                        </div>
                     </div>
                 ))}
             </div>

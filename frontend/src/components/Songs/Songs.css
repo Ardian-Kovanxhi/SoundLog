@@ -11,17 +11,19 @@
     background-color: white;
     display: flex;
     flex-wrap: wrap;
+    /* justify-content: space-between; */
     align-items: baseline;
     margin-top: 50px;
     width: 1240px;
-    height: 100%;
+    height: fit-content;
 }
 
 .all-songs-single {
     border: 1px black solid;
-    margin: 5px;
+    margin: 20px;
     width: 200px;
-    height: 200px;
+    /* height: 200px; */
+    height: fit-content;
     display: flex;
     flex-direction: column;
 }
@@ -45,22 +47,62 @@
 
 .single-song-div {
     border-bottom: gray 2px solid;
-    padding-bottom: 5px;
+    padding-bottom: 0px;
     margin-bottom: 10px;
+}
+
+.single-song-info-img-div {
+    display: flex;
+    justify-content: space-between;
+}
+
+.single-song-info-div {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-bottom: 20px;
+}
+
+.info-buttons-div {
+    display: flex;
+    justify-content: space-between;
+    padding-right: 20px;
+}
+
+.pfp-info-div {
+    display: flex;
+    align-items: center;
 }
 
 .single-song-img {
     width: 500px;
     height: 500px;
+    /* height: 100%; */
 }
 
-audio::-webkit-media-controls-panel {
+.uploader-pfp {
+    width: 80px;
+    height: 80px;
+}
+
+.audio-controls {
     width: 100%;
+}
+
+.comment-pfp {
+    width: 40px;
+    height: 40px;
+}
+
+
+audio::-webkit-media-controls-panel {
     background-color: white;
 }
 
 audio::-webkit-media-controls-play-button {
-    background-color: white;
+    background-color: transparent;
+
     border-radius: 50%;
 }
 
@@ -68,6 +110,7 @@ audio::-webkit-media-controls-play-button {
 audio::-webkit-media-controls-play-button:hover {
     background-color: rgba(177, 212, 224, .7);
 }
+
 
 
 @media (max-height: 930px) {

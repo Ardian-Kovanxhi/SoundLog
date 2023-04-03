@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { submitSong } from "../../store/songs";
@@ -17,6 +17,19 @@ export default function SongFormPage() {
     const [img, setImg] = useState('')
     const [description, setDescription] = useState('')
     const [errors, setErrors] = useState([])
+
+    useEffect(() => {
+
+        const detected = []
+
+        if (content) {
+            const fileType = content.name.split('.')[1]
+            if (fileType !== 'mp3') {
+                detected.push('incorrect file type')
+                setErrors(detected)
+            }
+        }
+    }, [content])
 
     const submitHandler = async (e) => {
         e.preventDefault();
@@ -45,6 +58,13 @@ export default function SongFormPage() {
 
     return (
         <div className="song-form-div">
+            <ul>
+                {errors.map(el => (
+                    <li>
+                        {el}
+                    </li>
+                ))}
+            </ul>
             <form onSubmit={submitHandler}>
                 <div>
                     <label>
@@ -69,6 +89,9 @@ export default function SongFormPage() {
                     /> */}
                     <input type="file" onChange={updateFile} />
                 </div>
+                <img
+                    className="new-song-img"
+                    src={img || 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png'} />
                 <div>
                     <label>
                         {'ImageUrl: '}

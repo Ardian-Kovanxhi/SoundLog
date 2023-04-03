@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { getSong, editSong } from '../../store/songs'
 import { useSelector, useDispatch } from 'react-redux'
 import { useHistory, useParams } from 'react-router-dom'
+import { useModal } from "../../context/Modal";
 import './SongEditPage.css'
 
 export default function SongEditPage() {
@@ -9,14 +10,16 @@ export default function SongEditPage() {
     const history = useHistory();
     const sessionUser = useSelector((state) => state.session.user)
     const sessionSong = useSelector((state) => state.songs.singleSong)
+    const { closeModal } = useModal();
 
-    const { songId } = useParams();
+
+    const songId = sessionSong.id;
 
     useEffect(() => {
         dispatch(getSong(songId))
     }, [])
 
-    const songUrl = sessionSong.content
+    // const songUrl = sessionSong.content
     const [name, setName] = useState(sessionSong.name);
     const [image, setImage] = useState(sessionSong.img);
     const [description, setDescription] = useState(sessionSong.description);
@@ -32,12 +35,12 @@ export default function SongEditPage() {
             name,
             img: image,
             description,
-            content: songUrl
+            // content: songUrl
         }))
 
 
-
-        history.push(`/songs/${songId}`)
+        closeModal()
+        // history.push(`/songs/${songId}`)/
     }
 
     return (

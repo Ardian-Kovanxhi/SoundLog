@@ -53,7 +53,22 @@ module.exports = {
         userId: 3,
         songId: 3,
         comment: 'this is a sample comment3'
-      }
+      },
+      {
+        userId: 1,
+        songId: 4,
+        comment: 'this is a sample comment'
+      },
+      {
+        userId: 2,
+        songId: 4,
+        comment: 'this is a sample comment2'
+      },
+      {
+        userId: 3,
+        songId: 4,
+        comment: 'this is a sample comment3'
+      },
     ], {});
   },
 

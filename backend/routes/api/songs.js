@@ -10,7 +10,11 @@ const router = express.Router();
 //GET /api/songs | all songs
 router.get('/', async (req, res) => {
 
-    const songs = await Song.findAll();
+    const songs = await Song.findAll({
+        include: [
+            { model: User, attributes: ['id', 'username'] }
+        ]
+    });
 
     res.json(songs);
 });

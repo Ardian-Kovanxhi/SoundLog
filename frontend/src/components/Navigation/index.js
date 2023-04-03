@@ -2,6 +2,9 @@ import React from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
+import LoginFormModal from '../LoginFormModal';
+import OpenModalMenuItem from '../OpenModalButton';
+import * as sessionActions from '../../store/session';
 import './Navigation.css';
 
 function Navigation({ isLoaded }) {
@@ -24,11 +27,25 @@ function Navigation({ isLoaded }) {
                 </div>
                 <div className='nav-button-div'>
                     <div>
-                        <button
+                        {/* <button
                             onClick={() => history.push('/songs')}
                         >
                             New Song
-                        </button>
+                        </button> */}
+                        {
+                            sessionUser ?
+                                <button
+                                    onClick={() => history.push('/songs')}
+                                >
+                                    New Song
+                                </button>
+                                :
+                                <OpenModalMenuItem
+                                    buttonText="New Song"
+                                    modalComponent={<LoginFormModal />}
+                                />
+
+                        }
                     </div>
                     {isLoaded && (
                         <div>
