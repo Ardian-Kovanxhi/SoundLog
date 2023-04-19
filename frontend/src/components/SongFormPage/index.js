@@ -34,14 +34,14 @@ export default function SongFormPage() {
         if (img === '') setImg(null)
         if (description === '') setDescription(null)
 
-        // if (content) {
-        //     const fileType = content.name.split('.')[1]
-        //     if (fileType !== 'mp3') {
-        //         detected.push('incorrect file type')
-        //         setErrors(detected)
-        //         return
-        //     }
-        // }
+        if (content) {
+            const fileType = content.name.split('.')[1]
+            if (fileType !== 'mp3') {
+                detected.push('incorrect file type')
+                setErrors(detected)
+                return
+            }
+        }
 
         const newSong = await dispatch(submitSong({
             ownerId: user.id,
@@ -126,7 +126,7 @@ export default function SongFormPage() {
                             </label>
 
                             <input
-                                type='text'
+                                type='url'
                                 onChange={(e) => setImg(e.target.value)}
                                 value={img}
                             />
