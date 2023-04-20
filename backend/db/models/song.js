@@ -13,6 +13,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       Song.belongsTo(models.User, { foreignKey: 'userId', onDelete: 'CASCADE' })
       Song.hasMany(models.Comment, { foreignKey: 'songId', onDelete: 'CASCADE' })
+      Song.hasMany(models.Like, { foreignKey: 'songId', onDelete: 'CASCADE' })
     }
   }
   Song.init({
