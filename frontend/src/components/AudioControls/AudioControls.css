@@ -1,8 +1,9 @@
 .audio-controls-div {
-    position: absolute;
+    position: fixed;
     bottom: 0;
-    background-color: antiquewhite;
+    z-index: 10;
+    /* background-color: antiquewhite;
     width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: center; */
 }

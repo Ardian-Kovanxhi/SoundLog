@@ -8,6 +8,8 @@ import LoginFormModal from '../LoginFormModal';
 import SongEditPage from "../SongEditPage";
 import OpenModalMenuItem from '../OpenModalButton';
 import CommentEditModal from '../CommentEditModal';
+import AudioPlayer from 'react-h5-audio-player';
+import 'react-h5-audio-player/lib/styles.css';
 import './Songs.css'
 
 
@@ -121,7 +123,6 @@ export default function SingleSong() {
                         <div>
                             {/* {Song.content} */}
                             <audio controls src={Song.content} className='audio-controls'></audio>
-
                         </div>
 
                     </div>

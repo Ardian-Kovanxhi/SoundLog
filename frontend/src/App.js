@@ -22,13 +22,16 @@ function App() {
     <div className="page-container-div">
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
-        <Switch>
-          <Route path={'/songs/:songId/comments/:commentId/edit'} component={CommentEditPage} />
-          <Route path={'/songs/:songId/edit'} component={SongEditPage} />
-          <Route path={'/songs/:songId'} component={SingleSong} />
-          <Route path={'/songs'} component={SongFormPage} />
-          <Route exact path={'/'} component={SelectedSong} />
-        </Switch>
+        <>
+          <Switch>
+            <Route path={'/songs/:songId/comments/:commentId/edit'} component={CommentEditPage} />
+            <Route path={'/songs/:songId/edit'} component={SongEditPage} />
+            <Route path={'/songs/:songId'} component={SingleSong} />
+            <Route path={'/songs'} component={SongFormPage} />
+            <Route exact path={'/'} component={SelectedSong} />
+          </Switch>
+          <AudioControls />
+        </>
       )}
 
       {/* <AudioControls isLoaded={isLoaded} /> */}
