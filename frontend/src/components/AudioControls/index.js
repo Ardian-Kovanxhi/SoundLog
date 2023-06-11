@@ -5,24 +5,21 @@ import { useDispatch, useSelector } from 'react-redux'
 import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
 import './AudioControls.css'
+// import './style.scss'
 
 function AudioControls({ isLoaded }) {
-    const dispatch = useDispatch()
-
-    useEffect(() => {
-        dispatch(getSongs())
-    }, [])
 
 
-    const songs = useSelector(state => state.songs.allSongs[1].content)
-    const song = useSelector(state => state.songs.singleSong)
+    // const songs = useSelector(state => state.songs.allSongs[1].content)
+    const song = useSelector(state => state.songs.playingSong)
 
     return (
         <AudioPlayer
-            className='audio-controls-div'
+            className='audio-player'
             autoPlay
-            src={songs}
+            src={song ? song.content : null}
             onPlay={e => console.log("onPlay")}
+
         // other props here
         />
     )

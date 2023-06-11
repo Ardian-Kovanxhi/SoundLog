@@ -4,6 +4,7 @@ import { csrfFetch } from "./csrf";
 
 const READ_SONGS = 'songs/READ_SONGS'
 const READ_SONG = 'song/READ_SONG'
+const PLAY_SONG = 'song/PLAY_SONG'
 const DELETE_SONG = 'song/DELETE_SONG'
 
 
@@ -16,6 +17,13 @@ const readSongs = (songs) => {
 const readSong = (song) => {
     return {
         type: READ_SONG,
+        song
+    }
+}
+
+const playingSong = (song) => {
+    return {
+        type: PLAY_SONG,
         song
     }
 }
@@ -46,6 +54,17 @@ export const getSong = (songId) => async dispatch => {
     if (response.ok) {
         const song = await response.json();
         dispatch(readSong(song))
+        return song
+    }
+}
+
+export const playSong = (songId) => async dispatch => {
+
+    const response = await csrfFetch(`/api/songs/${songId}`)
+
+    if (response.ok) {
+        const song = await response.json();
+        dispatch(playingSong(song))
         return song
     }
 }
@@ -120,19 +139,24 @@ export const removeSong = (songId) => async dispatch => {
 
 
 
-const initialState = { allSongs: {}, singleSong: {} }
+const initialState = { allSongs: {}, singleSong: {}, playingSong: {} }
 
 export default function songsReducer(state = initialState, action) {
     let newState;
     switch (action.type) {
         case READ_SONGS: {
-            newState = { allSongs: {}, singleSong: {} }
+            newState = { ...state, allSongs: {} }
             action.songs.forEach(song => newState.allSongs[song.id] = song);
             return newState
         }
         case READ_SONG: {
             newState = { ...state, singleSong: {} }
             newState.singleSong = action.song
+            return newState
+        }
+        case PLAY_SONG: {
+            newState = { ...state, playingSong: {} }
+            newState.playingSong = action.song
             return newState
         }
         case DELETE_SONG: {
