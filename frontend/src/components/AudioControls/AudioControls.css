@@ -1,9 +1,13 @@
+.test-button {
+    z-index: 10;
+}
+
 .audio-player {
     position: fixed;
     bottom: 0;
     z-index: 10;
 }
 
-.rhap_container {
-    background-color: white;
+.audio-player.invisible {
+    visibility: hidden;
 }
