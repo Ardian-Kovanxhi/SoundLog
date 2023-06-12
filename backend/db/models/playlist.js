@@ -11,12 +11,23 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Playlist.belongsTo(models.User, { foreignKey: 'userId', onDelete: 'CASCADE' })
+      Playlist.hasMany(models.PlaylistSong, { foreignKey: 'playlistId' })
     }
   }
   Playlist.init({
-    userId: DataTypes.INTEGER,
-    name: DataTypes.STRING,
-    description: DataTypes.STRING
+    userId: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    description: {
+      type: DataTypes.STRING,
+      allowNull: true
+    }
   }, {
     sequelize,
     modelName: 'Playlist',
