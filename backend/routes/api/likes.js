@@ -27,3 +27,20 @@ router.get('/current', requireAuth, async (req, res) => {
 
     res.json({ Likes })
 })
+
+//Auth true
+//DELETE /api/likes/:likeId | Delete Like
+router.delete('/:likeId', requireAuth, async (req, res) => {
+    const likeId = +req.params.likeId;
+
+    const like = await Like.findByPk(likeId);
+
+
+    if (!like) {
+        res.statusCode = 404;
+        return res.json({ message: "Like not found", statusCode: 404 })
+    }
+
+    await like.destroy();
+    return res.json({ message: "successfully deleted", statusCode: 200 })
+})
