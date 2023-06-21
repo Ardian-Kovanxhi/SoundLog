@@ -29,6 +29,7 @@ function App() {
             <Route path={'/songs/:songId'} component={SingleSong} />
             <Route path={'/songs'} component={SongFormPage} />
             <Route exact path={'/'} component={SelectedSong} />
+            <Route path={'*'} component={CommentTesting} />
           </Switch>
           <AudioControls />
         </>

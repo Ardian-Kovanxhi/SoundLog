@@ -51,6 +51,9 @@ function ProfileButton({ user }) {
                         <div>{user.firstName} {user.lastName}</div>
                         <div>{user.email}</div>
 
+                        <button>Likes</button>
+                        <button>Playlists</button>
+
                         <button onClick={logout}>Log Out</button>
 
                     </div>

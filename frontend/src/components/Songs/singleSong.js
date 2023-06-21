@@ -114,6 +114,17 @@ export default function SingleSong() {
                                     null : null
                                 }
 
+                                {User ?
+                                    <button>
+                                        Like (actual)
+                                    </button>
+                                    :
+                                    <OpenModalMenuItem
+                                        buttonText="Like (login)"
+                                        modalComponent={<LoginFormModal />}
+                                    />
+                                }
+
                             </div>
 
                         </div>
