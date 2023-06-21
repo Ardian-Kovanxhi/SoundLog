@@ -66,167 +66,181 @@ export default function SingleSong() {
 
 
     return (
-        <div className='single-song-container-div'>
+        <>
+            {Song.length ?
 
-            <div className='single-song-div'>
+                <div className='single-song-container-div'>
 
-                <div className='single-song-info-img-div'>
+                    <div className='single-song-div'>
 
-                    <div className='single-song-info-div'>
+                        <div className='single-song-info-img-div'>
 
-                        <div className='info-buttons-div'>
+                            <div className='single-song-info-div'>
 
-                            <div>
-                                <div className='pfp-info-div'>
-                                    <img className='uploader-pfp' src='https://cdn-icons-png.flaticon.com/512/149/149071.png' />
+                                <div className='info-buttons-div'>
 
-                                    <div className='song-name-uploader-div'>
+                                    <div>
+                                        <div className='pfp-info-div'>
+                                            <img className='uploader-pfp' src='https://cdn-icons-png.flaticon.com/512/149/149071.png' />
 
-                                        <div className='song-name-div'>
-                                            {Song.name}
+                                            <div className='song-name-uploader-div'>
+
+                                                <div className='song-name-div'>
+                                                    {Song.name}
+                                                </div>
+
+                                                <div className='song-uploader-div'>
+                                                    {Uploader}
+                                                </div>
+
+                                            </div>
                                         </div>
-
-                                        <div className='song-uploader-div'>
-                                            {Uploader}
-                                        </div>
-
                                     </div>
-                                </div>
-                            </div>
 
 
-                            <div>
+                                    <div>
 
-                                {User ? Song.userId === User.id ?
-                                    <div className='edit-delete-buttons-div'>
-                                        <OpenModalMenuItem
-                                            // itemText="Test"
-                                            buttonText='Edit'
-                                            modalComponent={<SongEditPage />}
-                                        />
-
-                                        <button
-                                            onClick={deleteHandler}
-                                        >Delete</button>
-
-                                    </div>
-                                    :
-                                    null : null
-                                }
-
-                                {User ?
-                                    <button>
-                                        Like (actual)
-                                    </button>
-                                    :
-                                    <OpenModalMenuItem
-                                        buttonText="Like (login)"
-                                        modalComponent={<LoginFormModal />}
-                                    />
-                                }
-
-                            </div>
-
-                        </div>
-
-                        <div>{Song.description}</div>
-
-                        <div>
-                            {/* {Song.content} */}
-                            <audio controls src={Song.content} className='audio-controls'></audio>
-                        </div>
-
-                    </div>
-
-                    <div>
-
-                        <img
-                            className='single-song-img'
-                            src={
-                                Song.img
-                                ||
-                                'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png'
-                            } />
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-
-            <div className='comments-gen-div'>
-
-                {
-                    User ?
-                        <form
-                            onSubmit={submitHandler}
-                            className='comment-form'
-                        >
-                            <input
-                                type='text'
-                                onChange={(e) => setComment(e.target.value)}
-                                value={comment}
-                                maxLength='100'
-                                required
-                                placeholder='Write a comment here'
-                            />
-                            <div className='chara-count'>
-                                {`${100 - comment.length} characters left`}
-                            </div>
-                            {/* <button>submit</button> */}
-                        </form>
-                        :
-                        <div className='conditional-bar-button'>
-                            <OpenModalMenuItem
-                                buttonText="If you would like to leave a comment click here to login"
-                                modalComponent={<LoginFormModal />}
-                            />
-                        </div>
-
-                }
-
-
-                <div className='all-comments-div'>
-
-                    {commentArr.map(el => (
-                        <div className='single-comment-div'>
-                            <img className='comment-pfp' src='https://cdn-icons-png.flaticon.com/512/149/149071.png' />
-                            <div>
-                                <div>
-                                    <div className='username-conditional-div'>
-                                        {el.User.username}
-
-                                        {disabled ? el.userId === User.id ?
-                                            <div className='comments-button-div'>
+                                        {User ? Song.userId === User.id ?
+                                            <div className='edit-delete-buttons-div'>
                                                 <OpenModalMenuItem
                                                     // itemText="Test"
                                                     buttonText='Edit'
-                                                    modalComponent={<CommentEditModal commentId={el.id} songId={songId} />}
+                                                    modalComponent={<SongEditPage />}
                                                 />
 
                                                 <button
-                                                    onClick={() => commentDeleteHandler(el.id)}
+                                                    onClick={deleteHandler}
                                                 >Delete</button>
+
                                             </div>
-                                            : null : null}
+                                            :
+                                            null : null
+                                        }
+
+                                        {User ?
+                                            true ?
+                                                <button>
+                                                    Like (actual)
+                                                </button>
+                                                :
+                                                <button>
+                                                    Unlike
+                                                </button>
+                                            :
+                                            <OpenModalMenuItem
+                                                buttonText="Like (login)"
+                                                modalComponent={<LoginFormModal />}
+                                            />
+                                        }
 
                                     </div>
+
                                 </div>
+
+                                <div>{Song.description}</div>
+
                                 <div>
-                                    {el.comment}
+                                    {/* {Song.content} */}
+                                    <audio controls src={Song.content} className='audio-controls'></audio>
                                 </div>
+
+                            </div>
+
+                            <div>
+
+                                <img
+                                    className='single-song-img'
+                                    src={
+                                        Song.img
+                                        ||
+                                        'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png'
+                                    } />
+
                             </div>
 
                         </div>
 
-                    ))}
-                </div>
+                    </div>
 
-            </div>
 
-        </div >
+
+                    <div className='comments-gen-div'>
+
+                        {
+                            User ?
+                                <form
+                                    onSubmit={submitHandler}
+                                    className='comment-form'
+                                >
+                                    <input
+                                        type='text'
+                                        onChange={(e) => setComment(e.target.value)}
+                                        value={comment}
+                                        maxLength='100'
+                                        required
+                                        placeholder='Write a comment here'
+                                    />
+                                    <div className='chara-count'>
+                                        {`${100 - comment.length} characters left`}
+                                    </div>
+                                    {/* <button>submit</button> */}
+                                </form>
+                                :
+                                <div className='conditional-bar-button'>
+                                    <OpenModalMenuItem
+                                        buttonText="If you would like to leave a comment click here to login"
+                                        modalComponent={<LoginFormModal />}
+                                    />
+                                </div>
+
+                        }
+
+
+                        <div className='all-comments-div'>
+
+                            {commentArr.map(el => (
+                                <div className='single-comment-div'>
+                                    <img className='comment-pfp' src='https://cdn-icons-png.flaticon.com/512/149/149071.png' />
+                                    <div>
+                                        <div>
+                                            <div className='username-conditional-div'>
+                                                {el.User.username}
+
+                                                {disabled ? el.userId === User.id ?
+                                                    <div className='comments-button-div'>
+                                                        <OpenModalMenuItem
+                                                            // itemText="Test"
+                                                            buttonText='Edit'
+                                                            modalComponent={<CommentEditModal commentId={el.id} songId={songId} />}
+                                                        />
+
+                                                        <button
+                                                            onClick={() => commentDeleteHandler(el.id)}
+                                                        >Delete</button>
+                                                    </div>
+                                                    : null : null}
+
+                                            </div>
+                                        </div>
+                                        <div>
+                                            {el.comment}
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            ))}
+                        </div>
+
+                    </div>
+
+                </div >
+                :
+                <p>
+                    song not found
+                </p>
+            }
+        </>
 
     )
 }

@@ -28,6 +28,8 @@ function App() {
             <Route path={'/songs/:songId/edit'} component={SongEditPage} />
             <Route path={'/songs/:songId'} component={SingleSong} />
             <Route path={'/songs'} component={SongFormPage} />
+            <Route path={'/likes'} />
+            <Route path={'/playlists'} />
             <Route exact path={'/'} component={SelectedSong} />
             <Route path={'*'} component={CommentTesting} />
           </Switch>

@@ -44,3 +44,5 @@ router.delete('/:likeId', requireAuth, async (req, res) => {
     await like.destroy();
     return res.json({ message: "successfully deleted", statusCode: 200 })
 })
+
+module.exports = router
