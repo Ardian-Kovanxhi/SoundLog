@@ -16,16 +16,13 @@ router.get('/current', requireAuth, async (req, res) => {
             {
                 model: Song, attributes: [
                     'id',
-                    'userId',
-                    'songId',
                     'name',
                     'content'
                 ]
             }
         ]
     })
-
-    res.json({ Likes })
+    return res.json({ Likes })
 })
 
 //Auth true

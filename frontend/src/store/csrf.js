@@ -53,11 +53,11 @@ export async function csrfFetch(url, options = {}) {
     options.headers["Content-Type"] =
         options.headers["Content-Type"] || "application/json";
     if (options.method.toUpperCase() !== "GET") {
-        console.log('this is the header')
-        console.log(options.headers["Content-Type"])
+        // console.log('this is the header')
+        // console.log(options.headers["Content-Type"])
         if (options.headers["Content-Type"] === "multipart/form-data") {
             delete options.headers["Content-Type"];
-            console.log(options.headers["Content-Type"])
+            // console.log(options.headers["Content-Type"])
 
         } else {
             options.headers["Content-Type"] =

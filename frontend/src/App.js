@@ -10,6 +10,8 @@ import SingleSong from "./components/Songs/singleSong";
 import SongEditPage from "./components/SongEditPage";
 import CommentEditPage from "./components/CommentEditForm";
 import AudioControls from './components/AudioControls'
+import Likes from "./components/Likes";
+import Playlists from "./components/Playlists";
 
 function App() {
   const dispatch = useDispatch();
@@ -28,8 +30,8 @@ function App() {
             <Route path={'/songs/:songId/edit'} component={SongEditPage} />
             <Route path={'/songs/:songId'} component={SingleSong} />
             <Route path={'/songs'} component={SongFormPage} />
-            <Route path={'/likes'} />
-            <Route path={'/playlists'} />
+            <Route path={'/likes'} component={Likes} />
+            <Route path={'/playlists'} component={Playlists} />
             <Route exact path={'/'} component={SelectedSong} />
             <Route path={'*'} component={CommentTesting} />
           </Switch>

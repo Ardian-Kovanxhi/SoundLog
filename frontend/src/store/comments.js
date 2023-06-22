@@ -123,7 +123,7 @@ export default function commentsReducer(state = initialState, action) {
     let newState;
     switch (action.type) {
         case READ_COMMENTS: {
-            newState = { allComments: {} }
+            newState = { allComments: {}, singleComment: {} }
             action.comments.comments.forEach(comment => newState.allComments[comment.id] = comment);
             return newState
         }

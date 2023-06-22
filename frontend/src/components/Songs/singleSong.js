@@ -4,11 +4,11 @@ import { useParams, useHistory } from 'react-router-dom'
 import { getCommentsBySong } from "../../store/comments";
 import { getSong, getSongs, removeSong } from '../../store/songs';
 import { removeComment, createComment } from '../../store/comments';
+import { createLike, getLikesBySong, getLikesByUser, removeLike } from '../../store/likes';
 import LoginFormModal from '../LoginFormModal';
 import SongEditPage from "../SongEditPage";
 import OpenModalMenuItem from '../OpenModalButton';
 import CommentEditModal from '../CommentEditModal';
-import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
 import './Songs.css'
 
@@ -22,14 +22,18 @@ export default function SingleSong() {
     useEffect(() => {
         dispatch(getSong(songId))
         dispatch(getCommentsBySong(songId))
+        dispatch(getLikesBySong(songId))
+        // dispatch(getLikesByUser())
     }, [])
 
     const Song = useSelector(state => state.songs.singleSong);
     const Comments = useSelector(state => state.comments.allComments);
     const User = useSelector(state => state.session.user)
+    const Likes = useSelector(state => state.likes.userLikes)
     const [comment, setComment] = useState('');
     let disabled = false
     let Uploader = ''
+    // let likeF = 
 
     if (User) {
         disabled = true
@@ -38,6 +42,13 @@ export default function SingleSong() {
     if (Song.User) {
         Uploader = Song.User.username
     }
+
+    // console.log(songId)
+    // console.log(Likes)
+    // console.log(Likes[songId])
+    // if (Likes.songId) {
+    //     console.log(Likes.songId)
+    // }
 
     const commentArr = Object.values(Comments)
 
@@ -67,7 +78,7 @@ export default function SingleSong() {
 
     return (
         <>
-            {Song.length ?
+            {Song.id ?
 
                 <div className='single-song-container-div'>
 
@@ -118,12 +129,17 @@ export default function SingleSong() {
                                         }
 
                                         {User ?
-                                            true ?
-                                                <button>
+                                            !Likes[songId] ?
+                                                <button
+                                                    onClick={createLike(songId)}
+                                                // onClick={() => console.log(songId)}
+                                                >
                                                     Like (actual)
                                                 </button>
                                                 :
-                                                <button>
+                                                <button
+                                                    onClick={removeLike(Likes[songId])}
+                                                >
                                                     Unlike
                                                 </button>
                                             :
@@ -236,7 +252,7 @@ export default function SingleSong() {
 
                 </div >
                 :
-                <p>
+                <p className='song404'>
                     song not found
                 </p>
             }

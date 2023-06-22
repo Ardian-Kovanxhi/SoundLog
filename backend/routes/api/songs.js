@@ -127,6 +127,24 @@ router.get('/:songId/comments', async (req, res) => {
 })
 
 //Auth true
+//GET /api/songs/:songId/likes | Get like of a song
+router.get('/:songId/likes', async (req, res) => {
+    const songId = +req.params.songId;
+    const userId = req.user.id;
+
+    const song = await Song.findByPk(songId);
+
+    if (!song) {
+        res.statusCode = 404;
+        return res.json({ message: "Song couldn't be found", statusCode: 404 })
+    }
+
+    const Likes = await Like.findOne({ where: { songId } })
+
+    return res.json({ Likes });
+})
+
+//Auth true
 //POST /api/songs/:songId/comments | Make a comment for a song
 router.post('/:songId/comments', requireAuth, async (req, res) => {
     const { comment } = req.body;

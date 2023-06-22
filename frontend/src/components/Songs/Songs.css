@@ -240,6 +240,10 @@ audio::-webkit-media-controls-play-button:hover {
     background-color: rgba(177, 212, 224, .7);
 }
 
+.song404 {
+    margin-top: 200px;
+}
+
 
 
 @media (max-height: 930px) {
