@@ -2,7 +2,7 @@ import Cookies from "js-cookie";
 import { csrfFetch } from "./csrf";
 
 const READ_LIKES = 'likes/READ_LIKES'
-// const READ_LIKE = 'like/READ_LIKE'
+const READ_LIKE = 'like/READ_LIKE'
 // const DELETE_LIKES = 'like/DELETE_LIKES'
 
 const readLikes = (likes) => {
@@ -12,12 +12,12 @@ const readLikes = (likes) => {
     }
 }
 
-// const readLike = (like) => {
-//     return {
-//         type: READ_LIKE,
-//         like
-//     }
-// }
+const readLike = (like) => {
+    return {
+        type: READ_LIKE,
+        like
+    }
+}
 
 // const deleteLike = (like) => {
 //     return {
@@ -81,7 +81,7 @@ export const removeLike = (likeId) => async dispatch => {
     }
 }
 
-const initialState = { userLikes: {} }
+const initialState = { userLikes: {}, songLike: {} }
 
 export default function likesReducer(state = initialState, action) {
 
@@ -89,20 +89,15 @@ export default function likesReducer(state = initialState, action) {
 
     switch (action.type) {
         case READ_LIKES: {
-            newState = { userLikes: {} }
-            let holder = action.likes.Likes
-            if (holder.id) {
-                newState.userLikes[holder.id] = holder
-                return newState
-            }
-            holder.forEach(like => newState.userLikes[like.id] = like);
+            newState = { userLikes: {}, songLike: {} }
+            action.likes.Likes.forEach(like => newState.userLikes[like.id] = like);
             return newState
         }
-        // case READ_LIKE: {
-        //     newState = { songLikes: {} }
-        //     newState.songLikes = action.like
-        //     return newState
-        // }
+        case READ_LIKE: {
+            newState = { userLikes: {}, songLike: {} }
+            newState.userLikes[action.likes.Likes.id] = action.likes.Likes
+            return newState
+        }
         // case DELETE_LIKES: {
         //     newState = { ...state }
         //     delete newState.allComments[action.commentId]
