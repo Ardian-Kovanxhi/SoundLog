@@ -53,12 +53,12 @@ function ProfileButton({ user }) {
                         <div>{user.firstName} {user.lastName}</div>
                         <div>{user.email}</div>
 
-                        <button
+                        {/* <button
                             onClick={() => history.push('/likes')}
                         >Likes</button>
                         <button
                             onClick={() => history.push('/playlists')}
-                        >Playlists</button>
+                        >Playlists</button> */}
 
                         <button onClick={logout}>Log Out</button>
 

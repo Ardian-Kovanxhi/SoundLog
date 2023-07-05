@@ -128,26 +128,27 @@ export default function SingleSong() {
                                             null : null
                                         }
 
-                                        {User ?
-                                            !Likes[songId] ?
-                                                <button
-                                                    onClick={createLike(songId)}
-                                                // onClick={() => console.log(songId)}
-                                                >
-                                                    Like (actual)
-                                                </button>
+                                        {/* {
+                                            User ?
+                                                !Likes[songId] ?
+                                                    <button
+                                                        onClick={createLike(songId)}
+                                                    // onClick={() => console.log(songId)}
+                                                    >
+                                                        Like (actual)
+                                                    </button>
+                                                    :
+                                                    <button
+                                                        onClick={removeLike(Likes[songId])}
+                                                    >
+                                                        Unlike
+                                                    </button>
                                                 :
-                                                <button
-                                                    onClick={removeLike(Likes[songId])}
-                                                >
-                                                    Unlike
-                                                </button>
-                                            :
-                                            <OpenModalMenuItem
-                                                buttonText="Like (login)"
-                                                modalComponent={<LoginFormModal />}
-                                            />
-                                        }
+                                                <OpenModalMenuItem
+                                                    buttonText="Like (login)"
+                                                    modalComponent={<LoginFormModal />}
+                                                />
+                                        } */}
 
                                     </div>
 
@@ -225,7 +226,6 @@ export default function SingleSong() {
                                                 {disabled ? el.userId === User.id ?
                                                     <div className='comments-button-div'>
                                                         <OpenModalMenuItem
-                                                            // itemText="Test"
                                                             buttonText='Edit'
                                                             modalComponent={<CommentEditModal commentId={el.id} songId={songId} />}
                                                         />
