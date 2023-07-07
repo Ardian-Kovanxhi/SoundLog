@@ -37,7 +37,7 @@ export default function SelectedSong() {
                                 {el.User.username}
                             </div>
                         </div>
-                        {/* <button onClick={() => dispatch(playSong(el.id))}>play</button> */}
+                        <button onClick={() => dispatch(playSong(el.id))}>play</button>
                     </>
                 ))}
             </div>

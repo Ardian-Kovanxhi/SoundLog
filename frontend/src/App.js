@@ -35,7 +35,7 @@ function App() {
             <Route exact path={'/'} component={SelectedSong} />
             <Route path={'*'} component={CommentTesting} />
           </Switch>
-          {/* <AudioControls /> */}
+          <AudioControls />
         </>
       )}
 
