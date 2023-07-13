@@ -13,6 +13,9 @@ import AudioControls from './components/AudioControls'
 import Likes from "./components/Likes";
 import Playlists from "./components/Playlists";
 
+import { AudioProvider } from './context/AudioContext';
+
+
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -25,6 +28,7 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <>
+          {/* <AudioProvider> */}
           <Switch>
             <Route path={'/songs/:songId/comments/:commentId/edit'} component={CommentEditPage} />
             <Route path={'/songs/:songId/edit'} component={SongEditPage} />
@@ -36,6 +40,7 @@ function App() {
             <Route path={'*'} component={CommentTesting} />
           </Switch>
           <AudioControls />
+          {/* </AudioProvider> */}
         </>
       )}
 

@@ -8,6 +8,26 @@
     z-index: 10;
 }
 
+/* .audio-player .rhap_additional-controls {
+    display: none;
+} */
+
+/* .audio-player .rhap_volume-controls {
+    justify-content: flex-start;
+} */
+
 .audio-player.invisible {
     visibility: hidden;
+}
+
+.single-player-div .rhap_additional-controls {
+    display: none;
+}
+
+.single-player-div .audio-player {
+    position: unset;
+}
+
+.single-player-div .rhap_volume-container {
+    display: none;
 }

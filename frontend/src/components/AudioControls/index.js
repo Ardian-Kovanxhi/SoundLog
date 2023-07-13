@@ -5,10 +5,13 @@ import { useDispatch, useSelector } from 'react-redux'
 import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
 import './AudioControls.css'
+import { AudioProvider } from '../../context/AudioContext';
+
 // import './style.scss'
 
 function AudioControls({ isLoaded }) {
 
+    const { audioRef } = AudioProvider
 
     // const songs = useSelector(state => state.songs.allSongs[1].content)
     const song = useSelector(state => state.songs.playingSong)
@@ -19,20 +22,23 @@ function AudioControls({ isLoaded }) {
 
     return (
         <>
-            <button
+            {/* <button
                 className='test-button'
                 onClick={() => (playState ? setPlayState(false) : setPlayState(true))}
-            >test</button>
+            >test</button> */}
             <AudioPlayer
                 className={playerClass}
+                id='player'
                 autoPlay
                 src={song ? song.content : null}
                 onPlay={e => console.log("onPlay")}
-
+                ref={audioRef}
             // other props here
             />
         </>
     )
 }
+
+
 
 export default AudioControls

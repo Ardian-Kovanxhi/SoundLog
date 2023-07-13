@@ -9,7 +9,12 @@ import LoginFormModal from '../LoginFormModal';
 import SongEditPage from "../SongEditPage";
 import OpenModalMenuItem from '../OpenModalButton';
 import CommentEditModal from '../CommentEditModal';
-import 'react-h5-audio-player/lib/styles.css';
+
+// import AudioControls from '../AudioControls';
+
+import AudioPlayer from 'react-h5-audio-player';
+
+// import 'react-h5-audio-player/lib/styles.css';
 import './Songs.css'
 
 
@@ -154,12 +159,24 @@ export default function SingleSong() {
 
                                 </div>
 
+                                <div className='single-player-div'>
+
+                                    {/* <AudioControls /> */}
+
+                                    {/* <AudioPlayer
+                                        // className='player-test-edit'
+                                        showJumpControls={false}
+                                        loop={false}
+                                        layout={'horizontal-reverse'}
+                                    /> */}
+
+                                </div>
+
                                 <div>{Song.description}</div>
 
-                                <div>
-                                    {/* {Song.content} */}
+                                {/* <div>
                                     <audio controls src={Song.content} className='audio-controls'></audio>
-                                </div>
+                                </div> */}
 
                             </div>
 
