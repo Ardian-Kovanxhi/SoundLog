@@ -28,19 +28,19 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <>
-          {/* <AudioProvider> */}
-          <Switch>
-            <Route path={'/songs/:songId/comments/:commentId/edit'} component={CommentEditPage} />
-            <Route path={'/songs/:songId/edit'} component={SongEditPage} />
-            <Route path={'/songs/:songId'} component={SingleSong} />
-            <Route path={'/songs'} component={SongFormPage} />
-            <Route path={'/likes'} component={Likes} />
-            <Route path={'/playlists'} component={Playlists} />
-            <Route exact path={'/'} component={SelectedSong} />
-            <Route path={'*'} component={CommentTesting} />
-          </Switch>
-          <AudioControls />
-          {/* </AudioProvider> */}
+          <AudioProvider>
+            <Switch>
+              <Route path={'/songs/:songId/comments/:commentId/edit'} component={CommentEditPage} />
+              <Route path={'/songs/:songId/edit'} component={SongEditPage} />
+              <Route path={'/songs/:songId'} component={SingleSong} />
+              <Route path={'/songs'} component={SongFormPage} />
+              <Route path={'/likes'} component={Likes} />
+              <Route path={'/playlists'} component={Playlists} />
+              <Route exact path={'/'} component={SelectedSong} />
+              <Route path={'*'} component={CommentTesting} />
+            </Switch>
+            <AudioControls />
+          </AudioProvider>
         </>
       )}
 

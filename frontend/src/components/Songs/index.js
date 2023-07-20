@@ -1,33 +1,31 @@
 import { useContext, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory, useParams } from 'react-router-dom'
-import { getCommentsBySong } from "../../store/comments";
+// import { getCommentsBySong } from "../../store/comments";
 import { getSongs, getSong, playSong } from '../../store/songs';
-import { AudioContext } from '../../context/AudioContext';
+// import { AudioContext } from '../../context/AudioContext';
+// import { PlayerContext } from '../AudioControls';
+import AudioControls from '../AudioControls';
 
 export default function SelectedSong() {
     const dispatch = useDispatch();
+    // const player = useContext(PlayerContext)
     const Songs = useSelector(state => state.songs.allSongs);
     const song = useSelector(state => state.songs.playingSong)
     // const Song = useSelector(state => state.songs.singleSong);
     const history = useHistory()
     // const User = useSelector(state => state.session.user)
     const [playing, setPlaying] = useState(false)
-    const { setIsPlaying, isPlaying, pauseAudio, playAudio } = useContext(AudioContext)
+    const { playAudio, pauseAudio } = AudioControls
 
     const handlePauseClick = () => {
-        // pauseAudio();
-        // document.getElementsByClassName('audio-player')[0].pause()
-        // document.getElementById('player').pause()
-        HTMLMediaElement.pause()
+        // console.log(player)
+        pauseAudio()
         setPlaying(false)
     };
 
     const handlePlayClick = () => {
-        // playAudio();
-        // document.getElementsByClassName('audio-player')[0].play()
-        HTMLMediaElement.play()
-        // document.getElementById('player').play()
+        playAudio()
         setPlaying(true)
     };
 

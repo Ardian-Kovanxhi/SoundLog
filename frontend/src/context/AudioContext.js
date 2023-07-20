@@ -1,34 +1,13 @@
-import React, { createContext, useState, useRef } from 'react';
+import React, { createContext, useRef } from 'react';
+import AudioPlayer from 'react-h5-audio-player';
 
-const AudioContext = React.createContext();
+const AudioContext = createContext();
 
 const AudioProvider = ({ children }) => {
-    const audioRef = useRef();
-    const [isPlaying, setIsPlaying] = useState(true);
-
-    const pauseAudio = () => {
-        console.log(audioRef)
-        console.log(isPlaying)
-        if (audioRef.current) {
-            console.log('hi2')
-            audioRef.current.audio.current.pause();
-            setIsPlaying(false);
-        }
-    };
-
-    const playAudio = () => {
-        console.log(audioRef)
-        console.log(isPlaying)
-        console.log('hi1')
-        if (audioRef.current) {
-            console.log('hi2')
-            audioRef.current.audio.current.play();
-            setIsPlaying(true);
-        }
-    };
+    const player = useRef();
 
     return (
-        <AudioContext.Provider value={{ isPlaying, pauseAudio, playAudio }}>
+        <AudioContext.Provider value={player}>
             {children}
         </AudioContext.Provider>
     );
