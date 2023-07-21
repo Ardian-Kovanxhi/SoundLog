@@ -41,7 +41,7 @@ function AudioControls({ isLoaded }) {
 
             <button className='test-button' onClick={playAudio}>play</button>
             <button className='test-button' onClick={pauseAudio}>pause</button>
-            <AudioButton />
+            {/* <AudioButton /> */}
 
             <AudioPlayer
                 className={playerClass}
