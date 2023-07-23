@@ -1,32 +1,27 @@
-import { useContext, useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
-import { useHistory, useParams } from 'react-router-dom'
-// import { getCommentsBySong } from "../../store/comments";
-import { getSongs, getSong, playSong } from '../../store/songs';
-// import { AudioContext } from '../../context/AudioContext';
-// import { PlayerContext } from '../AudioControls';
-import AudioControls from '../AudioControls';
+import { useHistory } from 'react-router-dom'
+import { getSongs, playSong } from '../../store/songs';
+import { getPaused, getDuration } from '../../store/audioPlayerState';
 
 export default function SelectedSong() {
     const dispatch = useDispatch();
-    // const player = useContext(PlayerContext)
     const Songs = useSelector(state => state.songs.allSongs);
     const song = useSelector(state => state.songs.playingSong)
-    // const Song = useSelector(state => state.songs.singleSong);
+    const paused = useSelector(state => state.audioState.pauseState)
+    const duration = useSelector(state => state.audioState.durationState)
+    const time = useSelector(state => state.audioState.runtimeState)
     const history = useHistory()
-    // const User = useSelector(state => state.session.user)
-    const [playing, setPlaying] = useState(false)
-    const { playAudio, pauseAudio } = AudioControls
 
     const handlePauseClick = () => {
         // console.log(player)
-        pauseAudio()
-        setPlaying(false)
+        // pauseAudio()
+        // setPlaying(false)
+        dispatch(getPaused(true))
     };
 
     const handlePlayClick = () => {
-        playAudio()
-        setPlaying(true)
+        dispatch(getPaused(false))
     };
 
 
@@ -43,31 +38,72 @@ export default function SelectedSong() {
                     <>
                         <div
                             className='all-songs-single'
-                            onClick={() => history.push(`/songs/${el.id}`)}
+                        // onClick={() => history.push(`/songs/${el.id}`)}
                         >
-                            <img
-                                className='all-songs-single-img'
-                                src={el.img ||
-                                    'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png'} />
-                            <div className='all-songs-song-name'>
-                                {el.name}
+                            <div className='all-song-img-btn-div'>
+
+                                <img
+                                    className='all-songs-single-img'
+                                    onClick={() => history.push(`/songs/${el.id}`)}
+                                    src={el.img ||
+                                        'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png'} />
+
+                                {song.id === el.id ?
+
+                                    paused ?
+                                        // isPlaying ?
+
+                                        // <button onClick={() => setPlaying(false)}>
+
+                                        // <button onClick={() => setPlaying(true)}>
+                                        <button
+                                            className='univ-play-pause-button'
+                                            onClick={handlePlayClick}
+                                        >
+
+                                            <i className="fa-solid fa-play" />
+
+                                        </button> :
+
+                                        <button
+                                            className='univ-play-pause-button'
+                                            onClick={handlePauseClick}
+                                        >
+
+                                            <i className="fa-solid fa-pause" />
+
+                                        </button> :
+
+                                    <button
+                                        className='univ-play-pause-button'
+                                        onClick={() => dispatch(playSong(el.id))}
+                                    >
+
+                                        <i className="fa-solid fa-play" />
+
+                                    </button>
+                                }
+
                             </div>
-                            <div className='all-songs-username'>
-                                {el.User.username}
+                            <div
+                                onClick={() => history.push(`/songs/${el.id}`)}
+                            >
+
+                                <div className='all-songs-song-name'>
+                                    {el.name}
+                                </div>
+                                <div className='all-songs-username'>
+                                    {el.User.username}
+                                </div>
+
                             </div>
                         </div>
-                        {song.id === el.id ?
+                        {/* {song.id === el.id ?
 
-                            playing ?
+                            paused ?
                                 // isPlaying ?
 
                                 // <button onClick={() => setPlaying(false)}>
-                                <button onClick={handlePauseClick}>
-
-                                    {/* pause */}
-                                    <i className="fa-solid fa-pause" />
-
-                                </button> :
 
                                 // <button onClick={() => setPlaying(true)}>
                                 <button onClick={handlePlayClick}>
@@ -76,16 +112,26 @@ export default function SelectedSong() {
 
                                 </button> :
 
-                            <button onClick={() => dispatch(playSong(el.id)).then(setPlaying(true))}>
+                                <button onClick={handlePauseClick}>
+
+                                    <i className="fa-solid fa-pause" />
+
+                                </button> :
+
+                            <button onClick={() =>
+                                dispatch(playSong(el.id))
+                                    .then(dispatch(getPaused(true)))
+                                // .then(dispatch(getDuration(1)))
+                            }>
 
                                 <i className="fa-solid fa-play" />
 
                             </button>
-                        }
-                        {/* <button onClick={() => dispatch(playSong(el.id))}>play</button> */}
+                        } */}
                     </>
                 ))}
             </div>
+            {/* <>{`${time}/${duration}`}</> */}
         </div>
     )
 }

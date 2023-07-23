@@ -6,7 +6,6 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import { ModalProvider, Modal } from './context/Modal';
-import { AudioProvider } from './context/AudioContext';
 import App from './App';
 
 import configureStore from './store';
@@ -31,9 +30,7 @@ function Root() {
     <ModalProvider>
       <Provider store={store}>
         <BrowserRouter>
-          <AudioProvider>
-            <App />
-          </AudioProvider>
+          <App />
           <Modal />
         </BrowserRouter>
       </Provider>

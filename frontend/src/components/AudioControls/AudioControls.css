@@ -8,6 +8,19 @@
     z-index: 10;
 }
 
+.rhap_container {
+    /* background-color: #115161; */
+    display: flex;
+    align-items: center;
+    background-color: rgba(255, 255, 255, .1);
+}
+
+.rhap_main {
+    width: 1215px;
+}
+
+/* 115161 */
+
 /* .audio-player .rhap_additional-controls {
     display: none;
 } */

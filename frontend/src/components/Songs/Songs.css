@@ -34,6 +34,7 @@
     /* border: 1px black solid; */
     margin: 20px;
     width: 200px;
+    padding: 7px;
     /* height: 200px; */
     height: fit-content;
     display: flex;
@@ -42,6 +43,29 @@
 
 .all-songs-single:hover {
     cursor: pointer;
+    background-color: rgba(34, 139, 34, 0.4);
+}
+
+.all-song-img-btn-div {
+    display: grid;
+    height: 100%;
+    width: 100%;
+}
+
+.univ-play-pause-button {
+    z-index: 1000;
+    background-color: forestgreen;
+    border: 0;
+    margin: 5px 0px;
+    padding: 10px 13px;
+    position: sticky;
+}
+
+
+
+.all-song-img-btn-div>button:hover {
+
+    background-color: green;
 }
 
 .all-songs-single-img {
@@ -119,6 +143,10 @@
     padding: 10px;
     margin: 10px 0px;
     border: 0px;
+}
+
+.edit-delete-buttons-div>button:hover {
+    background-color: green;
 }
 
 .edit-delete-buttons-div {

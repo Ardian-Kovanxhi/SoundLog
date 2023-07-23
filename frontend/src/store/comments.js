@@ -24,6 +24,8 @@ const readComment = (comment) => {
 export const getCommentsBySong = (songId) => async dispatch => {
     const response = await csrfFetch(`/api/songs/${songId}/comments`)
 
+    console.log(response)
+
     if (response.ok) {
         const comments = await response.json();
         dispatch(readComments(comments))

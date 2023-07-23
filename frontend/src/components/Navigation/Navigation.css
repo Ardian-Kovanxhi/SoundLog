@@ -78,13 +78,13 @@
     background-color: transparent;
     color: white;
     font-size: larger;
-    padding: 0px 20px;
+    padding: 0px 10px;
     height: 100%;
     border: 0px;
 }
 
 .modal-but-test>button:hover {
-    background-color: black;
+    background-color: rgba(0, 10, 0, .7);
 }
 
 .fas {
@@ -92,18 +92,34 @@
     color: white;
 }
 
+.fa-brands {
+    font-size: xx-large;
+    color: white;
+}
+
+.brand-btn-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* .brand-btn-div>button {
+    padding: 0px 20px;
+} */
+
 .profile-button-actual {
     /* position: absolute;
     top: 0;
     left: 1210px; */
     background-color: transparent;
+    padding: 0px 10px;
     border: 0px;
     height: 50px;
     margin: 0px;
 }
 
 .profile-button-actual:hover {
-    background-color: black;
+    background-color: rgba(0, 10, 0, .7);
 }
 
 .nav-container {
@@ -111,6 +127,8 @@
     position: fixed;
     top: 0;
     background-color: #333333;
+    /* background-color: rgb(43, 147, 180); */
+    background-color: rgb(1, 49, 35);
     width: 100%;
     height: 50px;
     display: flex;
@@ -118,7 +136,7 @@
 }
 
 .nav-bar-div {
-    background-color: #333333;
+    /* background-color: #333333; */
     position: fixed;
     height: 50px;
     color: white;
@@ -129,7 +147,8 @@
 }
 
 .title-icon-div {
-    background-color: black;
+    /* background-color: rgb(10, 30, 10); */
+    background-color: rgba(0, 10, 0, .7);
     padding: 0px 20px;
     display: flex;
     align-items: center;
@@ -149,5 +168,5 @@
 
 .nav-button-div {
     display: flex;
-    margin-right: 90px;
+    /* margin-right: 90px; */
 }

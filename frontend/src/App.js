@@ -13,8 +13,6 @@ import AudioControls from './components/AudioControls'
 import Likes from "./components/Likes";
 import Playlists from "./components/Playlists";
 
-import { AudioProvider } from './context/AudioContext';
-
 
 function App() {
   const dispatch = useDispatch();
@@ -25,22 +23,34 @@ function App() {
 
   return (
     <div className="page-container-div">
+      <div className="back-img-div">
+
+        {/* <img
+          onContextMenu={e => e.preventDefault()}
+          className="back-img-actual"
+          src="https://images6.alphacoders.com/712/712437.jpg"
+        /> */}
+        <img
+          onContextMenu={e => e.preventDefault()}
+          className="back-img-actual"
+          src="https://images.hdqwalls.com/download/firewatch-trees-pic-2560x1440.jpg"
+        />
+
+      </div>
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <>
-          <AudioProvider>
-            <Switch>
-              <Route path={'/songs/:songId/comments/:commentId/edit'} component={CommentEditPage} />
-              <Route path={'/songs/:songId/edit'} component={SongEditPage} />
-              <Route path={'/songs/:songId'} component={SingleSong} />
-              <Route path={'/songs'} component={SongFormPage} />
-              <Route path={'/likes'} component={Likes} />
-              <Route path={'/playlists'} component={Playlists} />
-              <Route exact path={'/'} component={SelectedSong} />
-              <Route path={'*'} component={CommentTesting} />
-            </Switch>
-            <AudioControls />
-          </AudioProvider>
+          <Switch>
+            <Route path={'/songs/:songId/comments/:commentId/edit'} component={CommentEditPage} />
+            <Route path={'/songs/:songId/edit'} component={SongEditPage} />
+            <Route path={'/songs/:songId'} component={SingleSong} />
+            <Route path={'/songs'} component={SongFormPage} />
+            <Route path={'/likes'} component={Likes} />
+            <Route path={'/playlists'} component={Playlists} />
+            <Route exact path={'/'} component={SelectedSong} />
+            <Route path={'*'} component={CommentTesting} />
+          </Switch>
+          <AudioControls />
         </>
       )}
 

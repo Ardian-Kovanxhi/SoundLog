@@ -4,7 +4,7 @@ import { useParams, useHistory } from 'react-router-dom'
 import { getCommentsBySong } from "../../store/comments";
 import { getSong, getSongs, removeSong } from '../../store/songs';
 import { removeComment, createComment } from '../../store/comments';
-import { createLike, getLikesBySong, getLikesByUser, removeLike } from '../../store/likes';
+// import { createLike, getLikesBySong, getLikesByUser, removeLike } from '../../store/likes';
 import LoginFormModal from '../LoginFormModal';
 import SongEditPage from "../SongEditPage";
 import OpenModalMenuItem from '../OpenModalButton';
@@ -27,14 +27,15 @@ export default function SingleSong() {
     useEffect(() => {
         dispatch(getSong(songId))
         dispatch(getCommentsBySong(songId))
-        dispatch(getLikesBySong(songId))
+        // dispatch(getLikesBySong(songId))
         // dispatch(getLikesByUser())
     }, [])
 
     const Song = useSelector(state => state.songs.singleSong);
     const Comments = useSelector(state => state.comments.allComments);
     const User = useSelector(state => state.session.user)
-    const Likes = useSelector(state => state.likes.userLikes)
+    // const Likes = useSelector(state => state.likes.userLikes)
+    // const duration = useSelector(state => state)
     const [comment, setComment] = useState('');
     let disabled = false
     let Uploader = ''

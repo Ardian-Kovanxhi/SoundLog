@@ -26,6 +26,19 @@ function Navigation({ isLoaded }) {
                     </div>
                 </div>
                 <div className='nav-button-div'>
+
+                    <div className='brand-btn-div'>
+                        <button className='profile-button-actual'>
+                            <i class="fa-brands fa-linkedin"></i>
+                        </button>
+                    </div>
+
+                    <div className='brand-btn-div'>
+                        <button className='profile-button-actual'>
+                            <i class="fa-brands fa-github"></i>
+                        </button>
+                    </div>
+
                     <div className='modal-but-test'>
                         {/* <button
                             onClick={() => history.push('/songs')}

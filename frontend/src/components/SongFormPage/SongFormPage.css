@@ -80,6 +80,7 @@ input::file-selector-button {
 
 input::file-selector-button:hover {
     cursor: pointer;
+    background-color: green;
 }
 
 .song-form-buttons {
@@ -90,4 +91,8 @@ input::file-selector-button:hover {
     border: 0px;
     border-radius: 5px;
     margin: 20px 40px 0px;
+}
+
+.song-form-buttons:hover {
+    background-color: green;
 }

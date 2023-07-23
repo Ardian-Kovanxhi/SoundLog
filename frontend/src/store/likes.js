@@ -88,16 +88,18 @@ export default function likesReducer(state = initialState, action) {
     let newState;
 
     switch (action.type) {
-        case READ_LIKES: {
-            newState = { userLikes: {}, songLike: {} }
-            action.likes.Likes.forEach(like => newState.userLikes[like.id] = like);
-            return newState
-        }
-        case READ_LIKE: {
-            newState = { userLikes: {}, songLike: {} }
-            newState.userLikes[action.likes.Likes.id] = action.likes.Likes
-            return newState
-        }
+        // case READ_LIKES: {
+        //     newState = { userLikes: {}, songLike: {} }
+        //     action.likes.Likes.forEach(like => newState.userLikes[like.id] = like);
+        //     return newState
+        // }
+        case READ_LIKES: { return initialState }
+        case READ_LIKE: { return initialState }
+        // case READ_LIKE: {
+        //     newState = { userLikes: {}, songLike: {} }
+        //     newState.userLikes[action.likes.Likes.id] = action.likes.Likes
+        //     return newState
+        // }
         // case DELETE_LIKES: {
         //     newState = { ...state }
         //     delete newState.allComments[action.commentId]
