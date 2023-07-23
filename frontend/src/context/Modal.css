@@ -1,5 +1,5 @@
 #modal {
-    z-index: 3;
+    z-index: 10;
     position: fixed;
     top: 0;
     right: 0;
@@ -21,5 +21,42 @@
 
 #modal-content {
     position: absolute;
-    background-color: white;
+    background-color: rgb(230, 255, 230);
+    border-radius: 10px;
+}
+
+#modal-content button:hover {
+    background-color: green;
+}
+
+#modal-content input {
+    background-color: rgb(230, 255, 230);
+    border-top: 1px solid lightgray;
+    transition: background-color 1s;
+}
+
+#modal-content textarea {
+    background-color: rgb(230, 255, 230);
+    border-top: 1px solid lightgray;
+    transition: background-color 1s;
+}
+
+#modal-content textarea:focus {
+    outline: none;
+    background-color: rgba(34, 139, 34, 0.4);
+}
+
+#modal-content input:focus {
+    outline: none;
+    background-color: rgba(34, 139, 34, 0.4);
+}
+
+#modal-content label {
+    border-radius: 10px;
+    padding: 5px;
+    font-weight: bold;
+}
+
+#modal-content .chara-count {
+    color: darkgreen;
 }

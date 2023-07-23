@@ -2,27 +2,14 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { getSongs, playSong } from '../../store/songs';
-import { getPaused, getDuration } from '../../store/audioPlayerState';
+import { getPaused } from '../../store/audioPlayerState';
 
 export default function SelectedSong() {
     const dispatch = useDispatch();
     const Songs = useSelector(state => state.songs.allSongs);
     const song = useSelector(state => state.songs.playingSong)
     const paused = useSelector(state => state.audioState.pauseState)
-    const duration = useSelector(state => state.audioState.durationState)
-    const time = useSelector(state => state.audioState.runtimeState)
     const history = useHistory()
-
-    const handlePauseClick = () => {
-        // console.log(player)
-        // pauseAudio()
-        // setPlaying(false)
-        dispatch(getPaused(true))
-    };
-
-    const handlePlayClick = () => {
-        dispatch(getPaused(false))
-    };
 
 
     useEffect(() => {
@@ -58,7 +45,7 @@ export default function SelectedSong() {
                                         // <button onClick={() => setPlaying(true)}>
                                         <button
                                             className='univ-play-pause-button'
-                                            onClick={handlePlayClick}
+                                            onClick={() => { dispatch(getPaused(false)) }}
                                         >
 
                                             <i className="fa-solid fa-play" />
@@ -67,7 +54,7 @@ export default function SelectedSong() {
 
                                         <button
                                             className='univ-play-pause-button'
-                                            onClick={handlePauseClick}
+                                            onClick={() => { dispatch(getPaused(true)) }}
                                         >
 
                                             <i className="fa-solid fa-pause" />

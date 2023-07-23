@@ -74,17 +74,44 @@ export default function SongFormPage() {
 
             <form onSubmit={submitHandler} className="new-song-form">
 
-                * required fields
+                <div className="required notif">
+                    * required fields
+                </div>
+
                 <div className="all-content-div">
+                    {/* <div className="new-song-img-assignment">
+
+                        <div className="song-form-input-fields img">
+                            <label for='img-id' className="text-label">
+                                ImageUrl:
+                            </label>
+
+                            <input
+                                className="form-colored-input"
+                                id="img-id"
+                                type='url'
+                                onChange={(e) => setImg(e.target.value)}
+                                value={img}
+                            />
+
+                        </div>
+
+                        <img
+                            className="new-song-img"
+                            src={img || 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png'} />
+
+                    </div> */}
 
                     <div className="name-song-desc-div">
 
                         <div className="song-form-input-fields">
 
-                            <label>
-                                {'Name*'}
+                            <label for="name-in-id" className="required text-label" >
+                                Name*
                             </label>
                             <input
+                                id="name-in-id"
+                                className="form-colored-input"
                                 type='text'
                                 onChange={(e) => setName(e.target.value)}
                                 value={name}
@@ -94,21 +121,28 @@ export default function SongFormPage() {
 
                         <div className="song-form-input-fields">
 
-                            {'Song* (only accepts mp3 files)'}
-                            <label>
-                                <input className="file-select-input" type="file" accept=".mp3" required onChange={updateFile} />
+                            <label for="mp3-in-id" className="required mp3-in-class">
+                                Song* (only accepts mp3 files)
                             </label>
+                            <input
+                                id="mp3-in-id"
+                                className="file-select-input"
+                                type="file"
+                                accept=".mp3"
+                                required onChange={updateFile}
+                            />
 
                         </div>
 
                         <div className="song-form-input-fields">
 
-                            <label>
-                                {'Description'}
+                            <label for='desc-id' className="text-label" >
+                                Description
                             </label>
 
                             <textarea
-                                className="song-form-textarea"
+                                id="desc-id"
+                                className="song-form-textarea form-colored-input"
                                 type='text'
                                 onChange={(e) => setDescription(e.target.value)}
                                 value={description}
@@ -121,11 +155,13 @@ export default function SongFormPage() {
                     <div className="new-song-img-assignment">
 
                         <div className="song-form-input-fields img">
-                            <label>
-                                {'ImageUrl: '}
+                            <label for='img-id' className="text-label">
+                                ImageUrl:
                             </label>
 
                             <input
+                                className="form-colored-input in-test-class"
+                                id="img-id"
                                 type='url'
                                 onChange={(e) => setImg(e.target.value)}
                                 value={img}

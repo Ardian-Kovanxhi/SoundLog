@@ -54,7 +54,8 @@ function App() {
         </>
       )}
 
-      {/* <AudioControls isLoaded={isLoaded} /> */}
+      <div className="filler-color">
+      </div>
 
     </div>
   );

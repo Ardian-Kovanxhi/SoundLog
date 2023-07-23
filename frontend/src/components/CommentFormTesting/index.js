@@ -1,16 +1,22 @@
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux'
-import { useParams } from 'react-router-dom'
-import { getCommentsBySong, createComment, removeComment } from "../../store/comments";
-// import { getSongs } from '../../store/songs';
-
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
 import './test.css'
 
 export default function CommentTesting() {
 
+    const history = useHistory()
+
     return (
-        <div className='test404'>
-            page not found
-        </div>
+        <>
+            <div className='test404'>
+                Page Not Found
+                <div
+                    className='redirect'
+                    onClick={() => history.push('/')}
+                >
+                    Click Here To Return
+                </div>
+            </div>
+            {/* https://aa-sounclod-clone-bucket.s3.amazonaws.com/1690097319856.mp3 */}
+        </>
     )
 }

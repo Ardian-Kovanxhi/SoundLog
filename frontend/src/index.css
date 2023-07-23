@@ -13,6 +13,15 @@ body {
     height: 98vh;
 }
 
+.filler-color {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    background-color: rgb(210, 255, 210);
+    width: 1240px;
+    z-index: 0;
+}
+
 .back-img-div {
     position: fixed;
     left: 0;

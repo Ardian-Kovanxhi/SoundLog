@@ -28,13 +28,21 @@ function Navigation({ isLoaded }) {
                 <div className='nav-button-div'>
 
                     <div className='brand-btn-div'>
-                        <button className='profile-button-actual'>
+                        <button
+                            onClick={() => window.location.replace('https://www.linkedin.com/in/ardian-kovanxhi-341177145/')}
+                            className='profile-button-actual'
+                        >
+
                             <i class="fa-brands fa-linkedin"></i>
+
                         </button>
                     </div>
 
                     <div className='brand-btn-div'>
-                        <button className='profile-button-actual'>
+                        <button
+                            onClick={() => window.location.replace('https://github.com/Ardian-Kovanxhi')}
+                            className='profile-button-actual'
+                        >
                             <i class="fa-brands fa-github"></i>
                         </button>
                     </div>

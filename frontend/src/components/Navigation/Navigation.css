@@ -1,5 +1,6 @@
 .profile-dropdown {
     position: absolute;
+    right: 0;
     display: flex;
     justify-content: center;
     background-color: white;
@@ -123,10 +124,9 @@
 }
 
 .nav-container {
-    z-index: 2;
+    z-index: 20;
     position: fixed;
     top: 0;
-    background-color: #333333;
     /* background-color: rgb(43, 147, 180); */
     background-color: rgb(1, 49, 35);
     width: 100%;

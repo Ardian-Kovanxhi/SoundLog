@@ -5,6 +5,11 @@ import { useHistory, useParams } from 'react-router-dom'
 import { useModal } from "../../context/Modal";
 import './SongEditPage.css'
 
+//
+//Actually rendered in a modal
+//Didn't change file name to avoid breaking imports
+//
+
 export default function SongEditPage() {
     const dispatch = useDispatch();
     const history = useHistory();

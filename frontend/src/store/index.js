@@ -3,7 +3,7 @@ import thunk from 'redux-thunk';
 import commentsReducer from './comments';
 import sessionReducer from './session';
 import songsReducer from './songs';
-import likesReducer from './likes';
+// import likesReducer from './likes';
 import audioPlayerReducer from './audioPlayerState';
 
 const rootReducer = combineReducers({

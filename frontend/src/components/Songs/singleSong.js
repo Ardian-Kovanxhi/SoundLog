@@ -2,20 +2,17 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams, useHistory } from 'react-router-dom'
 import { getCommentsBySong } from "../../store/comments";
-import { getSong, getSongs, removeSong } from '../../store/songs';
+import { getSong, removeSong, playSong } from '../../store/songs';
 import { removeComment, createComment } from '../../store/comments';
+import { getPaused } from '../../store/audioPlayerState';
 // import { createLike, getLikesBySong, getLikesByUser, removeLike } from '../../store/likes';
 import LoginFormModal from '../LoginFormModal';
 import SongEditPage from "../SongEditPage";
 import OpenModalMenuItem from '../OpenModalButton';
 import CommentEditModal from '../CommentEditModal';
 
-// import AudioControls from '../AudioControls';
-
-import AudioPlayer from 'react-h5-audio-player';
-
-// import 'react-h5-audio-player/lib/styles.css';
 import './Songs.css'
+import CommentTesting from '../CommentFormTesting';
 
 
 
@@ -32,14 +29,13 @@ export default function SingleSong() {
     }, [])
 
     const Song = useSelector(state => state.songs.singleSong);
+    const currSong = useSelector(state => state.songs.playingSong)
     const Comments = useSelector(state => state.comments.allComments);
     const User = useSelector(state => state.session.user)
-    // const Likes = useSelector(state => state.likes.userLikes)
-    // const duration = useSelector(state => state)
+    const paused = useSelector(state => state.audioState.pauseState)
     const [comment, setComment] = useState('');
     let disabled = false
     let Uploader = ''
-    // let likeF = 
 
     if (User) {
         disabled = true
@@ -160,38 +156,57 @@ export default function SingleSong() {
 
                                 </div>
 
-                                <div className='single-player-div'>
+                                {currSong.id === Song.id ?
 
-                                    {/* <AudioControls /> */}
+                                    paused ?
 
-                                    {/* <AudioPlayer
-                                        // className='player-test-edit'
-                                        showJumpControls={false}
-                                        loop={false}
-                                        layout={'horizontal-reverse'}
-                                    /> */}
+                                        <button
+                                            className='univ-play-pause-button single'
+                                            // onClick={handlePlayClick}
+                                            onClick={() => { dispatch(getPaused(false)) }}
+                                        >
 
-                                </div>
+                                            <i className="fa-solid fa-play" />
 
-                                <div>{Song.description}</div>
+                                        </button> :
 
-                                {/* <div>
-                                    <audio controls src={Song.content} className='audio-controls'></audio>
-                                </div> */}
+                                        <button
+                                            className='univ-play-pause-button  single'
+                                            // onClick={handlePauseClick}
+                                            onClick={() => { dispatch(getPaused(true)) }}
+                                        >
+
+                                            <i className="fa-solid fa-pause" />
+
+                                        </button> :
+
+                                    <button
+                                        className='univ-play-pause-button  single'
+                                        onClick={() => dispatch(playSong(Song.id))}
+                                    >
+
+                                        <i className="fa-solid fa-play" />
+
+                                    </button>
+                                }
+
+                                <div className='single-song-desc'>{Song.description}</div>
+
+                                {/* <div>{Song.content}</div> */}
 
                             </div>
 
-                            <div>
 
-                                <img
-                                    className='single-song-img'
-                                    src={
-                                        Song.img
-                                        ||
-                                        'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png'
-                                    } />
 
-                            </div>
+                            <img
+                                className='single-song-img'
+                                src={
+                                    Song.img
+                                    ||
+                                    'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png'
+                                } />
+
+
 
                         </div>
 
@@ -208,6 +223,7 @@ export default function SingleSong() {
                                     className='comment-form'
                                 >
                                     <input
+                                        id='comment-form-input-id'
                                         type='text'
                                         onChange={(e) => setComment(e.target.value)}
                                         value={comment}
@@ -215,9 +231,12 @@ export default function SingleSong() {
                                         required
                                         placeholder='Write a comment here'
                                     />
-                                    <div className='chara-count'>
+                                    <label className='chara-count' for="comment-form-input-id">
                                         {`${100 - comment.length} characters left`}
-                                    </div>
+                                    </label>
+                                    {/* <div className='chara-count'>
+                                        {`${100 - comment.length} characters left`}
+                                    </div> */}
                                     {/* <button>submit</button> */}
                                 </form>
                                 :
@@ -268,11 +287,9 @@ export default function SingleSong() {
 
                     </div>
 
-                </div >
+                </div>
                 :
-                <p className='song404'>
-                    song not found
-                </p>
+                <CommentTesting />
             }
         </>
 
