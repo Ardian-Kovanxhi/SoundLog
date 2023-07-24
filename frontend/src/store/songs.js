@@ -5,6 +5,7 @@ import { csrfFetch } from "./csrf";
 const READ_SONGS = 'songs/READ_SONGS'
 const READ_SONG = 'song/READ_SONG'
 const PLAY_SONG = 'song/PLAY_SONG'
+const PLAY_SONG_404 = 'song/PLAY_SONG_404'
 const DELETE_SONG = 'song/DELETE_SONG'
 
 
@@ -24,6 +25,13 @@ const readSong = (song) => {
 const playingSong = (song) => {
     return {
         type: PLAY_SONG,
+        song
+    }
+}
+
+const playingSong404 = (song) => {
+    return {
+        type: PLAY_SONG_404,
         song
     }
 }
@@ -67,6 +75,13 @@ export const playSong = (songId) => async dispatch => {
         dispatch(playingSong(song))
         return song
     }
+}
+
+export const playSong404 = (url) => async dispatch => {
+    const song = { content: url }
+    dispatch(playingSong404(song))
+    return song
+
 }
 
 export const submitSong = (data) => async dispatch => {
@@ -155,6 +170,11 @@ export default function songsReducer(state = initialState, action) {
             return newState
         }
         case PLAY_SONG: {
+            newState = { ...state, playingSong: {} }
+            newState.playingSong = action.song
+            return newState
+        }
+        case PLAY_SONG_404: {
             newState = { ...state, playingSong: {} }
             newState.playingSong = action.song
             return newState

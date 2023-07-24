@@ -9,18 +9,19 @@ export default function CommentTesting() {
     const dispatch = useDispatch()
     const history = useHistory()
 
-    useEffect(() => {
-        dispatch(playSong404('https://aa-sounclod-clone-bucket.s3.amazonaws.com/1690097319856.mp3'))
-        dispatch(getPaused(false))
-    }, [])
-
     return (
         <>
             <div className='test404'>
                 filler
 
                 <div className='info-div-404'>
-                    404 Page Not Found
+
+                    <div>
+                        ERROR 404
+                    </div>
+
+                    Page Not Found
+
                     <div
                         className='redirect'
                         onClick={() => history.push('/')}
@@ -29,10 +30,15 @@ export default function CommentTesting() {
                     </div>
                 </div>
 
-                <div className='easter-egg-div'>
+
+                <button
+                    className='easter-btn'
+                    onClick={() => dispatch(playSong404('https://aa-sounclod-clone-bucket.s3.amazonaws.com/1690097319856.mp3'))}
+                >
                     Click for an Easter Egg
-                    <i class="fa-solid fa-down-long"></i>
-                </div>
+                </button>
+
+                filler2
             </div>
             {/* https://aa-sounclod-clone-bucket.s3.amazonaws.com/1690097319856.mp3 */}
         </>

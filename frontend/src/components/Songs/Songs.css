@@ -230,19 +230,17 @@
 }
 
 .comment-form {
-    /* border: 1px black solid; */
     display: flex;
     flex-direction: column;
-    /* align-items: center; */
     width: 80%;
     padding: 15px;
     margin-bottom: 10px;
-    background-color: rgb(1, 49, 35);
+    background-color: rgb(15, 65, 50);
 }
 
 .comment-form>input {
     margin-bottom: 5px;
-    background-color: rgb(1, 49, 35);
+    background-color: rgb(15, 65, 50);
     transition: background-color 1s;
     color: white;
 }

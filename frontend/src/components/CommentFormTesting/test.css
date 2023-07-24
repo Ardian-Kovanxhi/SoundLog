@@ -10,7 +10,6 @@
     bottom: 0;
     left: 0;
     right: 0;
-    font-size: xx-large;
     font-weight: bolder;
     color: white;
 }
@@ -24,24 +23,35 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    font-size: xx-large;
 }
 
 .redirect {
     color: rgb(130, 175, 250);
     margin-top: 10px;
     padding: 10px;
+    border-radius: 100px;
     text-decoration: underline;
+    transition: background-color 1s;
 }
 
 .redirect:hover {
     cursor: pointer;
     background-color: rgba(0, 0, 0, .5);
-    border-radius: 100px;
 }
 
-.easter-egg-div {
-    margin-bottom: 88px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.easter-btn {
+    /* background-color: rgb(52, 68, 93); */
+    background-color: transparent;
+    border: 0;
+    padding: 30px;
+    border-radius: 100px;
+    color: white;
+    font-size: x-large;
+    font-weight: bolder;
+    transition: background-color 1s;
+}
+
+.easter-btn:hover {
+    background-color: rgba(0, 0, 0, .4);
 }
