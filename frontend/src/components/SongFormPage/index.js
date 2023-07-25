@@ -144,7 +144,6 @@ export default function SongFormPage() {
                                             type='text'
                                             onChange={(e) => setDescription(e.target.value)}
                                             value={description}
-                                            placeholder="test"
                                             onFocus={() => setDescFocus(true)}
                                             onBlur={() => setDescFocus(false)}
                                         />
