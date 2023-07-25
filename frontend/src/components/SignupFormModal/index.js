@@ -81,13 +81,27 @@ function SignupFormModal() {
 
                 <div className={uClass}>
                     <label for="username-in">
-                        Username
+                        <div className="user-memo-div">
+                            {'Username '}
+
+                            <div className="star">
+                                *
+                            </div>
+
+
+                            <div className="memo-div">
+                                (30 Char. Max)
+                            </div>
+
+                        </div>
                     </label>
                     <input
                         id="username-in"
                         type="text"
                         value={username}
                         onChange={(e) => setUsername(e.target.value)}
+                        placeholder="30 Character Max"
+                        maxLength='30'
                         required
                         onFocus={() => setUsernameFocus(true)}
                         onBlur={() => setUsernameFocus(false)}

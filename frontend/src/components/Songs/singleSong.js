@@ -98,7 +98,7 @@ export default function SingleSong() {
                                             <div className='song-name-uploader-div'>
 
                                                 <div className='song-name-div'>
-                                                    {Song.name}
+                                                    {Song.name.length > 20 ? Song.name.substring(0, 20) + '...' : Song.name}
                                                 </div>
 
                                                 <div className='song-uploader-div'>

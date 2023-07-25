@@ -35,3 +35,17 @@
 .error-spacer-sign-up {
     margin-top: 80px;
 }
+
+.user-memo-div {
+    display: flex;
+}
+
+.star {
+    visibility: hidden;
+    margin: 0px 2px;
+}
+
+.memo-div {
+    font-size: small;
+    color: rgb(230, 255, 230);
+}

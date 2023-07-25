@@ -49,6 +49,10 @@
     border: 0;
 }
 
+#modal-content input::placeholder {
+    color: rgb(80, 160, 80);
+}
+
 #modal-content textarea:focus {
     outline: none;
     color: white;

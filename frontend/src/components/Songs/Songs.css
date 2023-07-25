@@ -142,9 +142,11 @@
 }
 
 .info-buttons-div {
+    overflow: hidden;
     display: flex;
     justify-content: space-between;
     padding-right: 20px;
+    max-width: 550px;
 }
 
 .edit-delete-buttons-div>button {

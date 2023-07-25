@@ -33,11 +33,19 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 5px;
+    border-radius: 10px;
+    transition: background-color .5s;
+}
+
+.new-song-img-assignment.focus-img-box {
+    background-color: rgba(34, 139, 34, 0.4);
+    box-shadow: 0px 0px 3px 3px rgba(0, 0, 0, .5);
 }
 
 .label-in-div-song-form.img {
     width: 450px;
-    margin-bottom: 10px;
+    /* margin-bottom: 10px; */
 }
 
 .name-song-desc-div {
@@ -118,10 +126,26 @@ input::file-selector-button:hover {
     transition: color .5s;
 }
 
+.song-form-div textarea:focus::placeholder {
+    transition: color .5s;
+}
+
+.song-form-div textarea:focus::placeholder {
+    color: white;
+}
+
 .song-form-div textarea {
     background-color: transparent;
     transition: color .5s;
     font-size: large;
+}
+
+.song-form-div textarea:focus::placeholder {
+    transition: color .5s;
+}
+
+.song-form-div textarea:focus::placeholder {
+    color: white;
 }
 
 .song-form-div button {
@@ -150,6 +174,12 @@ input::file-selector-button:hover {
 #mp3-in-id:hover {
     cursor: pointer;
 }
+
+.label-in-div-song-form.focus-song-form.img {
+    background-color: rgb(80, 160, 80);
+    box-shadow: 0px 0px 1px 1px black;
+}
+
 
 .loader {
     z-index: 10;

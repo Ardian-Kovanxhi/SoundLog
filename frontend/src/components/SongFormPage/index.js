@@ -29,6 +29,7 @@ export default function SongFormPage() {
     const sClass = genClass + (songFocus ? 'focus-song-form' : '')
     const dClass = genClass + (descFocus ? 'focus-song-form' : '') + ' desc'
     const iClass = genClass + (imgFocus ? 'focus-song-form' : '') + ' img'
+    const iBoxClass = 'new-song-img-assignment ' + (imgFocus ? 'focus-img-box' : '')
 
     useEffect(() => {
 
@@ -143,6 +144,7 @@ export default function SongFormPage() {
                                             type='text'
                                             onChange={(e) => setDescription(e.target.value)}
                                             value={description}
+                                            placeholder="test"
                                             onFocus={() => setDescFocus(true)}
                                             onBlur={() => setDescFocus(false)}
                                         />
@@ -151,7 +153,7 @@ export default function SongFormPage() {
 
                                 </div>
 
-                                <div className="new-song-img-assignment">
+                                <div className={iBoxClass}>
 
                                     <div className={iClass}>
                                         <label for='img-id' className="text-label">

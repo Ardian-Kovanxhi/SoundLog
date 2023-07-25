@@ -92,10 +92,10 @@ export default function SelectedSong() {
                                         >
 
                                             <div className='all-songs-song-name'>
-                                                {el.name}
+                                                {el.name.length > 15 ? el.name.substring(0, 15) + '...' : el.name}
                                             </div>
                                             <div className='all-songs-username'>
-                                                {el.User.username}
+                                                {el.User.username.length > 15 ? el.User.username.substring(0, 15) + '...' : el.User.username}
                                             </div>
 
                                         </div>
