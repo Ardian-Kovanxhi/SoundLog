@@ -1,6 +1,8 @@
 .song-edit-div {
     z-index: 1;
     display: flex;
+    flex-direction: column;
+    width: 800px;
     margin: 20px;
 }
 
@@ -9,6 +11,25 @@
     flex-direction: column;
     justify-content: space-between;
     margin: 30px;
+    width: 95%;
+}
+
+.input-gen-div {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.name-desc-input-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.img-in-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .edit-img-preview {
@@ -17,15 +38,22 @@
 }
 
 .song-edit-textarea {
-    height: 50px;
+    height: 200px;
+    width: 300px;
     resize: none;
+    font-size: large;
 }
 
 .edit-submit-button {
-    padding: 5px 0px;
+    padding: 15px 0px;
+    margin: 0px 40px;
     font-size: medium;
     border: 0px;
     border-radius: 5px;
     background-color: forestgreen;
     color: white;
+}
+
+.imgUrl {
+    width: 350px;
 }

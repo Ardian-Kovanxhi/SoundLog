@@ -15,6 +15,23 @@ function SignupFormModal() {
     const [errors, setErrors] = useState([]);
     const { closeModal } = useModal();
 
+    const genClass = 'label-in-div sign-up '
+
+    const [emailFocus, setEmailFocus] = useState(false)
+    const [usernameFocus, setUsernameFocus] = useState(false)
+    const [firstFocus, setFirstFocus] = useState(false)
+    const [lastFocus, setLastFocus] = useState(false)
+    const [passFocus, setPassFocus] = useState(false)
+    const [cPassFocus, setCPassFocus] = useState(false)
+
+    const eClass = genClass + (emailFocus ? 'focus' : '')
+    const uClass = genClass + (usernameFocus ? 'focus' : '')
+    const fClass = genClass + (firstFocus ? 'focus' : '')
+    const lClass = genClass + (lastFocus ? 'focus' : '')
+    const pClass = genClass + (passFocus ? 'focus' : '')
+    const confirmClass = genClass + (cPassFocus ? 'focus' : '')
+
+
     const handleSubmit = (e) => {
         e.preventDefault();
         if (password === confirmPassword) {
@@ -31,65 +48,112 @@ function SignupFormModal() {
 
     return (
         <div className="sign-up-form-container">
+
             <h1>Sign Up</h1>
+
             <form onSubmit={handleSubmit} className="sign-up-form-actual">
+
+                <i
+                    className="fa-solid fa-xmark fa-2xl"
+                    onClick={() => closeModal()}
+                ></i>
+
                 <ul>
                     {errors.map((error, idx) => <li key={idx}>{error}</li>)}
                 </ul>
-                <label>
-                    Email
+
+                <div className="error-spacer-sign-up"></div>
+
+                <div className={eClass}>
+                    <label for="email-in">
+                        Email
+                    </label>
                     <input
+                        id="email-in"
                         type="text"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         required
+                        onFocus={() => setEmailFocus(true)}
+                        onBlur={() => setEmailFocus(false)}
                     />
-                </label>
-                <label>
-                    Username
+                </div>
+
+                <div className={uClass}>
+                    <label for="username-in">
+                        Username
+                    </label>
                     <input
+                        id="username-in"
                         type="text"
                         value={username}
                         onChange={(e) => setUsername(e.target.value)}
                         required
+                        onFocus={() => setUsernameFocus(true)}
+                        onBlur={() => setUsernameFocus(false)}
                     />
-                </label>
-                <label>
-                    First Name
+                </div>
+
+                <div className={fClass}>
+                    <label for="first-in">
+                        First Name
+                    </label>
                     <input
+                        id="first-in"
                         type="text"
                         value={firstName}
                         onChange={(e) => setFirstName(e.target.value)}
                         required
+                        onFocus={() => setFirstFocus(true)}
+                        onBlur={() => setFirstFocus(false)}
                     />
-                </label>
-                <label>
-                    Last Name
+                </div>
+
+                <div className={lClass}>
+                    <label for="last-in">
+                        Last Name
+                    </label>
                     <input
+                        id="last-in"
                         type="text"
                         value={lastName}
                         onChange={(e) => setLastName(e.target.value)}
                         required
+                        onFocus={() => setLastFocus(true)}
+                        onBlur={() => setLastFocus(false)}
                     />
-                </label>
-                <label>
-                    Password
+                </div>
+
+                <div className={pClass}>
+                    <label for="pass-in">
+                        Password
+                    </label>
                     <input
+                        id="pass-in"
                         type="password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         required
+                        onFocus={() => setPassFocus(true)}
+                        onBlur={() => setPassFocus(false)}
                     />
-                </label>
-                <label>
-                    Confirm Password
+                </div>
+
+                <div className={confirmClass}>
+                    <label for="confp-in">
+                        Confirm Password
+                    </label>
                     <input
+                        id="confp-in"
                         type="password"
                         value={confirmPassword}
                         onChange={(e) => setConfirmPassword(e.target.value)}
                         required
+                        onFocus={() => setCPassFocus(true)}
+                        onBlur={() => setCPassFocus(false)}
                     />
-                </label>
+                </div>
+
                 <button type="submit">Sign Up</button>
             </form>
         </div>

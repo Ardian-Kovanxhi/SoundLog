@@ -1,5 +1,5 @@
 .comment-edit-form-div {
-    width: 310px;
+    width: 400px;
     height: 250px;
     padding: 20px;
     display: flex;
@@ -15,14 +15,6 @@
     height: 100%;
 }
 
-.comment-edit-form>label {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    border: 1px lightgray solid;
-    margin-bottom: 20px;
-}
-
 .comment-edit-form>button {
     width: 100%;
     background-color: forestgreen;
@@ -30,4 +22,8 @@
     border: 0px;
     border-radius: 10px;
     padding: 10px 0px;
+}
+
+.chara-count-modal {
+    color: rgb(84, 178, 84);
 }

@@ -124,7 +124,7 @@
 }
 
 .nav-container {
-    z-index: 20;
+    z-index: 9;
     position: fixed;
     top: 0;
     /* background-color: rgb(43, 147, 180); */

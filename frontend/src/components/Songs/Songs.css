@@ -157,6 +157,9 @@
 }
 
 .edit-delete-buttons-div {
+    position: absolute;
+    right: 0;
+    margin-right: 510px;
     display: flex;
     flex-direction: column;
 }
@@ -175,9 +178,8 @@
 }
 
 .single-song-img {
-    width: 850px;
+    width: 500px;
     height: 500px;
-    /* height: 100%; */
 }
 
 .uploader-pfp {

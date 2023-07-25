@@ -1,6 +1,5 @@
 .song-form-div {
     z-index: 1;
-    position: absolute;
     border-top: 50px solid transparent;
     border-bottom: 100px solid transparent;
     width: 1240px;
@@ -9,50 +8,13 @@
     color: rgb(20, 70, 55);
 }
 
-
-.all-content-div input {
-    border: 1px transparent solid;
-    border-top: 1px solid rgb(150, 150, 150);
-    background-color: rgb(210, 255, 210);
-    transition: background-color 1s;
-}
-
-.all-content-div input:focus {
-    outline: none !important;
-    background-color: rgba(34, 139, 34, 0.4);
-}
-
-
-.all-content-div textarea {
-    border-top: 1px solid rgb(150, 150, 150);
-    transition: background-color 1s;
-}
-
-.all-content-div textarea:focus {
-    outline: none !important;
-    background-color: rgba(34, 139, 34, 0.4);
-}
-
 .required {
     color: red;
-}
-
-.notif {
-    margin-bottom: 5px;
-}
-
-.text-label:hover {
-    cursor: text;
-}
-
-.mp3-in-class:hover {
-    cursor: pointer;
 }
 
 .all-content-div {
     display: flex;
     justify-content: space-between;
-    /* margin: 0px 20px; */
 }
 
 .new-song-form {
@@ -60,33 +22,21 @@
 }
 
 .new-song-img {
-    width: 500px;
-    height: 500px;
+    width: 400px;
+    height: 400px;
     border: 1px rgba(0, 0, 0, .3) solid;
 }
 
 /* rgb(210, 255, 210) */
 
-.form-colored-input {
-    background-color: rgb(210, 255, 210);
-}
-
-.song-form-input-fields {
-    width: 100%;
-    border: rgba(0, 0, 0, .3) 1px solid;
-    padding: 5px;
-    border-radius: 10px;
+.new-song-img-assignment {
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
-/* .new-song-img-assignment {
-    margin-right: 10px;
-    height: 100%;
-} */
-
-.song-form-input-fields.img {
-    width: 97%;
+.label-in-div-song-form.img {
+    width: 450px;
     margin-bottom: 10px;
 }
 
@@ -94,8 +44,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 300px;
-    /* width: 100%; */
+    width: 50%;
 }
 
 .song-form-textarea {
@@ -109,10 +58,6 @@
     display: flex;
     justify-content: center;
 }
-
-/* .file-select-input {
-    
-} */
 
 input::file-selector-button {
     margin: 10px 0px;
@@ -142,4 +87,66 @@ input::file-selector-button:hover {
 
 .song-form-buttons:hover {
     background-color: green;
+}
+
+.label-in-div-song-form {
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0px 0px 1px 1px rgb(170, 170, 170);
+    background-color: transparent;
+    padding: 5px;
+    border-radius: 10px;
+    margin: 10px 0px;
+    transition:
+        background-color .5s,
+        box-shadow .5s,
+        color .5s;
+    font-weight: 700;
+}
+
+.focus-song-form {
+    background-color: rgb(80, 160, 80);
+    box-shadow: 0px 0px 3px 3px rgba(0, 0, 0, .5);
+}
+
+.focus-song-form label {
+    color: white;
+}
+
+.song-form-div input {
+    background-color: transparent;
+    transition: color .5s;
+}
+
+.song-form-div textarea {
+    background-color: transparent;
+    transition: color .5s;
+    font-size: large;
+}
+
+.song-form-div button {
+    transition: background-color .6s;
+}
+
+.song-form-div button:hover {
+    background-color: green;
+}
+
+.song-form-div input:focus {
+    outline: none;
+    color: white;
+    border: 0;
+}
+
+.song-form-div textarea:focus {
+    outline: none;
+    color: white;
+}
+
+.song-form-div label:hover {
+    cursor: text;
+}
+
+#mp3-in-id:hover {
+    cursor: pointer;
 }

@@ -22,7 +22,10 @@ export default function CommentEditModal({ commentId, songId }) {
 
 
     const [comment, setComment] = useState(sessionComment.comment);
-    // const [errors, setErrors] = useState([]);
+
+    const [focus, setFocus] = useState(false)
+
+    const comClass = 'label-in-div comment ' + (focus ? 'focus' : '')
 
     const submitHandler = async (e) => {
         e.preventDefault();
@@ -44,21 +47,34 @@ export default function CommentEditModal({ commentId, songId }) {
 
     return (
         <div className='comment-edit-form-div'>
+
+            <i
+                className="fa-solid fa-xmark fa-2xl"
+                onClick={() => closeModal()}
+            ></i>
+
             <h1>Edit Comment</h1>
+
             <h4>must be at leat 1 character long</h4>
+
             <form className='comment-edit-form'>
 
-                <label>
-                    {'Comment: '}
+                <div className={comClass}>
+                    <label for="comment-id">
+                        Comment:
+                    </label>
                     <input
+                        id='comment-id'
                         type='text'
                         onChange={(e) => setComment(e.target.value)}
                         value={comment}
                         maxLength='100'
                         minLength='1'
+                        onFocus={() => setFocus(true)}
+                        onBlur={() => setFocus(false)}
                     />
-                </label>
-                <div className='chara-count'>
+                </div>
+                <div className='chara-count-modal'>
                     {`${100 - comment.length} characters left`}
                 </div>
 

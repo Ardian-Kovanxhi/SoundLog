@@ -1,14 +1,11 @@
 .sign-up-form-container {
     padding: 30px;
-    width: 300px;
-    height: fit-content;
+    width: 400px;
 }
 
 .sign-up-form-actual {
     display: flex;
     flex-direction: column;
-    /* width: 300px; */
-    height: 100%;
 }
 
 .sign-up-form-actual>label {
@@ -25,4 +22,16 @@
     border-radius: 5px;
     padding: 10px 0px;
     margin: 10px 0px;
+}
+
+.sign-up-form-container ul {
+    position: absolute;
+    left: 0;
+    color: red;
+    margin-left: 0;
+    font-weight: 700;
+}
+
+.error-spacer-sign-up {
+    margin-top: 80px;
 }
