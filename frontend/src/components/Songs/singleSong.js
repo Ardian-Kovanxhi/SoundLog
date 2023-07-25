@@ -11,13 +11,14 @@ import SongEditPage from "../SongEditPage";
 import OpenModalMenuItem from '../OpenModalButton';
 import CommentEditModal from '../CommentEditModal';
 import CommentTesting from '../CommentFormTesting';
+import BtnMenu from './edit-deleteMenu';
+import CommentBtnMenu from './edit-deleteComment';
 import './Songs.css'
 
 
 
 export default function SingleSong() {
     const dispatch = useDispatch();
-    const history = useHistory()
     const { songId } = useParams();
 
     useEffect(() => {
@@ -64,14 +65,6 @@ export default function SingleSong() {
         setComment('')
     }
 
-
-    const deleteHandler = async () => {
-        const rem = await dispatch(removeSong(songId))
-        if (rem.ok) {
-            history.push('/')
-        }
-    }
-
     const commentDeleteHandler = async (commentId) => {
         dispatch(removeComment(commentId, songId))
     }
@@ -114,16 +107,7 @@ export default function SingleSong() {
 
                                         {User ? Song.userId === User.id ?
                                             <div className='edit-delete-buttons-div'>
-                                                <OpenModalMenuItem
-                                                    // itemText="Test"
-                                                    buttonText='Edit'
-                                                    modalComponent={<SongEditPage />}
-                                                />
-
-                                                <button
-                                                    onClick={deleteHandler}
-                                                >Delete</button>
-
+                                                <BtnMenu />
                                             </div>
                                             :
                                             null : null
@@ -266,16 +250,19 @@ export default function SingleSong() {
                                                 {el.User.username}
 
                                                 {disabled ? el.userId === User.id ?
-                                                    <div className='comments-button-div'>
-                                                        <OpenModalMenuItem
-                                                            buttonText='Edit'
-                                                            modalComponent={<CommentEditModal commentId={el.id} songId={songId} />}
-                                                        />
-
-                                                        <button
-                                                            onClick={() => commentDeleteHandler(el.id)}
-                                                        >Delete</button>
+                                                    <div>
+                                                        <CommentBtnMenu passedCommId={el.id} />
                                                     </div>
+                                                    // <div className='comments-button-div'>
+                                                    //     <OpenModalMenuItem
+                                                    //         buttonText='Edit'
+                                                    //         modalComponent={<CommentEditModal commentId={el.id} songId={songId} />}
+                                                    //     />
+
+                                                    //     <button
+                                                    //         onClick={() => commentDeleteHandler(el.id)}
+                                                    //     >Delete</button>
+                                                    // </div>
                                                     : null : null}
 
                                             </div>

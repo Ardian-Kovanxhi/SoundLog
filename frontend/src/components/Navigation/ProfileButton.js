@@ -76,7 +76,7 @@ function ProfileButton({ user }) {
                             modalComponent={<SignupFormModal />}
                         />
                         <button
-                            onClick={() => dispatch(sessionActions.login({ credential: 'demo@user.io', password: 'password' }))}
+                            onClick={() => dispatch(sessionActions.login({ credential: 'demo@user.io', password: 'password' })).then(closeMenu())}
                         >
                             Demo User
                         </button>

@@ -149,25 +149,25 @@
     max-width: 550px;
 }
 
-.edit-delete-buttons-div>button {
+.edit-delete-buttons-div button {
     background-color: forestgreen;
     color: white;
     border-radius: 20px;
     padding: 10px;
-    margin: 10px 0px;
+    /* margin: 10px 0px; */
     border: 0px;
 }
 
-.edit-delete-buttons-div>button:hover {
+.edit-delete-buttons-div button:hover {
     background-color: green;
 }
 
 .edit-delete-buttons-div {
     position: absolute;
+    top: 0;
     right: 0;
     margin-right: 510px;
-    display: flex;
-    flex-direction: column;
+    margin-top: 10px;
 }
 
 .univ-play-pause-button.single {
@@ -288,13 +288,61 @@
 }
 
 
+/* Button Dropdown*/
 
-/* @media (max-height: 930px) {
-    .all-songs-div {
-        height: fit-content;
-    }
+.btn-drop-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 
-    .single-song-container-div {
-        height: fit-content;
-    }
-} */
+.btn-drop-container button {
+    background-color: transparent;
+    color: black;
+    border: 0;
+    border-radius: 20px;
+}
+
+.btn-drop-container>button:hover {
+    background-color: rgba(0, 0, 0, .3);
+}
+
+.btn-dropdown-div {
+    background-color: rgb(240, 255, 240);
+    border: black 1px solid;
+    position: absolute;
+    margin-top: 35px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.btn-dropdown-div.song-drop {
+    top: 0;
+    right: 0;
+}
+
+.btn-dropdown-div.comment-drop {
+    left: 0;
+    margin-top: -19px;
+    margin-left: 270px;
+    border-radius: 5px;
+}
+
+.btn-dropdown-div button:hover {
+    border-radius: 0px;
+}
+
+.btn-dropdown-div button:hover {
+    background-color: rgba(0, 0, 0, .1);
+}
+
+.btn-dropdown-div.hidden {
+    display: none;
+}
+
+.cbtn-dropdown-div.hidden {
+    display: none;
+}
