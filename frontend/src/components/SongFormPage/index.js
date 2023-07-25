@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { submitSong } from "../../store/songs";
+import CommentTesting from "../CommentFormTesting";
 import './SongFormPage.css'
 
 export default function SongFormPage() {
@@ -15,6 +16,7 @@ export default function SongFormPage() {
     const [img, setImg] = useState('')
     const [description, setDescription] = useState('')
     const [errors, setErrors] = useState([])
+    const [loadState, setLoadState] = useState(true)
 
     const [nameFocus, setNameFocus] = useState(false)
     const [songFocus, setSongFocus] = useState(false)
@@ -38,6 +40,7 @@ export default function SongFormPage() {
 
     const submitHandler = async (e) => {
         e.preventDefault();
+        setLoadState(false)
 
         if (img === '') setImg(null)
         if (description === '') setDescription(null)
@@ -70,117 +73,128 @@ export default function SongFormPage() {
     };
 
     return (
-        <div className="song-form-div">
 
-            <ul>
-                {errors.map(el => (
-                    <li>
-                        {el}
-                    </li>
-                ))}
-            </ul>
+        <>
+            {
+                loadState ?
+                    <div className="song-form-div">
 
-            <form onSubmit={submitHandler} className="new-song-form">
+                        <ul>
+                            {errors.map(el => (
+                                <li>
+                                    {el}
+                                </li>
+                            ))}
+                        </ul>
 
-                <div className="required notif">
-                    * required fields
-                </div>
+                        <form onSubmit={submitHandler} className="new-song-form">
 
-                <div className="all-content-div">
+                            <div className="required notif">
+                                * required fields
+                            </div>
 
-                    <div className="name-song-desc-div">
+                            <div className="all-content-div">
 
-                        <div className={nClass}>
+                                <div className="name-song-desc-div">
 
-                            <label for="name-in-id" className="required" >
-                                Name*
-                            </label>
-                            <input
-                                id="name-in-id"
-                                // className="form-colored-input"
-                                type='text'
-                                onChange={(e) => setName(e.target.value)}
-                                value={name}
-                                required
-                                onFocus={() => setNameFocus(true)}
-                                onBlur={() => setNameFocus(false)}
-                            />
-                        </div>
+                                    <div className={nClass}>
 
-                        <div className={sClass}>
+                                        <label for="name-in-id" className="required" >
+                                            Name*
+                                        </label>
+                                        <input
+                                            id="name-in-id"
+                                            // className="form-colored-input"
+                                            type='text'
+                                            onChange={(e) => setName(e.target.value)}
+                                            value={name}
+                                            required
+                                            onFocus={() => setNameFocus(true)}
+                                            onBlur={() => setNameFocus(false)}
+                                        />
+                                    </div>
 
-                            <label for="mp3-in-id" className="required mp3-in-class">
-                                Song* (only accepts mp3 files)
-                            </label>
-                            <input
-                                id="mp3-in-id"
-                                className="file-select-input"
-                                type="file"
-                                accept=".mp3"
-                                required onChange={updateFile}
-                                onFocus={() => setSongFocus(true)}
-                                onBlur={() => setSongFocus(false)}
-                            />
+                                    <div className={sClass}>
 
-                        </div>
+                                        <label for="mp3-in-id" className="required mp3-in-class">
+                                            Song* (only accepts mp3 files)
+                                        </label>
+                                        <input
+                                            id="mp3-in-id"
+                                            className="file-select-input"
+                                            type="file"
+                                            accept=".mp3"
+                                            required onChange={updateFile}
+                                            onFocus={() => setSongFocus(true)}
+                                            onBlur={() => setSongFocus(false)}
+                                        />
 
-                        <div className={dClass}>
+                                    </div>
 
-                            <label for='desc-id' className="text-label" >
-                                Description
-                            </label>
+                                    <div className={dClass}>
 
-                            <textarea
-                                id="desc-id"
-                                className="song-form-textarea form-colored-input"
-                                type='text'
-                                onChange={(e) => setDescription(e.target.value)}
-                                value={description}
-                                onFocus={() => setDescFocus(true)}
-                                onBlur={() => setDescFocus(false)}
-                            />
+                                        <label for='desc-id' className="text-label" >
+                                            Description
+                                        </label>
 
-                        </div>
+                                        <textarea
+                                            id="desc-id"
+                                            className="song-form-textarea form-colored-input"
+                                            type='text'
+                                            onChange={(e) => setDescription(e.target.value)}
+                                            value={description}
+                                            onFocus={() => setDescFocus(true)}
+                                            onBlur={() => setDescFocus(false)}
+                                        />
 
+                                    </div>
+
+                                </div>
+
+                                <div className="new-song-img-assignment">
+
+                                    <div className={iClass}>
+                                        <label for='img-id' className="text-label">
+                                            ImageUrl:
+                                        </label>
+
+                                        <input
+                                            className="form-colored-input in-test-class"
+                                            id="img-id"
+                                            type='url'
+                                            onChange={(e) => setImg(e.target.value)}
+                                            value={img}
+                                            onFocus={() => setImgFocus(true)}
+                                            onBlur={() => setImgFocus(false)}
+                                        />
+
+                                    </div>
+
+                                    <img
+                                        className="new-song-img"
+                                        src={img || 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png'} />
+
+                                </div>
+
+                            </div>
+
+
+                            <div className="song-form-gen-but-div">
+
+                                <button className="song-form-buttons submit">Submit</button>
+
+                                <button onClick={() => history.push('/')} className="song-form-buttons cancel">Cancel</button>
+
+                            </div>
+                        </form>
+                    </div>
+                    :
+                    <div className="loader">
+                        <img src="https://i.imgur.com/DwJvkT6.gif" />
                     </div>
 
-                    <div className="new-song-img-assignment">
-
-                        <div className={iClass}>
-                            <label for='img-id' className="text-label">
-                                ImageUrl:
-                            </label>
-
-                            <input
-                                className="form-colored-input in-test-class"
-                                id="img-id"
-                                type='url'
-                                onChange={(e) => setImg(e.target.value)}
-                                value={img}
-                                onFocus={() => setImgFocus(true)}
-                                onBlur={() => setImgFocus(false)}
-                            />
-
-                        </div>
-
-                        <img
-                            className="new-song-img"
-                            src={img || 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png'} />
-
-                    </div>
-
-                </div>
-
-
-                <div className="song-form-gen-but-div">
-
-                    <button className="song-form-buttons submit">Submit</button>
-
-                    <button onClick={() => history.push('/')} className="song-form-buttons cancel">Cancel</button>
-
-                </div>
-            </form>
-        </div>
+            }
+        </>
     )
 
 }

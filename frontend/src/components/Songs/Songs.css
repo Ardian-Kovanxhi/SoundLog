@@ -137,6 +137,10 @@
     border-radius: 10px;
 }
 
+.single-song-desc.false {
+    visibility: hidden;
+}
+
 .info-buttons-div {
     display: flex;
     justify-content: space-between;

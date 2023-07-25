@@ -4,13 +4,17 @@
     justify-content: space-between;
     align-items: center;
     position: absolute;
-    z-index: 10;
-    background-image: url(https://static.wikia.nocookie.net/55dc9005-d44f-4e1c-b4b5-8c3cbfba0c7b/scale-to-width/755);
+    z-index: 8;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
     font-weight: bolder;
+    color: black;
+}
+
+.test404.gif {
+    background-image: url(https://static.wikia.nocookie.net/55dc9005-d44f-4e1c-b4b5-8c3cbfba0c7b/scale-to-width/755);
     color: white;
 }
 
@@ -46,10 +50,13 @@
     border: 0;
     padding: 30px;
     border-radius: 100px;
-    color: white;
     font-size: x-large;
     font-weight: bolder;
     transition: background-color 1s;
+}
+
+.easter-btn.gif {
+    color: white;
 }
 
 .easter-btn:hover {

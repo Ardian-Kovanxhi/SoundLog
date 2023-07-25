@@ -10,9 +10,8 @@ import LoginFormModal from '../LoginFormModal';
 import SongEditPage from "../SongEditPage";
 import OpenModalMenuItem from '../OpenModalButton';
 import CommentEditModal from '../CommentEditModal';
-
-import './Songs.css'
 import CommentTesting from '../CommentFormTesting';
+import './Songs.css'
 
 
 
@@ -190,22 +189,28 @@ export default function SingleSong() {
                                     </button>
                                 }
 
-                                <div className='single-song-desc'>{Song.description}</div>
+                                <div
+                                    className={'single-song-desc ' + (!!Song.description ? '' : 'false')}
+                                >
+                                    {Song.description}
+                                </div>
 
                                 {/* <div>{Song.content}</div> */}
 
                             </div>
 
 
+                            <div>
 
-                            <img
-                                className='single-song-img'
-                                src={
-                                    Song.img
-                                    ||
-                                    'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png'
-                                } />
+                                <img
+                                    className='single-song-img'
+                                    src={
+                                        Song.img
+                                        ||
+                                        'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png'
+                                    } />
 
+                            </div>
 
 
                         </div>

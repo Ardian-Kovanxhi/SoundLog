@@ -12,6 +12,7 @@ import CommentEditPage from "./components/CommentEditForm";
 import AudioControls from './components/AudioControls'
 import Likes from "./components/Likes";
 import Playlists from "./components/Playlists";
+import BtnMenu from "./components/Songs/edit-deleteMenu";
 
 
 function App() {
@@ -40,6 +41,7 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <>
+          {/* <BtnMenu /> */}
           <Switch>
             <Route path={'/songs/:songId/comments/:commentId/edit'} component={CommentEditPage} />
             <Route path={'/songs/:songId/edit'} component={SongEditPage} />

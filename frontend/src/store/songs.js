@@ -7,6 +7,7 @@ const READ_SONG = 'song/READ_SONG'
 const PLAY_SONG = 'song/PLAY_SONG'
 const PLAY_SONG_404 = 'song/PLAY_SONG_404'
 const DELETE_SONG = 'song/DELETE_SONG'
+const CLEAR_SONG_STORE = 'song/CLEAR_SONG_STORE'
 
 
 const readSongs = (songs) => {
@@ -39,6 +40,12 @@ const playingSong404 = (song) => {
 const deleteSong = () => {
     return {
         type: DELETE_SONG
+    }
+}
+
+const clearStore = () => {
+    return {
+        type: CLEAR_SONG_STORE
     }
 }
 
@@ -152,6 +159,10 @@ export const removeSong = (songId) => async dispatch => {
     }
 };
 
+export const clearSongStore = () => dispatch => {
+    dispatch(clearStore())
+}
+
 
 
 const initialState = { allSongs: {}, singleSong: {}, playingSong: {} }
@@ -185,6 +196,11 @@ export default function songsReducer(state = initialState, action) {
             // if (newState.allSongs[action.song.id]) {
             //     delete newState.allSongs[action.song.id]
             // }
+            return newState
+        }
+        case CLEAR_SONG_STORE: {
+            newState = { ...state }
+            newState.singleSong = {}
             return newState
         }
         default:

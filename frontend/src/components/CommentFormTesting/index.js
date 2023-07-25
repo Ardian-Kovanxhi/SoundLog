@@ -1,17 +1,21 @@
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
-import './test.css'
 import { playSong404 } from '../../store/songs'
 import { useDispatch } from 'react-redux'
-import { useEffect } from 'react'
-import { getPaused } from '../../store/audioPlayerState'
+import { useState } from 'react'
+import './test.css'
 
 export default function CommentTesting() {
     const dispatch = useDispatch()
     const history = useHistory()
 
+    const [easter, setEaster] = useState(false)
+
+    const gifClass = 'test404 ' + (easter ? 'gif' : '')
+    const btnClass = 'easter-btn ' + (easter ? 'gif' : '')
+
     return (
         <>
-            <div className='test404'>
+            <div className={gifClass}>
                 filler
 
                 <div className='info-div-404'>
@@ -32,8 +36,11 @@ export default function CommentTesting() {
 
 
                 <button
-                    className='easter-btn'
-                    onClick={() => dispatch(playSong404('https://aa-sounclod-clone-bucket.s3.amazonaws.com/1690097319856.mp3'))}
+                    className={btnClass}
+                    onClick={() => {
+                        dispatch(playSong404('https://aa-sounclod-clone-bucket.s3.amazonaws.com/1690097319856.mp3'))
+                        setEaster(true)
+                    }}
                 >
                     Click for an Easter Egg
                 </button>
