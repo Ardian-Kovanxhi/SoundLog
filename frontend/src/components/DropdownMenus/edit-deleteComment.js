@@ -4,6 +4,7 @@ import OpenModalMenuItem from '../OpenModalButton';
 import CommentEditModal from "../CommentEditModal";
 import { removeComment } from "../../store/comments";
 import { useEffect, useRef, useState } from "react";
+import './DropdownStyle.css'
 
 export default function CommentBtnMenu({ passedCommId }) {
     const dispatch = useDispatch()
@@ -41,11 +42,11 @@ export default function CommentBtnMenu({ passedCommId }) {
     const ulClassName = "comment-drop btn-dropdown-div" + (showMenu ? "" : " hidden");
 
     return (
-        <div className="btn-drop-container">
+        <div className="btn-drop-container comment-elip">
             <button
                 onClick={openMenu}
             >
-                <i class="fa-solid fa-ellipsis-vertical" />
+                <i class="fa-solid fa-ellipsis"></i>
             </button>
             <div
                 className={ulClassName}

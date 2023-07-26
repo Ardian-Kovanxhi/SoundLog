@@ -5,7 +5,7 @@ import { getCommentsBySong } from "../../store/comments";
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 import OpenModalMenuItem from '../OpenModalButton';
 import LoginFormModal from '../LoginFormModal';
-import CommentBtnMenu from './edit-deleteComment';
+import CommentBtnMenu from '../DropdownMenus/edit-deleteComment';
 import './Comments.css'
 
 
@@ -59,10 +59,6 @@ export default function SongComments() {
                         <label className='chara-count' for="comment-form-input-id">
                             {`${100 - comment.length} characters left`}
                         </label>
-                        {/* <div className='chara-count'>
-                                        {`${100 - comment.length} characters left`}
-                                    </div> */}
-                        {/* <button>submit</button> */}
                     </form>
                     :
                     <div className='conditional-bar-button'>
@@ -86,7 +82,7 @@ export default function SongComments() {
                                     {el.User.username}
 
                                     {disabled ? el.userId === User.id ?
-                                        <div>
+                                        <div className='comment-drop-comp-container'>
                                             <CommentBtnMenu passedCommId={el.id} />
                                         </div>
                                         : null : null}

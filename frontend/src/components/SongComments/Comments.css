@@ -75,11 +75,6 @@
     color: #757575;
 }
 
-/* ↓↓↓ Edit/Delete Drop Down ↓↓↓ */
-
-.btn-dropdown-div.comment-drop {
-    left: 0;
-    margin-top: -19px;
-    margin-left: 270px;
-    border-radius: 5px;
-}
+/* .comment-drop-comp-container {
+    position: absolute;
+} */

@@ -1,5 +1,5 @@
 .test-button {
-    z-index: 10;
+    z-index: 11;
 }
 
 .audio-player {
@@ -9,44 +9,22 @@
 }
 
 .rhap_container {
-    /* background-color: #115161; */
     height: 88px;
     padding: 0px;
     display: flex;
     align-items: center;
     background-color: rgba(255, 255, 255, .1);
-
 }
 
 .rhap_main {
-    width: 1215px;
-    padding: 0px 7.5px;
+    /* width: 1215px; */
+    width: 915px;
+    padding: 0px 12.5px;
+    margin-left: 300px;
     height: 100%;
     background-color: rgb(215, 255, 215);
 }
 
-/* 115161 */
-
-/* .audio-player .rhap_additional-controls {
-    display: none;
-} */
-
-/* .audio-player .rhap_volume-controls {
-    justify-content: flex-start;
-} */
-
 .audio-player.invisible {
-    visibility: hidden;
-}
-
-.single-player-div .rhap_additional-controls {
-    display: none;
-}
-
-.single-player-div .audio-player {
-    position: unset;
-}
-
-.single-player-div .rhap_volume-container {
     display: none;
 }

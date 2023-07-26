@@ -12,7 +12,7 @@ import CommentEditPage from "./components/CommentEditForm";
 import AudioControls from './components/AudioControls'
 import Likes from "./components/Likes";
 import Playlists from "./components/Playlists";
-import BtnMenu from "./components/Songs/edit-deleteMenu";
+import CurrSongDisplay from "./components/AudioPlayerCurrSong";
 
 
 function App() {
@@ -24,6 +24,7 @@ function App() {
 
   return (
     <div className="page-container-div">
+
       <div className="back-img-div">
 
         {/* <img
@@ -36,12 +37,11 @@ function App() {
           className="back-img-actual"
           src="https://images.hdqwalls.com/download/firewatch-trees-pic-2560x1440.jpg"
         />
-
       </div>
+
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <>
-          {/* <BtnMenu /> */}
           <Switch>
             <Route path={'/songs/:songId/comments/:commentId/edit'} component={CommentEditPage} />
             <Route path={'/songs/:songId/edit'} component={SongEditPage} />
@@ -52,13 +52,14 @@ function App() {
             <Route exact path={'/'} component={SelectedSong} />
             <Route path={'*'} component={CommentTesting} />
           </Switch>
-          <AudioControls />
         </>
       )}
 
-      <div className="filler-color">
-      </div>
+      <div className="filler-color"></div>
 
+      <CurrSongDisplay />
+
+      <AudioControls />
     </div>
   );
 }

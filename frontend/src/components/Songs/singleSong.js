@@ -7,7 +7,7 @@ import { createComment } from '../../store/comments';
 import { getPaused } from '../../store/audioPlayerState';
 // import { createLike, getLikesBySong, getLikesByUser, removeLike } from '../../store/likes';
 import CommentTesting from '../CommentFormTesting';
-import BtnMenu from './edit-deleteMenu';
+import BtnMenu from '../DropdownMenus/edit-deleteMenu';
 import SongComments from '../SongComments'
 import './Songs.css'
 

@@ -53,11 +53,6 @@ export default function SelectedSong() {
                                             {song.id === el.id ?
 
                                                 paused ?
-                                                    // isPlaying ?
-
-                                                    // <button onClick={() => setPlaying(false)}>
-
-                                                    // <button onClick={() => setPlaying(true)}>
                                                     <button
                                                         className='univ-play-pause-button'
                                                         onClick={() => { dispatch(getPaused(false)) }}

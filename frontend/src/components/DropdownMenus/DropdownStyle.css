@@ -1,0 +1,57 @@
+.btn-drop-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-drop-container button {
+    background-color: transparent;
+    color: black;
+    border: 0;
+    border-radius: 20px;
+    padding: 10px;
+}
+
+.btn-drop-container>button:hover {
+    background-color: rgba(0, 0, 0, .3);
+}
+
+.btn-dropdown-div {
+    background-color: rgb(240, 255, 240);
+    box-shadow: 0px 0px 2px 2px rgba(0, 0, 0, .3);
+    position: absolute;
+    margin-top: 35px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.btn-dropdown-div button:hover {
+    border-radius: 0px;
+    background-color: rgba(0, 0, 0, .1);
+}
+
+.btn-dropdown-div.hidden {
+    display: none;
+}
+
+/* Song Dropdown */
+.btn-dropdown-div.song-drop {
+    top: 0;
+    right: 0;
+}
+
+/* ↓↓↓ Comment Dropdown ↓↓↓ */
+
+.comment-elip>button {
+    margin-left: 5px;
+    padding: 0px 8px;
+}
+
+.btn-dropdown-div.comment-drop {
+    left: 0;
+    margin-left: 290px;
+    border-radius: 5px;
+}

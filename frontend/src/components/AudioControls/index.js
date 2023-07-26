@@ -1,4 +1,4 @@
-import React, { createContext, useRef, useEffect } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { getPaused, getTime, getDuration } from '../../store/audioPlayerState';
@@ -6,15 +6,21 @@ import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
 import './AudioControls.css'
 
-export const PlayerContext = createContext();
-
-function AudioControls({ isLoaded }) {
+function AudioControls() {
     const dispatch = useDispatch()
     const player = useRef();
     const song = useSelector(state => state.songs.playingSong)
     const pauseState = useSelector(state => state.audioState.pauseState)
 
     const [currPause, setCurrPause] = useState(true)
+    const [playerVisible, setPlayerVisible] = useState(false)
+
+
+    useEffect(() => {
+        if (song.content) {
+            setPlayerVisible(true)
+        }
+    }, [song])
 
 
     useEffect(() => {
@@ -50,19 +56,22 @@ function AudioControls({ isLoaded }) {
     };
 
 
-    const [playerVisible, setPlayerVisible] = useState(true)
 
     const playerClass = 'audio-player ' + (playerVisible ? '' : 'invisible')
 
     return (
         <>
 
-            {/* <button
-                className='test-button'
-                onClick={() => (playerVisible ? setPlayerVisible(false) : setPlayerVisible(true))}
-            >test</button> */}
-
-            {/* <button className='test-button' onClick={playerStateCheck}>Player State</button> */}
+            {/* <img
+                className='player-img-testing'
+                src={
+                    song ?
+                        song.img
+                        ||
+                        'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png'
+                        :
+                        null
+                } /> */}
 
             <AudioPlayer
                 className={playerClass}
@@ -73,7 +82,9 @@ function AudioControls({ isLoaded }) {
                 onPlay={e => dispatch(getPaused(false))}
                 onPause={e => dispatch(getPaused(true))}
             // other props here
-            />
+            >
+                test
+            </AudioPlayer>
 
         </>
     )
