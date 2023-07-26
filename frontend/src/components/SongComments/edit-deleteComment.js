@@ -51,7 +51,6 @@ export default function CommentBtnMenu({ passedCommId }) {
                 className={ulClassName}
                 ref={cbtnLstRef}
             >
-                {/* <div className='comments-button-div'> */}
                 <OpenModalMenuItem
                     buttonText='Edit'
                     modalComponent={<CommentEditModal commentId={passedCommId} songId={songId} />}
@@ -67,14 +66,3 @@ export default function CommentBtnMenu({ passedCommId }) {
     )
 
 }
-
-{/* <div className='comments-button-div'>
-    <OpenModalMenuItem
-        buttonText='Edit'
-        modalComponent={<CommentEditModal commentId={passedCommId} songId={songId} />}
-    />
-
-    <button
-        onClick={() => commentDeleteHandler(passedCommId)}
-    >Delete</button>
-</div> */}

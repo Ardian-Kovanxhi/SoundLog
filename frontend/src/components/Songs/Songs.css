@@ -149,27 +149,6 @@
     max-width: 550px;
 }
 
-.edit-delete-buttons-div button {
-    background-color: forestgreen;
-    color: white;
-    border-radius: 20px;
-    padding: 10px;
-    /* margin: 10px 0px; */
-    border: 0px;
-}
-
-.edit-delete-buttons-div button:hover {
-    background-color: green;
-}
-
-.edit-delete-buttons-div {
-    position: absolute;
-    top: 0;
-    right: 0;
-    margin-right: 510px;
-    margin-top: 10px;
-}
-
 .univ-play-pause-button.single {
     margin-right: 20px;
 }
@@ -193,102 +172,15 @@
     height: 80px;
 }
 
-.comments-gen-div {
-    margin-top: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    /* height: 100%; */
+/* ↓↓↓ General DropDown Style ↓↓↓ */
+
+.edit-delete-buttons-div {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-right: 510px;
+    margin-top: 10px;
 }
-
-.username-conditional-div {
-    display: flex;
-    align-items: center;
-    color: #757575;
-}
-
-/* .comments-button-div {
-    margin-left: 10px;
-} */
-
-.comments-button-div>button {
-    background-color: forestgreen;
-    color: white;
-    border: 0px;
-    border-radius: 20px;
-    padding: 5px 10px;
-    margin-left: 10px;
-}
-
-.comments-button-div>button:hover {
-    background-color: green;
-}
-
-.conditional-bar-button>button {
-    background-color: transparent;
-    border: 0px;
-    padding: 10px 20px;
-    font-size: large;
-    font-weight: bold;
-    border-radius: 20px;
-}
-
-.conditional-bar-button>button:hover {
-    background-color: rgba(31, 92, 29, 0.5);
-}
-
-.comment-form {
-    display: flex;
-    flex-direction: column;
-    width: 80%;
-    padding: 15px;
-    margin-bottom: 10px;
-    background-color: rgb(15, 65, 50);
-}
-
-.comment-form>input {
-    margin-bottom: 5px;
-    background-color: rgb(15, 65, 50);
-    transition: background-color 1s;
-    color: white;
-}
-
-.comment-form>input::placeholder {
-    color: rgb(190, 190, 190);
-}
-
-.comment-form>input:focus {
-    outline: none;
-    background-color: rgb(70, 90, 70);
-}
-
-.chara-count {
-    color: lightgreen;
-}
-
-.all-comments-div {
-    width: 80%;
-}
-
-.comment-form>input {
-    border: lightgray;
-    width: 100%;
-    height: 30px;
-}
-
-.comment-pfp {
-    width: 40px;
-    height: 40px;
-    margin-right: 10px;
-}
-
-.single-comment-div {
-    display: flex;
-    margin: 20px 0px;
-}
-
-
-/* Button Dropdown*/
 
 .btn-drop-container {
     display: flex;
@@ -324,13 +216,6 @@
     right: 0;
 }
 
-.btn-dropdown-div.comment-drop {
-    left: 0;
-    margin-top: -19px;
-    margin-left: 270px;
-    border-radius: 5px;
-}
-
 .btn-dropdown-div button:hover {
     border-radius: 0px;
 }
@@ -340,9 +225,5 @@
 }
 
 .btn-dropdown-div.hidden {
-    display: none;
-}
-
-.cbtn-dropdown-div.hidden {
     display: none;
 }

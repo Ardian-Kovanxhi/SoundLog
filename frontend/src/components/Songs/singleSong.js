@@ -1,18 +1,14 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
-import { useParams, useHistory } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { getCommentsBySong } from "../../store/comments";
-import { getSong, removeSong, playSong } from '../../store/songs';
-import { removeComment, createComment } from '../../store/comments';
+import { getSong, playSong } from '../../store/songs';
+import { createComment } from '../../store/comments';
 import { getPaused } from '../../store/audioPlayerState';
 // import { createLike, getLikesBySong, getLikesByUser, removeLike } from '../../store/likes';
-import LoginFormModal from '../LoginFormModal';
-import SongEditPage from "../SongEditPage";
-import OpenModalMenuItem from '../OpenModalButton';
-import CommentEditModal from '../CommentEditModal';
 import CommentTesting from '../CommentFormTesting';
 import BtnMenu from './edit-deleteMenu';
-import CommentBtnMenu from './edit-deleteComment';
+import SongComments from '../SongComments'
 import './Songs.css'
 
 
@@ -45,13 +41,6 @@ export default function SingleSong() {
         Uploader = Song.User.username
     }
 
-    // console.log(songId)
-    // console.log(Likes)
-    // console.log(Likes[songId])
-    // if (Likes.songId) {
-    //     console.log(Likes.songId)
-    // }
-
     const commentArr = Object.values(Comments)
 
 
@@ -63,10 +52,6 @@ export default function SingleSong() {
         await dispatch(getCommentsBySong(songId))
 
         setComment('')
-    }
-
-    const commentDeleteHandler = async (commentId) => {
-        dispatch(removeComment(commentId, songId))
     }
 
 
@@ -201,83 +186,7 @@ export default function SingleSong() {
 
                     </div>
 
-
-
-                    <div className='comments-gen-div'>
-
-                        {
-                            User ?
-                                <form
-                                    onSubmit={submitHandler}
-                                    className='comment-form'
-                                >
-                                    <input
-                                        id='comment-form-input-id'
-                                        type='text'
-                                        onChange={(e) => setComment(e.target.value)}
-                                        value={comment}
-                                        maxLength='100'
-                                        required
-                                        placeholder='Write a comment here'
-                                    />
-                                    <label className='chara-count' for="comment-form-input-id">
-                                        {`${100 - comment.length} characters left`}
-                                    </label>
-                                    {/* <div className='chara-count'>
-                                        {`${100 - comment.length} characters left`}
-                                    </div> */}
-                                    {/* <button>submit</button> */}
-                                </form>
-                                :
-                                <div className='conditional-bar-button'>
-                                    <OpenModalMenuItem
-                                        buttonText="If you would like to leave a comment click here to login"
-                                        modalComponent={<LoginFormModal />}
-                                    />
-                                </div>
-
-                        }
-
-
-                        <div className='all-comments-div'>
-
-                            {commentArr.map(el => (
-                                <div className='single-comment-div'>
-                                    <img className='comment-pfp' src='https://cdn-icons-png.flaticon.com/512/149/149071.png' />
-                                    <div>
-                                        <div>
-                                            <div className='username-conditional-div'>
-                                                {el.User.username}
-
-                                                {disabled ? el.userId === User.id ?
-                                                    <div>
-                                                        <CommentBtnMenu passedCommId={el.id} />
-                                                    </div>
-                                                    // <div className='comments-button-div'>
-                                                    //     <OpenModalMenuItem
-                                                    //         buttonText='Edit'
-                                                    //         modalComponent={<CommentEditModal commentId={el.id} songId={songId} />}
-                                                    //     />
-
-                                                    //     <button
-                                                    //         onClick={() => commentDeleteHandler(el.id)}
-                                                    //     >Delete</button>
-                                                    // </div>
-                                                    : null : null}
-
-                                            </div>
-                                        </div>
-                                        <div>
-                                            {el.comment}
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                            ))}
-                        </div>
-
-                    </div>
+                    <SongComments />
 
                 </div>
                 :
