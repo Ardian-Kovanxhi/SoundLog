@@ -20,8 +20,11 @@ export default function CurrSongDisplay() {
             {
                 song.content ?
                     <div className={containerClass}>
+
                         <div className='test-div'>
+
                             <div className='test-div-2'>
+
                                 <img
                                     className='player-img-actual'
                                     src={
@@ -30,11 +33,17 @@ export default function CurrSongDisplay() {
                                         'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png'
 
                                     } />
+
                                 <div className='name-test'>
+
                                     {song.name.length > 30 ? song.name.substring(0, 30) + '...' : song.name}
+
                                 </div>
+
                             </div>
+
                         </div>
+
                     </div>
                     :
                     ''
