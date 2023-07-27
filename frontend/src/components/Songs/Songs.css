@@ -18,7 +18,17 @@
 }
 
 .all-songs-song-name {
+    width: 200px;
+    overflow: hidden;
     font-size: medium;
+    display: flex;
+}
+
+.long-text-blocker {
+    position: absolute;
+    margin-left: 186.656px;
+    background-color: rgb(215, 255, 215);
+    transition: background-color 1s;
 }
 
 .all-songs-username {
@@ -41,6 +51,11 @@
 .all-songs-single:hover {
     cursor: pointer;
     background-color: rgba(34, 139, 34, 0.4);
+}
+
+.long-text-blocker.hovered {
+    cursor: pointer;
+    background-color: transparent;
 }
 
 .all-song-img-btn-div {

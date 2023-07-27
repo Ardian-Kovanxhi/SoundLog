@@ -17,9 +17,16 @@ function AudioControls() {
 
 
     useEffect(() => {
+
         if (song.content) {
             setPlayerVisible(true)
+            return
         }
+
+        player.current.audio.current.src = ''
+        player.current.audio.current.removeAttribute('src')
+        setPlayerVisible(false)
+
     }, [song])
 
 

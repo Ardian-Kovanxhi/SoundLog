@@ -25,6 +25,11 @@
     padding: 10px;
 }
 
+.dropdown-logged-in>div:hover {
+    background-color: rgba(0, 0, 0, .1);
+    cursor: default;
+}
+
 .dropdown-logged-in>button {
     display: flex;
     justify-content: baseline;

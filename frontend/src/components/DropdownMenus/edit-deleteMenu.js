@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux"
-import { removeSong } from "../../store/songs"
+import { clearPlayingSong, removeSong } from "../../store/songs"
 import { useParams, useHistory } from 'react-router-dom'
 import OpenModalMenuItem from '../OpenModalButton';
 import SongEditPage from "../SongEditPage";
@@ -66,7 +66,10 @@ export default function BtnMenu() {
                     />
 
                     <button
-                        onClick={deleteHandler}
+                        onClick={() => {
+                            deleteHandler()
+                            dispatch(clearPlayingSong())
+                        }}
                     >
                         Delete
                     </button>

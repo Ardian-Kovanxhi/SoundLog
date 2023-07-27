@@ -90,7 +90,7 @@ function SignupFormModal() {
 
 
                             <div className="memo-div">
-                                (30 Char. Max)
+                                ({30 - username.length} Char. reamaining)
                             </div>
 
                         </div>

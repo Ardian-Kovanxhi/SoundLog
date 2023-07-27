@@ -8,6 +8,7 @@ const PLAY_SONG = 'song/PLAY_SONG'
 const PLAY_SONG_404 = 'song/PLAY_SONG_404'
 const DELETE_SONG = 'song/DELETE_SONG'
 const CLEAR_SONG_STORE = 'song/CLEAR_SONG_STORE'
+const CLEAR_PLAYING_SONG = 'song/CLEAR_PLAYING_SONG'
 
 
 const readSongs = (songs) => {
@@ -49,6 +50,12 @@ const clearStore = () => {
     }
 }
 
+const clearPlaying = () => {
+    return {
+        type: CLEAR_PLAYING_SONG
+    }
+}
+
 
 
 
@@ -62,6 +69,7 @@ export const getSongs = () => async dispatch => {
         return songs
     }
 }
+
 export const getSong = (songId) => async dispatch => {
 
     const response = await csrfFetch(`/api/songs/${songId}`)
@@ -163,6 +171,10 @@ export const clearSongStore = () => dispatch => {
     dispatch(clearStore())
 }
 
+export const clearPlayingSong = () => dispatch => {
+    dispatch(clearPlaying())
+}
+
 
 
 const initialState = { allSongs: {}, singleSong: {}, playingSong: {} }
@@ -201,6 +213,11 @@ export default function songsReducer(state = initialState, action) {
         case CLEAR_SONG_STORE: {
             newState = { ...state }
             newState.singleSong = {}
+            return newState
+        }
+        case CLEAR_PLAYING_SONG: {
+            newState = { ...state }
+            newState.playingSong = {}
             return newState
         }
         default:
