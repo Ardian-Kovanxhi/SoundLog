@@ -1,6 +1,8 @@
 import { useSelector } from "react-redux"
 import './likes.css'
 
+
+//needs work
 export default function Likes() {
 
     const User = useSelector(state => state.session.user)
