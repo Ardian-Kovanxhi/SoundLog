@@ -13,7 +13,6 @@ export default function SelectedSong() {
     const history = useHistory()
 
     const [loadState, setLoadState] = useState(true)
-    const [hoverState, setHoverState] = useState(false)
 
 
     useEffect(() => {
@@ -40,8 +39,6 @@ export default function SelectedSong() {
                                 <>
                                     <div
                                         className='all-songs-single'
-                                        onMouseEnter={() => setHoverState(true)}
-                                        onMouseLeave={() => setHoverState(false)}
                                     >
                                         <div className='all-song-img-btn-div'>
 
@@ -88,26 +85,19 @@ export default function SelectedSong() {
                                         >
 
                                             <div className='all-songs-song-name'>
-                                                {
+                                                {/* {
                                                     el.name.length > 15 ?
                                                         <>
                                                             {el.name}
-                                                            <div className={
-                                                                `long-text-blocker ${hoverState ?
-                                                                    ' hovered'
-                                                                    :
-                                                                    ''
-                                                                }`
-                                                            }>
-                                                                ...
-                                                            </div>
                                                         </>
                                                         :
                                                         el.name
-                                                }
+                                                } */}
+                                                {el.name}
                                             </div>
                                             <div className='all-songs-username'>
-                                                {el.User.username.length > 15 ? el.User.username.substring(0, 15) + '...' : el.User.username}
+                                                {/* {el.User.username.length > 15 ? el.User.username.substring(0, 15) + '...' : el.User.username} */}
+                                                {el.User.username}
                                             </div>
 
                                         </div>

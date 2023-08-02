@@ -3,6 +3,7 @@ import { playSong404 } from '../../store/songs'
 import { useDispatch } from 'react-redux'
 import { useState } from 'react'
 import './test.css'
+import { notInitialized } from 'react-redux/es/utils/useSyncExternalStore'
 
 export default function CommentTesting() {
     const dispatch = useDispatch()
@@ -45,7 +46,9 @@ export default function CommentTesting() {
                     Click for an Easter Egg
                 </button>
 
-                filler2
+                <div style={{ visibility: 'hidden' }}>
+                    filler2
+                </div>
             </div>
             {/* https://aa-sounclod-clone-bucket.s3.amazonaws.com/1690097319856.mp3 */}
         </>

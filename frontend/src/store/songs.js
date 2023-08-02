@@ -93,7 +93,11 @@ export const playSong = (songId) => async dispatch => {
 }
 
 export const playSong404 = (url) => async dispatch => {
-    const song = { content: url }
+    const song = {
+        content: url,
+        name: 'Jelly Fish Jam',
+        img: 'https://media.tenor.com/UFd4D0yQGdwAAAAC/party-dance.gif'
+    }
     dispatch(playingSong404(song))
     return song
 
