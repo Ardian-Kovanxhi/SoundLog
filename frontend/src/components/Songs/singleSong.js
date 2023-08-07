@@ -90,7 +90,7 @@ export default function SingleSong() {
 
                                     <div>
 
-                                        {User ? Song.userId === User.id ?
+                                        {User ? Song.userId === User.id || User.id === 1 ?
                                             <div className='edit-delete-buttons-div'>
                                                 <BtnMenu />
                                             </div>
@@ -164,7 +164,7 @@ export default function SingleSong() {
                                     {Song.description}
                                 </div>
 
-                                {/* <div>{Song.content}</div> */}
+                                <div>{Song.content}</div>
 
                             </div>
 
