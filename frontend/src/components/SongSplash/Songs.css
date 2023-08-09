@@ -1,0 +1,96 @@
+.all-songs-div-container {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    height: fit-content;
+    margin-bottom: 88px;
+    background-color: rgb(210, 255, 210);
+}
+
+.all-songs-div {
+    background-color: rgb(210, 255, 210);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    margin: 50px 10px 88px;
+    width: 1220px;
+    height: fit-content;
+}
+
+.all-songs-song-name {
+    width: 200px;
+    font-size: medium;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    translate: text-overflow 1s;
+}
+
+/* save for potential text animation */
+/* .all-songs-song-name:hover {
+    text-overflow: clip;
+} */
+
+
+.all-songs-username {
+    width: 180px;
+    font-size: small;
+    color: #757575;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.all-songs-single {
+    /* border: 1px black solid; */
+    margin: 10px 5px;
+    width: 200px;
+    padding: 17px;
+    border-radius: 10px;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    transition: background-color 1s;
+}
+
+.all-songs-single:hover {
+    cursor: pointer;
+    background-color: rgba(34, 139, 34, 0.4);
+}
+
+.all-song-img-btn-div {
+    display: grid;
+    height: 100%;
+    width: 100%;
+}
+
+.univ-play-pause-button {
+    z-index: 1000;
+    background-color: forestgreen;
+    border: 0;
+    border-radius: 5px;
+    margin: 5px 0px;
+    padding: 10px 13px;
+    position: sticky;
+}
+
+
+
+.all-song-img-btn-div>button:hover {
+    background-color: green;
+    /* border-radius: 10px; */
+}
+
+.all-songs-single-img {
+    height: 180px;
+    width: 100%;
+    border: 1px rgba(0, 0, 0, .4) solid;
+}
+
+/* ↓↓↓ Dropdown container ↓↓↓ */
+
+.edit-delete-buttons-div {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-right: 510px;
+    margin-top: 10px;
+}

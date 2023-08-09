@@ -9,7 +9,8 @@ import { getPaused } from '../../store/audioPlayerState';
 import CommentTesting from '../CommentFormTesting';
 import BtnMenu from '../DropdownMenus/edit-deleteMenu';
 import SongComments from '../SongComments'
-import './Songs.css'
+// import '../SongSplash/Songs.css'
+import './SingleSong.css'
 
 
 
@@ -60,15 +61,6 @@ export default function SingleSong() {
             {Song.id ?
 
                 <div className='single-song-container-div'>
-                    {/* <img
-                        src={Song.img}
-                        style={{
-                            position: 'absolute',
-                            width: '1240px',
-                            height: '504px',
-                            filter: 'blur(20px)'
-                        }}
-                    /> */}
                     <div className='single-song-div'>
 
                         <div className='single-song-info-img-div'>

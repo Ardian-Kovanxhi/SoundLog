@@ -3,10 +3,10 @@ import { useDispatch } from "react-redux";
 import { Switch, Route } from "react-router-dom";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
-import SelectedSong from "./components/Songs";
+import SelectedSong from "./components/SongSplash";
 import SongFormPage from "./components/SongFormPage";
 import CommentTesting from "./components/CommentFormTesting";
-import SingleSong from "./components/Songs/singleSong";
+import SingleSong from "./components/SingleSong";
 import SongEditPage from "./components/SongEditPage";
 import CommentEditPage from "./components/CommentEditForm";
 import AudioControls from './components/AudioControls'
@@ -40,7 +40,7 @@ function App() {
       </div>
 
       <Navigation isLoaded={isLoaded} />
-      {isLoaded && (
+      {/* {isLoaded && (
         <>
           <Switch>
             <Route path={'/songs/:songId/comments/:commentId/edit'} component={CommentEditPage} />
@@ -53,7 +53,7 @@ function App() {
             <Route path={'*'} component={CommentTesting} />
           </Switch>
         </>
-      )}
+      )} */}
 
       <div className="filler-color"></div>
 
