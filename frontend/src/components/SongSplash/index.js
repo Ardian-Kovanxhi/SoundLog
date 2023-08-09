@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom'
 import { getSongs, playSong, getSong, clearSongStore } from '../../store/songs';
 import { getCommentsBySong } from '../../store/comments';
 import { getPaused } from '../../store/audioPlayerState';
+import './Songs.css'
 
 export default function SelectedSong() {
     const dispatch = useDispatch();
