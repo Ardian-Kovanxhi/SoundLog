@@ -23,24 +23,25 @@ function App() {
   }, [dispatch]);
 
   return (
-    <div className="page-container-div">
+    <div
+      className="page-container-div"
+      style={{
+        backgroundImage: 'url("https://images6.alphacoders.com/712/712437.jpg")',
+        backgroundImage: 'url("https://images.hdqwalls.com/download/firewatch-trees-pic-2560x1440.jpg")',
+        backgroundSize: 'cover'
+      }}
+    >
 
-      <div className="back-img-div">
-
-        {/* <img
+      {/* <img
           onContextMenu={e => e.preventDefault()}
-          className="back-img-actual"
+          className="back-img"
           src="https://images6.alphacoders.com/712/712437.jpg"
         /> */}
-        <img
-          onContextMenu={e => e.preventDefault()}
-          className="back-img-actual"
-          src="https://images.hdqwalls.com/download/firewatch-trees-pic-2560x1440.jpg"
-        />
-      </div>
+
+      <div className="filler-color"></div>
 
       <Navigation isLoaded={isLoaded} />
-      {/* {isLoaded && (
+      {isLoaded && (
         <>
           <Switch>
             <Route path={'/songs/:songId/comments/:commentId/edit'} component={CommentEditPage} />
@@ -53,9 +54,8 @@ function App() {
             <Route path={'*'} component={CommentTesting} />
           </Switch>
         </>
-      )} */}
+      )}
 
-      <div className="filler-color"></div>
 
       <CurrSongDisplay />
 
