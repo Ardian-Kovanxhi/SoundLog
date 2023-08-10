@@ -10,62 +10,62 @@ module.exports = {
     options.tableName = 'Comments';
     return queryInterface.bulkInsert(options, [
       {
-        userId: 1,
+        userId: 2,
         songId: 1,
         comment: 'this is a sample comment'
       },
       {
-        userId: 2,
+        userId: 3,
         songId: 1,
         comment: 'this is a sample comment2'
       },
       {
-        userId: 3,
+        userId: 4,
         songId: 1,
         comment: 'this is a sample comment3'
       },
       {
-        userId: 1,
+        userId: 2,
         songId: 2,
         comment: 'this is a sample comment'
       },
       {
-        userId: 2,
+        userId: 3,
         songId: 2,
         comment: 'this is a sample comment2'
       },
       {
-        userId: 3,
+        userId: 4,
         songId: 2,
         comment: 'this is a sample comment3'
       },
       {
-        userId: 1,
+        userId: 2,
         songId: 3,
         comment: 'this is a sample comment'
       },
       {
-        userId: 2,
+        userId: 3,
         songId: 3,
         comment: 'this is a sample comment2'
       },
       {
-        userId: 3,
+        userId: 4,
         songId: 3,
         comment: 'this is a sample comment3'
       },
       {
-        userId: 1,
+        userId: 2,
         songId: 4,
         comment: 'this is a sample comment'
       },
       {
-        userId: 2,
+        userId: 3,
         songId: 4,
         comment: 'this is a sample comment2'
       },
       {
-        userId: 3,
+        userId: 4,
         songId: 4,
         comment: 'this is a sample comment3'
       },
