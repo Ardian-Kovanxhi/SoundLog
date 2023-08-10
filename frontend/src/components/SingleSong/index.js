@@ -27,10 +27,8 @@ export default function SingleSong() {
 
     const Song = useSelector(state => state.songs.singleSong);
     const currSong = useSelector(state => state.songs.playingSong)
-    const Comments = useSelector(state => state.comments.allComments);
     const User = useSelector(state => state.session.user)
     const paused = useSelector(state => state.audioState.pauseState)
-    const [comment, setComment] = useState('');
     let disabled = false
     let Uploader = ''
 
@@ -40,19 +38,6 @@ export default function SingleSong() {
 
     if (Song.User) {
         Uploader = Song.User.username
-    }
-
-    const commentArr = Object.values(Comments)
-
-
-    const submitHandler = async (e) => {
-        e.preventDefault()
-
-        const newComment = await dispatch(createComment(songId, comment))
-
-        await dispatch(getCommentsBySong(songId))
-
-        setComment('')
     }
 
 

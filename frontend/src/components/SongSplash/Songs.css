@@ -4,11 +4,13 @@
     top: 0;
     height: fit-content;
     margin-bottom: 88px;
-    background-color: rgb(210, 255, 210);
+    /* background-color: rgb(210, 255, 210); */
+    background-color: transparent;
 }
 
 .all-songs-div {
-    background-color: rgb(210, 255, 210);
+    /* background-color: rgb(210, 255, 210); */
+    background-color: transparent;
     display: flex;
     flex-wrap: wrap;
     align-items: baseline;

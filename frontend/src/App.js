@@ -12,7 +12,6 @@ import CommentEditPage from "./components/CommentEditForm";
 import AudioControls from './components/AudioControls'
 import Likes from "./components/Likes";
 import Playlists from "./components/Playlists";
-import CurrSongDisplay from "./components/AudioPlayerCurrSong";
 
 
 function App() {
@@ -31,7 +30,13 @@ function App() {
       }}
     >
 
-      <div className="filler-color"></div>
+      {/* <div className="filler-color"></div> */}
+      <div className="filler-color">
+        <img
+          className="test-img"
+          src="https://images.hdqwalls.com/download/firewatch-trees-pic-2560x1440.jpg"
+        />
+      </div>
 
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
@@ -48,9 +53,6 @@ function App() {
           </Switch>
         </>
       )}
-
-
-      <CurrSongDisplay />
 
       <AudioControls />
     </div>
