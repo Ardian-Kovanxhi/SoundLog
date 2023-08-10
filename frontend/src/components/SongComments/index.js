@@ -81,11 +81,15 @@ export default function SongComments() {
                                 <div className='username-conditional-div'>
                                     {el.User.username}
 
-                                    {disabled ? el.userId === User.id ?
-                                        <div className='comment-drop-comp-container'>
-                                            <CommentBtnMenu passedCommId={el.id} />
-                                        </div>
-                                        : null : null}
+                                    {disabled ?
+                                        el.userId === User.id
+                                            ||
+                                            User.id === 1
+                                            ?
+                                            <div className='comment-drop-comp-container'>
+                                                <CommentBtnMenu passedCommId={el.id} />
+                                            </div>
+                                            : null : null}
 
                                 </div>
                             </div>

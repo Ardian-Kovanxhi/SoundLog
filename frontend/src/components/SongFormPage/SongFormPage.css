@@ -1,7 +1,5 @@
 .song-form-div {
     z-index: 1;
-    border-top: 50px solid transparent;
-    border-bottom: 100px solid transparent;
     width: 1240px;
     height: fit-content;
     font-weight: bolder;

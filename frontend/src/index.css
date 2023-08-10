@@ -36,6 +36,27 @@ body {
     filter: drop-shadow(10px);
 }
 
+/* .filler-color {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: 1240px;
+    z-index: 0;
+    background-color: rgba(255, 255, 255, .5);
+    overflow: hidden;
+}
+*/
+.test-img {
+    z-index: 0;
+    width: 2000px;
+    height: 100%;
+    filter: blur(30px);
+    display: none;
+}
+
 .back-img-div {
     position: fixed;
     left: 0;

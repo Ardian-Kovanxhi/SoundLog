@@ -20,12 +20,65 @@
 .rhap_main {
     /* width: 1215px; */
     width: 915px;
-    padding: 0px 12.5px;
-    margin-left: 300px;
+    padding-left: 300px;
     height: 100%;
     background-color: rgb(215, 255, 215);
 }
 
 .audio-player.invisible {
     visibility: hidden;
+}
+
+/* SONG DISPLAY */
+
+.player-img-name-container {
+    /* width: 1240px; */
+    display: flex;
+    justify-content: center;
+    position: sticky;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 88px;
+    z-index: 11;
+    overflow-wrap: break-word;
+}
+
+.player-img-name-container.invisible {
+    display: none;
+}
+
+.place-container {
+    position: fixed;
+    bottom: 0;
+    width: 1240px;
+}
+
+.player-img-actual {
+    z-index: 8;
+    max-height: 88px;
+    max-width: 88px;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    /* left: 0; */
+}
+
+.name-test {
+    z-index: 7;
+    background-color: rgb(60, 92, 60);
+    color: white;
+    display: flex;
+    align-items: center;
+    padding-left: 100px;
+    width: 190px;
+    height: 88px;
+    position: fixed;
+    bottom: 0;
+}
+
+.currSong-redirect:hover {
+    cursor: pointer;
+    text-decoration: underline;
 }
