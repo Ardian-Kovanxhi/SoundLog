@@ -1,7 +1,8 @@
 .player-img-name-container {
+    /* width: 1240px; */
     display: flex;
     justify-content: center;
-    position: fixed;
+    position: sticky;
     bottom: 0;
     left: 0;
     right: 0;
@@ -14,31 +15,32 @@
     display: none;
 }
 
-.test-div {
+.place-container {
+    position: fixed;
+    bottom: 0;
     width: 1240px;
-    height: 100%;
-}
-
-.test-div-2 {
-    display: flex;
-    align-items: center;
-    position: relative;
-    width: 300px;
-    height: 100%;
-    background-color: rgb(211, 255, 211);
-    /* margin-left: 940px; */
 }
 
 .player-img-actual {
+    z-index: 8;
     max-height: 88px;
     max-width: 88px;
     height: 100%;
     width: 100%;
     position: fixed;
     bottom: 0;
+    /* left: 0; */
 }
 
 .name-test {
-    margin-left: 95px;
-    width: 212px;
+    z-index: 7;
+    background-color: rgb(210, 255, 210);
+    display: flex;
+    align-items: center;
+    padding-left: 100px;
+    border-right: 200px solid rgb(210, 255, 210);
+    width: 190px;
+    height: 88px;
+    position: fixed;
+    bottom: 0;
 }

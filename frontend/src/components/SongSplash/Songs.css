@@ -19,6 +19,7 @@
 
 .all-songs-song-name {
     width: 200px;
+    height: 19px;
     font-size: medium;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -83,14 +84,5 @@
     height: 180px;
     width: 100%;
     border: 1px rgba(0, 0, 0, .4) solid;
-}
-
-/* ↓↓↓ Dropdown container ↓↓↓ */
-
-.edit-delete-buttons-div {
-    position: absolute;
-    top: 0;
-    right: 0;
-    margin-right: 510px;
-    margin-top: 10px;
+    border-radius: 5px;
 }
