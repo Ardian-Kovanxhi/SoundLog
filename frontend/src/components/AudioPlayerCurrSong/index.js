@@ -21,29 +21,31 @@ export default function CurrSongDisplay() {
                 song.content ?
                     <div className={containerClass}>
 
-                        <div className='test-div'>
+                        <div className='place-container'>
 
-                            <div className='test-div-2'>
 
-                                <img
-                                    className='player-img-actual'
-                                    src={
-                                        song.img
-                                        ||
-                                        'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png'
+                            <img
+                                className='player-img-actual'
+                                src={
+                                    song.img
+                                    ||
+                                    'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png'
 
-                                    } />
+                                } />
 
-                                <div className='name-test'>
-
-                                    {song.name.length > 30 ? song.name.substring(0, 30) + '...' : song.name}
-
+                            <div className='name-test'>
+                                <div
+                                    style={{
+                                        height: '20px',
+                                        overflow: 'hidden'
+                                    }}
+                                >
+                                    {song.name}
                                 </div>
 
                             </div>
 
                         </div>
-
                     </div>
                     :
                     ''

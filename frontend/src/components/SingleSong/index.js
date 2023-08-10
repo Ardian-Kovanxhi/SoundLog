@@ -61,27 +61,22 @@ export default function SingleSong() {
             {Song.id ?
 
                 <div className='single-song-container-div'>
+
                     <div className='single-song-div'>
                         <div
-                            style={{
-                                display: 'flex',
-                                justifyContent: 'center',
-                                alignItems: 'center',
-                                position: 'absolute',
-                                zIndex: '1',
-                                width: '740px',
-                                height: '500px',
-                                overflow: 'hidden'
-                            }}
+                            className='blur-box'
                         >
 
+                            <div className='filler-color-2'></div>
+
                             <img
-                                src={Song.img}
-                                style={{
-                                    width: '1000px',
-                                    height: '1000px',
-                                    filter: 'blur(50px)'
-                                }}
+                                className='blur-img'
+                                src={
+                                    Song.img ?
+                                        Song.img
+                                        :
+                                        'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png'
+                                }
                             />
 
                         </div>
@@ -98,8 +93,25 @@ export default function SingleSong() {
 
                                             <div className='song-name-uploader-div'>
 
-                                                <div className='song-name-div'>
-                                                    {Song.name.length > 20 ? Song.name.substring(0, 20) + '...' : Song.name}
+                                                <div
+                                                    style={{
+                                                        display: 'flex',
+                                                        flexDirection: 'column',
+                                                    }}
+                                                >
+                                                    <div className='song-name-div'>
+                                                        {Song.name}
+                                                    </div>
+
+                                                    {User ? Song.userId === User.id
+                                                        // || User.id === 1 
+                                                        ?
+                                                        <div className='edit-delete-buttons-div'>
+                                                            <BtnMenu />
+                                                        </div>
+                                                        :
+                                                        null : null
+                                                    }
                                                 </div>
 
                                                 <div className='song-uploader-div'>
@@ -111,8 +123,7 @@ export default function SingleSong() {
                                     </div>
 
 
-                                    <div>
-
+                                    {/* <div>
                                         {User ? Song.userId === User.id
                                             // || User.id === 1 
                                             ?
@@ -122,30 +133,7 @@ export default function SingleSong() {
                                             :
                                             null : null
                                         }
-
-                                        {/* {
-                                            User ?
-                                                !Likes[songId] ?
-                                                    <button
-                                                        onClick={createLike(songId)}
-                                                    // onClick={() => console.log(songId)}
-                                                    >
-                                                        Like (actual)
-                                                    </button>
-                                                    :
-                                                    <button
-                                                        onClick={removeLike(Likes[songId])}
-                                                    >
-                                                        Unlike
-                                                    </button>
-                                                :
-                                                <OpenModalMenuItem
-                                                    buttonText="Like (login)"
-                                                    modalComponent={<LoginFormModal />}
-                                                />
-                                        } */}
-
-                                    </div>
+                                    </div> */}
 
                                 </div>
 
@@ -207,7 +195,9 @@ export default function SingleSong() {
 
                             <div
                                 style={{
-                                    zIndex: '2'
+                                    zIndex: '2',
+                                    display: 'flex',
+                                    alignItems: 'center',
                                 }}
                             >
 
