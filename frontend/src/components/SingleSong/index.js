@@ -133,7 +133,7 @@ export default function SingleSong() {
                                     paused ?
 
                                         <button
-                                            className='univ-play-pause-button single'
+                                            className='single-univ-button single'
                                             // onClick={handlePlayClick}
                                             onClick={() => { dispatch(getPaused(false)) }}
                                         >
@@ -143,7 +143,7 @@ export default function SingleSong() {
                                         </button> :
 
                                         <button
-                                            className='univ-play-pause-button  single'
+                                            className='single-univ-button  single'
                                             // onClick={handlePauseClick}
                                             onClick={() => { dispatch(getPaused(true)) }}
                                         >
@@ -153,7 +153,7 @@ export default function SingleSong() {
                                         </button> :
 
                                     <button
-                                        className='univ-play-pause-button  single'
+                                        className='single-univ-button  single'
                                         onClick={() => dispatch(playSong(Song.id))}
                                     >
 

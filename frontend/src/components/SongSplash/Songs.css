@@ -24,8 +24,11 @@
     height: 19px;
     font-size: medium;
     overflow: hidden;
+    white-space: nowrap;
+    word-break: normal;
     text-overflow: ellipsis;
     translate: text-overflow 1s;
+    /* color: white; */
 }
 
 /* save for potential text animation */
@@ -51,21 +54,45 @@
     height: fit-content;
     display: flex;
     flex-direction: column;
+    background-color: rgba(170, 200, 170, .2);
     transition: background-color 1s;
 }
 
 .all-songs-single:hover {
     cursor: pointer;
+    /* background-color: rgba(34, 139, 34, 0.4); */
     background-color: rgba(34, 139, 34, 0.4);
 }
 
 .all-song-img-btn-div {
-    display: grid;
-    height: 100%;
-    width: 100%;
+    display: flex;
+    justify-content: end;
+    align-items: end;
+    height: 200px;
+    width: 200px;
+    margin-bottom: 3px;
 }
 
 .univ-play-pause-button {
+    /* z-index: 1000; */
+    background-color: forestgreen;
+    border: 0;
+    margin: 10px 10px;
+    border-radius: 100%;
+    padding: 15px 18px;
+    position: sticky;
+}
+
+.fa-play {
+    font-size: xx-large;
+}
+
+.fa-pause {
+    font-size: xx-large;
+    padding: 0px 2px;
+}
+
+/* .univ-play-pause-button {
     z-index: 1000;
     background-color: forestgreen;
     border: 0;
@@ -73,7 +100,7 @@
     margin: 5px 0px;
     padding: 10px 13px;
     position: sticky;
-}
+} */
 
 
 
@@ -83,8 +110,9 @@
 }
 
 .all-songs-single-img {
-    height: 180px;
-    width: 100%;
+    position: absolute;
+    height: 200px;
+    width: 200px;
     border: 1px rgba(0, 0, 0, .4) solid;
     border-radius: 5px;
 }

@@ -67,6 +67,7 @@
     /* height: 36px; */
     max-height: 72px;
     overflow: hidden;
+    word-break: normal;
     text-overflow: ellipsis;
 }
 
@@ -117,9 +118,15 @@
     max-width: 550px;
 }
 
-.univ-play-pause-button.single {
+.single-univ-button {
+    z-index: 1000;
+    background-color: forestgreen;
+    border: 0;
+    border-radius: 10px;
+    margin: 5px 0px;
     margin-right: 20px;
-    /* box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, .4) */
+    padding: 10px 13px;
+    position: sticky;
 }
 
 .univ-play-pause-button.single:hover {
