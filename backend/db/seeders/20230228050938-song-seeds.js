@@ -135,6 +135,20 @@ module.exports = {
         img: 'https://m.media-amazon.com/images/I/71cF66uUR4L._UF1000,1000_QL80_.jpg',
         description: null
       },
+      {
+        userId: 4,
+        name: 'I Bet You Look Good On The Dancefloor',
+        content: 'https://aa-sounclod-clone-bucket.s3.amazonaws.com/1691686976332.mp3',
+        img: 'https://m.media-amazon.com/images/I/61FUSgm2AgL._UF1000,1000_QL80_.jpg',
+        description: null
+      },
+      {
+        userId: 4,
+        name: 'This Night Has Opened My Eyes',
+        content: 'https://aa-sounclod-clone-bucket.s3.amazonaws.com/1691687004043.mp3',
+        img: 'https://i.ebayimg.com/images/g/pHYAAOSwedBjthI1/s-l1600.jpg',
+        description: null
+      },
     ], {});
   },
 
