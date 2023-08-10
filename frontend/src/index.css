@@ -13,7 +13,18 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    overflow-y: scroll;
 }
+
+/* .page-container-div::-webkit-scrollbar {
+    z-index: 100;
+    width: 10px;
+    background-color: white;
+}
+
+.page-container-div::-webkit-scrollbar-thumb {
+    background: #000;
+} */
 
 .filler-color {
     position: fixed;

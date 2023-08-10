@@ -135,8 +135,10 @@
 
 .nav-container {
     z-index: 9;
-    position: fixed;
+    position: sticky;
     top: 0;
+    left: 0;
+    right: 0;
     /* background-color: rgb(43, 147, 180); */
     background-color: rgb(1, 49, 35);
     width: 100%;
