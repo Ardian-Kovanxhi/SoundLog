@@ -62,6 +62,29 @@ export default function SingleSong() {
 
                 <div className='single-song-container-div'>
                     <div className='single-song-div'>
+                        <div
+                            style={{
+                                display: 'flex',
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                                position: 'absolute',
+                                zIndex: '1',
+                                width: '740px',
+                                height: '500px',
+                                overflow: 'hidden'
+                            }}
+                        >
+
+                            <img
+                                src={Song.img}
+                                style={{
+                                    width: '1000px',
+                                    height: '1000px',
+                                    filter: 'blur(50px)'
+                                }}
+                            />
+
+                        </div>
 
                         <div className='single-song-info-img-div'>
 
@@ -126,6 +149,12 @@ export default function SingleSong() {
 
                                 </div>
 
+                                <div
+                                    className={'single-song-desc ' + (!!Song.description ? '' : 'false')}
+                                >
+                                    {Song.description}
+                                </div>
+
                                 {currSong.id === Song.id ?
 
                                     paused ?
@@ -160,11 +189,11 @@ export default function SingleSong() {
                                     </button>
                                 }
 
-                                <div
+                                {/* <div
                                     className={'single-song-desc ' + (!!Song.description ? '' : 'false')}
                                 >
                                     {Song.description}
-                                </div>
+                                </div> */}
                                 {/* {
                                     User ?
                                         User.id === 1 ?
@@ -176,7 +205,11 @@ export default function SingleSong() {
                             </div>
 
 
-                            <div>
+                            <div
+                                style={{
+                                    zIndex: '2'
+                                }}
+                            >
 
                                 <img
                                     className='single-song-img'

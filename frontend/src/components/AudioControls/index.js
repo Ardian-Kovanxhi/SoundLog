@@ -14,6 +14,7 @@ function AudioControls() {
 
     const [currPause, setCurrPause] = useState(true)
     const [playerVisible, setPlayerVisible] = useState(false)
+    const [test, setTest] = useState(null)
 
 
     useEffect(() => {
@@ -36,6 +37,7 @@ function AudioControls() {
 
             player.current.audio.current.play()
             dispatch(getTime(player.current.audio.current.currentTime))
+            dispatch(getDuration(player.current.audio.current.duration))
             setCurrPause(false)
 
         }
@@ -44,12 +46,13 @@ function AudioControls() {
 
             player.current.audio.current.pause()
             dispatch(getTime(player.current.audio.current.currentTime))
+            dispatch(getDuration(player.current.audio.current.duration))
             setCurrPause(true)
 
         }
 
 
-    }, [pauseState])
+    }, [pauseState, test])
 
 
     const playerStateCheck = () => {

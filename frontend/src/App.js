@@ -26,17 +26,10 @@ function App() {
     <div
       className="page-container-div"
       style={{
-        backgroundImage: 'url("https://images6.alphacoders.com/712/712437.jpg")',
         backgroundImage: 'url("https://images.hdqwalls.com/download/firewatch-trees-pic-2560x1440.jpg")',
         backgroundSize: 'cover'
       }}
     >
-
-      {/* <img
-          onContextMenu={e => e.preventDefault()}
-          className="back-img"
-          src="https://images6.alphacoders.com/712/712437.jpg"
-        /> */}
 
       <div className="filler-color"></div>
 
