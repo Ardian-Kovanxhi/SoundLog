@@ -79,7 +79,6 @@ function AudioControls() {
 
             <div className={containerClass}>
 
-
                 <div className='place-container'>
 
 
