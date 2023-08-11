@@ -20,9 +20,12 @@
 .rhap_main {
     /* width: 1215px; */
     width: 915px;
+    /* padding: 0px 12.5px; */
+    /* padding: 0px 25.5px; */
     padding-left: 300px;
     height: 100%;
-    background-color: rgb(215, 255, 215);
+    /* background-color: rgb(215, 255, 215); */
+    background-color: transparent;
 }
 
 .audio-player.invisible {
@@ -62,13 +65,14 @@
     width: 100%;
     position: fixed;
     bottom: 0;
-    /* left: 0; */
 }
 
 .name-test {
     z-index: 7;
-    background-color: rgb(60, 92, 60);
-    color: white;
+    background-color: transparent;
+    /* background-color: rgb(210, 255, 210); */
+    /* background-color: rgb(40, 57, 42); */
+    /* color: white; */
     display: flex;
     align-items: center;
     padding-left: 100px;
@@ -76,6 +80,14 @@
     height: 88px;
     position: fixed;
     bottom: 0;
+}
+
+.currSong-redirect {
+    overflow: hidden;
+    white-space: nowrap;
+    word-break: normal;
+    text-overflow: ellipsis;
+    max-height: 40px;
 }
 
 .currSong-redirect:hover {

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Switch, Route } from "react-router-dom";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
@@ -17,6 +17,7 @@ import Playlists from "./components/Playlists";
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
+  const playing = useSelector(state => state.songs.playingSong)
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
@@ -32,11 +33,20 @@ function App() {
 
       {/* <div className="filler-color"></div> */}
       <div className="filler-color">
+        
         <img
           className="test-img"
           src="https://images.hdqwalls.com/download/firewatch-trees-pic-2560x1440.jpg"
         />
+
       </div>
+
+      {
+        playing.content ?
+          <div className="bottom-filler"></div>
+          :
+          ''
+      }
 
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (

@@ -28,7 +28,9 @@ export default function SelectedSong() {
         history.push(`/songs/${singleId}`)
     }
 
+
     const songArr = Object.values(Songs)
+    let count = 0;
 
     return (
         <>
@@ -36,57 +38,65 @@ export default function SelectedSong() {
                 loadState ?
                     <div className='all-songs-div-container'>
                         <div className='all-songs-div'>
-                            {songArr.map(el => (
-                                <>
-                                    <div
-                                        className='all-songs-single'
-                                    >
-                                        <div className='all-song-img-btn-div'>
+                            {songArr.map(el => {
 
-                                            <img
-                                                className='all-songs-single-img'
-                                                onClick={() => singleLoader(el.id)}
-                                                src={el.img ||
-                                                    'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png'} />
 
-                                            {song.id === el.id ?
 
-                                                paused ?
+                                const btnClass = 'univ-play-pause-button hovered'
+                                // + 
+                                // (hoverState ? ' hovered' : '')
+
+                                return (
+                                    <>
+                                        <div
+                                            className='all-songs-single'
+
+                                        >
+                                            <div className='all-song-img-btn-div'>
+
+                                                <img
+                                                    className='all-songs-single-img'
+                                                    onClick={() => singleLoader(el.id)}
+                                                    src={el.img ||
+                                                        'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png'} />
+
+                                                {song.id === el.id ?
+                                                    paused ?
+                                                        <button
+                                                            className={btnClass}
+                                                            onClick={() => { dispatch(getPaused(false)) }}
+                                                        >
+
+                                                            <i className="fa-solid fa-play" />
+
+                                                        </button> :
+
+                                                        <button
+                                                            className={`pause ${btnClass}`}
+                                                            onClick={() => { dispatch(getPaused(true)) }}
+                                                        >
+
+                                                            <i className="fa-solid fa-pause" />
+
+                                                        </button> :
+
                                                     <button
-                                                        className='univ-play-pause-button'
-                                                        onClick={() => { dispatch(getPaused(false)) }}
+                                                        className={btnClass}
+                                                        onClick={() => dispatch(playSong(el.id))}
                                                     >
 
                                                         <i className="fa-solid fa-play" />
 
-                                                    </button> :
+                                                    </button>
+                                                }
 
-                                                    <button
-                                                        className='univ-play-pause-button'
-                                                        onClick={() => { dispatch(getPaused(true)) }}
-                                                    >
+                                            </div>
+                                            <div
+                                                onClick={() => singleLoader(el.id)}
+                                            >
 
-                                                        <i className="fa-solid fa-pause" />
-
-                                                    </button> :
-
-                                                <button
-                                                    className='univ-play-pause-button'
-                                                    onClick={() => dispatch(playSong(el.id))}
-                                                >
-
-                                                    <i className="fa-solid fa-play" />
-
-                                                </button>
-                                            }
-
-                                        </div>
-                                        <div
-                                            onClick={() => singleLoader(el.id)}
-                                        >
-
-                                            <div className='all-songs-song-name'>
-                                                {/* {
+                                                <div className='all-songs-song-name'>
+                                                    {/* {
                                                     el.name.length > 15 ?
                                                         <>
                                                             {el.name}
@@ -94,16 +104,16 @@ export default function SelectedSong() {
                                                         :
                                                         el.name
                                                 } */}
-                                                {el.name}
-                                            </div>
-                                            <div className='all-songs-username'>
-                                                {/* {el.User.username.length > 15 ? el.User.username.substring(0, 15) + '...' : el.User.username} */}
-                                                {el.User.username}
-                                            </div>
+                                                    {el.name}
+                                                </div>
+                                                <div className='all-songs-username'>
+                                                    {/* {el.User.username.length > 15 ? el.User.username.substring(0, 15) + '...' : el.User.username} */}
+                                                    {el.User.username}
+                                                </div>
 
+                                            </div>
                                         </div>
-                                    </div>
-                                    {/* {song.id === el.id ?
+                                        {/* {song.id === el.id ?
 
                             paused ?
                                 // isPlaying ?
@@ -133,8 +143,9 @@ export default function SelectedSong() {
 
                             </button>
                         } */}
-                                </>
-                            ))}
+                                    </>
+                                )
+                            })}
                         </div>
                     </div>
                     :
