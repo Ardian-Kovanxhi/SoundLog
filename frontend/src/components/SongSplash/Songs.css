@@ -74,13 +74,22 @@
 }
 
 .univ-play-pause-button {
-    /* z-index: 1000; */
-    background-color: forestgreen;
+    background-color: transparent;
+    color: transparent;
     border: 0;
     margin: 10px 10px;
     border-radius: 100%;
     padding: 15px 18px;
     position: sticky;
+    /* visibility: hidden; */
+    transition:
+        background-color .5s,
+        color .5s;
+}
+
+.univ-play-pause-button.hovered {
+    background-color: forestgreen;
+    color: black;
 }
 
 .fa-play {

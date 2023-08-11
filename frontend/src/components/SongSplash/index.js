@@ -14,6 +14,7 @@ export default function SelectedSong() {
     const history = useHistory()
 
     const [loadState, setLoadState] = useState(true)
+    const [hoveredIndex, setHoveredIndex] = useState(null)
 
 
     useEffect(() => {
@@ -28,9 +29,9 @@ export default function SelectedSong() {
         history.push(`/songs/${singleId}`)
     }
 
+    // const btnClass = 'univ-play-pause-button hovered'
 
     const songArr = Object.values(Songs)
-    let count = 0;
 
     return (
         <>
@@ -38,19 +39,22 @@ export default function SelectedSong() {
                 loadState ?
                     <div className='all-songs-div-container'>
                         <div className='all-songs-div'>
-                            {songArr.map(el => {
+                            {songArr.map((el, index) => {
 
+                                const btnClass = 'univ-play-pause-button '
+                                    +
+                                    (
+                                        hoveredIndex === index ? 'hovered' : ''
+                                    )
 
-
-                                const btnClass = 'univ-play-pause-button hovered'
-                                // + 
-                                // (hoverState ? ' hovered' : '')
 
                                 return (
+
                                     <>
                                         <div
                                             className='all-songs-single'
-
+                                            onMouseEnter={() => setHoveredIndex(index)}
+                                            onMouseLeave={() => setHoveredIndex(null)}
                                         >
                                             <div className='all-song-img-btn-div'>
 
@@ -60,34 +64,38 @@ export default function SelectedSong() {
                                                     src={el.img ||
                                                         'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png'} />
 
-                                                {song.id === el.id ?
-                                                    paused ?
+                                                {
+                                                    // hoveredIndex === index ?
+                                                    song.id === el.id ?
+                                                        paused ?
+                                                            <button
+                                                                className={btnClass}
+                                                                onClick={() => { dispatch(getPaused(false)) }}
+                                                            >
+
+                                                                <i className="fa-solid fa-play" />
+
+                                                            </button> :
+
+                                                            <button
+                                                                className={`pause ${btnClass}`}
+                                                                onClick={() => { dispatch(getPaused(true)) }}
+                                                            >
+
+                                                                <i className="fa-solid fa-pause" />
+
+                                                            </button> :
+
                                                         <button
                                                             className={btnClass}
-                                                            onClick={() => { dispatch(getPaused(false)) }}
+                                                            onClick={() => dispatch(playSong(el.id))}
                                                         >
 
                                                             <i className="fa-solid fa-play" />
 
-                                                        </button> :
-
-                                                        <button
-                                                            className={`pause ${btnClass}`}
-                                                            onClick={() => { dispatch(getPaused(true)) }}
-                                                        >
-
-                                                            <i className="fa-solid fa-pause" />
-
-                                                        </button> :
-
-                                                    <button
-                                                        className={btnClass}
-                                                        onClick={() => dispatch(playSong(el.id))}
-                                                    >
-
-                                                        <i className="fa-solid fa-play" />
-
-                                                    </button>
+                                                        </button>
+                                                    // :
+                                                    // ''
                                                 }
 
                                             </div>
