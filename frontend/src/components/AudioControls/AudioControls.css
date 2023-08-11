@@ -80,6 +80,7 @@
     height: 88px;
     position: fixed;
     bottom: 0;
+    font-weight: 700;
 }
 
 .currSong-redirect {

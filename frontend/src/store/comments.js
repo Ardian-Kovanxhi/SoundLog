@@ -24,7 +24,6 @@ const readComment = (comment) => {
 export const getCommentsBySong = (songId) => async dispatch => {
     const response = await csrfFetch(`/api/songs/${songId}/comments`)
 
-    console.log(response)
 
     if (response.ok) {
         const comments = await response.json();
@@ -110,7 +109,6 @@ export const removeComment = (commentId, songId) => async dispatch => {
         method: 'DELETE'
     });
 
-    console.log('reached')
     if (response.ok) {
         const newRev = await csrfFetch(`/api/songs/${songId}/comments`)
         const comments = await newRev.json();

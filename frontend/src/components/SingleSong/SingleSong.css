@@ -127,9 +127,10 @@
     margin-right: 20px;
     padding: 10px 13px;
     position: sticky;
+    transition: background-color .5s;
 }
 
-.univ-play-pause-button.single:hover {
+.single-univ-button:hover {
     background-color: green;
 }
 

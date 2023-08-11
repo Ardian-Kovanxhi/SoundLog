@@ -113,7 +113,6 @@ export const submitSong = (data) => async dispatch => {
     formData.append('description', description)
     formData.append('img', img)
     if (content) formData.append('content', content)
-    console.log(formData.get('content'))
     const response = await csrfFetch(
         '/api/songs/',
         {
@@ -160,11 +159,9 @@ export const editSong = (songId, data) => async dispatch => {
 }
 
 export const removeSong = (songId) => async dispatch => {
-    console.log('I WORK 1')
     const response = await csrfFetch(`/api/songs/${songId}`, {
         method: 'DELETE',
     });
-    console.log('I WORK 2')
     if (response.ok) {
         await dispatch(deleteSong());
         return response;
