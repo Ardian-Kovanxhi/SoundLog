@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { submitSong } from "../../store/songs";
-import CommentTesting from "../CommentFormTesting";
 import './SongFormPage.css'
+
+
 
 export default function SongFormPage() {
     const dispatch = useDispatch();
@@ -15,7 +16,7 @@ export default function SongFormPage() {
     const [content, setContent] = useState(null)
     const [img, setImg] = useState('')
     const [description, setDescription] = useState('')
-    const [errors, setErrors] = useState([])
+    // const [errors, setErrors] = useState([])
     const [loadState, setLoadState] = useState(true)
 
     const [nameFocus, setNameFocus] = useState(false)
@@ -80,13 +81,13 @@ export default function SongFormPage() {
                 loadState ?
                     <div className="song-form-div">
 
-                        <ul>
+                        {/* <ul>
                             {errors.map(el => (
                                 <li>
                                     {el}
                                 </li>
                             ))}
-                        </ul>
+                        </ul> */}
 
                         <form onSubmit={submitHandler} className="new-song-form">
 
@@ -125,7 +126,8 @@ export default function SongFormPage() {
                                             className="file-select-input"
                                             type="file"
                                             accept=".mp3"
-                                            required onChange={updateFile}
+                                            required
+                                            onChange={updateFile}
                                             onFocus={() => setSongFocus(true)}
                                             onBlur={() => setSongFocus(false)}
                                         />

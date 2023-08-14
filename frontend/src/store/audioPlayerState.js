@@ -1,6 +1,6 @@
 const READ_PAUSED = 'paused/READ_PAUSED'
 const READ_TIME = 'time/READ_TIME'
-const READ_DURATION = 'duration/READ_DURATION'
+const RAW_TIME = 'time/RAW_TIME'
 
 const readPaused = (paused) => {
     return {
@@ -16,10 +16,10 @@ const readTime = (time) => {
     }
 }
 
-const readDuration = (duration) => {
+const rawTime = (time) => {
     return {
-        type: READ_DURATION,
-        duration
+        type: RAW_TIME,
+        time
     }
 }
 
@@ -28,27 +28,32 @@ export const getPaused = (pauseState) => dispatch => {
 }
 
 export const getTime = (playbackTime) => dispatch => {
+    // const mins = Math.floor(playbackTime / 60)
+    // const secs = Math.floor(playbackTime - (mins * 60))
+
+    // const time = `${mins < 10 ? `0${mins}` : mins}:${secs < 10 ? `0${secs}` : secs}`
+    // dispatch(readTime(time))
     dispatch(readTime(playbackTime))
 }
 
-export const getDuration = (songDuration) => dispatch => {
-    dispatch(readDuration(songDuration))
+export const getRawTime = (playbackTime) => dispatch => {
+    dispatch(rawTime(playbackTime))
 }
 
 
-// Paused: player.current.audio.current.paused
-// Current Time: player.current.audio.current.currentTime
-// Duration: player.current.audio.current.duration
-
-
-const initialState = { pauseState: true, runtimeState: 0, durationState: 0 }
+const initialState = { pauseState: true, runtimeState: { raw: 0, str: '' }, rawTime: 0 }
 
 export default function audioPlayerReducer(state = initialState, action) {
     let newState;
     switch (action.type) {
         case READ_TIME: {
             newState = { ...state }
-            newState.runtimeState = action.time
+            const mins = Math.floor(action.time / 60)
+            const secs = Math.floor(action.time - (mins * 60))
+
+            const time = `${mins < 10 ? `0${mins}` : mins}:${secs < 10 ? `0${secs}` : secs}`
+            newState.runtimeState.raw = action.time
+            newState.runtimeState.str = time
             return newState
         }
         case READ_PAUSED: {
@@ -56,9 +61,9 @@ export default function audioPlayerReducer(state = initialState, action) {
             newState.pauseState = action.paused
             return newState
         }
-        case READ_DURATION: {
+        case RAW_TIME: {
             newState = { ...state }
-            newState.durationState = action.duration
+            newState.rawTime = action.time
             return newState
         }
         default:

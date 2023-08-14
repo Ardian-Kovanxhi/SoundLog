@@ -3,14 +3,13 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { getCommentsBySong } from "../../store/comments";
 import { getSong, playSong } from '../../store/songs';
-import { createComment } from '../../store/comments';
-import { getPaused } from '../../store/audioPlayerState';
+import { getPaused, getTime, getRawTime } from '../../store/audioPlayerState';
 // import { createLike, getLikesBySong, getLikesByUser, removeLike } from '../../store/likes';
 import CommentTesting from '../CommentFormTesting';
 import BtnMenu from '../DropdownMenus/edit-deleteMenu';
 import SongComments from '../SongComments'
-// import '../SongSplash/Songs.css'
 import './SingleSong.css'
+import ProgressBar from '../ProgressBar';
 
 
 
@@ -26,11 +25,25 @@ export default function SingleSong() {
     }, [])
 
     const Song = useSelector(state => state.songs.singleSong);
-    const currSong = useSelector(state => state.songs.playingSong)
-    const User = useSelector(state => state.session.user)
-    const paused = useSelector(state => state.audioState.pauseState)
-    let disabled = false
-    let Uploader = ''
+    const currSong = useSelector(state => state.songs.playingSong);
+    const User = useSelector(state => state.session.user);
+    const paused = useSelector(state => state.audioState.pauseState);
+    const songTime = useSelector(state => state.audioState.runtimeState.str);
+    let disabled = false;
+    let Uploader = '';
+    let time = '';
+
+
+
+    const handleSeek = (seekTime) => {
+        if (currSong.id !== Song.id) {
+            dispatch(playSong(Song.id))
+            dispatch(getTime(0))
+            return
+        }
+        const newSeekTime = (seekTime / 100) * Song.duration;
+        dispatch(getRawTime(newSeekTime))
+    };
 
     if (User) {
         disabled = true
@@ -40,6 +53,12 @@ export default function SingleSong() {
         Uploader = Song.User.username
     }
 
+    if (Song.duration) {
+        const mins = Math.floor(Song.duration / 60)
+        const secs = Song.duration - (mins * 60)
+
+        time = `${mins < 10 ? `0${mins}` : mins}:${secs < 10 ? `0${secs}` : secs}`
+    }
 
     return (
         <>
@@ -74,7 +93,40 @@ export default function SingleSong() {
 
                                     <div>
                                         <div className='pfp-info-div'>
-                                            <img className='uploader-pfp' src='https://cdn-icons-png.flaticon.com/512/149/149071.png' />
+                                            {/* <img className='uploader-pfp' src='https://cdn-icons-png.flaticon.com/512/149/149071.png' /> */}
+                                            {currSong.id === Song.id ?
+
+                                                paused ?
+
+                                                    <button
+                                                        className='single-univ-button single'
+                                                        // onClick={handlePlayClick}
+                                                        onClick={() => { dispatch(getPaused(false)) }}
+                                                    >
+
+                                                        <i className="fa-solid fa-play" />
+
+                                                    </button> :
+
+                                                    <button
+                                                        className='single-univ-button  single'
+                                                        // onClick={handlePauseClick}
+                                                        onClick={() => { dispatch(getPaused(true)) }}
+                                                    >
+
+                                                        <i className="fa-solid fa-pause" />
+
+                                                    </button> :
+
+                                                <button
+                                                    className='single-univ-button  single'
+                                                    onClick={() => dispatch(playSong(Song.id))}
+                                                >
+
+                                                    <i className="fa-solid fa-play" />
+
+                                                </button>
+                                            }
 
                                             <div className='song-name-uploader-div'>
 
@@ -108,18 +160,6 @@ export default function SingleSong() {
                                     </div>
 
 
-                                    {/* <div>
-                                        {User ? Song.userId === User.id
-                                            // || User.id === 1 
-                                            ?
-                                            <div className='edit-delete-buttons-div'>
-                                                <BtnMenu />
-                                            </div>
-                                            :
-                                            null : null
-                                        }
-                                    </div> */}
-
                                 </div>
 
                                 <div
@@ -128,7 +168,7 @@ export default function SingleSong() {
                                     {Song.description}
                                 </div>
 
-                                {currSong.id === Song.id ?
+                                {/* {currSong.id === Song.id ?
 
                                     paused ?
 
@@ -160,13 +200,11 @@ export default function SingleSong() {
                                         <i className="fa-solid fa-play" />
 
                                     </button>
-                                }
+                                } */}
+                                {/* {`${currSong.id === Song.id ? songTime : '00:00'}/${time}`} */}
 
-                                {/* <div
-                                    className={'single-song-desc ' + (!!Song.description ? '' : 'false')}
-                                >
-                                    {Song.description}
-                                </div> */}
+                                <ProgressBar onSeek={handleSeek} />
+
                                 {
                                     User ?
                                         User.id === 1 ?
@@ -207,6 +245,7 @@ export default function SingleSong() {
                 :
                 <CommentTesting />
             }
+
         </>
 
     )

@@ -51,6 +51,41 @@
     display: none;
 }
 
+.rhap_progress-indicator {
+    background-color: rgb(155, 110, 66);
+}
+
+.rhap_progress-filled {
+    background-color: rgb(155, 110, 66);
+}
+
+/* .rhap_progress-bar {
+    background-color: rgba(200, 255, 200, .5);
+} */
+
+/* .rhap_download-progress {
+    background-color: rgba(136, 255, 136, 1);
+} */
+.rhap_download-progress {
+    background-color: rgba(100, 255, 100, .5);
+}
+
+.rhap_container svg {
+    color: forestgreen;
+}
+
+.rhap_container svg:hover {
+    color: green;
+}
+
+.rhap_volume-indicator {
+    background-color: rgb(155, 110, 66);
+}
+
+.rhap_volume-bar {
+    background-color: rgba(100, 255, 100, .5);
+}
+
 .place-container {
     position: fixed;
     bottom: 0;

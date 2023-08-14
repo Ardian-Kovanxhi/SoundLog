@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import { getPaused, getTime, getDuration } from '../../store/audioPlayerState';
+import { getPaused, getTime, getRawTime } from '../../store/audioPlayerState';
 import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
 import './AudioControls.css'
@@ -13,6 +13,7 @@ function AudioControls() {
     const player = useRef();
     const song = useSelector(state => state.songs.playingSong)
     const pauseState = useSelector(state => state.audioState.pauseState)
+    const timeSeek = useSelector(state => state.audioState.rawTime)
 
     const [currPause, setCurrPause] = useState(true)
     const [playerVisible, setPlayerVisible] = useState(false)
@@ -33,6 +34,15 @@ function AudioControls() {
 
     }, [song])
 
+    useEffect(() => {
+        if (timeSeek === null) {
+            return
+        }
+        player.current.audio.current.currentTime = timeSeek;
+        dispatch(getRawTime(null))
+        dispatch(getTime(timeSeek))
+    }, [timeSeek])
+
 
     useEffect(() => {
 
@@ -40,7 +50,6 @@ function AudioControls() {
 
             player.current.audio.current.play()
             dispatch(getTime(player.current.audio.current.currentTime))
-            dispatch(getDuration(player.current.audio.current.duration))
             setCurrPause(false)
 
         }
@@ -49,13 +58,14 @@ function AudioControls() {
 
             player.current.audio.current.pause()
             dispatch(getTime(player.current.audio.current.currentTime))
-            dispatch(getDuration(player.current.audio.current.duration))
             setCurrPause(true)
 
         }
 
 
     }, [pauseState])
+
+
 
 
     const playerStateCheck = () => {
@@ -131,6 +141,10 @@ function AudioControls() {
                 src={song ? song.content : null}
                 onPlay={e => dispatch(getPaused(false))}
                 onPause={e => dispatch(getPaused(true))}
+                listenInterval={500}
+                onListen={() => dispatch(getTime(player.current.audio.current.currentTime))}
+                onSeeking={() => dispatch(getTime(player.current.audio.current.currentTime))}
+            // onSeeked={() => dispatch(getRawTime(player.current.audio.current.currentTime))}
             // other props here
             />
 

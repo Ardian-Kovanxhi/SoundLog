@@ -118,12 +118,10 @@ export const submitSong = (data) => async dispatch => {
         {
             method: 'POST',
             headers: {
-                // 'Content-Type': 'application/json',
                 'Content-Type': "multipart/form-data",
                 'XSRF-Token': Cookies.get('XSRF-TOKEN')
             },
             body: formData
-            // body: JSON.stringify({ userId, name, content, img, description })
         }
     )
 

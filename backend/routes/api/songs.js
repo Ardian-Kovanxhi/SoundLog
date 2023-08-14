@@ -1,8 +1,10 @@
 const express = require('express');
+const mm = import('music-metadata');
 
 const { Song, User, Comment, Like } = require('../../db/models');
 const { requireAuth } = require('../../utils/auth');
-const { singlePublicFileUpload, singleMulterUpload } = require('../../awsS3')
+const { singlePublicFileUpload, singleMulterUpload } = require('../../awsS3');
+// const { parseBuffer } = require('music-metadata');
 
 const router = express.Router();
 
@@ -29,13 +31,18 @@ router.post(
         const { name, img, description } = req.body;
         // const content = await singlePublicFileUpload(req.file.content);
         const content = await singlePublicFileUpload(req.file);
-        console.log(content)
+        // console.log(content)
+        const audioBuffer = req.file.buffer
+        const musicMetadataModule = await import('music-metadata');
+        const metadata = await musicMetadataModule.parseBuffer(audioBuffer);
+        const duration = Math.floor(metadata.format.duration)
         const userIdGrabber = req.user.id;
 
         const newSong = await Song.create({
             userId: userIdGrabber,
             name,
             content,
+            duration,
             img,
             description
         })
