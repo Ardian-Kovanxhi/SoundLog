@@ -1,0 +1,43 @@
+.progress-container {
+    background-color: rgba(0, 0, 0, .4);
+    color: white;
+    display: flex;
+    width: 680px;
+    height: 30px;
+    flex-direction: column;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.time-div {
+    display: flex;
+    width: 670px;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+.progress-bar {
+    /* background-color: rgba(0, 0, 0, .5); */
+    /* background-color: white; */
+    background-color: lightgreen;
+    cursor: pointer;
+    width: 670px;
+    height: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: baseline;
+    border-radius: 10px;
+    /* overflow: hidden; */
+}
+
+.progress {
+    max-width: 655px;
+    padding-left: 15px;
+    height: 5px;
+    /* background-color: rgb(155, 110, 66); */
+    background-color: green;
+    border-radius: 15px;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}

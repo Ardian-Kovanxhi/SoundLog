@@ -1,4 +1,4 @@
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { clearPlayingSong, removeSong } from "../../store/songs"
 import { useParams, useHistory } from 'react-router-dom'
 import OpenModalMenuItem from '../OpenModalButton';
@@ -11,11 +11,15 @@ export default function BtnMenu() {
     const dispatch = useDispatch()
     const history = useHistory()
     const { songId } = useParams();
+    const currSong = useSelector(state => state.songs.playingSong);
     const [showMenu, setShowMenu] = useState(false);
     const btnLstRef = useRef();
 
 
     const deleteHandler = async () => {
+        if (currSong.id === +songId) {
+            dispatch(clearPlayingSong())
+        }
         const rem = await dispatch(removeSong(songId))
         if (rem.ok) {
             history.push('/')
@@ -66,10 +70,7 @@ export default function BtnMenu() {
                     />
 
                     <button
-                        onClick={() => {
-                            deleteHandler()
-                            dispatch(clearPlayingSong())
-                        }}
+                        onClick={() => deleteHandler()}
                     >
                         Delete
                     </button>

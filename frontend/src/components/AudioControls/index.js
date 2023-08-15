@@ -6,6 +6,9 @@ import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
 import './AudioControls.css'
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import { getSong } from '../../store/songs';
+import { getCommentsBySong } from '../../store/comments';
+
 
 function AudioControls() {
     const dispatch = useDispatch()
@@ -22,7 +25,7 @@ function AudioControls() {
 
     useEffect(() => {
 
-        if (song.content) {
+        if (song.id) {
             setPlayerVisible(true)
             setBoxVis(true)
             return
@@ -31,6 +34,7 @@ function AudioControls() {
         player.current.audio.current.src = ''
         player.current.audio.current.removeAttribute('src')
         setPlayerVisible(false)
+        setBoxVis(false)
 
     }, [song])
 
@@ -79,9 +83,17 @@ function AudioControls() {
     };
 
 
+    const singleLoader = async singleId => {
+        // setLoadState(false)
+        await dispatch(getSong(singleId))
+        await dispatch(getCommentsBySong(singleId))
+        history.push(`/songs/${singleId}`)
+    }
+
 
     const playerClass = 'audio-player ' + (playerVisible ? '' : 'invisible')
     const containerClass = 'player-img-name-container' + (boxVis ? '' : ' invisible')
+    const imgClass = 'player-img-actual' + (boxVis ? '' : ' invisible')
 
 
     return (
@@ -93,7 +105,8 @@ function AudioControls() {
 
 
                     <img
-                        className='player-img-actual'
+                        // className='player-img-actual'
+                        className={imgClass}
                         src={
                             song.img
                             ||
@@ -112,7 +125,7 @@ function AudioControls() {
                         >
                             <div
                                 className='currSong-redirect'
-                                onClick={() => history.push(`/songs/${song.id}`)}
+                                onClick={() => singleLoader(song.id)}
                             >
                                 {song.name}
                             </div>

@@ -48,7 +48,7 @@
 }
 
 .player-img-name-container.invisible {
-    display: none;
+    visibility: none;
 }
 
 .rhap_progress-indicator {
@@ -59,9 +59,9 @@
     background-color: rgb(155, 110, 66);
 }
 
-/* .rhap_progress-bar {
-    background-color: rgba(200, 255, 200, .5);
-} */
+.rhap_progress-bar {
+    background-color: rgba(100, 255, 100, .5);
+}
 
 /* .rhap_download-progress {
     background-color: rgba(136, 255, 136, 1);
@@ -124,9 +124,15 @@
     word-break: normal;
     text-overflow: ellipsis;
     max-height: 40px;
+    color: rgb(0, 107, 0);
 }
 
 .currSong-redirect:hover {
     cursor: pointer;
     text-decoration: underline;
+    color: rgb(0, 190, 0);
+}
+
+.player-img-actual.invisible {
+    visibility: hidden;
 }

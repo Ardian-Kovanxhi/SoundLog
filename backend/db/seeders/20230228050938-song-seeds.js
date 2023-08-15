@@ -10,7 +10,7 @@ module.exports = {
     options.tableName = 'Songs';
     return queryInterface.bulkInsert(options, [
       {
-        userId: 2,
+        userId: 5,
         name: 'Comfortably Numb',
         content: 'https://aa-sounclod-clone-bucket.s3.amazonaws.com/1680483308836.mp3',
         duration: 542,
@@ -18,7 +18,7 @@ module.exports = {
         description: 'live performance of a legendary song'
       },
       {
-        userId: 2,
+        userId: 6,
         name: 'Call it fate call it karma',
         content: 'https://aa-sounclod-clone-bucket.s3.amazonaws.com/1680483364313.mp3',
         duration: 204,
@@ -26,7 +26,7 @@ module.exports = {
         description: null
       },
       {
-        userId: 4,
+        userId: 7,
         name: 'I Bet You Look Good On The Dancefloor',
         content: 'https://aa-sounclod-clone-bucket.s3.amazonaws.com/1691686976332.mp3',
         duration: 174,
@@ -34,7 +34,7 @@ module.exports = {
         description: null
       },
       {
-        userId: 4,
+        userId: 8,
         name: 'Ode to Viceroy',
         content: 'https://aa-sounclod-clone-bucket.s3.amazonaws.com/1690258948596.mp3',
         duration: 234,
@@ -42,7 +42,7 @@ module.exports = {
         description: null
       },
       {
-        userId: 4,
+        userId: 9,
         name: 'Instant Crush',
         content: 'https://aa-sounclod-clone-bucket.s3.amazonaws.com/1690301002405.mp3',
         duration: 339,
@@ -50,7 +50,7 @@ module.exports = {
         description: null
       },
       {
-        userId: 4,
+        userId: 10,
         name: 'SLOW DANCING IN THE DARK',
         content: 'https://aa-sounclod-clone-bucket.s3.amazonaws.com/1690301089615.mp3',
         duration: 209,
@@ -58,7 +58,7 @@ module.exports = {
         description: null
       },
       {
-        userId: 4,
+        userId: 11,
         name: "Since I've Been Loving You",
         content: 'https://aa-sounclod-clone-bucket.s3.amazonaws.com/1690301222005.mp3',
         duration: 488,
@@ -66,7 +66,7 @@ module.exports = {
         description: null
       },
       {
-        userId: 3,
+        userId: 12,
         name: "Gary's Song",
         content: 'https://aa-sounclod-clone-bucket.s3.amazonaws.com/1680484080763.mp3',
         duration: 145,
@@ -74,7 +74,7 @@ module.exports = {
         description: 'what a shame'
       },
       {
-        userId: 4,
+        userId: 13,
         name: 'Stylo',
         content: 'https://aa-sounclod-clone-bucket.s3.amazonaws.com/1690301328111.mp3',
         duration: 271,
@@ -82,7 +82,7 @@ module.exports = {
         description: null
       },
       {
-        userId: 4,
+        userId: 14,
         name: 'Muscle Museum',
         content: 'https://aa-sounclod-clone-bucket.s3.amazonaws.com/1690301377211.mp3',
         duration: 263,
@@ -90,7 +90,7 @@ module.exports = {
         description: null
       },
       {
-        userId: 4,
+        userId: 15,
         name: 'Fuel',
         content: 'https://aa-sounclod-clone-bucket.s3.amazonaws.com/1690302075499.mp3',
         duration: 269,
@@ -98,7 +98,7 @@ module.exports = {
         description: null
       },
       {
-        userId: 4,
+        userId: 16,
         name: 'Lady Evil',
         content: 'https://aa-sounclod-clone-bucket.s3.amazonaws.com/1690302291199.mp3',
         duration: 263,
@@ -106,7 +106,7 @@ module.exports = {
         description: null
       },
       {
-        userId: 4,
+        userId: 6,
         name: "Why Are Sunday's So Depressing",
         content: 'https://aa-sounclod-clone-bucket.s3.amazonaws.com/1690302428705.mp3',
         duration: 277,
@@ -114,7 +114,7 @@ module.exports = {
         description: null
       },
       {
-        userId: 4,
+        userId: 17,
         name: 'Pyramid Song',
         content: 'https://aa-sounclod-clone-bucket.s3.amazonaws.com/1690302506104.mp3',
         duration: 289,
@@ -122,7 +122,7 @@ module.exports = {
         description: null
       },
       {
-        userId: 4,
+        userId: 18,
         name: 'Layla',
         content: 'https://aa-sounclod-clone-bucket.s3.amazonaws.com/1690302647605.mp3',
         duration: 423,
@@ -130,7 +130,7 @@ module.exports = {
         description: null
       },
       {
-        userId: 4,
+        userId: 19,
         name: 'Heart Shaped Box',
         content: 'https://aa-sounclod-clone-bucket.s3.amazonaws.com/1690302694099.mp3',
         duration: 278,
@@ -138,7 +138,7 @@ module.exports = {
         description: null
       },
       {
-        userId: 4,
+        userId: 5,
         name: 'Wish You Were Here',
         content: 'https://aa-sounclod-clone-bucket.s3.amazonaws.com/1690302769905.mp3',
         duration: 321,
@@ -146,7 +146,7 @@ module.exports = {
         description: null
       },
       {
-        userId: 4,
+        userId: 20,
         name: 'Cubensis Lenses',
         content: 'https://aa-sounclod-clone-bucket.s3.amazonaws.com/1690303073398.mp3',
         duration: 343,
@@ -154,7 +154,7 @@ module.exports = {
         description: null
       },
       {
-        userId: 4,
+        userId: 21,
         name: 'Moving Out',
         content: 'https://aa-sounclod-clone-bucket.s3.amazonaws.com/1690303153575.mp3',
         duration: 212,
@@ -162,7 +162,7 @@ module.exports = {
         description: null
       },
       {
-        userId: 4,
+        userId: 22,
         name: 'This Night Has Opened My Eyes',
         content: 'https://aa-sounclod-clone-bucket.s3.amazonaws.com/1691687004043.mp3',
         duration: 221,

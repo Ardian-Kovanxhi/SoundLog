@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import './ProgressBar.css'
 
 const ProgressBar = ({ onSeek }) => {
     const [isSeeking, setIsSeeking] = useState(false);
@@ -63,25 +64,10 @@ const ProgressBar = ({ onSeek }) => {
     }, [isSeeking]);
 
     return (
-        <div
-            style={{
-                backgroundColor: 'green',
-                color: 'white',
-                display: 'flex',
-                width: '680px',
-                flexDirection: 'column',
-                padding: '10px',
-                borderRadius: '10px'
-            }}
-        >
-            <div
-                style={{
-                    display: 'flex',
-                    width: '670px',
-                    justifyContent: 'space-between',
-                    marginBottom: '5px'
-                }}
-            >
+        <div className='progress-container'>
+
+            <div className='time-div'>
+
                 <div>
                     {currSong.id === Song.id ? songTime : '00:00'}
                 </div>
@@ -89,6 +75,7 @@ const ProgressBar = ({ onSeek }) => {
                 <div>
                     {time}
                 </div>
+
             </div>
 
             <div
@@ -97,33 +84,34 @@ const ProgressBar = ({ onSeek }) => {
                 onMouseDown={handleMouseDown}
                 onMouseMove={handleMouseMove}
                 onMouseUp={handleMouseUp}
-                style={{
-                    // backgroundColor: 'rgba(0,0,0, .5)',
-                    // backgroundColor: 'white',
-                    backgroundColor: 'lightgreen',
-                    cursor: 'pointer',
-                    width: '670px',
-                    height: '10px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'flex-start',
-                    borderRadius: '10px',
-                    // overflow: 'hidden'
-                }}
             >
                 {
                     currSong.id === Song.id ?
                         <div
                             className="progress"
+                            style={{ width: `${(songRawTime / Song.duration) * 100}%`, }}
+                        >
+                            <i
+                                className="fa-solid fa-circle"
+                                style={{
+                                    color: 'green',
+                                    fontSize: 'large',
+                                    // marginBottom: '100px'
+                                }}
+                            ></i>
+
+                        </div>
+                        :
+                        // ''
+                        <i
+                            className="fa-solid fa-circle"
                             style={{
-                                width: `${(songRawTime / Song.duration) * 100}%`,
-                                maxWidth: '700px',
-                                height: '10px',
-                                backgroundColor: 'rgb(155,110,66)',
-                                // zIndex: '20'
-                                borderRadius: '5px'
-                            }}></div>
-                        : ''
+                                color: 'green',
+                                fontSize: 'large',
+                                position: 'sticky',
+                                left: '0'
+                            }}
+                        ></i>
                 }
                 {/* <div
                     style={{
@@ -137,22 +125,6 @@ const ProgressBar = ({ onSeek }) => {
                         // marginBottom: '10px'
                     }}
                 >
-                    <img
-                        src='https://i.imgur.com/zbLiFqp.png'
-                        style={{
-                            height: '40px',
-                            width: '40px',
-                            transform: 'scaleX(-1)'
-                        }}
-                    />
-                    <i
-                        className="fa-solid fa-circle"
-                        style={{
-                            color: 'green',
-                            fontSize: 'x-large'
-                        }}
-                    ></i>
-
                 </div> */}
             </div>
         </div>
