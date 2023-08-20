@@ -1,6 +1,8 @@
 const READ_PAUSED = 'paused/READ_PAUSED'
 const READ_TIME = 'time/READ_TIME'
 const RAW_TIME = 'time/RAW_TIME'
+const READ_LOOP = 'loop/READ_LOOP'
+const READ_LOOP_TYPE = 'loopType/READ_LOOP_TYPE'
 
 const readPaused = (paused) => {
     return {
@@ -41,7 +43,7 @@ export const getRawTime = (playbackTime) => dispatch => {
 }
 
 
-const initialState = { pauseState: true, runtimeState: { raw: 0, str: '' }, rawTime: 0 }
+const initialState = { pauseState: true, runtimeState: { raw: 0, str: '' }, rawTime: 0, loopState: { loop: false, loopType: 'all' } }
 
 export default function audioPlayerReducer(state = initialState, action) {
     let newState;

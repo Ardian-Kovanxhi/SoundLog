@@ -157,6 +157,7 @@ function AudioControls() {
                 listenInterval={500}
                 onListen={() => dispatch(getTime(player.current.audio.current.currentTime))}
                 onSeeking={() => dispatch(getTime(player.current.audio.current.currentTime))}
+                onEnded={() => console.log('DONE')}
             // onSeeked={() => dispatch(getRawTime(player.current.audio.current.currentTime))}
             // other props here
             />
