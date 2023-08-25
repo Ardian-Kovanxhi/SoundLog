@@ -28,6 +28,7 @@
     justify-content: baseline;
     border-radius: 10px;
     /* overflow: hidden; */
+    transition: background-color .5s;
 }
 
 .progress {
@@ -38,6 +39,32 @@
     background-color: green;
     border-radius: 15px;
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
     align-items: center;
+    transition: background-color .5s;
+}
+
+.fa-solid.fa-circle {
+    color: green;
+    font-size: 'large';
+    position: 'sticky';
+    left: '0';
+    transition: color .5s;
+}
+
+/*   NIGHT MODE   */
+.progress-container.night {
+    background-color: rgba(0, 0, 0, .6);
+}
+
+.progress-bar.night {
+    background-color: skyblue;
+}
+
+.progress.night {
+    background-color: blue;
+}
+
+.fa-solid.fa-circle.night {
+    color: blue;
 }

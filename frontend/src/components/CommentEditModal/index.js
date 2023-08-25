@@ -18,6 +18,7 @@ export default function CommentEditModal({ commentId, songId }) {
 
     // const sessionUser = useSelector((state) => state.session.user)
     const sessionComment = useSelector((state) => state.comments.allComments[commentId])
+    const pageState = useSelector((state) => state.global.lightState)
 
 
 
@@ -25,7 +26,7 @@ export default function CommentEditModal({ commentId, songId }) {
 
     const [focus, setFocus] = useState(false)
 
-    const comClass = 'label-in-div comment ' + (focus ? 'focus' : '')
+    const comClass = `label-in-div comment ${focus ? 'focus' : ''} ${pageState ? '' : 'night'}`
 
     const submitHandler = async (e) => {
         e.preventDefault();

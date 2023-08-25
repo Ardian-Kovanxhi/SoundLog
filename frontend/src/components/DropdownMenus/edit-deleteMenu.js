@@ -12,6 +12,7 @@ export default function BtnMenu() {
     const history = useHistory()
     const { songId } = useParams();
     const currSong = useSelector(state => state.songs.playingSong);
+    const pageState = useSelector(state => state.global.lightState);
     const [showMenu, setShowMenu] = useState(false);
     const btnLstRef = useRef();
 
@@ -48,11 +49,12 @@ export default function BtnMenu() {
 
     const closeMenu = () => setShowMenu(false);
 
-    const ulClassName = "song-drop btn-dropdown-div" + (showMenu ? "" : " hidden");
+    const ulClassName = `song-drop btn-dropdown-div${showMenu ? "" : " hidden"}${pageState ? '' : ' night'}`;
 
     return (
-        <div className="btn-drop-container">
+        <div className={`btn-drop-container ${pageState ? '' : 'night'}`}>
             <button
+                className="elip-btn"
                 onClick={openMenu}
             >
                 <i class="fa-solid fa-ellipsis-vertical" />

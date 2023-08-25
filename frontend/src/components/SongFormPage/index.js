@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { submitSong } from "../../store/songs";
+import dayLoad from '../../images/light-mode-load.gif'
+import nightLoad from '../../images/dark-mode-load.gif'
 import './SongFormPage.css'
 
 
@@ -11,6 +13,7 @@ export default function SongFormPage() {
     const history = useHistory()
 
     const user = useSelector(state => state.session.user);
+    const pageState = useSelector(state => state.global.lightState);
 
     const [name, setName] = useState('')
     const [content, setContent] = useState(null)
@@ -24,13 +27,15 @@ export default function SongFormPage() {
     const [descFocus, setDescFocus] = useState(false)
     const [imgFocus, setImgFocus] = useState(false)
 
-    const genClass = 'label-in-div-song-form '
+    const genClass = `label-in-div-song-form ${pageState ? '' : 'night'}`
 
-    const nClass = genClass + (nameFocus ? 'focus-song-form' : '')
-    const sClass = genClass + (songFocus ? 'focus-song-form' : '')
-    const dClass = genClass + (descFocus ? 'focus-song-form' : '') + ' desc'
-    const iClass = genClass + (imgFocus ? 'focus-song-form' : '') + ' img'
-    const iBoxClass = 'new-song-img-assignment ' + (imgFocus ? 'focus-img-box' : '')
+    const nClass = genClass + (nameFocus ? ' focus-song-form' : '')
+    const sClass = genClass + (songFocus ? ' focus-song-form' : '')
+    const dClass = genClass + (descFocus ? ' focus-song-form' : '') + ' desc'
+    const iClass = genClass + (imgFocus ? ' focus-song-form' : '') + ' img'
+    // const iClass = genClass + ' focus-song-form img'
+    const iBoxClass = `new-song-img-assignment ${imgFocus ? 'focus-img-box' : ''} ${pageState ? '' : 'night'}`
+    // const iBoxClass = `new-song-img-assignment focus-img-box ${pageState ? '' : 'night'}`
 
     useEffect(() => {
 
@@ -184,16 +189,30 @@ export default function SongFormPage() {
 
                             <div className="song-form-gen-but-div">
 
-                                <button className="song-form-buttons submit">Submit</button>
+                                <button
+                                    className={`song-form-buttons submit ${pageState ? '' : 'night'}`}>
 
-                                <button onClick={() => history.push('/')} className="song-form-buttons cancel">Cancel</button>
+                                    Submit
+
+                                </button>
+
+                                <button
+                                    onClick={() => history.push('/')}
+                                    className={`song-form-buttons cancel ${pageState ? '' : 'night'}`}>
+
+                                    Cancel
+
+                                </button>
 
                             </div>
                         </form>
                     </div>
                     :
                     <div className="loader">
-                        <img src="https://i.imgur.com/DwJvkT6.gif" />
+                        <img
+                            // src="https://i.imgur.com/DwJvkT6.gif" 
+                            src={pageState ? dayLoad : nightLoad}
+                        />
                     </div>
 
             }

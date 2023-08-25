@@ -49,3 +49,7 @@
     font-size: small;
     color: rgb(230, 255, 230);
 }
+
+.memo-div.night {
+    color: rgb(7, 15, 50);
+}

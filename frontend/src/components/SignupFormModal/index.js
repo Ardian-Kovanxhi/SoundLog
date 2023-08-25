@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../context/Modal";
 import * as sessionActions from "../../store/session";
 import './SignupForm.css';
 
 function SignupFormModal() {
     const dispatch = useDispatch();
+    const pageState = useSelector(state => state.global.lightState)
     const [email, setEmail] = useState("");
     const [username, setUsername] = useState("");
     const [firstName, setFirstName] = useState("");
@@ -15,7 +16,7 @@ function SignupFormModal() {
     const [errors, setErrors] = useState([]);
     const { closeModal } = useModal();
 
-    const genClass = 'label-in-div sign-up '
+    const genClass = `label-in-div sign-up ${pageState ? '' : 'night'}`
 
     const [emailFocus, setEmailFocus] = useState(false)
     const [usernameFocus, setUsernameFocus] = useState(false)
@@ -24,12 +25,12 @@ function SignupFormModal() {
     const [passFocus, setPassFocus] = useState(false)
     const [cPassFocus, setCPassFocus] = useState(false)
 
-    const eClass = genClass + (emailFocus ? 'focus' : '')
-    const uClass = genClass + (usernameFocus ? 'focus' : '')
-    const fClass = genClass + (firstFocus ? 'focus' : '')
-    const lClass = genClass + (lastFocus ? 'focus' : '')
-    const pClass = genClass + (passFocus ? 'focus' : '')
-    const confirmClass = genClass + (cPassFocus ? 'focus' : '')
+    const eClass = genClass + (emailFocus ? ' focus' : '')
+    const uClass = genClass + (usernameFocus ? ' focus' : '')
+    const fClass = genClass + (firstFocus ? ' focus' : '')
+    const lClass = genClass + (lastFocus ? ' focus' : '')
+    const pClass = genClass + (passFocus ? ' focus' : '')
+    const confirmClass = genClass + (cPassFocus ? ' focus' : '')
 
 
     const handleSubmit = (e) => {
@@ -89,7 +90,7 @@ function SignupFormModal() {
                             </div>
 
 
-                            <div className="memo-div">
+                            <div className={`memo-div ${pageState ? '' : 'night'}`}>
                                 ({30 - username.length} Char. reamaining)
                             </div>
 

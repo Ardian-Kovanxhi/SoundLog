@@ -18,6 +18,7 @@ export default function SongComments() {
     const Comments = useSelector(state => state.comments.allComments);
     const commentArr = Object.values(Comments)
     const User = useSelector(state => state.session.user)
+    const pageState = useSelector(state => state.global.lightState)
 
     const [comment, setComment] = useState('');
 
@@ -30,7 +31,7 @@ export default function SongComments() {
     const submitHandler = async (e) => {
         e.preventDefault()
 
-        const newComment = await dispatch(createComment(songId, comment))
+        await dispatch(createComment(songId, comment))
 
         await dispatch(getCommentsBySong(songId))
 
@@ -45,7 +46,7 @@ export default function SongComments() {
                 User ?
                     <form
                         onSubmit={submitHandler}
-                        className='comment-form'
+                        className={`comment-form ${pageState ? '' : 'night'}`}
                     >
                         <input
                             id='comment-form-input-id'
@@ -56,12 +57,14 @@ export default function SongComments() {
                             required
                             placeholder='Write a comment here'
                         />
-                        <label className='chara-count' for="comment-form-input-id">
+                        <label
+                            className={`chara-count ${pageState ? '' : 'night'}`}
+                            for="comment-form-input-id">
                             {`${100 - comment.length} characters left`}
                         </label>
                     </form>
                     :
-                    <div className='conditional-bar-button'>
+                    <div className={`conditional-bar-button ${pageState ? '' : 'night'}`}>
                         <OpenModalMenuItem
                             buttonText="If you would like to leave a comment click here to login"
                             modalComponent={<LoginFormModal />}
@@ -71,7 +74,9 @@ export default function SongComments() {
             }
 
 
-            <div className='all-comments-div'>
+            <div
+                className={`all-comments-div ${pageState ? '' : 'night'}`}
+            >
 
                 {commentArr.map(el => (
                     <div className='single-comment-div'>
@@ -86,7 +91,10 @@ export default function SongComments() {
                                             ||
                                             User.id === 1
                                             ?
-                                            <div className='comment-drop-comp-container'>
+                                            <div
+                                                // className='comment-drop-comp-container'
+                                                className={`comment-drop-comp-container ${pageState ? '' : 'night'}`}
+                                            >
                                                 <CommentBtnMenu passedCommId={el.id} />
                                             </div>
                                             : null : null}

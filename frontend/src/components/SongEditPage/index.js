@@ -13,6 +13,7 @@ import './SongEditPage.css'
 export default function SongEditPage() {
     const dispatch = useDispatch();
     const sessionSong = useSelector((state) => state.songs.singleSong)
+    const pageState = useSelector((state) => state.global.lightState)
     const { closeModal } = useModal();
 
 
@@ -31,11 +32,11 @@ export default function SongEditPage() {
     const [descFocus, setDescFocus] = useState(false)
     const [imgFocus, setImgFocus] = useState(false)
 
-    const genClass = 'label-in-div '
+    const genClass = `label-in-div ${pageState ? '' : 'night'}`
 
-    const nClass = genClass + (nameFocus ? 'focus' : '')
-    const dClass = genClass + (descFocus ? 'focus' : '')
-    const iClass = genClass + (imgFocus ? 'focus' : '') + ' imgUrl'
+    const nClass = genClass + (nameFocus ? ' focus' : '')
+    const dClass = genClass + (descFocus ? ' focus' : '')
+    const iClass = genClass + (imgFocus ? ' focus' : '') + ' imgUrl'
 
     const submitHandler = async (e) => {
         e.preventDefault();

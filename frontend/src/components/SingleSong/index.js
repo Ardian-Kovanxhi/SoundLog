@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom'
 import { getCommentsBySong } from "../../store/comments";
 import { getSong, playSong } from '../../store/songs';
 import { getPaused, getTime, getRawTime } from '../../store/audioPlayerState';
+import { getLoad } from '../../store/global';
 // import { createLike, getLikesBySong, getLikesByUser, removeLike } from '../../store/likes';
 import CommentTesting from '../CommentFormTesting';
 import BtnMenu from '../DropdownMenus/edit-deleteMenu';
@@ -17,9 +18,15 @@ export default function SingleSong() {
     const dispatch = useDispatch();
     const { songId } = useParams();
 
+    async function fetchData() {
+        await dispatch(getSong(songId))
+        await dispatch(getCommentsBySong(songId))
+    }
+
     useEffect(() => {
-        dispatch(getSong(songId))
-        dispatch(getCommentsBySong(songId))
+        dispatch(getLoad(true))
+        fetchData()
+        dispatch(getLoad(false))
         // dispatch(getLikesBySong(songId))
         // dispatch(getLikesByUser())
     }, [])
@@ -29,6 +36,7 @@ export default function SingleSong() {
     const User = useSelector(state => state.session.user);
     const paused = useSelector(state => state.audioState.pauseState);
     const songTime = useSelector(state => state.audioState.runtimeState.str);
+    const pageState = useSelector(state => state.global.lightState);
     let disabled = false;
     let Uploader = '';
     let time = '';
@@ -71,7 +79,7 @@ export default function SingleSong() {
                             className='blur-box'
                         >
 
-                            <div className='filler-color-2'></div>
+                            <div className={`filler-color-2${pageState ? '' : ' night'}`}></div>
 
                             <img
                                 className='blur-img'
@@ -99,7 +107,7 @@ export default function SingleSong() {
                                                 paused ?
 
                                                     <button
-                                                        className='single-univ-button single'
+                                                        className={`single-univ-button${pageState ? '' : ' night'}`}
                                                         // onClick={handlePlayClick}
                                                         onClick={() => { dispatch(getPaused(false)) }}
                                                     >
@@ -109,7 +117,7 @@ export default function SingleSong() {
                                                     </button> :
 
                                                     <button
-                                                        className='single-univ-button  single'
+                                                        className={`single-univ-button${pageState ? '' : ' night'}`}
                                                         // onClick={handlePauseClick}
                                                         onClick={() => { dispatch(getPaused(true)) }}
                                                     >
@@ -119,7 +127,7 @@ export default function SingleSong() {
                                                     </button> :
 
                                                 <button
-                                                    className='single-univ-button  single'
+                                                    className={`single-univ-button${pageState ? '' : ' night'}`}
                                                     onClick={() => dispatch(playSong(Song.id))}
                                                 >
 
@@ -136,7 +144,7 @@ export default function SingleSong() {
                                                         flexDirection: 'column',
                                                     }}
                                                 >
-                                                    <div className='song-name-div'>
+                                                    <div className={`song-name-div${pageState ? '' : ' night'}`}>
                                                         {Song.name}
                                                     </div>
 
@@ -151,7 +159,7 @@ export default function SingleSong() {
                                                     }
                                                 </div>
 
-                                                <div className='song-uploader-div'>
+                                                <div className={`song-uploader-div${pageState ? '' : ' night'}`}>
                                                     {Uploader}
                                                 </div>
 
@@ -163,7 +171,7 @@ export default function SingleSong() {
                                 </div>
 
                                 <div
-                                    className={'single-song-desc ' + (!!Song.description ? '' : 'false')}
+                                    className={`single-song-desc ${!!Song.description ? '' : 'false'} ${pageState ? '' : 'night'}`}
                                 >
                                     {Song.description}
                                 </div>

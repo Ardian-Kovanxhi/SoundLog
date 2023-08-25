@@ -19,7 +19,8 @@
 }
 
 .conditional-bar-button>button:hover {
-    background-color: rgba(31, 92, 29, 0.5);
+    /* background-color: rgba(31, 92, 29, 0.5); */
+    background-color: rgba(0, 0, 0, .4);
 }
 
 .comment-form {
@@ -29,11 +30,13 @@
     padding: 15px;
     margin-bottom: 10px;
     background-color: rgb(15, 65, 50);
+    transition: background-color .5s;
 }
 
 .comment-form>input {
     margin-bottom: 5px;
-    background-color: rgb(15, 65, 50);
+    /* background-color: rgb(15, 65, 50); */
+    background-color: transparent;
     transition: background-color 1s;
     color: white;
     width: 100%;
@@ -51,12 +54,39 @@
 
 .chara-count {
     color: lightgreen;
+    transition: color .5s;
 }
+
+/*   FORM NIGHT MODE   */
+.conditional-bar-button.night>button {
+    color: white;
+}
+
+.conditional-bar-button.night>button:hover {
+    background-color: rgba(255, 255, 255, .1);
+}
+
+.comment-form.night {
+    /* background-color: rgb(15, 65, 50); */
+    background-color: rgb(3, 36, 88);
+}
+
+.comment-form.night>input:focus {
+    outline: none;
+    /* background-color: rgb(1, 13, 32); */
+    background-color: rgb(7, 15, 50);
+}
+
+.chara-count.night {
+    color: skyblue;
+}
+
 
 /* ↓↓↓ Comment Display ↓↓↓ */
 
 .all-comments-div {
     width: 80%;
+    transition: color .5s;
 }
 
 .single-comment-div {
@@ -75,8 +105,19 @@
     display: flex;
     align-items: center;
     color: #757575;
+    transition: color .5s;
 }
 
 /* .comment-drop-comp-container {
     position: absolute;
 } */
+
+/*   NIGHT MODE   */
+
+.all-comments-div.night {
+    color: white;
+}
+
+.username-conditional-div {
+    color: rgb(170, 170, 170);
+}

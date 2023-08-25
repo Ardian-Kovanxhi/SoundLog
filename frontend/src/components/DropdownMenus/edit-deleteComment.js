@@ -1,4 +1,4 @@
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { useParams, useHistory } from 'react-router-dom'
 import OpenModalMenuItem from '../OpenModalButton';
 import CommentEditModal from "../CommentEditModal";
@@ -11,6 +11,7 @@ export default function CommentBtnMenu({ passedCommId }) {
     const { songId } = useParams();
     const [showMenu, setShowMenu] = useState(false);
     const cbtnLstRef = useRef();
+    const pageState = useSelector(state => state.global.lightState)
 
 
     const deleteHandler = async (commentId) => {
@@ -39,11 +40,15 @@ export default function CommentBtnMenu({ passedCommId }) {
 
     const closeMenu = () => setShowMenu(false);
 
-    const ulClassName = "comment-drop btn-dropdown-div" + (showMenu ? "" : " hidden");
+    const ulClassName =
+        "comment-drop btn-dropdown-div" +
+        (showMenu ? "" : " hidden") +
+        (pageState ? '' : ' night');
 
     return (
-        <div className="btn-drop-container comment-elip">
+        <div className={`btn-drop-container comment-elip ${pageState ? '' : 'night'}`}>
             <button
+                className="elip-btn"
                 onClick={openMenu}
             >
                 <i class="fa-solid fa-ellipsis"></i>

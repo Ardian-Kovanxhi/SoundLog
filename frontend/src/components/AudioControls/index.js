@@ -17,6 +17,7 @@ function AudioControls() {
     const song = useSelector(state => state.songs.playingSong)
     const pauseState = useSelector(state => state.audioState.pauseState)
     const timeSeek = useSelector(state => state.audioState.rawTime)
+    const pageState = useSelector(state => state.global.lightState)
 
     const [currPause, setCurrPause] = useState(true)
     const [playerVisible, setPlayerVisible] = useState(false)
@@ -91,8 +92,8 @@ function AudioControls() {
     }
 
 
-    const playerClass = 'audio-player ' + (playerVisible ? '' : 'invisible')
-    const containerClass = 'player-img-name-container' + (boxVis ? '' : ' invisible')
+    const playerClass = `audio-player ${playerVisible ? '' : 'invisible'} ${pageState ? '' : 'night'}`
+    const containerClass = `player-img-name-container ${(boxVis ? '' : ' invisible')} ${pageState ? '' : 'night'}`
     const imgClass = 'player-img-actual' + (boxVis ? '' : ' invisible')
 
 
@@ -114,7 +115,7 @@ function AudioControls() {
 
                         } />
 
-                    <div className='name-test'>
+                    <div className='song-name-display'>
                         <div
                             style={{
                                 zIndex: '20',

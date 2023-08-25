@@ -10,6 +10,7 @@ const ProgressBar = ({ onSeek }) => {
     const currSong = useSelector(state => state.songs.playingSong);
     const songRawTime = useSelector(state => state.audioState.runtimeState.raw);
     const songTime = useSelector(state => state.audioState.runtimeState.str);
+    const pageState = useSelector(state => state.global.lightState);
     let time = ''
 
     if (Song.duration) {
@@ -64,7 +65,7 @@ const ProgressBar = ({ onSeek }) => {
     }, [isSeeking]);
 
     return (
-        <div className='progress-container'>
+        <div className={`progress-container ${pageState ? '' : 'night'}`}>
 
             <div className='time-div'>
 
@@ -79,7 +80,7 @@ const ProgressBar = ({ onSeek }) => {
             </div>
 
             <div
-                className="progress-bar"
+                className={`progress-bar ${pageState ? '' : 'night'}`}
                 ref={progressBarRef}
                 onMouseDown={handleMouseDown}
                 onMouseMove={handleMouseMove}
@@ -88,29 +89,30 @@ const ProgressBar = ({ onSeek }) => {
                 {
                     currSong.id === Song.id ?
                         <div
-                            className="progress"
+                            className={`progress ${pageState ? '' : 'night'}`}
                             style={{ width: `${(songRawTime / Song.duration) * 100}%`, }}
                         >
                             <i
-                                className="fa-solid fa-circle"
-                                style={{
-                                    color: 'green',
-                                    fontSize: 'large',
-                                    // marginBottom: '100px'
-                                }}
+                                className={`fa-solid fa-circle ${pageState ? '' : 'night'}`}
+                            // style={{
+                            //     color: 'green',
+                            //     fontSize: 'large',
+                            //     position: 'sticky',
+                            //     left: '0'
+                            // }}
                             ></i>
 
                         </div>
                         :
                         // ''
                         <i
-                            className="fa-solid fa-circle"
-                            style={{
-                                color: 'green',
-                                fontSize: 'large',
-                                position: 'sticky',
-                                left: '0'
-                            }}
+                            className={`fa-solid fa-circle ${pageState ? '' : 'night'}`}
+                        // style={{
+                        //     color: 'green',
+                        //     fontSize: 'large',
+                        //     position: 'sticky',
+                        //     left: '0'
+                        // }}
                         ></i>
                 }
                 {/* <div

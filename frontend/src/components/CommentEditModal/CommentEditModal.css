@@ -27,3 +27,7 @@
 .chara-count-modal {
     color: rgb(84, 178, 84);
 }
+
+.night .chara-count-modal {
+    color: skyblue;
+}

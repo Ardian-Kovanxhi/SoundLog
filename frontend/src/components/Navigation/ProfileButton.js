@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux';
 import * as sessionActions from '../../store/session';
 import OpenModalMenuItem from './OpenModalMenuItem';
 import LoginFormModal from '../LoginFormModal';
@@ -8,7 +7,7 @@ import SignupFormModal from '../SignupFormModal';
 
 function ProfileButton({ user }) {
     const dispatch = useDispatch();
-    const history = useHistory()
+    const pageState = useSelector(state => state.global.lightState)
     const [showMenu, setShowMenu] = useState(false);
     const ulRef = useRef();
 
@@ -39,14 +38,17 @@ function ProfileButton({ user }) {
         closeMenu();
     };
 
-    const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
-
     return (
         <div>
-            <button onClick={openMenu} className="profile-button-actual">
+            <button
+                onClick={openMenu}
+                className={`profile-button-actual ${pageState ? '' : 'night'}`}
+            >
                 <i className="fas fa-user-circle" />
             </button>
-            <div className={ulClassName} ref={ulRef}>
+            <div
+                className={`profile-dropdown ${showMenu ? "" : "hidden"} ${pageState ? '' : 'night'}`}
+                ref={ulRef}>
                 {user ? (
                     <div className="dropdown-logged-in">
                         <div>{user.username}</div>

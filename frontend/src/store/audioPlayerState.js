@@ -69,8 +69,6 @@ export default function audioPlayerReducer(state = initialState, action) {
             return newState
         }
         default:
-            newState = { ...state }
-            newState.allComments = {}
             return state
     }
 }

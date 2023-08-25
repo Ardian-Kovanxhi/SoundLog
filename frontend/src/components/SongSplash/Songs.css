@@ -28,7 +28,12 @@
     word-break: normal;
     text-overflow: ellipsis;
     translate: text-overflow 1s;
-    /* color: white; */
+    color: black;
+    transition: color .5s;
+}
+
+.all-songs-song-name.night {
+    color: white;
 }
 
 /* save for potential text animation */
@@ -40,9 +45,10 @@
 .all-songs-username {
     width: 180px;
     font-size: small;
-    color: #757575;
+    color: rgb(117, 117, 117);
     overflow: hidden;
     text-overflow: ellipsis;
+    transition: color .5s;
 }
 
 .all-songs-single {
@@ -66,8 +72,8 @@
 
 .all-song-img-btn-div {
     display: flex;
-    justify-content: end;
-    align-items: end;
+    justify-content: flex-end;
+    align-items: flex-end;
     height: 200px;
     width: 200px;
     margin-bottom: 3px;
@@ -125,4 +131,39 @@
     width: 200px;
     border: 1px rgba(0, 0, 0, .4) solid;
     border-radius: 5px;
+}
+
+/* NIGHT MODE */
+
+.all-songs-single.night {
+    /* background-color: rgba(170, 170, 200, .2); */
+    background-color: rgba(99, 99, 147, .3);
+    /* background-color: rgba(34, 34, 139, .6); */
+
+}
+
+.all-songs-single.night:hover {
+    cursor: pointer;
+    /* background-color: rgba(34, 34, 139, .6); */
+    /* background-color: rgba(76, 76, 255, .7); */
+    /* background-color: rgba(138, 43, 226, .5); */
+    background-color: rgba(62, 110, 170, .4);
+
+}
+
+.all-songs-song-name.night {
+    color: white;
+}
+
+.all-songs-username.night {
+    color: rgb(170, 170, 170);
+}
+
+.univ-play-pause-button.hovered.night {
+    color: rgb(62, 110, 170);
+    background-color: rgb(16, 48, 97);
+}
+
+.univ-play-pause-button.night:hover {
+    background-color: rgb(7, 19, 38);
 }
