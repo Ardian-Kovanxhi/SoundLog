@@ -21,7 +21,6 @@ function Navigation({ isLoaded }) {
             <div className="nav-bar-div">
                 <div
                     onClick={() => {
-                        dispatch(getLoad(true))
                         history.push('/')
                     }}
                     // className='title-icon-div'
