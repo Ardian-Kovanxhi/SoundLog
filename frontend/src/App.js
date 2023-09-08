@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Switch, Route } from "react-router-dom";
 import * as sessionActions from "./store/session";
 import { getLoad } from "./store/global";
+import Cookies from "js-cookie";
 import nightImage from './images/forest-night.jpg'
 import dayImage from './images/forest-day.jpg'
 import nightLoad from './images/dark-mode-load.gif'
@@ -10,9 +11,9 @@ import dayLoad from './images/light-mode-load.gif'
 import Navigation from "./components/Navigation";
 import SelectedSong from "./components/SongSplash";
 import SongFormPage from "./components/SongFormPage";
-import CommentTesting from "./components/CommentFormTesting";
+import ErrorPage from "./components/ErrorPage";
 import SingleSong from "./components/SingleSong";
-import SongEditPage from "./components/SongEditPage";
+import SongEditPage from "./components/SongEditModal";
 import CommentEditPage from "./components/CommentEditForm";
 import AudioControls from './components/AudioControls'
 import Likes from "./components/Likes";
@@ -30,7 +31,12 @@ function App() {
 
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
+    if (!Cookies.get('pageTheme')) Cookies.set('pageTheme', 'day', { expires: 604800 })
   }, [dispatch]);
+
+  useEffect(() => {
+    console.log(`SCREEN SIZE \n${window.innerHeight}`)
+  }, [window.innerHeight])
 
   return (
 
@@ -95,7 +101,7 @@ function App() {
               <Route path={'/likes'} component={Likes} />
               <Route path={'/playlists'} component={Playlists} />
               <Route exact path={'/'} component={SelectedSong} />
-              <Route path={'*'} component={CommentTesting} />
+              <Route path={'*'} component={ErrorPage} />
             </Switch>
           </>
         )

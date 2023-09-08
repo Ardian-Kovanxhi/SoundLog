@@ -89,7 +89,7 @@ router.get('/:songId', async (req, res) => {
 
 //PUT /api/songs/:songId | edit song
 router.put('/:songId', requireAuth, async (req, res) => {
-    const { name, img, description } = req.body;
+    const { id, name, content, duration, img, description } = req.body;
 
     const song = await Song.findByPk(req.params.songId);
 
@@ -98,7 +98,10 @@ router.put('/:songId', requireAuth, async (req, res) => {
         return res.json({ message: "Song couldn't be found", statusCode: 404 })
     }
 
+    song.id = id
     song.name = name
+    song.content = content
+    song.duration = duration
     song.img = img
     song.description = description
     await song.save();

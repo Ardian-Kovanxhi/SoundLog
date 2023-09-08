@@ -12,6 +12,7 @@ import './SongEditPage.css'
 
 export default function SongEditPage() {
     const dispatch = useDispatch();
+    const user = useSelector((state) => state.session.user)
     const sessionSong = useSelector((state) => state.songs.singleSong)
     const pageState = useSelector((state) => state.global.lightState)
     const { closeModal } = useModal();
@@ -27,16 +28,22 @@ export default function SongEditPage() {
     const [name, setName] = useState(sessionSong.name);
     const [image, setImage] = useState(sessionSong.img);
     const [description, setDescription] = useState(sessionSong.description);
+    const [content, setContent] = useState(sessionSong.content)
+    const [duration, setDuration] = useState(sessionSong.duration)
 
     const [nameFocus, setNameFocus] = useState(false)
     const [descFocus, setDescFocus] = useState(false)
     const [imgFocus, setImgFocus] = useState(false)
+    const [songFocus, setSongFocus] = useState(false)
+    const [durationFocus, setDurationFocus] = useState(false)
 
     const genClass = `label-in-div ${pageState ? '' : 'night'}`
 
     const nClass = genClass + (nameFocus ? ' focus' : '')
     const dClass = genClass + (descFocus ? ' focus' : '')
     const iClass = genClass + (imgFocus ? ' focus' : '') + ' imgUrl'
+    const sClass = genClass + (songFocus ? ' focus' : '')
+    const durClass = genClass + (durationFocus ? ' focus' : '')
 
     const submitHandler = async (e) => {
         e.preventDefault();
@@ -46,6 +53,8 @@ export default function SongEditPage() {
 
         dispatch(editSong(songId, {
             name,
+            content,
+            duration,
             img: image,
             description,
             // content: songUrl
@@ -86,6 +95,40 @@ export default function SongEditPage() {
                                 onBlur={() => setNameFocus(false)}
                             />
                         </div>
+
+                        {user.id === 1 ?
+                            <>
+                                <div className={sClass}>
+                                    <label for="edit-song-id">
+                                        Song URL
+                                    </label>
+                                    <input
+                                        id='edit-song-id'
+                                        type='text'
+                                        onChange={(e) => setContent(e.target.value)}
+                                        value={content}
+                                        required
+                                        onFocus={() => setSongFocus(true)}
+                                        onBlur={() => setSongFocus(false)}
+                                    />
+                                </div>
+
+                                <div className={durClass}>
+                                    <label for="edit-duration-id">
+                                        Duration
+                                    </label>
+                                    <input
+                                        id='edit-duration-id'
+                                        type='text'
+                                        onChange={(e) => setDuration(e.target.value)}
+                                        value={duration}
+                                        required
+                                        onFocus={() => setDurationFocus(true)}
+                                        onBlur={() => setDurationFocus(false)}
+                                    />
+                                </div>
+                            </>
+                            : ''}
 
 
                         <div className={dClass}>

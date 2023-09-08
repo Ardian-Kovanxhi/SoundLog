@@ -39,50 +39,50 @@ module.exports = {
         hashedPassword: bcrypt.hashSync('password3')
       },
       {
-        firstName: 'Song',
-        lastName: 'Writer',
+        firstName: 'David',
+        lastName: 'Gilmour',
         email: 'PinkFloyd@artist.io',
         username: 'Pink Floyd',
         hashedPassword: bcrypt.hashSync('ShineOn')
       },
       {
-        firstName: 'Song',
-        lastName: 'Writer',
+        firstName: 'Julian',
+        lastName: 'Casablancas',
         email: 'TheStrokes@artist.io',
         username: 'The Strokes',
         hashedPassword: bcrypt.hashSync('TakeItLeaveIt')
       },
       {
-        firstName: 'Song',
-        lastName: 'Writer',
+        firstName: 'Alex',
+        lastName: 'Turner',
         email: 'ArcticMonkeys@artist.io',
         username: 'Arctic Monkeys',
         hashedPassword: bcrypt.hashSync('RUMine')
       },
       {
-        firstName: 'Song',
-        lastName: 'Writer',
+        firstName: 'MacBriare',
+        lastName: 'DeMarco',
         email: 'MacDeMarco@artist.io',
         username: 'Mac DeMarco',
         hashedPassword: bcrypt.hashSync('FreakedNeighbor')
       },
       {
-        firstName: 'Song',
-        lastName: 'Writer',
+        firstName: 'Daft',
+        lastName: 'Punk',
         email: 'DaftPunk@artist.io',
         username: 'Daft Punk',
         hashedPassword: bcrypt.hashSync('LoseToDance')
       },
       {
-        firstName: 'Song',
-        lastName: 'Writer',
+        firstName: 'George',
+        lastName: 'Miller',
         email: 'Joji@artist.io',
         username: 'Joji',
         hashedPassword: bcrypt.hashSync('EyBoss')
       },
       {
-        firstName: 'Song',
-        lastName: 'Writer',
+        firstName: 'Robert',
+        lastName: 'Plant',
         email: 'LedZeppelin@artist.io',
         username: 'Led Zeppelin',
         hashedPassword: bcrypt.hashSync('HeavenStairway')
@@ -95,36 +95,36 @@ module.exports = {
         hashedPassword: bcrypt.hashSync('UnderseaJams')
       },
       {
-        firstName: 'Song',
-        lastName: 'Writer',
+        firstName: 'Damon',
+        lastName: 'Albarn',
         email: 'Gorillaz@artist.io',
         username: 'Gorillaz',
         hashedPassword: bcrypt.hashSync('ItsDare')
       },
       {
-        firstName: 'Song',
-        lastName: 'Writer',
+        firstName: 'Matt',
+        lastName: 'Bellamy',
         email: 'Muse@artist.io',
         username: 'Muse',
         hashedPassword: bcrypt.hashSync('PlugInBaby')
       },
       {
-        firstName: 'Song',
-        lastName: 'Writer',
+        firstName: 'James',
+        lastName: 'Hetfield',
         email: 'Metallica@artist.io',
         username: 'Metallica',
         hashedPassword: bcrypt.hashSync('SeekDestroy')
       },
       {
-        firstName: 'Song',
-        lastName: 'Writer',
+        firstName: 'Ronnie',
+        lastName: 'Dio',
         email: 'BlackSabbath@artist.io',
         username: 'Black Sabbath',
         hashedPassword: bcrypt.hashSync('IronMan')
       },
       {
-        firstName: 'Song',
-        lastName: 'Writer',
+        firstName: 'Thom',
+        lastName: 'Yorke',
         email: 'Radiohead@artist.io',
         username: 'Radiohead',
         hashedPassword: bcrypt.hashSync('NothingToFear')
@@ -137,29 +137,29 @@ module.exports = {
         hashedPassword: bcrypt.hashSync('OnMyKnees')
       },
       {
-        firstName: 'Song',
-        lastName: 'Writer',
+        firstName: 'Kurt',
+        lastName: 'Cobain',
         email: 'Nirvana@artist.io',
         username: 'Nirvana',
         hashedPassword: bcrypt.hashSync('Nevermind')
       },
       {
-        firstName: 'Song',
-        lastName: 'Writer',
+        firstName: 'Jack',
+        lastName: 'McEwan',
         email: 'Crumpets@artist.io',
         username: 'Psychedelic Porn Crumpets',
         hashedPassword: bcrypt.hashSync('horridName')
       },
       {
-        firstName: 'Song',
-        lastName: 'Writer',
+        firstName: 'Billy',
+        lastName: 'Joel',
         email: 'Billy@artist.io',
         username: 'Billy Joel',
         hashedPassword: bcrypt.hashSync('PianoMan')
       },
       {
-        firstName: 'Song',
-        lastName: 'Writer',
+        firstName: 'Steven',
+        lastName: 'Morrissey',
         email: 'Smith@artist.io',
         username: 'The Smiths',
         hashedPassword: bcrypt.hashSync('MiserableHeaven')
@@ -171,8 +171,7 @@ module.exports = {
     options.tableName = 'Users';
     const Op = Sequelize.Op;
     return queryInterface.bulkDelete(options, {
-      username: { [Op.in]: ['Demo-lition', 'FakeUser1', 'FakeUser2'] },
-      lastName: { [Op.in]: ['Writer'] }
+      id: { [Op.in]: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22] }
     }, {});
   }
 };

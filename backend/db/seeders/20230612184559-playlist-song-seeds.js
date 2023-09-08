@@ -15,16 +15,20 @@ module.exports = {
         songId: 1
       },
       {
-        playlistId: 1,
+        playlistId: 2,
         songId: 2
       },
       {
         playlistId: 1,
-        songId: 3
+        songId: 17
       },
       {
-        playlistId: 1,
-        songId: 4
+        playlistId: 2,
+        songId: 5
+      },
+      {
+        playlistId: 2,
+        songId: 13
       },
     ], {})
   },
@@ -33,7 +37,7 @@ module.exports = {
     options.tableName = 'PlaylistSongs';
     const Op = Sequelize.Op;
     return queryInterface.bulkDelete(options, {
-      playlistId: { [Op.in]: [1] }
+      playlistId: { [Op.in]: [1, 2] }
     }, {});
   }
 };

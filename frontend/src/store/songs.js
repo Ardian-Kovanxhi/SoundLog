@@ -134,7 +134,7 @@ export const submitSong = (data) => async dispatch => {
 
 export const editSong = (songId, data) => async dispatch => {
 
-    const { name, content, img, description } = data
+    const { name, content, duration, img, description } = data
 
     const response = await csrfFetch(
         `/api/songs/${songId}`,
@@ -144,7 +144,7 @@ export const editSong = (songId, data) => async dispatch => {
                 'Content-Type': 'application/json',
                 'XSRF-Token': Cookies.get('XSRF-TOKEN')
             },
-            body: JSON.stringify({ name, content, img, description })
+            body: JSON.stringify({ name, content, duration, img, description })
         }
     )
 

@@ -6,7 +6,7 @@ import { getSong, playSong } from '../../store/songs';
 import { getPaused, getTime, getRawTime } from '../../store/audioPlayerState';
 import { getLoad } from '../../store/global';
 // import { createLike, getLikesBySong, getLikesByUser, removeLike } from '../../store/likes';
-import CommentTesting from '../CommentFormTesting';
+import CommentTesting from '../ErrorPage';
 import BtnMenu from '../DropdownMenus/edit-deleteMenu';
 import SongComments from '../SongComments'
 import './SingleSong.css'

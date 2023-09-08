@@ -28,6 +28,12 @@
     justify-content: center;
     align-items: center;
     font-size: xx-large;
+    color: black;
+    transition: color .5s;
+}
+
+.info-div-404.night {
+    color: white;
 }
 
 .redirect {
