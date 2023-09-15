@@ -18,6 +18,10 @@
     padding: 10px;
 }
 
+.song-elip>button {
+    transition: color .5s;
+}
+
 .btn-drop-container>button:hover {
     background-color: rgba(0, 0, 0, .3);
 }
@@ -77,6 +81,10 @@
 
 .btn-dropdown-div.night button:hover {
     background-color: rgba(255, 255, 255, .1);
+}
+
+.song-elip.night>button {
+    color: white;
 }
 
 .comment-elip.night>button {
