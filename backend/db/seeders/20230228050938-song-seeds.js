@@ -46,7 +46,7 @@ module.exports = {
         name: 'Instant Crush',
         content: 'https://aa-sounclod-clone-bucket.s3.amazonaws.com/1690301002405.mp3',
         duration: 339,
-        img: 'https://upload.wikimedia.org/wikipedia/commons/7/74/Daft_Punk_-_Random_Access_Memories.jpg',
+        img: 'https://media.pitchfork.com/photos/63f641d801dbe796fab80055/master/w_1280%2Cc_limit/Daft-Punk-Random-Access-Memories.jpg',
         description: null
       },
       {
