@@ -24,10 +24,8 @@ function Navigation({ isLoaded }) {
                     onClick={() => {
                         history.push('/')
                     }}
-                    // className='title-icon-div'
                     className={`title-icon-div ${pageState ? '' : 'night'}`}
                 >
-                    {/* <img src='https://img.freepik.com/free-icon/log_318-541649.jpg' className='log-icon-img' /> */}
                     <img src={homeBarLogo} className='log-icon-img' />
                     <div className='title-actual'>
                         SoundLog
