@@ -52,7 +52,7 @@ export default function BtnMenu() {
     const ulClassName = `song-drop btn-dropdown-div${showMenu ? "" : " hidden"}${pageState ? '' : ' night'}`;
 
     return (
-        <div className={`btn-drop-container ${pageState ? '' : 'night'}`}>
+        <div className={`btn-drop-container song-elip ${pageState ? '' : 'night'}`}>
             <button
                 className="elip-btn"
                 onClick={openMenu}
