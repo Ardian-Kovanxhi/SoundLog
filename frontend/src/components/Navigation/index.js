@@ -5,6 +5,7 @@ import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal';
 import OpenModalMenuItem from '../OpenModalButton';
 import { getLight, getLoad } from "../../store/global";
+import homeBarLogo from '../../images/log3.png'
 import './Navigation.css';
 
 function Navigation({ isLoaded }) {
@@ -26,7 +27,8 @@ function Navigation({ isLoaded }) {
                     // className='title-icon-div'
                     className={`title-icon-div ${pageState ? '' : 'night'}`}
                 >
-                    <img src='https://img.freepik.com/free-icon/log_318-541649.jpg' className='log-icon-img' />
+                    {/* <img src='https://img.freepik.com/free-icon/log_318-541649.jpg' className='log-icon-img' /> */}
+                    <img src={homeBarLogo} className='log-icon-img' />
                     <div className='title-actual'>
                         SoundLog
                     </div>
