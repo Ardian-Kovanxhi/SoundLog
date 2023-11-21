@@ -5,7 +5,7 @@ import { getCommentsBySong } from "../../store/comments";
 import { getSong, playSong } from '../../store/songs';
 import { getPaused, getTime, getRawTime } from '../../store/audioPlayerState';
 import { getLoad } from '../../store/global';
-import { createLike, getLikesBySong, getLikesByUser, removeLike } from '../../store/likes';
+import { createLike, getAllSongLikes, getAllUserLikes, getLikesByUser, removeLike } from '../../store/likes';
 import CommentTesting from '../ErrorPage';
 import BtnMenu from '../DropdownMenus/edit-deleteMenu';
 import SongComments from '../SongComments'
@@ -251,7 +251,24 @@ export default function SingleSong() {
 
                     <button
                         onClick={() => { dispatch(createLike(songId)) }}
-                    >Like</button>
+                    >
+                        <i className="fa-solid fa-heart" />
+                        <i className="fa-regular fa-heart" />
+                    </button>
+                    <button
+                        onClick={() => { dispatch(getLikesByUser(songId)) }}
+                    >Get Like</button>
+                    <button
+                        onClick={() => { dispatch(removeLike(songId)) }}
+                    >
+                        <i className="fa-solid fa-heart-crack" />
+                    </button>
+                    <button
+                        onClick={() => { dispatch(getAllSongLikes(songId)) }}
+                    >Song Likes</button>
+                    <button
+                        onClick={() => { dispatch(getAllUserLikes()) }}
+                    >User Likes</button>
                 </div>
                 :
                 <CommentTesting />

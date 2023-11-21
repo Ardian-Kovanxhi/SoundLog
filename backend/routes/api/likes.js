@@ -34,13 +34,8 @@ router.get('/current', requireAuth, async (req, res) => {
     const Likes = await Like.findAll({
         where: { userId: req.user.id },
         include: [
-            { model: User, attributes: ['id', 'firstName', 'lastName'] },
             {
-                model: Song, attributes: [
-                    'id',
-                    'name',
-                    'content'
-                ]
+                model: Song
             }
         ]
     })
@@ -48,8 +43,8 @@ router.get('/current', requireAuth, async (req, res) => {
 })
 
 //Auth true
-//GET /api/likes/user/:songId | Return single user like of a song
-router.get('/user/:songId', requireAuth, async (req, res) => {
+//GET /api/likes/current/:songId | Return single user like of a song
+router.get('/current/:songId', requireAuth, async (req, res) => {
     const songId = +req.params.songId
     const userId = req.user.id;
 
@@ -78,7 +73,7 @@ router.get('/:songId', async (req, res) => {
     }
 
     const Likes = await Like.findAll({
-        where: { songId: songId },
+        where: { songId },
         // include: [
         //     { model: User, attributes: ['id', 'firstName', 'lastName'] },
         //     {

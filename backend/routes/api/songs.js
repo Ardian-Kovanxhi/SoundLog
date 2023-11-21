@@ -4,7 +4,6 @@ const mm = import('music-metadata');
 const { Song, User, Comment, Like } = require('../../db/models');
 const { requireAuth } = require('../../utils/auth');
 const { singlePublicFileUpload, singleMulterUpload } = require('../../awsS3');
-// const { parseBuffer } = require('music-metadata');
 
 const router = express.Router();
 
@@ -24,11 +23,8 @@ router.get('/', async (req, res) => {
 //auth true
 //POST /api/songs | create a song
 router.post('/', requireAuth, singleMulterUpload('content'), async (req, res) => {
-    // const { name, content, img, description } = req.body;
     const { name, img, description } = req.body;
-    // const content = await singlePublicFileUpload(req.file.content);
     const content = await singlePublicFileUpload(req.file);
-    // console.log(content)
     const audioBuffer = req.file.buffer
     const musicMetadataModule = await import('music-metadata');
     const metadata = await musicMetadataModule.parseBuffer(audioBuffer);
@@ -44,10 +40,8 @@ router.post('/', requireAuth, singleMulterUpload('content'), async (req, res) =>
         description
     })
 
-    // const scoped = await Song.scope("songCreation").findByPk(newSong.id)
 
     res.statusCode = 201;
-    // return res.json(scoped)
     return res.json(newSong)
 });
 
@@ -111,7 +105,7 @@ router.put('/:songId', requireAuth, async (req, res) => {
 })
 
 //Auth true
-// DELETE / api / songs /: songId
+// DELETE /api/songs/:songId
 router.delete('/:songId', requireAuth, async (req, res) => {
     const songId = +req.params.songId;
     const song = await Song.findByPk(songId);

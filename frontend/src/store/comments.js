@@ -22,7 +22,6 @@ const readComment = (comment) => {
 
 
 export const getCommentsBySong = (songId) => async dispatch => {
-    // const response = await csrfFetch(`/api/songs/${songId}/comments`)
     const response = await csrfFetch(`/api/comments/songs/${songId}`)
 
 
@@ -57,7 +56,6 @@ export const createComment = (songId, data) => async dispatch => {
 
     // const { comment } = data
 
-    // const response = await csrfFetch(`/api/songs/${songId}/comments`, {
     const response = await csrfFetch(`/api/comments/songs/${songId}`, {
         method: 'POST',
         header: {
@@ -71,7 +69,7 @@ export const createComment = (songId, data) => async dispatch => {
     })
 
     if (response.ok) {
-        const songRefresh = await csrfFetch(`/api/songs/${songId}/comments`)
+        const songRefresh = await csrfFetch(`/api/comments/songs/${songId}`)
 
         if (songRefresh.ok) {
             const comments = await songRefresh.json();
@@ -112,7 +110,7 @@ export const removeComment = (commentId, songId) => async dispatch => {
     });
 
     if (response.ok) {
-        const newRev = await csrfFetch(`/api/songs/${songId}/comments`)
+        const newRev = await csrfFetch(`/api/comments/songs/${songId}`)
         const comments = await newRev.json();
         dispatch(readComments(comments))
         return comments

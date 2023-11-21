@@ -10,3 +10,29 @@ export const createLike = (songId) => async dispatch => {
         }
     })
 }
+
+export const getLikesByUser = (songId) => async dispatch => {
+    const response = await csrfFetch(`/api/likes/current/${songId}`)
+    const convert = await response.json()
+    console.log(convert.Likes.id)
+}
+
+export const getAllSongLikes = (songId) => async dispatch => {
+    const response = await csrfFetch(`/api/likes/${songId}`);
+    const convert = await response.json();
+    console.log(convert.Likes)
+}
+
+export const getAllUserLikes = () => async dispatch => {
+    const response = await csrfFetch('/api/likes/current')
+    const convert = await response.json();
+    console.log(convert.Likes)
+}
+
+export const removeLike = (songId) => async dispatch => {
+    const response = await csrfFetch(`/api/likes/current/${songId}`)
+    const convert = await response.json()
+    const deleter = await csrfFetch(`/api/likes/${convert.Likes.id}`, {
+        method: 'DELETE'
+    });
+}
