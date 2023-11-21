@@ -26,6 +26,51 @@ router.get('/current', requireAuth, async (req, res) => {
     res.json({ Comments })
 })
 
+//Auth false
+//GET /api/comments/songs/:songId | Get comments of a song
+router.get('/songs/:songId', async (req, res) => {
+    const songId = +req.params.songId;
+
+    const song = await Song.findByPk(songId);
+
+    if (!song) {
+        res.statusCode = 404;
+        return res.json({ message: "Song couldn't be found", statusCode: 404 })
+    }
+
+    const comments = await Comment.findAll({
+        where: { songId },
+        include: [
+            { model: User, attributes: ['id', 'username'] }
+        ]
+    })
+
+    return res.json({ comments });
+})
+
+//Auth true
+//POST /api/comments/songs/:songId | Make a comment for a song
+router.post('/songs/:songId', requireAuth, async (req, res) => {
+    const { comment } = req.body;
+    const userId = req.user.id;
+    const songId = +req.params.songId
+    const song = await Song.findByPk(songId);
+
+    if (!song) {
+        res.statusCode = 404;
+        return res.json({ message: "Song couldn't be found", statusCode: 404 });
+    }
+
+
+    const newComment = await Comment.create({
+        userId,
+        songId: +req.params.songId,
+        comment
+    })
+
+    res.statusCode = 201;
+    res.json(newComment);
+})
 
 //Auth true
 //GET /api/comments/:commentId | Read comment by id
