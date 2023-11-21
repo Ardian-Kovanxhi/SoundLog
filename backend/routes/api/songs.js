@@ -180,29 +180,6 @@ router.post('/:songId/comments', requireAuth, async (req, res) => {
 
 
 //Auth true
-//POST /api/songs/:songId/likes | Make a Like for a song
-router.post('/:songId/likes', requireAuth, async (req, res) => {
-    const userId = req.user.id;
-    const songId = +req.params.songId
-    const song = await Song.findByPk(songId);
-
-    if (!song) {
-        res.statusCode = 404;
-        return res.json({ message: "Song couldn't be found", statusCode: 404 });
-    }
-
-
-    const newLike = await Like.create({
-        userId,
-        songId: +req.params.songId
-    })
-
-    res.statusCode = 201;
-    res.json(newLike);
-})
-
-
-//Auth true
 // DELETE / api / songs /: songId
 router.delete('/:songId', requireAuth, async (req, res) => {
     const songId = +req.params.songId;

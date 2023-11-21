@@ -27,6 +27,18 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Like',
+    defaultScope: {
+      attributes: {
+        exclude: ['userId', 'songId', 'createdAt', 'updatedAt']
+      }
+    },
+    scopes: {
+      allUserLikes: {
+        attributes: {
+          exclude: ['id', 'userId']
+        }
+      }
+    }
   });
   return Like;
 };

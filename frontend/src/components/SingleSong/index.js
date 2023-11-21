@@ -5,7 +5,7 @@ import { getCommentsBySong } from "../../store/comments";
 import { getSong, playSong } from '../../store/songs';
 import { getPaused, getTime, getRawTime } from '../../store/audioPlayerState';
 import { getLoad } from '../../store/global';
-// import { createLike, getLikesBySong, getLikesByUser, removeLike } from '../../store/likes';
+import { createLike, getLikesBySong, getLikesByUser, removeLike } from '../../store/likes';
 import CommentTesting from '../ErrorPage';
 import BtnMenu from '../DropdownMenus/edit-deleteMenu';
 import SongComments from '../SongComments'
@@ -249,6 +249,9 @@ export default function SingleSong() {
 
                     <SongComments />
 
+                    <button
+                        onClick={() => { dispatch(createLike(songId)) }}
+                    >Like</button>
                 </div>
                 :
                 <CommentTesting />
