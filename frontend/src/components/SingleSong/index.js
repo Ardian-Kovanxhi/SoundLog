@@ -6,6 +6,8 @@ import { getSong, playSong } from '../../store/songs';
 import { getPaused, getTime, getRawTime } from '../../store/audioPlayerState';
 import { getLoad } from '../../store/global';
 import { createLike, getAllSongLikes, getAllUserLikes, getLikesByUser, removeLike } from '../../store/likes';
+import OpenModalMenuItem from '../OpenModalButton';
+import LoginFormModal from '../LoginFormModal';
 import CommentTesting from '../ErrorPage';
 import BtnMenu from '../DropdownMenus/edit-deleteMenu';
 import SongComments from '../SongComments'
@@ -144,16 +146,60 @@ export default function SingleSong() {
                                                     <div className={`song-name-div${pageState ? '' : ' night'}`}>
                                                         {Song.name}
                                                     </div>
-
-                                                    {User ? Song.userId === User.id
-                                                        || User.id === 1
-                                                        ?
-                                                        <div className='edit-delete-buttons-div'>
-                                                            <BtnMenu />
-                                                        </div>
-                                                        :
-                                                        null : null
-                                                    }
+                                                    <>
+                                                        {User ?
+                                                            <div>
+                                                                {like ?
+                                                                    <button
+                                                                        className={`likeBtn${pageState ? '' : ' night'}`}
+                                                                        onClick={async () => {
+                                                                            await dispatch(removeLike(songId))
+                                                                            await dispatch(getLikesByUser(songId))
+                                                                            likeState.like ? setLike(true) : setLike(false)
+                                                                        }}
+                                                                        onMouseEnter={() => setHover(true)}
+                                                                        onMouseLeave={() => setHover(false)}
+                                                                    >
+                                                                        <i className={`fa-solid ${hovered ? 'fa-heart-crack' : 'fa-heart'} fa-2xl`} />
+                                                                    </button>
+                                                                    :
+                                                                    <button
+                                                                        className={`likeBtn${pageState ? '' : ' night'}`}
+                                                                        onClick={async () => {
+                                                                            await dispatch(createLike(songId))
+                                                                            await dispatch(getLikesByUser(songId))
+                                                                            likeState.like ? setLike(true) : setLike(false)
+                                                                        }}
+                                                                        onMouseEnter={() => setHover(true)}
+                                                                        onMouseLeave={() => setHover(false)}
+                                                                    >
+                                                                        <i className={`${hovered ? 'fa-solid' : 'fa-regular'} fa-heart fa-2xl`} />
+                                                                    </button>
+                                                                }
+                                                                {
+                                                                    Song.userId === User.id || User.id === 1
+                                                                        ?
+                                                                        <div className='edit-delete-buttons-div'>
+                                                                            <BtnMenu />
+                                                                        </div>
+                                                                        :
+                                                                        null
+                                                                }
+                                                            </div>
+                                                            :
+                                                            <button
+                                                                className={`likeBtn${pageState ? '' : ' night'}`}
+                                                                onMouseEnter={() => setHover(true)}
+                                                                onMouseLeave={() => setHover(false)}
+                                                            >
+                                                                <OpenModalMenuItem
+                                                                    buttonText={<i className={`${hovered ? 'fa-solid' : 'fa-regular'} fa-heart fa-2xl`} />}
+                                                                    modalComponent={<LoginFormModal />}
+                                                                />
+                                                                {/* <i className={`${hovered ? 'fa-solid' : 'fa-regular'} fa-heart fa-2xl`} /> */}
+                                                            </button>
+                                                        }
+                                                    </>
                                                 </div>
 
                                                 <div className={`song-uploader-div${pageState ? '' : ' night'}`}>
@@ -172,41 +218,6 @@ export default function SingleSong() {
                                 >
                                     {Song.description}
                                 </div>
-
-                                {/* {currSong.id === Song.id ?
-
-                                    paused ?
-
-                                        <button
-                                            className='single-univ-button single'
-                                            // onClick={handlePlayClick}
-                                            onClick={() => { dispatch(getPaused(false)) }}
-                                        >
-
-                                            <i className="fa-solid fa-play" />
-
-                                        </button> :
-
-                                        <button
-                                            className='single-univ-button  single'
-                                            // onClick={handlePauseClick}
-                                            onClick={() => { dispatch(getPaused(true)) }}
-                                        >
-
-                                            <i className="fa-solid fa-pause" />
-
-                                        </button> :
-
-                                    <button
-                                        className='single-univ-button  single'
-                                        onClick={() => dispatch(playSong(Song.id))}
-                                    >
-
-                                        <i className="fa-solid fa-play" />
-
-                                    </button>
-                                } */}
-                                {/* {`${currSong.id === Song.id ? songTime : '00:00'}/${time}`} */}
 
                                 <ProgressBar onSeek={handleSeek} />
 
@@ -245,40 +256,16 @@ export default function SingleSong() {
                     </div>
 
                     <SongComments />
-
-                    {
-                        like ?
+                    {/* {User ? User.id === 1 ?
+                        <>
                             <button
-                                onClick={async () => {
-                                    await dispatch(removeLike(songId))
-                                    await dispatch(getLikesByUser(songId))
-                                    likeState.like ? setLike(true) : setLike(false)
-                                }}
-                                onMouseEnter={() => setHover(true)}
-                                onMouseLeave={() => setHover(false)}
-                            >
-                                <i className={`fa-solid ${hovered ? 'fa-heart-crack' : 'fa-heart'} fa-2xl`} />
-                            </button>
-                            :
+                                onClick={() => { dispatch(getAllSongLikes(songId)) }}
+                            >Song Likes</button>
                             <button
-                                onClick={async () => {
-                                    await dispatch(createLike(songId))
-                                    await dispatch(getLikesByUser(songId))
-                                    likeState.like ? setLike(true) : setLike(false)
-                                }}
-                                onMouseEnter={() => setHover(true)}
-                                onMouseLeave={() => setHover(false)}
-                            >
-                                <i className={`${hovered ? 'fa-solid' : 'fa-regular'} fa-heart fa-2xl`} />
-                                {/* <i className="fa-regular fa-heart" /> */}
-                            </button>
-                    }
-                    <button
-                        onClick={() => { dispatch(getAllSongLikes(songId)) }}
-                    >Song Likes</button>
-                    <button
-                        onClick={() => { dispatch(getAllUserLikes()) }}
-                    >User Likes</button>
+                                onClick={() => { dispatch(getAllUserLikes()) }}
+                            >User Likes</button>
+                        </> : null : null
+                    } */}
                 </div>
                 :
                 <CommentTesting />
