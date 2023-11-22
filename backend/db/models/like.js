@@ -23,7 +23,11 @@ module.exports = (sequelize, DataTypes) => {
     songId: {
       type: DataTypes.INTEGER,
       allowNull: false
-    }
+    },
+    userSongHash: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
   }, {
     sequelize,
     modelName: 'Like',

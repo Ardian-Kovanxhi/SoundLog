@@ -21,7 +21,8 @@ router.post('/:songId', requireAuth, async (req, res) => {
 
     const newLike = await Like.create({
         userId,
-        songId: +req.params.songId
+        songId: +req.params.songId,
+        userSongHash: `${userId}-${songId}`
     })
 
     res.statusCode = 201;
