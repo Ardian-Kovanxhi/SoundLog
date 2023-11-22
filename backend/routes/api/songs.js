@@ -4,7 +4,6 @@ const mm = import('music-metadata');
 const { Song, User, Comment, Like } = require('../../db/models');
 const { requireAuth } = require('../../utils/auth');
 const { singlePublicFileUpload, singleMulterUpload } = require('../../awsS3');
-// const { parseBuffer } = require('music-metadata');
 
 const router = express.Router();
 
@@ -21,38 +20,30 @@ router.get('/', async (req, res) => {
     res.json(songs);
 });
 
+//auth true
 //POST /api/songs | create a song
-router.post(
-    '/',
-    requireAuth,
-    singleMulterUpload('content'),
-    async (req, res) => {
-        // const { name, content, img, description } = req.body;
-        const { name, img, description } = req.body;
-        // const content = await singlePublicFileUpload(req.file.content);
-        const content = await singlePublicFileUpload(req.file);
-        // console.log(content)
-        const audioBuffer = req.file.buffer
-        const musicMetadataModule = await import('music-metadata');
-        const metadata = await musicMetadataModule.parseBuffer(audioBuffer);
-        const duration = Math.floor(metadata.format.duration)
-        const userIdGrabber = req.user.id;
+router.post('/', requireAuth, singleMulterUpload('content'), async (req, res) => {
+    const { name, img, description } = req.body;
+    const content = await singlePublicFileUpload(req.file);
+    const audioBuffer = req.file.buffer
+    const musicMetadataModule = await import('music-metadata');
+    const metadata = await musicMetadataModule.parseBuffer(audioBuffer);
+    const duration = Math.floor(metadata.format.duration)
+    const userIdGrabber = req.user.id;
 
-        const newSong = await Song.create({
-            userId: userIdGrabber,
-            name,
-            content,
-            duration,
-            img,
-            description
-        })
+    const newSong = await Song.create({
+        userId: userIdGrabber,
+        name,
+        content,
+        duration,
+        img,
+        description
+    })
 
-        // const scoped = await Song.scope("songCreation").findByPk(newSong.id)
 
-        res.statusCode = 201;
-        // return res.json(scoped)
-        return res.json(newSong)
-    });
+    res.statusCode = 201;
+    return res.json(newSong)
+});
 
 
 
@@ -113,56 +104,8 @@ router.put('/:songId', requireAuth, async (req, res) => {
     return res.json(song);
 })
 
-
-//Auth false
-//GET /api/songs/:songId/comments | Get comments of a song
-router.get('/:songId/comments', async (req, res) => {
-    const songId = +req.params.songId;
-
-    const song = await Song.findByPk(songId);
-
-    if (!song) {
-        res.statusCode = 404;
-        return res.json({ message: "Song couldn't be found", statusCode: 404 })
-    }
-
-    const comments = await Comment.findAll({
-        where: { songId },
-        include: [
-            { model: User, attributes: ['id', 'username'] }
-        ]
-    })
-
-    return res.json({ comments });
-})
-
 //Auth true
-//POST /api/songs/:songId/comments | Make a comment for a song
-router.post('/:songId/comments', requireAuth, async (req, res) => {
-    const { comment } = req.body;
-    const userId = req.user.id;
-    const songId = +req.params.songId
-    const song = await Song.findByPk(songId);
-
-    if (!song) {
-        res.statusCode = 404;
-        return res.json({ message: "Song couldn't be found", statusCode: 404 });
-    }
-
-
-    const newComment = await Comment.create({
-        userId,
-        songId: +req.params.songId,
-        comment
-    })
-
-    res.statusCode = 201;
-    res.json(newComment);
-})
-
-
-//Auth true
-// DELETE / api / songs /: songId
+// DELETE /api/songs/:songId
 router.delete('/:songId', requireAuth, async (req, res) => {
     const songId = +req.params.songId;
     const song = await Song.findByPk(songId);

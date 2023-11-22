@@ -155,12 +155,34 @@
     height: 80px;
 }
 
+.likeBtn {
+    position: absolute;
+    top: 50px;
+    right: 0;
+    padding: 10px 5px;
+    margin-right: 4px;
+    background-color: transparent;
+    border: 0px;
+    color: black;
+    border-radius: 100%;
+    transition: color .5s;
+}
+
+.likeBtn>button {
+    background-color: transparent;
+    border: 0px;
+    padding: 0px;
+    color: black;
+    transition: color .5s;
+}
+
 /* ↓↓↓ Dropdown container ↓↓↓ */
 
 .edit-delete-buttons-div {
     position: absolute;
-    /* top: 0; */
+    top: 80px;
     right: 0;
+    padding-right: 7px;
     /* margin-right: 510px; */
     /* margin-top: 10px; */
 }
@@ -191,4 +213,13 @@
 
 .song-uploader-div.night {
     background-color: rgb(0, 0, 22);
+}
+
+/* .likeBtn.night { */
+.likeBtn.night {
+    color: white;
+}
+
+.likeBtn.night>button {
+    color: white;
 }
