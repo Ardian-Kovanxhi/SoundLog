@@ -37,11 +37,9 @@ export default function SingleSong() {
     const paused = useSelector(state => state.audioState.pauseState);
     const songTime = useSelector(state => state.audioState.runtimeState.str);
     const pageState = useSelector(state => state.global.lightState);
-    let disabled = false;
+    const likeState = useSelector(state => state.likes.singleLike);
     let Uploader = '';
     let time = '';
-
-
 
     const handleSeek = (seekTime) => {
         if (currSong.id !== Song.id) {
@@ -53,10 +51,6 @@ export default function SingleSong() {
         dispatch(getRawTime(newSeekTime))
     };
 
-    if (User) {
-        disabled = true
-    }
-
     if (Song.User) {
         Uploader = Song.User.username
     }
@@ -67,6 +61,9 @@ export default function SingleSong() {
 
         time = `${mins < 10 ? `0${mins}` : mins}:${secs < 10 ? `0${secs}` : secs}`
     }
+
+    const [hovered, setHover] = useState(false)
+    const [like, setLike] = useState(false)
 
     return (
         <>
@@ -249,20 +246,33 @@ export default function SingleSong() {
 
                     <SongComments />
 
-                    <button
-                        onClick={() => { dispatch(createLike(songId)) }}
-                    >
-                        <i className="fa-solid fa-heart" />
-                        <i className="fa-regular fa-heart" />
-                    </button>
-                    <button
-                        onClick={() => { dispatch(getLikesByUser(songId)) }}
-                    >Get Like</button>
-                    <button
-                        onClick={() => { dispatch(removeLike(songId)) }}
-                    >
-                        <i className="fa-solid fa-heart-crack" />
-                    </button>
+                    {
+                        like ?
+                            <button
+                                onClick={async () => {
+                                    await dispatch(removeLike(songId))
+                                    await dispatch(getLikesByUser(songId))
+                                    likeState.like ? setLike(true) : setLike(false)
+                                }}
+                                onMouseEnter={() => setHover(true)}
+                                onMouseLeave={() => setHover(false)}
+                            >
+                                <i className={`fa-solid ${hovered ? 'fa-heart-crack' : 'fa-heart'} fa-2xl`} />
+                            </button>
+                            :
+                            <button
+                                onClick={async () => {
+                                    await dispatch(createLike(songId))
+                                    await dispatch(getLikesByUser(songId))
+                                    likeState.like ? setLike(true) : setLike(false)
+                                }}
+                                onMouseEnter={() => setHover(true)}
+                                onMouseLeave={() => setHover(false)}
+                            >
+                                <i className={`${hovered ? 'fa-solid' : 'fa-regular'} fa-heart fa-2xl`} />
+                                {/* <i className="fa-regular fa-heart" /> */}
+                            </button>
+                    }
                     <button
                         onClick={() => { dispatch(getAllSongLikes(songId)) }}
                     >Song Likes</button>

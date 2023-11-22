@@ -35,8 +35,6 @@ export default function SelectedSong() {
         history.push(`/songs/${singleId}`)
     }
 
-    // const btnClass = 'univ-play-pause-button hovered'
-
     const songArr = Object.values(Songs)
 
     return (
