@@ -43,7 +43,6 @@ export const getLikesByUser = (songId) => async dispatch => {
     if (response.ok) {
         const convert = await response.json();
         dispatch(readLike(convert.Likes));
-        console.log(convert.Likes)
         return convert
     }
 }
@@ -53,7 +52,7 @@ export const getAllSongLikes = (songId) => async dispatch => {
 
     if (response.ok) {
         const likes = await response.json();
-        dispatch(readSongLikes(likes));
+        dispatch(readSongLikes(likes.Likes));
         return likes;
     }
 }
@@ -80,6 +79,11 @@ const initialState = { songLikes: {}, singleLike: {}, UserLikes: {} };
 export default function likesReducer(state = initialState, action) {
     let newState;
     switch (action.type) {
+        case READ_SONG_LIKES: {
+            newState = { ...state, songLikes: {} };
+            action.likes.forEach(like => newState.songLikes[like.id] = like);
+            return newState
+        }
         case READ_LIKE: {
             newState = { ...state };
             newState.singleLike.like = action.like

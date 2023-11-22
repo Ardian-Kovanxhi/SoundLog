@@ -23,15 +23,14 @@ export default function SingleSong() {
     async function fetchData() {
         await dispatch(getSong(songId))
         await dispatch(getCommentsBySong(songId))
+        await dispatch(getLikesByUser(songId));
+        likeState.like ? setLike(true) : setLike(false)
     }
 
-    useEffect(() => {
-        dispatch(getLoad(true))
-        fetchData()
-        dispatch(getLoad(false))
-        // dispatch(getLikesBySong(songId))
-        // dispatch(getLikesByUser())
-    }, [])
+    async function fetchUserLike() {
+        await dispatch(getLikesByUser(songId));
+        likeState.like ? setLike(true) : setLike(false)
+    }
 
     const Song = useSelector(state => state.songs.singleSong);
     const currSong = useSelector(state => state.songs.playingSong);
@@ -42,6 +41,19 @@ export default function SingleSong() {
     const likeState = useSelector(state => state.likes.singleLike);
     let Uploader = '';
     let time = '';
+
+    useEffect(() => {
+        dispatch(getLoad(true))
+        fetchData()
+        dispatch(getLoad(false))
+        // dispatch(getLikesBySong(songId))
+        // dispatch(getLikesByUser())
+    }, [])
+
+
+    useEffect(() => {
+        fetchUserLike();
+    }, [User])
 
     const handleSeek = (seekTime) => {
         if (currSong.id !== Song.id) {
@@ -256,7 +268,7 @@ export default function SingleSong() {
                     </div>
 
                     <SongComments />
-                    {/* {User ? User.id === 1 ?
+                    {User ? User.id === 1 ?
                         <>
                             <button
                                 onClick={() => { dispatch(getAllSongLikes(songId)) }}
@@ -265,7 +277,7 @@ export default function SingleSong() {
                                 onClick={() => { dispatch(getAllUserLikes()) }}
                             >User Likes</button>
                         </> : null : null
-                    } */}
+                    }
                 </div>
                 :
                 <CommentTesting />
