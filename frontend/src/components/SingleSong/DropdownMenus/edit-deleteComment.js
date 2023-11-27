@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux"
 import { useParams, useHistory } from 'react-router-dom'
-import OpenModalMenuItem from '../../OpenModalButton';
-import CommentEditModal from "../../CommentEditModal";
+import OpenModalMenuItem from '../../Modals/OpenModalButton';
+import CommentEditModal from "../../Modals/CommentEditModal";
 import { removeComment } from "../../../store/comments";
 import { useEffect, useRef, useState } from "react";
 import './DropdownStyle.css'

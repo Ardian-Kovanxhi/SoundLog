@@ -2,8 +2,8 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { createComment, getCommentsBySong } from '../../../store/comments';
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
-import OpenModalMenuItem from '../../OpenModalButton';
-import LoginFormModal from '../../LoginFormModal';
+import OpenModalMenuItem from '../../Modals/OpenModalButton';
+import LoginFormModal from '../../Modals/LoginFormModal';
 import CommentBtnMenu from '../DropdownMenus/edit-deleteComment';
 import './Comments.css'
 

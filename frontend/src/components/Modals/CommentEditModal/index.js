@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useHistory, useParams } from 'react-router-dom'
-import { editComment, getCommentById, getCommentsBySong } from '../../store/comments';
-import { useModal } from '../../context/Modal'
+import { editComment, getCommentById, getCommentsBySong } from '../../../store/comments';
+import { useModal } from '../../../context/Modal'
 import './CommentEditModal.css'
 
 export default function CommentEditModal({ commentId, songId }) {

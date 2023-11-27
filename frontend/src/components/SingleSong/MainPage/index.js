@@ -5,14 +5,13 @@ import { getCommentsBySong } from "../../../store/comments";
 import { getSong, playSong } from '../../../store/songs';
 import { getPaused, getTime, getRawTime } from '../../../store/audioPlayerState';
 import { getLoad } from '../../../store/global';
-import { createLike, getAllSongLikes, getAllUserLikes, getLikesByUser, removeLike } from '../../../store/likes';
-import OpenModalMenuItem from '../../OpenModalButton';
-import LoginFormModal from '../../LoginFormModal';
+import { getAllSongLikes, getAllUserLikes } from '../../../store/likes';
 import CommentTesting from '../../ErrorPage';
 import BtnMenu from '../DropdownMenus/edit-deleteMenu';
 import SongComments from '../SongComments'
-import './SingleSong.css'
 import ProgressBar from '../ProgressBar';
+import './SingleSong.css'
+import LikeButton from '../LikeButton';
 
 
 
@@ -23,13 +22,6 @@ export default function SingleSong() {
     async function fetchData() {
         await dispatch(getSong(songId))
         await dispatch(getCommentsBySong(songId))
-        await dispatch(getLikesByUser(songId));
-        likeState.like ? setLike(true) : setLike(false)
-    }
-
-    async function fetchUserLike() {
-        await dispatch(getLikesByUser(songId));
-        likeState.like ? setLike(true) : setLike(false)
     }
 
     const Song = useSelector(state => state.songs.singleSong);
@@ -38,7 +30,6 @@ export default function SingleSong() {
     const paused = useSelector(state => state.audioState.pauseState);
     const songTime = useSelector(state => state.audioState.runtimeState.str);
     const pageState = useSelector(state => state.global.lightState);
-    const likeState = useSelector(state => state.likes.singleLike);
     let Uploader = '';
     let time = '';
 
@@ -46,14 +37,7 @@ export default function SingleSong() {
         dispatch(getLoad(true))
         fetchData()
         dispatch(getLoad(false))
-        // dispatch(getLikesBySong(songId))
-        // dispatch(getLikesByUser())
     }, [])
-
-
-    useEffect(() => {
-        fetchUserLike();
-    }, [User])
 
     const handleSeek = (seekTime) => {
         if (currSong.id !== Song.id) {
@@ -75,9 +59,6 @@ export default function SingleSong() {
 
         time = `${mins < 10 ? `0${mins}` : mins}:${secs < 10 ? `0${secs}` : secs}`
     }
-
-    const [hovered, setHover] = useState(false)
-    const [like, setLike] = useState(false)
 
     return (
         <>
@@ -158,60 +139,20 @@ export default function SingleSong() {
                                                     <div className={`song-name-div${pageState ? '' : ' night'}`}>
                                                         {Song.name}
                                                     </div>
-                                                    <>
-                                                        {User ?
-                                                            <div>
-                                                                {like ?
-                                                                    <button
-                                                                        className={`likeBtn${pageState ? '' : ' night'}`}
-                                                                        onClick={async () => {
-                                                                            await dispatch(removeLike(songId))
-                                                                            await dispatch(getLikesByUser(songId))
-                                                                            likeState.like ? setLike(true) : setLike(false)
-                                                                        }}
-                                                                        onMouseEnter={() => setHover(true)}
-                                                                        onMouseLeave={() => setHover(false)}
-                                                                    >
-                                                                        <i className={`fa-solid ${hovered ? 'fa-heart-crack' : 'fa-heart'} fa-2xl`} />
-                                                                    </button>
-                                                                    :
-                                                                    <button
-                                                                        className={`likeBtn${pageState ? '' : ' night'}`}
-                                                                        onClick={async () => {
-                                                                            await dispatch(createLike(songId))
-                                                                            await dispatch(getLikesByUser(songId))
-                                                                            likeState.like ? setLike(true) : setLike(false)
-                                                                        }}
-                                                                        onMouseEnter={() => setHover(true)}
-                                                                        onMouseLeave={() => setHover(false)}
-                                                                    >
-                                                                        <i className={`${hovered ? 'fa-solid' : 'fa-regular'} fa-heart fa-2xl`} />
-                                                                    </button>
-                                                                }
-                                                                {
-                                                                    Song.userId === User.id || User.id === 1
-                                                                        ?
-                                                                        <div className='edit-delete-buttons-div'>
-                                                                            <BtnMenu />
-                                                                        </div>
-                                                                        :
-                                                                        null
-                                                                }
-                                                            </div>
-                                                            :
-                                                            <button
-                                                                className={`likeBtn${pageState ? '' : ' night'}`}
-                                                                onMouseEnter={() => setHover(true)}
-                                                                onMouseLeave={() => setHover(false)}
-                                                            >
-                                                                <OpenModalMenuItem
-                                                                    buttonText={<i className={`${hovered ? 'fa-solid' : 'fa-regular'} fa-heart fa-2xl`} />}
-                                                                    modalComponent={<LoginFormModal />}
-                                                                />
-                                                                {/* <i className={`${hovered ? 'fa-solid' : 'fa-regular'} fa-heart fa-2xl`} /> */}
-                                                            </button>
-                                                        }
-                                                    </>
+
+                                                    <LikeButton />
+
+                                                    {
+                                                        User ?
+                                                            Song.userId === User.id || User.id === 1
+                                                                ?
+                                                                <div className='edit-delete-buttons-div'>
+                                                                    <BtnMenu />
+                                                                </div>
+                                                                :
+                                                                null : null
+                                                    }
+
                                                 </div>
 
                                                 <div className={`song-uploader-div${pageState ? '' : ' night'}`}>
@@ -237,7 +178,7 @@ export default function SingleSong() {
                                     User ?
                                         User.id === 1 ?
                                             <div>{Song.content}</div> :
-                                            '' : ''
+                                            null : null
 
                                 }
 

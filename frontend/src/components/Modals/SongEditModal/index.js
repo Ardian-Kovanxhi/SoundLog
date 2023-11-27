@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import { getSong, editSong } from '../../store/songs'
+import { getSong, editSong } from '../../../store/songs'
 import { useSelector, useDispatch } from 'react-redux'
 import { useHistory, useParams } from 'react-router-dom'
-import { useModal } from "../../context/Modal";
+import { useModal } from "../../../context/Modal";
 import './SongEditPage.css'
 
 //
@@ -10,7 +10,7 @@ import './SongEditPage.css'
 //Didn't change file name to avoid breaking imports
 //
 
-export default function SongEditPage() {
+export default function SongEditModal() {
     const dispatch = useDispatch();
     const user = useSelector((state) => state.session.user)
     const sessionSong = useSelector((state) => state.songs.singleSong)
