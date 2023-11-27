@@ -1,13 +1,13 @@
 import React, { useRef, useEffect } from 'react';
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import { getPaused, getTime, getRawTime } from '../../store/audioPlayerState';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
+import { getPaused, getTime, getRawTime } from '../../../store/audioPlayerState';
+import { getSong } from '../../../store/songs';
+import { getCommentsBySong } from '../../../store/comments';
 import './AudioControls.css'
-import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
-import { getSong } from '../../store/songs';
-import { getCommentsBySong } from '../../store/comments';
 
 
 function AudioControls() {

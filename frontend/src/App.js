@@ -2,22 +2,19 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Switch, Route } from "react-router-dom";
 import * as sessionActions from "./store/session";
-import { getLoad } from "./store/global";
 import Cookies from "js-cookie";
 import nightImage from './images/forest-night.jpg'
 import dayImage from './images/forest-day.jpg'
 import nightLoad from './images/dark-mode-load.gif'
 import dayLoad from './images/light-mode-load.gif'
-import Navigation from "./components/Navigation";
-import SelectedSong from "./components/SongSplash";
+import Navigation from "./components/Global/Navigation";
+import SongSplash from "./components/SongSplash";
 import SongFormPage from "./components/SongFormPage";
 import ErrorPage from "./components/ErrorPage";
 import SingleSong from "./components/SingleSong/MainPage";
-import SongEditModal from "./components/Modals/SongEditModal";
-import CommentEditPage from "./components/CommentEditForm";
-import AudioControls from './components/AudioControls'
+import AudioControls from './components/Global/AudioControls'
 // import Likes from "./components/Likes";
-import Playlists from "./components/Playlists";
+import Playlists from "./components/PlaylistsPage";
 
 
 function App() {
@@ -94,13 +91,11 @@ function App() {
         isLoaded && (
           <>
             <Switch>
-              <Route path={'/songs/:songId/comments/:commentId/edit'} component={CommentEditPage} />
-              <Route path={'/songs/:songId/edit'} component={SongEditModal} />
               <Route path={'/songs/:songId'} component={SingleSong} />
               <Route path={'/songs'} component={SongFormPage} />
               {/* <Route path={'/likes'} component={Likes} /> */}
               <Route path={'/playlists'} component={Playlists} />
-              <Route exact path={'/'} component={SelectedSong} />
+              <Route exact path={'/'} component={SongSplash} />
               <Route path={'*'} component={ErrorPage} />
             </Switch>
           </>

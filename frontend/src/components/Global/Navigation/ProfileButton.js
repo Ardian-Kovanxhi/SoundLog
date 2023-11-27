@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import * as sessionActions from '../../store/session';
+import * as sessionActions from '../../../store/session';
 import OpenModalMenuItem from './OpenModalMenuItem';
-import LoginFormModal from '../Modals/LoginFormModal';
-import SignupFormModal from '../Modals/SignupFormModal';
+import LoginFormModal from '../../Modals/LoginFormModal';
+import SignupFormModal from '../../Modals/SignupFormModal';
 
 function ProfileButton({ user }) {
     const dispatch = useDispatch();

@@ -2,10 +2,10 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
-import LoginFormModal from '../Modals/LoginFormModal';
-import OpenModalMenuItem from '../Modals/OpenModalButton';
-import { getLight, getLoad } from "../../store/global";
-import homeBarLogo from '../../images/log3.png'
+import LoginFormModal from '../../Modals/LoginFormModal';
+import OpenModalMenuItem from '../../Modals/OpenModalButton';
+import { getLight, getLoad } from "../../../store/global";
+import homeBarLogo from '../../../images/log3.png'
 import './Navigation.css';
 
 function Navigation({ isLoaded }) {
