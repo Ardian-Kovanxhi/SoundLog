@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
-import { getCommentsBySong } from "../../store/comments";
-import { getSong, playSong } from '../../store/songs';
-import { getPaused, getTime, getRawTime } from '../../store/audioPlayerState';
-import { getLoad } from '../../store/global';
-import { createLike, getAllSongLikes, getAllUserLikes, getLikesByUser, removeLike } from '../../store/likes';
-import OpenModalMenuItem from '../OpenModalButton';
-import LoginFormModal from '../LoginFormModal';
-import CommentTesting from '../ErrorPage';
+import { getCommentsBySong } from "../../../store/comments";
+import { getSong, playSong } from '../../../store/songs';
+import { getPaused, getTime, getRawTime } from '../../../store/audioPlayerState';
+import { getLoad } from '../../../store/global';
+import { createLike, getAllSongLikes, getAllUserLikes, getLikesByUser, removeLike } from '../../../store/likes';
+import OpenModalMenuItem from '../../OpenModalButton';
+import LoginFormModal from '../../LoginFormModal';
+import CommentTesting from '../../ErrorPage';
 import BtnMenu from '../DropdownMenus/edit-deleteMenu';
 import SongComments from '../SongComments'
 import './SingleSong.css'

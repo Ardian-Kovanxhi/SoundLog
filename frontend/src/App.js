@@ -12,11 +12,11 @@ import Navigation from "./components/Navigation";
 import SelectedSong from "./components/SongSplash";
 import SongFormPage from "./components/SongFormPage";
 import ErrorPage from "./components/ErrorPage";
-import SingleSong from "./components/SingleSong";
+import SingleSong from "./components/SingleSong/MainPage";
 import SongEditPage from "./components/SongEditModal";
 import CommentEditPage from "./components/CommentEditForm";
 import AudioControls from './components/AudioControls'
-import Likes from "./components/Likes";
+// import Likes from "./components/Likes";
 import Playlists from "./components/Playlists";
 
 
@@ -98,7 +98,7 @@ function App() {
               <Route path={'/songs/:songId/edit'} component={SongEditPage} />
               <Route path={'/songs/:songId'} component={SingleSong} />
               <Route path={'/songs'} component={SongFormPage} />
-              <Route path={'/likes'} component={Likes} />
+              {/* <Route path={'/likes'} component={Likes} /> */}
               <Route path={'/playlists'} component={Playlists} />
               <Route exact path={'/'} component={SelectedSong} />
               <Route path={'*'} component={ErrorPage} />

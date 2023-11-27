@@ -1,8 +1,8 @@
 import { useDispatch, useSelector } from "react-redux"
-import { clearPlayingSong, removeSong } from "../../store/songs"
+import { clearPlayingSong, removeSong } from "../../../store/songs"
 import { useParams, useHistory } from 'react-router-dom'
-import OpenModalMenuItem from '../OpenModalButton';
-import SongEditPage from "../SongEditModal";
+import OpenModalMenuItem from '../../OpenModalButton';
+import SongEditPage from "../../SongEditModal";
 import { useEffect, useRef, useState } from "react";
 import './DropdownStyle.css'
 
