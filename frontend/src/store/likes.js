@@ -74,13 +74,14 @@ export const removeLike = (songId) => async dispatch => {
     });
 }
 
-const initialState = { songLikes: {}, singleLike: {}, UserLikes: {} };
+const initialState = { songLikes: {}, singleLike: {}, UserLikes: {}, likeCount: 0 };
 
 export default function likesReducer(state = initialState, action) {
     let newState;
     switch (action.type) {
         case READ_SONG_LIKES: {
-            newState = { ...state, songLikes: {} };
+            newState = { ...state, songLikes: {}, likeCount: 0 };
+            newState.likeCount = action.likes.length
             action.likes.forEach(like => newState.songLikes[like.id] = like);
             return newState
         }

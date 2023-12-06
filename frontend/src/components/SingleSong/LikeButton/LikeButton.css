@@ -1,0 +1,48 @@
+.likeBtn {
+    position: absolute;
+    top: 50px;
+    right: 0;
+    padding: 10px 5px;
+    margin-right: 4px;
+    background-color: transparent;
+    border: 0px;
+    color: black;
+    border-radius: 100%;
+    transition: color .5s;
+}
+
+.likeBtn>button {
+    background-color: transparent;
+    border: 0px;
+    padding: 0px;
+    color: black;
+    transition: color .5s;
+}
+
+.likeCount {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    width: 45px;
+    top: 85px;
+    right: 0px;
+    font-size: large;
+    font-weight: bolder;
+    color: black;
+    transition: color .5s;
+}
+
+
+/*↓↓↓ NIGHT MODE ↓↓↓*/
+
+.likeBtn.night {
+    color: white;
+}
+
+.likeBtn.night>button {
+    color: white;
+}
+
+.likeCount.night {
+    color: white;
+}

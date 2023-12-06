@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 import OpenModalMenuItem from '../../Modals/OpenModalButton';
 import LoginFormModal from '../../Modals/LoginFormModal';
 import CommentBtnMenu from '../DropdownMenus/edit-deleteComment';
+import userImg from '../../../images/user-img.png'
 import './Comments.css'
 
 
@@ -79,7 +80,7 @@ export default function SongComments() {
 
                 {commentArr.map(el => (
                     <div className='single-comment-div'>
-                        <img className='comment-pfp' src='https://cdn-icons-png.flaticon.com/512/149/149071.png' />
+                        <img className='comment-pfp' src={userImg} />
                         <div>
                             <div>
                                 <div className='username-conditional-div'>

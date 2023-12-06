@@ -6,12 +6,13 @@ import { getSong, playSong } from '../../../store/songs';
 import { getPaused, getTime, getRawTime } from '../../../store/audioPlayerState';
 import { getLoad } from '../../../store/global';
 import { getAllSongLikes, getAllUserLikes } from '../../../store/likes';
-import CommentTesting from '../../ErrorPage';
+import ErrorPage from '../../ErrorPage';
 import BtnMenu from '../DropdownMenus/edit-deleteMenu';
 import SongComments from '../SongComments'
 import ProgressBar from '../ProgressBar';
-import './SingleSong.css'
 import LikeButton from '../LikeButton';
+import placeholderImg from '../../../images/song-placeholder.png'
+import './SingleSong.css'
 
 
 
@@ -66,12 +67,7 @@ export default function SingleSong() {
 
                             <img
                                 className='blur-img'
-                                src={
-                                    Song.img ?
-                                        Song.img
-                                        :
-                                        'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png'
-                                }
+                                src={Song.img || placeholderImg}
                                 alt='Blurred Background'
                             />
 
@@ -202,16 +198,13 @@ export default function SingleSong() {
                     {User ? User.id === 1 ?
                         <>
                             <button
-                                onClick={() => { dispatch(getAllSongLikes(songId)) }}
-                            >Song Likes</button>
-                            <button
                                 onClick={() => { dispatch(getAllUserLikes()) }}
                             >User Likes</button>
                         </> : null : null
                     }
                 </div>
                 :
-                <CommentTesting />
+                <ErrorPage />
             }
 
         </>

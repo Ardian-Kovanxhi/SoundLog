@@ -11,24 +11,39 @@ module.exports = {
 
     return queryInterface.bulkInsert(options, [
       {
-        userId: 1,
+        userId: 2,
         songId: 1,
-        userSongHash: '1-1'
+        userSongHash: '2-1'
       },
       {
-        userId: 1,
+        userId: 3,
+        songId: 1,
+        userSongHash: '3-1'
+      },
+      {
+        userId: 4,
+        songId: 1,
+        userSongHash: '4-1'
+      },
+      {
+        userId: 2,
         songId: 2,
-        userSongHash: '1-2'
+        userSongHash: '2-2'
       },
       {
-        userId: 1,
+        userId: 3,
+        songId: 2,
+        userSongHash: '3-2'
+      },
+      {
+        userId: 2,
         songId: 3,
-        userSongHash: '1-3'
+        userSongHash: '2-3'
       },
       {
-        userId: 1,
+        userId: 2,
         songId: 4,
-        userSongHash: '1-4'
+        userSongHash: '2-4'
       },
     ], {})
   },

@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom'
 import OpenModalMenuItem from '../../Modals/OpenModalButton';
 import LoginFormModal from '../../Modals/LoginFormModal';
 import { createLike, getAllSongLikes, getAllUserLikes, getLikesByUser, removeLike } from '../../../store/likes';
+import './LikeButton.css'
 
 
 export default function LikeButton() {
@@ -12,6 +13,7 @@ export default function LikeButton() {
 
     const User = useSelector(state => state.session.user);
     const likeState = useSelector(state => state.likes.singleLike);
+    const totalLikes = useSelector(state => state.likes.likeCount);
     const pageState = useSelector(state => state.global.lightState);
 
 
@@ -22,6 +24,7 @@ export default function LikeButton() {
 
     async function fetchData() {
         await dispatch(getLikesByUser(songId));
+        await dispatch(getAllSongLikes(songId))
         likeState.like ? setLike(true) : setLike(false);
     }
 
@@ -43,6 +46,7 @@ export default function LikeButton() {
                         onClick={async () => {
                             await dispatch(removeLike(songId))
                             await dispatch(getLikesByUser(songId))
+                            await dispatch(getAllSongLikes(songId))
                             likeState.like ? setLike(true) : setLike(false)
                         }}
                         onMouseEnter={() => setHover(true)}
@@ -56,6 +60,7 @@ export default function LikeButton() {
                         onClick={async () => {
                             await dispatch(createLike(songId))
                             await dispatch(getLikesByUser(songId))
+                            await dispatch(getAllSongLikes(songId))
                             likeState.like ? setLike(true) : setLike(false)
                         }}
                         onMouseEnter={() => setHover(true)}
@@ -75,6 +80,9 @@ export default function LikeButton() {
                     />
                 </button>
             }
+            <div className={`likeCount${pageState ? '' : ' night'}`}>
+                {totalLikes}
+            </div>
         </>
     )
 }

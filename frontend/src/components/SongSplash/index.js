@@ -3,11 +3,13 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { getSongs, playSong, getSong, clearSongStore } from '../../store/songs';
 import { getCommentsBySong } from '../../store/comments';
+import { getAllSongLikes, getLikesByUser } from '../../store/likes';
 import { getPaused } from '../../store/audioPlayerState';
 import { getLoad } from '../../store/global';
+import placeholderImg from '../../images/song-placeholder.png'
 import './Songs.css'
 
-export default function SelectedSong() {
+export default function AllSongs() {
     const dispatch = useDispatch();
     const Songs = useSelector(state => state.songs.allSongs);
     const song = useSelector(state => state.songs.playingSong);
@@ -31,6 +33,8 @@ export default function SelectedSong() {
     const singleLoader = async singleId => {
         await dispatch(getSong(singleId))
         await dispatch(getCommentsBySong(singleId))
+        await dispatch(getAllSongLikes(singleId))
+        await dispatch(getAllSongLikes(singleId))
         history.push(`/songs/${singleId}`)
     }
 
@@ -45,7 +49,6 @@ export default function SelectedSong() {
 
 
                     return (
-
                         <>
                             <div
                                 // className='all-songs-single'
@@ -61,8 +64,7 @@ export default function SelectedSong() {
                                             dispatch(getLoad(true))
                                             singleLoader(el.id)
                                         }}
-                                        src={el.img ||
-                                            'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png'}
+                                        src={el.img || placeholderImg}
                                         alt='Album Cover'
                                     />
 
@@ -109,7 +111,6 @@ export default function SelectedSong() {
                                         {el.name}
                                     </div>
                                     <div className={`all-songs-username ${pageState ? '' : ' night'}`}>
-                                        {/* {el.User.username.length > 15 ? el.User.username.substring(0, 15) + '...' : el.User.username} */}
                                         {el.User.username}
                                     </div>
 
