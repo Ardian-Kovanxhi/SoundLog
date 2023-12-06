@@ -9,11 +9,11 @@ import nightLoad from './images/dark-mode-load.gif'
 import dayLoad from './images/light-mode-load.gif'
 import Navigation from "./components/Global/Navigation";
 import SongSplash from "./components/SongSplash";
+import UserPage from "./components/UserPage";
 import SongFormPage from "./components/SongFormPage";
 import ErrorPage from "./components/ErrorPage";
 import SingleSong from "./components/SingleSong/MainPage";
 import AudioControls from './components/Global/AudioControls'
-// import Likes from "./components/Likes";
 import Playlists from "./components/PlaylistsPage";
 
 
@@ -30,10 +30,6 @@ function App() {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
     if (!Cookies.get('pageTheme')) Cookies.set('pageTheme', 'day', { expires: 604800 })
   }, [dispatch]);
-
-  useEffect(() => {
-    console.log(`SCREEN SIZE \n${window.innerHeight}`)
-  }, [window.innerHeight])
 
   return (
 
@@ -93,7 +89,7 @@ function App() {
             <Switch>
               <Route path={'/songs/:songId'} component={SingleSong} />
               <Route path={'/songs'} component={SongFormPage} />
-              {/* <Route path={'/likes'} component={Likes} /> */}
+              {/* <Route path={'/user/:userId'} component={UserPage} /> */}
               <Route path={'/playlists'} component={Playlists} />
               <Route exact path={'/'} component={SongSplash} />
               <Route path={'*'} component={ErrorPage} />
