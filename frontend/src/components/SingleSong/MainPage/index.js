@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { getCommentsBySong } from "../../../store/comments";
@@ -28,10 +28,8 @@ export default function SingleSong() {
     const currSong = useSelector(state => state.songs.playingSong);
     const User = useSelector(state => state.session.user);
     const paused = useSelector(state => state.audioState.pauseState);
-    const songTime = useSelector(state => state.audioState.runtimeState.str);
     const pageState = useSelector(state => state.global.lightState);
     let Uploader = '';
-    let time = '';
 
     useEffect(() => {
         dispatch(getLoad(true))
@@ -51,13 +49,6 @@ export default function SingleSong() {
 
     if (Song.User) {
         Uploader = Song.User.username
-    }
-
-    if (Song.duration) {
-        const mins = Math.floor(Song.duration / 60)
-        const secs = Song.duration - (mins * 60)
-
-        time = `${mins < 10 ? `0${mins}` : mins}:${secs < 10 ? `0${secs}` : secs}`
     }
 
     return (
@@ -81,6 +72,7 @@ export default function SingleSong() {
                                         :
                                         'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png'
                                 }
+                                alt='Blurred Background'
                             />
 
                         </div>
@@ -93,14 +85,12 @@ export default function SingleSong() {
 
                                     <div>
                                         <div className='pfp-info-div'>
-                                            {/* <img className='uploader-pfp' src='https://cdn-icons-png.flaticon.com/512/149/149071.png' /> */}
                                             {currSong.id === Song.id ?
 
                                                 paused ?
 
                                                     <button
                                                         className={`single-univ-button${pageState ? '' : ' night'}`}
-                                                        // onClick={handlePlayClick}
                                                         onClick={() => { dispatch(getPaused(false)) }}
                                                     >
 
@@ -110,7 +100,6 @@ export default function SingleSong() {
 
                                                     <button
                                                         className={`single-univ-button${pageState ? '' : ' night'}`}
-                                                        // onClick={handlePauseClick}
                                                         onClick={() => { dispatch(getPaused(true)) }}
                                                     >
 
@@ -199,7 +188,8 @@ export default function SingleSong() {
                                         Song.img
                                         ||
                                         'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png'
-                                    } />
+                                    }
+                                    alt='Album Cover' />
 
                             </div>
 

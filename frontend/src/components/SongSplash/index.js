@@ -15,18 +15,17 @@ export default function SelectedSong() {
     const pageState = useSelector(state => state.global.lightState)
     const history = useHistory()
 
-    const [loadState, setLoadState] = useState(true)
     const [hoveredIndex, setHoveredIndex] = useState(null)
 
     async function fetchData() {
+        dispatch(getLoad(true))
         await dispatch(getSongs())
         await dispatch(clearSongStore())
+        dispatch(getLoad(false))
     }
 
     useEffect(() => {
-        dispatch(getLoad(true))
         fetchData()
-        dispatch(getLoad(false))
     }, [])
 
     const singleLoader = async singleId => {
@@ -63,7 +62,9 @@ export default function SelectedSong() {
                                             singleLoader(el.id)
                                         }}
                                         src={el.img ||
-                                            'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png'} />
+                                            'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png'}
+                                        alt='Album Cover'
+                                    />
 
                                     {
                                         // hoveredIndex === index ?
@@ -114,7 +115,6 @@ export default function SelectedSong() {
 
                                 </div>
                             </div>
-
                         </>
                     )
                 })}
