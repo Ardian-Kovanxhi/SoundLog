@@ -61,7 +61,7 @@ export default function CommentEditModal({ commentId, songId }) {
             <form className='comment-edit-form'>
 
                 <div className={comClass}>
-                    <label for="comment-id">
+                    <label htmlFor="comment-id">
                         Comment:
                     </label>
                     <input

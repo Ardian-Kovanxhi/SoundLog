@@ -66,7 +66,7 @@ function SignupFormModal() {
                 <div className="error-spacer-sign-up"></div>
 
                 <div className={eClass}>
-                    <label for="email-in">
+                    <label htmlFor="email-in">
                         Email
                     </label>
                     <input
@@ -81,7 +81,7 @@ function SignupFormModal() {
                 </div>
 
                 <div className={uClass}>
-                    <label for="username-in">
+                    <label htmlFor="username-in">
                         <div className="user-memo-div">
                             {'Username '}
 
@@ -110,7 +110,7 @@ function SignupFormModal() {
                 </div>
 
                 <div className={fClass}>
-                    <label for="first-in">
+                    <label htmlFor="first-in">
                         First Name
                     </label>
                     <input
@@ -125,7 +125,7 @@ function SignupFormModal() {
                 </div>
 
                 <div className={lClass}>
-                    <label for="last-in">
+                    <label htmlFor="last-in">
                         Last Name
                     </label>
                     <input
@@ -140,7 +140,7 @@ function SignupFormModal() {
                 </div>
 
                 <div className={pClass}>
-                    <label for="pass-in">
+                    <label htmlFor="pass-in">
                         Password
                     </label>
                     <input
@@ -155,7 +155,7 @@ function SignupFormModal() {
                 </div>
 
                 <div className={confirmClass}>
-                    <label for="confp-in">
+                    <label htmlFor="confp-in">
                         Confirm Password
                     </label>
                     <input

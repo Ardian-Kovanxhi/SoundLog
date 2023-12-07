@@ -42,9 +42,9 @@ function Navigation({ isLoaded }) {
 
                             {
                                 pageState ?
-                                    <i class="fa-solid fa-moon"></i>
+                                    <i className="fa-solid fa-moon"></i>
                                     :
-                                    <i class="fa-solid fa-sun"></i>
+                                    <i className="fa-solid fa-sun"></i>
                             }
 
                         </button>
@@ -56,7 +56,7 @@ function Navigation({ isLoaded }) {
                             className={`profile-button-actual ${pageState ? '' : 'night'}`}
                         >
 
-                            <i class="fa-brands fa-linkedin"></i>
+                            <i className="fa-brands fa-linkedin"></i>
 
                         </button>
                     </div>
@@ -67,7 +67,7 @@ function Navigation({ isLoaded }) {
                             // className='profile-button-actual'
                             className={`profile-button-actual ${pageState ? '' : 'night'}`}
                         >
-                            <i class="fa-brands fa-github"></i>
+                            <i className="fa-brands fa-github"></i>
                         </button>
                     </div>
 

@@ -57,7 +57,7 @@ export default function BtnMenu() {
                 className="elip-btn"
                 onClick={openMenu}
             >
-                <i class="fa-solid fa-ellipsis-vertical" />
+                <i className="fa-solid fa-ellipsis-vertical" />
             </button>
             <div>
 

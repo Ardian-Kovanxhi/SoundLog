@@ -89,7 +89,7 @@ function App() {
             <Switch>
               <Route path={'/songs/:songId'} component={SingleSong} />
               <Route path={'/songs'} component={SongFormPage} />
-              {/* <Route path={'/user/:userId'} component={UserPage} /> */}
+              <Route path={'/users/:userId'} component={UserPage} />
               <Route path={'/playlists'} component={Playlists} />
               <Route exact path={'/'} component={SongSplash} />
               <Route path={'*'} component={ErrorPage} />

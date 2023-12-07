@@ -68,10 +68,13 @@ export const getAllUserLikes = () => async dispatch => {
 
 export const removeLike = (songId) => async dispatch => {
     const response = await csrfFetch(`/api/likes/current/${songId}`)
-    const convert = await response.json()
-    const deleter = await csrfFetch(`/api/likes/${convert.Likes.id}`, {
-        method: 'DELETE'
-    });
+    if (response.ok) {
+        const convert = await response.json()
+        await csrfFetch(`/api/likes/${convert.Likes.id}`, {
+            method: 'DELETE'
+        });
+
+    }
 }
 
 const initialState = { songLikes: {}, singleLike: {}, UserLikes: {}, likeCount: 0 };

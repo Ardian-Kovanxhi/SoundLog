@@ -53,7 +53,7 @@ function LoginFormModal() {
                     >
 
                         <label
-                            for="username-in-log"
+                            htmlFor="username-in-log"
                         >
                             Username or Email
                         </label>
@@ -76,7 +76,7 @@ function LoginFormModal() {
 
                     <div className={passClass}>
 
-                        <label for="pass-in-log">
+                        <label htmlFor="pass-in-log">
                             Password
                         </label>
 

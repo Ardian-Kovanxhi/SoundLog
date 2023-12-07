@@ -1,8 +1,8 @@
 const READ_PAUSED = 'paused/READ_PAUSED'
 const READ_TIME = 'time/READ_TIME'
 const RAW_TIME = 'time/RAW_TIME'
-const READ_LOOP = 'loop/READ_LOOP'
-const READ_LOOP_TYPE = 'loopType/READ_LOOP_TYPE'
+// const READ_LOOP = 'loop/READ_LOOP'
+// const READ_LOOP_TYPE = 'loopType/READ_LOOP_TYPE'
 
 const readPaused = (paused) => {
     return {

@@ -82,7 +82,7 @@ export default function SongEditModal() {
                     <div className='name-desc-input-div'>
 
                         <div className={nClass}>
-                            <label for="edit-name-id">
+                            <label htmlFor="edit-name-id">
                                 Name
                             </label>
                             <input
@@ -99,7 +99,7 @@ export default function SongEditModal() {
                         {user.id === 1 ?
                             <>
                                 <div className={sClass}>
-                                    <label for="edit-song-id">
+                                    <label htmlFor="edit-song-id">
                                         Song URL
                                     </label>
                                     <input
@@ -114,7 +114,7 @@ export default function SongEditModal() {
                                 </div>
 
                                 <div className={durClass}>
-                                    <label for="edit-duration-id">
+                                    <label htmlFor="edit-duration-id">
                                         Duration
                                     </label>
                                     <input
@@ -132,7 +132,7 @@ export default function SongEditModal() {
 
 
                         <div className={dClass}>
-                            <label for="edit-desc-id">
+                            <label htmlFor="edit-desc-id">
                                 Description
                             </label>
                             <textarea
@@ -152,7 +152,7 @@ export default function SongEditModal() {
                     <div className='img-in-div'>
 
                         <div className={iClass}>
-                            <label for="edit-img-id">
+                            <label htmlFor="edit-img-id">
                                 Image
                             </label>
                             <input

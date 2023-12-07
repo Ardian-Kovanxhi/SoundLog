@@ -14,7 +14,10 @@
 .likeBtn>button {
     background-color: transparent;
     border: 0px;
-    padding: 0px;
+    padding: 0px 0px 0px;
+    /* padding: 10px 5px; */
+    border-radius: 100%;
+    margin: 0;
     color: black;
     transition: color .5s;
 }

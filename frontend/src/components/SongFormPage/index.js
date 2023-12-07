@@ -4,7 +4,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { submitSong } from "../../store/songs";
 import dayLoad from '../../images/light-mode-load.gif'
 import nightLoad from '../../images/dark-mode-load.gif'
+import placeholderImg from '../../images/song-placeholder.png'
 import './SongFormPage.css'
+import { getLoad } from "../../store/global";
 
 
 
@@ -38,12 +40,16 @@ export default function SongFormPage() {
     // const iBoxClass = `new-song-img-assignment focus-img-box ${pageState ? '' : 'night'}`
 
     useEffect(() => {
-
+        dispatch(getLoad(false))
         if (!user) {
             history.push('/')
         }
 
     }, [user])
+
+    // useEffect(() => {
+    //     dispatch(getLoad(false))
+    // })
 
     const submitHandler = async (e) => {
         e.preventDefault();
@@ -106,7 +112,7 @@ export default function SongFormPage() {
 
                                     <div className={nClass}>
 
-                                        <label for="name-in-id" className="required" >
+                                        <label htmlFor="name-in-id" className="required" >
                                             Name*
                                         </label>
                                         <input
@@ -123,7 +129,7 @@ export default function SongFormPage() {
 
                                     <div className={sClass}>
 
-                                        <label for="mp3-in-id" className="required mp3-in-class">
+                                        <label htmlFor="mp3-in-id" className="required mp3-in-class">
                                             Song* (only accepts mp3 files)
                                         </label>
                                         <input
@@ -141,7 +147,7 @@ export default function SongFormPage() {
 
                                     <div className={dClass}>
 
-                                        <label for='desc-id' className="text-label" >
+                                        <label htmlFor='desc-id' className="text-label" >
                                             Description
                                         </label>
 
@@ -162,7 +168,7 @@ export default function SongFormPage() {
                                 <div className={iBoxClass}>
 
                                     <div className={iClass}>
-                                        <label for='img-id' className="text-label">
+                                        <label htmlFor='img-id' className="text-label">
                                             ImageUrl:
                                         </label>
 
@@ -180,7 +186,8 @@ export default function SongFormPage() {
 
                                     <img
                                         className="new-song-img"
-                                        src={img || 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png'} />
+                                        src={img || placeholderImg}
+                                    />
 
                                 </div>
 

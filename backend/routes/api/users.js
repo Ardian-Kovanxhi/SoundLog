@@ -35,20 +35,31 @@ const validateSignup = [
 ];
 
 // Sign up
-router.post(
-    '/',
-    validateSignup,
-    async (req, res) => {
-        const { email, firstName, lastName, password, username } = req.body;
-        const user = await User.signup({ email, firstName, lastName, username, password });
+router.post('/', validateSignup, async (req, res) => {
 
-        await setTokenCookie(res, user);
+    const { email, firstName, lastName, password, username } = req.body;
+    const user = await User.signup({ email, firstName, lastName, username, password });
 
-        return res.json({
-            user: user
-        });
-    }
+    await setTokenCookie(res, user);
+
+    return res.json({
+        user: user
+    });
+}
 );
+
+router.get('/:userId', async (req, res) => {
+    const userId = req.params.userId;
+
+    const user = await User.scope("viewedUser").findByPk(userId);
+
+    if (!user) {
+        res.statusCode = 404;
+        return res.json({ message: "User couldn't be found", statusCode: 404 })
+    }
+
+    return res.send(user)
+})
 
 // // Sign up
 // router.post(

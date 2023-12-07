@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { getSongs, playSong, getSong, clearSongStore } from '../../store/songs';
 import { getCommentsBySong } from '../../store/comments';
-import { getAllSongLikes, getLikesByUser } from '../../store/likes';
+import { getAllSongLikes } from '../../store/likes';
 import { getPaused } from '../../store/audioPlayerState';
 import { getLoad } from '../../store/global';
 import placeholderImg from '../../images/song-placeholder.png'
@@ -38,7 +38,7 @@ export default function AllSongs() {
         history.push(`/songs/${singleId}`)
     }
 
-    const songArr = Object.values(Songs)
+    const songArr = Object.values(Songs);
 
     return (
         <div className='all-songs-div-container'>
@@ -49,12 +49,13 @@ export default function AllSongs() {
 
 
                     return (
-                        <>
+                        <div key={index}>
                             <div
                                 // className='all-songs-single'
                                 className={`all-songs-single ${pageState ? '' : ' night'}`}
                                 onMouseEnter={() => setHoveredIndex(index)}
                                 onMouseLeave={() => setHoveredIndex(null)}
+                                key={index}
                             >
                                 <div className='all-song-img-btn-div'>
 
@@ -105,7 +106,6 @@ export default function AllSongs() {
                                     onClick={() => singleLoader(el.id)}
                                 >
 
-                                    {/* <div className='all-songs-song-name'> */}
                                     <div className={`all-songs-song-name ${pageState ? '' : ' night'}`}>
 
                                         {el.name}
@@ -116,7 +116,7 @@ export default function AllSongs() {
 
                                 </div>
                             </div>
-                        </>
+                        </div>
                     )
                 })}
             </div>

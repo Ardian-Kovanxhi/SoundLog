@@ -51,7 +51,7 @@ export default function CommentBtnMenu({ passedCommId }) {
                 className="elip-btn"
                 onClick={openMenu}
             >
-                <i class="fa-solid fa-ellipsis"></i>
+                <i className="fa-solid fa-ellipsis"></i>
             </button>
             <div
                 className={ulClassName}

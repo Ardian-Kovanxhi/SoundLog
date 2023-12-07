@@ -41,35 +41,41 @@ export default function LikeButton() {
         <>
             {User ?
                 like ?
-                    <button
-                        className={`likeBtn${pageState ? '' : ' night'}`}
-                        onClick={async () => {
-                            await dispatch(removeLike(songId))
-                            await dispatch(getLikesByUser(songId))
-                            await dispatch(getAllSongLikes(songId))
-                            likeState.like ? setLike(true) : setLike(false)
-                        }}
-                        onMouseEnter={() => setHover(true)}
-                        onMouseLeave={() => setHover(false)}
-                    >
-                        <i className={`fa-solid ${hovered ? 'fa-heart-crack' : 'fa-heart'} fa-2xl`} />
-                    </button>
+                    <div>
+
+                        <button
+                            className={`likeBtn${pageState ? '' : ' night'}`}
+                            onClick={async () => {
+                                await dispatch(removeLike(songId))
+                                await dispatch(getLikesByUser(songId))
+                                await dispatch(getAllSongLikes(songId))
+                                likeState.like ? setLike(true) : setLike(false)
+                            }}
+                            onMouseEnter={() => setHover(true)}
+                            onMouseLeave={() => setHover(false)}
+                        >
+                            <i className={`fa-solid ${hovered ? 'fa-heart-crack' : 'fa-heart'} fa-2xl`} />
+                        </button>
+                    </div>
                     :
-                    <button
-                        className={`likeBtn${pageState ? '' : ' night'}`}
-                        onClick={async () => {
-                            await dispatch(createLike(songId))
-                            await dispatch(getLikesByUser(songId))
-                            await dispatch(getAllSongLikes(songId))
-                            likeState.like ? setLike(true) : setLike(false)
-                        }}
-                        onMouseEnter={() => setHover(true)}
-                        onMouseLeave={() => setHover(false)}
-                    >
-                        <i className={`${hovered ? 'fa-solid' : 'fa-regular'} fa-heart fa-2xl`} />
-                    </button>
+                    <div>
+
+                        <button
+                            className={`likeBtn${pageState ? '' : ' night'}`}
+                            onClick={async () => {
+                                await dispatch(createLike(songId))
+                                await dispatch(getLikesByUser(songId))
+                                await dispatch(getAllSongLikes(songId))
+                                likeState.like ? setLike(true) : setLike(false)
+                            }}
+                            onMouseEnter={() => setHover(true)}
+                            onMouseLeave={() => setHover(false)}
+                        >
+                            <i className={`${hovered ? 'fa-solid' : 'fa-regular'} fa-heart fa-2xl`} />
+                        </button>
+                    </div>
                 :
-                <button
+                <div
                     className={`likeBtn${pageState ? '' : ' night'}`}
                     onMouseEnter={() => setHover(true)}
                     onMouseLeave={() => setHover(false)}
@@ -78,7 +84,7 @@ export default function LikeButton() {
                         buttonText={<i className={`${hovered ? 'fa-solid' : 'fa-regular'} fa-heart fa-2xl`} />}
                         modalComponent={<LoginFormModal />}
                     />
-                </button>
+                </div>
             }
             <div className={`likeCount${pageState ? '' : ' night'}`}>
                 {totalLikes}

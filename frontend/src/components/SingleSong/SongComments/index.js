@@ -59,7 +59,7 @@ export default function SongComments() {
                         />
                         <label
                             className={`chara-count ${pageState ? '' : 'night'}`}
-                            for="comment-form-input-id">
+                            htmlFor="comment-form-input-id">
                             {`${100 - comment.length} characters left`}
                         </label>
                     </form>
@@ -79,7 +79,7 @@ export default function SongComments() {
             >
 
                 {commentArr.map(el => (
-                    <div className='single-comment-div'>
+                    <div className='single-comment-div' key={el.id}>
                         <img className='comment-pfp' src={userImg} />
                         <div>
                             <div>
