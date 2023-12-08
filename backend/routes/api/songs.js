@@ -47,12 +47,21 @@ router.post('/', requireAuth, singleMulterUpload('content'), async (req, res) =>
 
 
 
-//GET /api/songs/current | all songs of a user
-router.get('/current', requireAuth, async (req, res) => {
-    const userSongs = await Song.findAll({ where: { userId: req.user.id } })
+//GET /api/songs/user/userId | all songs of a user
+router.get('/user/:userId', async (req, res) => {
 
-    res.json({ userSongs })
+    const userId = +req.params.userId;
+
+    const userSongs = await Song.findAll({ where: { userId } })
+
+    res.json(userSongs)
 })
+// //GET /api/songs/current | all songs of a user
+// router.get('/current', requireAuth, async (req, res) => {
+//     const userSongs = await Song.findAll({ where: { userId: req.user.id } })
+
+//     res.json({ userSongs })
+// })
 
 
 //GET /api/songs/:songId  | details of a song by song Id

@@ -29,11 +29,12 @@ router.post('/:songId', requireAuth, async (req, res) => {
     res.json(newLike);
 })
 
-//Auth true
+//Auth false
 //GET /api/likes/current | Return all likes by a user
-router.get('/current', requireAuth, async (req, res) => {
+router.get('/user/:userId', async (req, res) => {
+    const userId = +req.params.userId
     const Likes = await Like.findAll({
-        where: { userId: req.user.id },
+        where: { userId },
         include: [
             {
                 model: Song
@@ -42,6 +43,19 @@ router.get('/current', requireAuth, async (req, res) => {
     })
     return res.json({ Likes })
 })
+// //Auth true
+// //GET /api/likes/current | Return all likes by a user
+// router.get('/current', requireAuth, async (req, res) => {
+//     const Likes = await Like.findAll({
+//         where: { userId: req.user.id },
+//         include: [
+//             {
+//                 model: Song
+//             }
+//         ]
+//     })
+//     return res.json({ Likes })
+// })
 
 //Auth true
 //GET /api/likes/current/:songId | Return single user like of a song
