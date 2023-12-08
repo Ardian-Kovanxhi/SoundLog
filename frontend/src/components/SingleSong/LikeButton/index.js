@@ -23,14 +23,11 @@ export default function LikeButton() {
 
 
     async function fetchData() {
-        await dispatch(getLikesByUser(songId));
-        await dispatch(getAllSongLikes(songId))
-        likeState.like ? setLike(true) : setLike(false);
+        if (User) {
+            await dispatch(getLikesByUser(songId));
+            likeState.like ? setLike(true) : setLike(false);
+        }
     }
-
-    useEffect(() => {
-        fetchData();
-    }, []);
 
     useEffect(() => {
         fetchData();

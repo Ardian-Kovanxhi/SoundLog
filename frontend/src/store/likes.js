@@ -57,11 +57,11 @@ export const getAllSongLikes = (songId) => async dispatch => {
     }
 }
 
-export const getAllUserLikes = () => async dispatch => {
-    const response = await csrfFetch('/api/likes/current')
+export const getAllUserLikes = (userId) => async dispatch => {
+    const response = await csrfFetch(`/api/likes/user/${userId}`)
     if (response.ok) {
         const likes = await response.json();
-        dispatch(readUserLikes(likes));
+        dispatch(readUserLikes(likes.Likes));
         return likes;
     }
 }
@@ -77,7 +77,7 @@ export const removeLike = (songId) => async dispatch => {
     }
 }
 
-const initialState = { songLikes: {}, singleLike: {}, UserLikes: {}, likeCount: 0 };
+const initialState = { songLikes: {}, singleLike: {}, userLikes: {}, likeCount: 0 };
 
 export default function likesReducer(state = initialState, action) {
     let newState;
@@ -87,6 +87,11 @@ export default function likesReducer(state = initialState, action) {
             newState.likeCount = action.likes.length
             action.likes.forEach(like => newState.songLikes[like.id] = like);
             return newState
+        }
+        case READ_USER_LIKES: {
+            newState = { ...state, userLikes: {} };
+            action.likes.forEach(like => newState.userLikes[like.id] = like);
+            return newState;
         }
         case READ_LIKE: {
             newState = { ...state };

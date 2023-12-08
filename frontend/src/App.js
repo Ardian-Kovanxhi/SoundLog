@@ -14,7 +14,6 @@ import SongFormPage from "./components/SongFormPage";
 import ErrorPage from "./components/ErrorPage";
 import SingleSong from "./components/SingleSong/MainPage";
 import AudioControls from './components/Global/AudioControls'
-import Playlists from "./components/PlaylistsPage";
 
 
 function App() {
@@ -90,7 +89,6 @@ function App() {
               <Route path={'/songs/:songId'} component={SingleSong} />
               <Route path={'/songs'} component={SongFormPage} />
               <Route path={'/users/:userId'} component={UserPage} />
-              <Route path={'/playlists'} component={Playlists} />
               <Route exact path={'/'} component={SongSplash} />
               <Route path={'*'} component={ErrorPage} />
             </Switch>

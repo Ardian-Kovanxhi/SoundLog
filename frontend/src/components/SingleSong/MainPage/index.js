@@ -5,7 +5,7 @@ import { getCommentsBySong } from "../../../store/comments";
 import { getSong, playSong } from '../../../store/songs';
 import { getPaused, getTime, getRawTime } from '../../../store/audioPlayerState';
 import { getLoad } from '../../../store/global';
-import { getAllSongLikes, getAllUserLikes } from '../../../store/likes';
+import { getAllSongLikes, getAllUserLikes, getLikesByUser } from '../../../store/likes';
 import ErrorPage from '../../ErrorPage';
 import BtnMenu from '../DropdownMenus/edit-deleteMenu';
 import SongComments from '../SongComments'
@@ -20,10 +20,6 @@ export default function SingleSong() {
     const dispatch = useDispatch();
     const { songId } = useParams();
 
-    async function fetchData() {
-        await dispatch(getSong(songId))
-        await dispatch(getCommentsBySong(songId))
-    }
 
     const Song = useSelector(state => state.songs.singleSong);
     const currSong = useSelector(state => state.songs.playingSong);
@@ -31,6 +27,15 @@ export default function SingleSong() {
     const paused = useSelector(state => state.audioState.pauseState);
     const pageState = useSelector(state => state.global.lightState);
     let Uploader = '';
+
+    async function fetchData() {
+        await dispatch(getSong(songId));
+        await dispatch(getCommentsBySong(songId));
+        await dispatch(getAllSongLikes(songId));
+        if (User) {
+            await dispatch(getLikesByUser(songId));
+        }
+    }
 
     useEffect(() => {
         dispatch(getLoad(true))
@@ -195,13 +200,7 @@ export default function SingleSong() {
                     </div>
 
                     <SongComments />
-                    {User ? User.id === 1 ?
-                        <>
-                            <button
-                                onClick={() => { dispatch(getAllUserLikes()) }}
-                            >User Likes</button>
-                        </> : null : null
-                    }
+
                 </div>
                 :
                 <ErrorPage />
