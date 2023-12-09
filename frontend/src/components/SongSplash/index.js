@@ -49,72 +49,70 @@ export default function AllSongs() {
 
 
                     return (
-                        <div key={index}>
-                            <div
-                                // className='all-songs-single'
-                                className={`all-songs-single ${pageState ? '' : ' night'}`}
-                                onMouseEnter={() => setHoveredIndex(index)}
-                                onMouseLeave={() => setHoveredIndex(null)}
-                                key={index}
-                            >
-                                <div className='all-song-img-btn-div'>
+                        <div
+                            // className='all-songs-single'
+                            className={`all-songs-single ${pageState ? '' : ' night'}`}
+                            onMouseEnter={() => setHoveredIndex(index)}
+                            onMouseLeave={() => setHoveredIndex(null)}
+                            key={index}
+                        >
+                            <div className='all-song-img-btn-div'>
 
-                                    <img
-                                        className='all-songs-single-img'
-                                        onClick={() => {
-                                            dispatch(getLoad(true))
-                                            singleLoader(el.id)
-                                        }}
-                                        src={el.img || placeholderImg}
-                                        alt='Album Cover'
-                                    />
+                                <img
+                                    className='all-songs-single-img'
+                                    onClick={() => {
+                                        dispatch(getLoad(true))
+                                        singleLoader(el.id)
+                                    }}
+                                    src={el.img || placeholderImg}
+                                    alt='Album Cover'
+                                />
 
-                                    {
-                                        // hoveredIndex === index ?
-                                        song.id === el.id ?
-                                            paused ?
-                                                <button
-                                                    className={btnClass}
-                                                    onClick={() => { dispatch(getPaused(false)) }}
-                                                >
-
-                                                    <i className="fa-solid fa-play" />
-
-                                                </button> :
-
-                                                <button
-                                                    className={`pause ${btnClass}`}
-                                                    onClick={() => { dispatch(getPaused(true)) }}
-                                                >
-
-                                                    <i className="fa-solid fa-pause" />
-
-                                                </button> :
-
+                                {
+                                    // hoveredIndex === index ?
+                                    song.id === el.id ?
+                                        paused ?
                                             <button
                                                 className={btnClass}
-                                                onClick={() => dispatch(playSong(el.id))}
+                                                onClick={() => { dispatch(getPaused(false)) }}
                                             >
 
                                                 <i className="fa-solid fa-play" />
 
-                                            </button>
-                                    }
+                                            </button> :
 
+                                            <button
+                                                className={`pause ${btnClass}`}
+                                                onClick={() => { dispatch(getPaused(true)) }}
+                                            >
+
+                                                <i className="fa-solid fa-pause" />
+
+                                            </button> :
+
+                                        <button
+                                            className={btnClass}
+                                            onClick={() => dispatch(playSong(el.id))}
+                                        >
+
+                                            <i className="fa-solid fa-play" />
+
+                                        </button>
+                                }
+
+                            </div>
+                            <div
+                                onClick={() => singleLoader(el.id)}
+                            >
+
+                                <div className={`all-songs-song-name ${pageState ? '' : ' night'}`}>
+
+                                    {el.name}
                                 </div>
-                                <div
-                                    onClick={() => singleLoader(el.id)}
-                                >
-
-                                    <div className={`all-songs-song-name ${pageState ? '' : ' night'}`}>
-
-                                        {el.name}
-                                    </div>
-                                    <div className={`all-songs-username ${pageState ? '' : ' night'}`}>
-                                        {el.User.username}
-                                    </div>
-
+                                <div className={`all-songs-username ${pageState ? '' : ' night'}`}>
+                                    {el.User.username}
                                 </div>
+
                             </div>
                         </div>
                     )

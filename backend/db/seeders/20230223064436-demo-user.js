@@ -22,7 +22,9 @@ module.exports = {
         lastName: 'User',
         email: 'demo@user.io',
         username: 'Demo-lition',
-        hashedPassword: bcrypt.hashSync('password')
+        hashedPassword: bcrypt.hashSync('password'),
+        profilePicture: 'https://images.pushsquare.com/0096e1b088b8c/fallout-4-vault-boy-annoyed.900x.jpg',
+        backgroundPicture: 'https://i.ytimg.com/vi/Xw51NADAmwo/maxresdefault.jpg'
       },
       {
         firstName: 'Demo2',
@@ -50,7 +52,9 @@ module.exports = {
         lastName: 'Casablancas',
         email: 'TheStrokes@artist.io',
         username: 'The Strokes',
-        hashedPassword: bcrypt.hashSync('TakeItLeaveIt')
+        hashedPassword: bcrypt.hashSync('TakeItLeaveIt'),
+        profilePicture: 'https://dl6pgk4f88hky.cloudfront.net/2021/08/2021_29_the_strokes_new-scaled.jpg',
+        backgroundPicture: 'https://cultrecords.com/cdn/shop/articles/labelnews-2_1920x.jpg?v=1599708174'
       },
       {
         firstName: 'Alex',

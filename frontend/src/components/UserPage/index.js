@@ -9,9 +9,12 @@ import ErrorPage from "../ErrorPage";
 import './UserPage.css'
 import LikeList from "./Lists/likeList";
 import SongList from "./Lists/songList";
+import { useState } from "react";
 
 export default function UserPage() {
     const dispatch = useDispatch();
+
+    const [focused, setFocused] = useState(2)
 
     const { userId } = useParams();
 
@@ -33,17 +36,33 @@ export default function UserPage() {
         <>
             {User ?
                 <div className="user-container">
+                    <div className="profile-background-container">
+                        <img
+                            className="profile-background"
+                            src={User.backgroundPicture}
+                        />
+                    </div>
+
+
+                    <div className="profile-picture-container">
+                        <img
+                            src={User.profilePicture}
+                            className="profile-picture"
+                        />
+                    </div>
+
                     <div>
                         USER PAGE {User.username}
                     </div>
-                    <div>
-                        -----------------------------------------------
-                    </div>
-                    <LikeList />
-                    <div>
-                        -----------------------------------------------
-                    </div>
-                    <SongList />
+                    <LikeList focused={focused} />
+                    <SongList focused={focused} />
+                    <button
+                        onClick={() => {
+                            focused === 1 ? setFocused(2) : setFocused(1)
+                        }}
+                    >
+                        Toggle Focus
+                    </button>
                 </div>
                 : <ErrorPage />}
         </>

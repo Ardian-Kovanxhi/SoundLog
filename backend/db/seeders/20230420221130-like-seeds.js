@@ -45,6 +45,16 @@ module.exports = {
         songId: 4,
         userSongHash: '2-4'
       },
+      {
+        userId: 6,
+        songId: 3,
+        userSongHash: '6-3'
+      },
+      {
+        userId: 6,
+        songId: 4,
+        userSongHash: '6-4'
+      },
     ], {})
   },
 

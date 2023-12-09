@@ -7,11 +7,13 @@ import { getAllSongLikes } from "../../../store/likes";
 import { useState } from "react";
 import './Lists.css'
 
-export default function SongList() {
+export default function SongList({ focused }) {
     const history = useHistory();
     const dispatch = useDispatch();
     const [hoveredIndex, setHoveredIndex] = useState(null)
 
+    const song = useSelector(state => state.songs.playingSong);
+    const paused = useSelector(state => state.audioState.pauseState);
     const Songs = useSelector(state => state.songs.userSongs);
     const songArr = Object.values(Songs);
 
@@ -23,7 +25,9 @@ export default function SongList() {
     }
 
     return (
-        <>
+        <div
+            className={`song-list${focused === 2 ? ' unfocused' : ''}`}
+        >
             <div>
                 Songs
             </div>
@@ -42,10 +46,16 @@ export default function SongList() {
                         onMouseEnter={() => setHoveredIndex(index)}
                         onMouseLeave={() => setHoveredIndex(null)}
                     >
-                        {index + 1}:{song.name}
+                        <div>
+                            {index + 1}:
+                        </div>
+                        <img style={{ width: '60px', height: '60px' }} src={song.img} />
+                        <div>
+                            {song.name}
+                        </div>
                     </div>
                 )
             }) : 'No Songs'}
-        </>
+        </div>
     )
 }

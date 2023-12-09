@@ -1,3 +1,17 @@
+.user-list-items {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
 .user-list-items.hovered {
     background-color: blue;
+}
+
+.like-list>button {
+    z-index: 10;
+}
+
+.unfocused {
+    display: none;
 }
