@@ -18,6 +18,7 @@ export default function LikeList({ focused }) {
     const paused = useSelector(state => state.audioState.pauseState);
     const likes = useSelector(state => state.likes.userLikes);
     const likeArr = Object.values(likes);
+
     const singleLoader = async singleId => {
         await dispatch(getSong(singleId));
         await dispatch(getCommentsBySong(singleId));
@@ -41,10 +42,6 @@ export default function LikeList({ focused }) {
                         <div
                             className={liClass}
                             key={index}
-                            // onClick={() => {
-                            //     dispatch(getLoad(true));
-                            //     singleLoader(like.Song.id);
-                            // }}
                             onMouseEnter={() => setHoveredIndex(index)}
                             onMouseLeave={() => setHoveredIndex(null)}
                         >

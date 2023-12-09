@@ -43,16 +43,16 @@ export default function UserPage() {
                         />
                     </div>
 
-
-                    <div className="profile-picture-container">
-                        <img
-                            src={User.profilePicture}
-                            className="profile-picture"
-                        />
-                    </div>
-
-                    <div>
-                        USER PAGE {User.username}
+                    <div className="pfp-username-div">
+                        <div className="profile-picture-container">
+                            <img
+                                src={User.profilePicture}
+                                className="profile-picture"
+                            />
+                        </div>
+                        <div style={{ fontSize: 'x-large', marginLeft: '20px', marginTop: '50px', padding: '10px', backgroundColor: 'black', color: 'white', height: 'fit-content' }}>
+                            {User.username}
+                        </div>
                     </div>
                     <LikeList focused={focused} />
                     <SongList focused={focused} />

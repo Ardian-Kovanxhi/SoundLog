@@ -4,6 +4,10 @@
     align-items: center;
 }
 
+.user-list-items {
+    color: black;
+}
+
 .user-list-items.hovered {
     background-color: blue;
 }
