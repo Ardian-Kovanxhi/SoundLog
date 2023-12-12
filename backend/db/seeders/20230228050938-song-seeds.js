@@ -67,11 +67,11 @@ module.exports = {
       },
       {
         userId: 12,
-        name: "Gary's Song",
-        content: 'https://aa-sounclod-clone-bucket.s3.amazonaws.com/1680484080763.mp3',
-        duration: 145,
-        img: 'https://i.kym-cdn.com/photos/images/newsfeed/002/213/963/293.jpg',
-        description: 'what a shame'
+        name: "Satisfaction",
+        content: 'https://aa-sounclod-clone-bucket.s3.amazonaws.com/1702401398908.mp3',
+        duration: 285,
+        img: 'https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/a4/f3/ea/a4f3eac5-cd50-4365-efd8-1f6951a22356/00602527040752.rgb.jpg/1200x1200bf-60.jpg',
+        description: null
       },
       {
         userId: 13,

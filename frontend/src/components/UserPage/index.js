@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getLoad } from "../../store/global";
-import { useHistory, useParams } from "react-router-dom/cjs/react-router-dom.min";
+import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { getUser } from "../../store/session";
 import { getAllUserLikes } from "../../store/likes";
 import { getUserSongs } from "../../store/songs";
@@ -13,15 +13,12 @@ import { useState } from "react";
 
 export default function UserPage() {
     const dispatch = useDispatch();
-    const history = useHistory();
 
     const [focused, setFocused] = useState(2);
 
     const { userId } = useParams();
 
     const User = useSelector(state => state.session.viewedUser);
-
-    const admin = useSelector(state => state.session.user)
 
     async function fetchData() {
         if (Number(userId) === 0) return
@@ -31,14 +28,10 @@ export default function UserPage() {
     }
 
     useEffect(() => {
-        // if (admin) {
-        //     if (admin.id === 1) {
         fetchData()
         dispatch(getLoad(false))
-        //     }
-        // }
-        // history.push('/')
-    }, [])
+    }, []);
+
 
     return (
         <>

@@ -12,7 +12,7 @@ import SongSplash from "./components/SongSplash";
 import UserPage from "./components/UserPage";
 import SongFormPage from "./components/SongFormPage";
 import ErrorPage from "./components/ErrorPage";
-import SingleSong from "./components/SingleSong/MainPage";
+import SingleSong from "./components/SingleSong";
 import AudioControls from './components/Global/AudioControls'
 
 

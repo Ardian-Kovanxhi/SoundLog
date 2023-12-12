@@ -1,0 +1,66 @@
+.progress-container-list {
+    background-color: rgba(0, 0, 0, .4);
+    color: white;
+    display: flex;
+    width: 580px;
+    height: 30px;
+    flex-direction: column;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.time-div-list {
+    display: flex;
+    width: 570px;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+.progress-bar-list {
+    background-color: lightgreen;
+    cursor: pointer;
+    width: 570px;
+    height: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: baseline;
+    border-radius: 10px;
+    transition: background-color .5s;
+}
+
+.progress-list {
+    max-width: 555px;
+    padding-left: 15px;
+    height: 5px;
+    background-color: green;
+    border-radius: 15px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    transition: background-color .5s;
+}
+
+.fa-solid.fa-circle {
+    color: green;
+    font-size: 'large';
+    position: 'sticky';
+    left: '0';
+    transition: color .5s;
+}
+
+/*   NIGHT MODE   */
+.progress-container-list.night {
+    background-color: rgba(0, 0, 0, .6);
+}
+
+.progress-bar-list.night {
+    background-color: skyblue;
+}
+
+.progress-list.night {
+    background-color: blue;
+}
+
+.fa-solid.fa-circle.night {
+    color: blue;
+}

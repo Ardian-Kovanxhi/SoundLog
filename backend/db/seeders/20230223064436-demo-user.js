@@ -94,9 +94,9 @@ module.exports = {
       {
         firstName: 'Song',
         lastName: 'Writer',
-        email: 'Spongebob@artist.io',
-        username: 'SpongeBob',
-        hashedPassword: bcrypt.hashSync('UnderseaJams')
+        email: 'PushMe@artist.io',
+        username: 'Benny Benassi and The Biz',
+        hashedPassword: bcrypt.hashSync('ThenTouchMe')
       },
       {
         firstName: 'Damon',

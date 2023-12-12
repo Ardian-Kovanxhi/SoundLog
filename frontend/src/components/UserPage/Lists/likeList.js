@@ -5,16 +5,16 @@ import { getSong, playSong } from "../../../store/songs";
 import { getCommentsBySong } from "../../../store/comments";
 import { getAllSongLikes } from "../../../store/likes";
 import { useState } from "react";
+import { getPaused, getRawTime, getTime } from "../../../store/audioPlayerState";
+import ProgressBar from "../ProgressBar";
 import './Lists.css'
-import { useEffect } from "react";
-import { getPaused } from "../../../store/audioPlayerState";
 
 export default function LikeList({ focused }) {
     const history = useHistory();
     const dispatch = useDispatch();
     const [hoveredIndex, setHoveredIndex] = useState(null);
 
-    const song = useSelector(state => state.songs.playingSong);
+    const currSong = useSelector(state => state.songs.playingSong);
     const paused = useSelector(state => state.audioState.pauseState);
     const likes = useSelector(state => state.likes.userLikes);
     const likeArr = Object.values(likes);
@@ -26,6 +26,16 @@ export default function LikeList({ focused }) {
         history.push(`/songs/${singleId}`);
     };
 
+    // const handleSeek = (seekTime, song) => {
+    //     if (currSong.id !== song.id) {
+    //         dispatch(playSong(song.id))
+    //         dispatch(getTime(0))
+    //         return
+    //     }
+    //     const newSeekTime = (seekTime / 100) * song.duration;
+    //     dispatch(getRawTime(newSeekTime))
+    // };
+
     return (
         <div
             className={`like-list${focused === 1 ? ' unfocused' : ''}`}
@@ -34,6 +44,16 @@ export default function LikeList({ focused }) {
                 {likeArr.length > 0 ? likeArr.map((like, index) => {
 
                     const liClass = `user-list-items${hoveredIndex === index ? ' hovered' : ''}`
+
+                    const handleSeek = (seekTime) => {
+                        if (currSong.id !== like.Song.id) {
+                            dispatch(playSong(like.Song.id))
+                            dispatch(getTime(0))
+                            return
+                        }
+                        const newSeekTime = (seekTime / 100) * like.Song.duration;
+                        dispatch(getRawTime(newSeekTime))
+                    };
 
                     return (
                         <div
@@ -44,7 +64,7 @@ export default function LikeList({ focused }) {
                         >
                             {
                                 // hoveredIndex === index ?
-                                song.id === like.Song.id ?
+                                currSong.id === like.Song.id ?
                                     paused ?
                                         <button
                                             // className={btnClass}
@@ -84,10 +104,12 @@ export default function LikeList({ focused }) {
                                     {index + 1}:
                                 </div>
                                 <img style={{ width: '60px', height: '60px' }} src={like.Song.img} />
-                                <div>
+                                <div style={{ width: '200px' }}>
                                     {like.Song.name}
                                 </div>
+
                             </div>
+                            <ProgressBar onSeek={handleSeek} listSong={like.Song} />
                         </div>
                     )
                 }) : 'No Likes'}

@@ -2,20 +2,19 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import './ProgressBar.css'
 
-const ProgressBar = ({ onSeek }) => {
+const ProgressBar = ({ onSeek, listSong }) => {
     const [isSeeking, setIsSeeking] = useState(false);
     const progressBarRef = useRef(null);
 
-    const Song = useSelector(state => state.songs.singleSong);
     const currSong = useSelector(state => state.songs.playingSong);
     const songRawTime = useSelector(state => state.audioState.runtimeState.raw);
     const songTime = useSelector(state => state.audioState.runtimeState.str);
     const pageState = useSelector(state => state.global.lightState);
     let time = ''
 
-    if (Song.duration) {
-        const mins = Math.floor(Song.duration / 60)
-        const secs = Song.duration - (mins * 60)
+    if (listSong.duration) {
+        const mins = Math.floor(listSong.duration / 60)
+        const secs = listSong.duration - (mins * 60)
 
         time = `${mins < 10 ? `0${mins}` : mins}:${secs < 10 ? `0${secs}` : secs}`
     }
@@ -65,12 +64,12 @@ const ProgressBar = ({ onSeek }) => {
     }, [isSeeking]);
 
     return (
-        <div className={`progress-container ${pageState ? '' : 'night'}`}>
+        <div className={`progress-container-list ${pageState ? '' : 'night'}`}>
 
-            <div className='time-div'>
+            <div className='time-div-list'>
 
                 <div>
-                    {currSong.id === Song.id ? songTime : '--:--'}
+                    {currSong.id === listSong.id ? songTime : '--:--'}
                 </div>
 
                 <div>
@@ -80,17 +79,17 @@ const ProgressBar = ({ onSeek }) => {
             </div>
 
             <div
-                className={`progress-bar ${pageState ? '' : 'night'}`}
+                className={`progress-bar-list ${pageState ? '' : 'night'}`}
                 ref={progressBarRef}
                 onMouseDown={handleMouseDown}
                 onMouseMove={handleMouseMove}
                 onMouseUp={handleMouseUp}
             >
                 {
-                    currSong.id === Song.id ?
+                    currSong.id === listSong.id ?
                         <div
-                            className={`progress ${pageState ? '' : 'night'}`}
-                            style={{ width: `${(songRawTime / Song.duration) * 100}%`, }}
+                            className={`progress-list ${pageState ? '' : 'night'}`}
+                            style={{ width: `${(songRawTime / listSong.duration) * 100}%`, }}
                         >
                             <i
                                 className={`fa-solid fa-circle ${pageState ? '' : 'night'}`}
@@ -98,30 +97,10 @@ const ProgressBar = ({ onSeek }) => {
 
                         </div>
                         :
-                        // ''
                         <i
                             className={`fa-solid fa-circle ${pageState ? '' : 'night'}`}
-                        // style={{
-                        //     color: 'green',
-                        //     fontSize: 'large',
-                        //     position: 'sticky',
-                        //     left: '0'
-                        // }}
                         ></i>
                 }
-                {/* <div
-                    style={{
-                        height: '20px',
-                        width: '20px',
-                        // backgroundColor: 'gray',
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'flex-end',
-                        marginTop: '5px',
-                        // marginBottom: '10px'
-                    }}
-                >
-                </div> */}
             </div>
         </div>
 

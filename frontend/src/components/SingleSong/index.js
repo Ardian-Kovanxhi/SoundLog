@@ -1,17 +1,17 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
-import { getCommentsBySong } from "../../../store/comments";
-import { getSong, playSong } from '../../../store/songs';
-import { getPaused, getTime, getRawTime } from '../../../store/audioPlayerState';
-import { getLoad } from '../../../store/global';
-import { getAllSongLikes, getAllUserLikes, getLikesByUser } from '../../../store/likes';
-import ErrorPage from '../../ErrorPage';
-import BtnMenu from '../DropdownMenus/edit-deleteMenu';
-import SongComments from '../SongComments'
-import ProgressBar from '../ProgressBar';
-import LikeButton from '../LikeButton';
-import placeholderImg from '../../../images/song-placeholder.png'
+import { getCommentsBySong } from "../../store/comments";
+import { getSong, playSong } from '../../store/songs';
+import { getPaused, getTime, getRawTime } from '../../store/audioPlayerState';
+import { getLoad } from '../../store/global';
+import { getAllSongLikes, getLikesByUser } from '../../store/likes';
+import ErrorPage from '../ErrorPage';
+import BtnMenu from './DropdownMenus/edit-deleteMenu';
+import SongComments from './SongComments'
+import ProgressBar from './ProgressBar';
+import LikeButton from './LikeButton';
+import placeholderImg from '../../images/song-placeholder.png'
 import './SingleSong.css'
 
 
