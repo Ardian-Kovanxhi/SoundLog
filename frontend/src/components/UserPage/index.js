@@ -54,15 +54,10 @@ export default function UserPage() {
                             {User.username}
                         </div>
                     </div>
+                    <button onClick={() => setFocused(2)}>Likes</button>
+                    <button onClick={() => setFocused(1)}>Songs</button>
                     <LikeList focused={focused} />
                     <SongList focused={focused} />
-                    <button
-                        onClick={() => {
-                            focused === 1 ? setFocused(2) : setFocused(1)
-                        }}
-                    >
-                        Toggle Focus
-                    </button>
                 </div>
                 : <ErrorPage />}
         </>

@@ -112,17 +112,14 @@ router.put('/:songId', requireAuth, async (req, res) => {
 // DELETE /api/songs/:songId
 router.delete('/:songId', requireAuth, async (req, res) => {
     const songId = +req.params.songId;
-    const song = await Song.findByPk(songId);
+    const song = await Song.findByPk(songId, { include: Like });
 
     if (!song) {
         res.statusCode = 404;
         return res.json({ message: "Song couldn't be found", statusCode: 404 });
     }
 
-    // if (song.ownerId !== +req.user.id) {
-    //     res.statusCode = 400;
-    //     return res.json({ message: "non owner cannot delete song", statusCode: 400 });
-    // }
+    console.log(`Associated Likes: ${song.Likes}`)
 
     await song.destroy();
     return res.json({ message: "successfully deleted", statusCode: 200 })
