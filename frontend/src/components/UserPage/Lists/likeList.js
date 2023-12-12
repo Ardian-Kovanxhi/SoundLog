@@ -31,9 +31,6 @@ export default function LikeList({ focused }) {
             className={`like-list${focused === 1 ? ' unfocused' : ''}`}
         >
             <div>
-                Likes
-            </div>
-            <div>
                 {likeArr.length > 0 ? likeArr.map((like, index) => {
 
                     const liClass = `user-list-items${hoveredIndex === index ? ' hovered' : ''}`

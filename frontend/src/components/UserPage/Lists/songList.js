@@ -28,9 +28,7 @@ export default function SongList({ focused }) {
         <div
             className={`song-list${focused === 2 ? ' unfocused' : ''}`}
         >
-            <div>
-                Songs
-            </div>
+
             {songArr.length > 0 ? songArr.map((song, index) => {
 
                 const liClass = `user-list-items songs${hoveredIndex === index ? ' hovered' : ''}`

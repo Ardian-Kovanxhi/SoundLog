@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getLoad } from "../../store/global";
-import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+import { useHistory, useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { getUser } from "../../store/session";
 import { getAllUserLikes } from "../../store/likes";
 import { getUserSongs } from "../../store/songs";
@@ -13,12 +13,15 @@ import { useState } from "react";
 
 export default function UserPage() {
     const dispatch = useDispatch();
+    const history = useHistory();
 
-    const [focused, setFocused] = useState(2)
+    const [focused, setFocused] = useState(2);
 
     const { userId } = useParams();
 
     const User = useSelector(state => state.session.viewedUser);
+
+    const admin = useSelector(state => state.session.user)
 
     async function fetchData() {
         if (Number(userId) === 0) return
@@ -28,8 +31,13 @@ export default function UserPage() {
     }
 
     useEffect(() => {
+        // if (admin) {
+        //     if (admin.id === 1) {
         fetchData()
         dispatch(getLoad(false))
+        //     }
+        // }
+        // history.push('/')
     }, [])
 
     return (
@@ -54,10 +62,31 @@ export default function UserPage() {
                             {User.username}
                         </div>
                     </div>
-                    <button onClick={() => setFocused(2)}>Likes</button>
-                    <button onClick={() => setFocused(1)}>Songs</button>
-                    <LikeList focused={focused} />
-                    <SongList focused={focused} />
+
+                    <div className="user-songs-likes-div">
+
+                        <div className="toggle-btn-div">
+
+                            <button
+                                className={`like-toggle toggle-btns ${focused === 2 ? ' focused' : ''}`}
+                                onClick={() => setFocused(2)}
+                            >
+                                Likes
+                            </button>
+
+                            <button
+                                className={`song-toggle toggle-btns ${focused === 1 ? ' focused' : ''}`}
+                                onClick={() => setFocused(1)}
+                            >
+                                Songs
+                            </button>
+
+                        </div>
+
+                        <LikeList focused={focused} />
+                        <SongList focused={focused} />
+
+                    </div>
                 </div>
                 : <ErrorPage />}
         </>
