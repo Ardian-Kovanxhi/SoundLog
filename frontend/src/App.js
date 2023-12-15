@@ -14,6 +14,7 @@ import SongFormPage from "./components/SongFormPage";
 import ErrorPage from "./components/ErrorPage";
 import SingleSong from "./components/SingleSong";
 import AudioControls from './components/Global/AudioControls'
+import { getLikesByUser } from "./store/likes";
 
 
 function App() {
@@ -29,6 +30,10 @@ function App() {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
     if (!Cookies.get('pageTheme')) Cookies.set('pageTheme', 'day', { expires: 604800 })
   }, [dispatch]);
+
+  useEffect(() => {
+    if (User) dispatch(getLikesByUser());
+  }, [User])
 
   return (
 

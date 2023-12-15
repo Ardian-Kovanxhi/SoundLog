@@ -2,20 +2,50 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-}
-
-.user-list-items {
     color: black;
-}
-
-.user-list-items.hovered {
-    background-color: blue;
-}
-
-.like-list>button {
-    z-index: 10;
+    margin: 0px 0px 25px;
+    padding: 15px 0px;
 }
 
 .unfocused {
     display: none;
+}
+
+.user-list-song-img {
+    width: 160px;
+    height: 160px;
+    margin-right: 80px;
+}
+
+.user-list-song-username-div {
+    display: flex;
+    flex-direction: column;
+}
+
+.user-list-song-username-div:hover {
+    cursor: pointer;
+}
+
+.user-list-song-username-div>div {
+    width: 200px;
+}
+
+.user-univ-button {
+    z-index: 1000;
+    background-color: forestgreen;
+    border: 0;
+    border-radius: 100%;
+    padding: 10.5px 13px;
+    position: sticky;
+    transition:
+        background-color .5s,
+        color .5s;
+}
+
+.user-pause {
+    padding: 0px .83px;
+}
+
+.user-univ-button:hover {
+    background-color: green;
 }

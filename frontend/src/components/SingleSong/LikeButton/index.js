@@ -12,7 +12,7 @@ export default function LikeButton() {
     const { songId } = useParams();
 
     const User = useSelector(state => state.session.user);
-    const likeState = useSelector(state => state.likes.singleLike);
+    const likeState = useSelector(state => state.likes.loggedUserLikes);
     const totalLikes = useSelector(state => state.likes.likeCount);
     const pageState = useSelector(state => state.global.lightState);
 
@@ -20,18 +20,9 @@ export default function LikeButton() {
     const [like, setLike] = useState(false);
     const [hovered, setHover] = useState(false)
 
-
-
-    async function fetchData() {
-        if (User) {
-            await dispatch(getLikesByUser(songId));
-            likeState.like ? setLike(true) : setLike(false);
-        }
-    }
-
     useEffect(() => {
-        fetchData();
-    }, [User]);
+        likeState.has(Number(songId)) ? setLike(true) : setLike(false);
+    }, [likeState])
 
 
     return (
@@ -46,7 +37,6 @@ export default function LikeButton() {
                                 await dispatch(removeLike(songId))
                                 await dispatch(getLikesByUser(songId))
                                 await dispatch(getAllSongLikes(songId))
-                                likeState.like ? setLike(true) : setLike(false)
                             }}
                             onMouseEnter={() => setHover(true)}
                             onMouseLeave={() => setHover(false)}
@@ -63,7 +53,6 @@ export default function LikeButton() {
                                 await dispatch(createLike(songId))
                                 await dispatch(getLikesByUser(songId))
                                 await dispatch(getAllSongLikes(songId))
-                                likeState.like ? setLike(true) : setLike(false)
                             }}
                             onMouseEnter={() => setHover(true)}
                             onMouseLeave={() => setHover(false)}

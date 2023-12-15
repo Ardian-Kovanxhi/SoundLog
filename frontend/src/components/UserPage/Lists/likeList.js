@@ -16,7 +16,8 @@ export default function LikeList({ focused }) {
 
     const currSong = useSelector(state => state.songs.playingSong);
     const paused = useSelector(state => state.audioState.pauseState);
-    const likes = useSelector(state => state.likes.userLikes);
+    // const likes = useSelector(state => state.likes.userLikes);
+    const likes = useSelector(state => state.likes.viewedUserLikes);
     const likeArr = Object.values(likes);
 
     const singleLoader = async singleId => {
@@ -25,16 +26,6 @@ export default function LikeList({ focused }) {
         await dispatch(getAllSongLikes(singleId));
         history.push(`/songs/${singleId}`);
     };
-
-    // const handleSeek = (seekTime, song) => {
-    //     if (currSong.id !== song.id) {
-    //         dispatch(playSong(song.id))
-    //         dispatch(getTime(0))
-    //         return
-    //     }
-    //     const newSeekTime = (seekTime / 100) * song.duration;
-    //     dispatch(getRawTime(newSeekTime))
-    // };
 
     return (
         <div
@@ -62,54 +53,78 @@ export default function LikeList({ focused }) {
                             onMouseEnter={() => setHoveredIndex(index)}
                             onMouseLeave={() => setHoveredIndex(null)}
                         >
-                            {
-                                // hoveredIndex === index ?
-                                currSong.id === like.Song.id ?
-                                    paused ?
-                                        <button
-                                            // className={btnClass}
-                                            onClick={() => { dispatch(getPaused(false)) }}
-                                        >
 
-                                            <i className="fa-solid fa-play" />
-
-                                        </button> :
-
-                                        <button
-                                            // className={`pause ${btnClass}`}
-                                            onClick={() => { dispatch(getPaused(true)) }}
-                                        >
-
-                                            <i className="fa-solid fa-pause" />
-
-                                        </button> :
-
-                                    <button
-                                        // className={btnClass}
-                                        onClick={() => dispatch(playSong(like.Song.id))}
-                                    >
-
-                                        <i className="fa-solid fa-play" />
-
-                                    </button>
-                            }
                             <div
                                 style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', width: '100%' }}
-                                onClick={() => {
-                                    dispatch(getLoad(true));
-                                    singleLoader(like.Song.id);
-                                }}
                             >
-                                <div>
-                                    {index + 1}:
-                                </div>
-                                <img style={{ width: '60px', height: '60px' }} src={like.Song.img} />
-                                <div style={{ width: '200px' }}>
-                                    {like.Song.name}
-                                </div>
+                                <img
+                                    className='user-list-song-img'
+                                    src={like.Song.img}
+                                    onClick={() => {
+                                        dispatch(getLoad(true));
+                                        singleLoader(like.Song.id);
+                                    }}
+                                />
 
+                                <div style={{ display: 'flex', flexDirection: 'column', height: '130px', justifyContent: 'space-between' }}>
+                                    <div
+                                        style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', width: '100%' }}
+                                    >
+                                        {
+                                            like.Song.id === currSong.id ?
+                                                paused ?
+                                                    <button
+                                                        className="user-univ-button"
+                                                        onClick={() => { dispatch(getPaused(false)) }}
+                                                    >
+
+                                                        <i className="fa-solid fa-play" />
+
+                                                    </button> :
+
+                                                    <button
+                                                        className="user-univ-button"
+                                                        onClick={() => { dispatch(getPaused(true)) }}
+                                                    >
+
+                                                        <i className="fa-solid fa-pause user-pause" />
+
+                                                    </button> :
+
+                                                <button
+                                                    className="user-univ-button"
+                                                    onClick={() => dispatch(playSong(like.Song.id))}
+                                                >
+
+                                                    <i className="fa-solid fa-play" />
+
+                                                </button>
+                                        }
+                                        <div
+                                            className="user-list-song-username-div"
+                                        >
+                                            <div
+                                                onClick={() => {
+                                                    dispatch(getLoad(true))
+                                                    history.push(`/users/${Number(like.Song.User.id) - 1}`)
+                                                }}
+                                            >
+                                                {like.Song.User.username}
+                                            </div>
+                                            <div
+                                                onClick={() => {
+                                                    dispatch(getLoad(true));
+                                                    singleLoader(like.Song.id);
+                                                }}
+                                            >
+                                                {like.Song.name}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <ProgressBar onSeek={handleSeek} listSong={like.Song} />
+                                </div>
                             </div>
-                            <ProgressBar onSeek={handleSeek} listSong={like.Song} />
                         </div>
                     )
                 }) : 'No Likes'}

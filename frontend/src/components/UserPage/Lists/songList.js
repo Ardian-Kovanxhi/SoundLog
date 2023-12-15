@@ -51,47 +51,65 @@ export default function SongList({ focused }) {
                         onMouseEnter={() => setHoveredIndex(index)}
                         onMouseLeave={() => setHoveredIndex(null)}
                     >
-                        {
-                            song.id === currSong.id ?
-                                paused ?
+
+                        <div
+                            style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', width: '100%' }}
+                        >
+                            <img
+                                className='user-list-song-img'
+                                src={song.img}
+                                onClick={() => {
+                                    dispatch(getLoad(true));
+                                    singleLoader(song.id);
+                                }}
+                            />
+
+                            {
+                                song.id === currSong.id ?
+                                    paused ?
+                                        <button
+                                            className="user-univ-button"
+                                            onClick={() => { dispatch(getPaused(false)) }}
+                                        >
+
+                                            <i className="fa-solid fa-play" />
+
+                                        </button> :
+
+                                        <button
+                                            className="user-univ-button"
+                                            onClick={() => { dispatch(getPaused(true)) }}
+                                        >
+
+                                            <i className="fa-solid fa-pause user-pause" />
+
+                                        </button> :
+
                                     <button
-                                        onClick={() => { dispatch(getPaused(false)) }}
+                                        className="user-univ-button"
+                                        onClick={() => dispatch(playSong(song.id))}
                                     >
 
                                         <i className="fa-solid fa-play" />
 
-                                    </button> :
+                                    </button>
+                            }
 
-                                    <button
-                                        onClick={() => { dispatch(getPaused(true)) }}
-                                    >
-
-                                        <i className="fa-solid fa-pause" />
-
-                                    </button> :
-
-                                <button
-                                    onClick={() => dispatch(playSong(song.id))}
-                                >
-
-                                    <i className="fa-solid fa-play" />
-
-                                </button>
-                        }
-                        <div
-                            style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', width: '100%' }}
-                            onClick={() => {
-                                dispatch(getLoad(true));
-                                singleLoader(song.id);
-                            }}
-                        >
-                            <div>
-                                {index + 1}:
+                            <div
+                                className="user-list-song-username-div"
+                                onClick={() => {
+                                    dispatch(getLoad(true));
+                                    singleLoader(song.id);
+                                }}
+                            >
+                                <div>
+                                    {song.User.username}
+                                </div>
+                                <div>
+                                    {song.name}
+                                </div>
                             </div>
-                            <img style={{ width: '60px', height: '60px' }} src={song.img} />
-                            <div>
-                                {song.name}
-                            </div>
+
                         </div>
                         <ProgressBar onSeek={handleSeek} listSong={song} />
                     </div>

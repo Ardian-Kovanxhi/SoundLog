@@ -43,7 +43,7 @@ export const getRawTime = (playbackTime) => dispatch => {
 }
 
 
-const initialState = { pauseState: true, runtimeState: { raw: 0, str: '' }, rawTime: 0, loopState: { loop: false, loopType: 'all' } }
+const initialState = { pauseState: true, runtimeState: { raw: 0, str: '' }, rawTime: 0, /*loopState: { loop: false, loopType: 'all' }*/ }
 
 export default function audioPlayerReducer(state = initialState, action) {
     let newState;

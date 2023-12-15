@@ -42,8 +42,9 @@
     justify-content: center;
     align-items: baseline;
     width: 1240px;
-    height: 250px;
+    height: 260px;
     overflow: hidden;
+    margin-bottom: 10px;
 }
 
 .profile-background {

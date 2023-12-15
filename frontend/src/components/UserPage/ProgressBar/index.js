@@ -68,13 +68,13 @@ const ProgressBar = ({ onSeek, listSong }) => {
 
             <div className='time-div-list'>
 
-                <div>
-                    {currSong.id === listSong.id ? songTime : '--:--'}
-                </div>
+                {/* <div> */}
+                {currSong.id === listSong.id ? songTime : '--:--'}
+                {/* </div> */}
 
-                <div>
+                {/* <div>
                     {time}
-                </div>
+                </div> */}
 
             </div>
 
@@ -101,6 +101,9 @@ const ProgressBar = ({ onSeek, listSong }) => {
                             className={`fa-solid fa-circle ${pageState ? '' : 'night'}`}
                         ></i>
                 }
+            </div>
+            <div>
+                {time}
             </div>
         </div>
 

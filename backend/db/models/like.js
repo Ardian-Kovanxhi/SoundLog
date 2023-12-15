@@ -33,7 +33,7 @@ module.exports = (sequelize, DataTypes) => {
     modelName: 'Like',
     defaultScope: {
       attributes: {
-        exclude: ['userId', 'songId', 'createdAt', 'updatedAt']
+        exclude: ['userId', 'createdAt', 'updatedAt']
       }
     },
     scopes: {

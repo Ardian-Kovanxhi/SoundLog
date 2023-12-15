@@ -20,6 +20,7 @@ export default function UserPage() {
 
     const User = useSelector(state => state.session.viewedUser);
 
+
     async function fetchData() {
         if (Number(userId) === 0) return
         await dispatch(getUser(Number(userId) + 1));
@@ -30,8 +31,7 @@ export default function UserPage() {
     useEffect(() => {
         fetchData()
         dispatch(getLoad(false))
-    }, []);
-
+    }, [userId])
 
     return (
         <>

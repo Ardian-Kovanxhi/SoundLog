@@ -45,7 +45,8 @@ export default function AllSongs() {
             <div className='all-songs-div'>
                 {songArr.map((el, index) => {
 
-                    const btnClass = `univ-play-pause-button ${hoveredIndex === index ? 'hovered' : ''} ${pageState ? '' : ' night'}`
+                    const btnClass = `univ-play-pause-button${hoveredIndex === index ? ' hovered' : ''} ${pageState ? '' : ' night'}`
+                    // const btnClass = `univ-play-pause-button hovered ${pageState ? '' : ' night'}` //used for testing
 
 
                     return (
@@ -77,7 +78,7 @@ export default function AllSongs() {
                                                 onClick={() => { dispatch(getPaused(false)) }}
                                             >
 
-                                                <i className="fa-solid fa-play" />
+                                                <i className="fa-solid fa-play fa-2xl" />
 
                                             </button> :
 
@@ -86,7 +87,7 @@ export default function AllSongs() {
                                                 onClick={() => { dispatch(getPaused(true)) }}
                                             >
 
-                                                <i className="fa-solid fa-pause" />
+                                                <i className="fa-solid fa-pause fa-2xl splash-pause" />
 
                                             </button> :
 
@@ -95,7 +96,7 @@ export default function AllSongs() {
                                             onClick={() => dispatch(playSong(el.id))}
                                         >
 
-                                            <i className="fa-solid fa-play" />
+                                            <i className="fa-solid fa-play fa-2xl" />
 
                                         </button>
                                 }

@@ -85,7 +85,7 @@
     border: 0;
     margin-right: 10px;
     border-radius: 100%;
-    padding: 15px 18px;
+    padding: 20px 18px;
     position: absolute;
     transition:
         background-color .5s,
@@ -93,30 +93,15 @@
         margin-bottom .5s,
 }
 
+.splash-pause {
+    padding: 0px 1.67px;
+}
+
 .univ-play-pause-button.hovered {
     background-color: forestgreen;
     color: black;
     margin-bottom: 10px;
 }
-
-.fa-play {
-    font-size: xx-large;
-}
-
-.fa-pause {
-    font-size: xx-large;
-    padding: 0px 2px;
-}
-
-/* .univ-play-pause-button {
-    z-index: 1000;
-    background-color: forestgreen;
-    border: 0;
-    border-radius: 5px;
-    margin: 5px 0px;
-    padding: 10px 13px;
-    position: sticky;
-} */
 
 
 

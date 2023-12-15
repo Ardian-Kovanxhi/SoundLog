@@ -32,9 +32,9 @@ export default function SingleSong() {
         await dispatch(getSong(songId));
         await dispatch(getCommentsBySong(songId));
         await dispatch(getAllSongLikes(songId));
-        if (User) {
-            await dispatch(getLikesByUser(songId));
-        }
+        // if (User) {
+        //     await dispatch(getLikesByUser(songId));
+        // }
     }
 
     useEffect(() => {
@@ -95,7 +95,7 @@ export default function SingleSong() {
                                                         onClick={() => { dispatch(getPaused(false)) }}
                                                     >
 
-                                                        <i className="fa-solid fa-play" />
+                                                        <i className="fa-solid fa-play fa-2xl" />
 
                                                     </button> :
 
@@ -104,7 +104,7 @@ export default function SingleSong() {
                                                         onClick={() => { dispatch(getPaused(true)) }}
                                                     >
 
-                                                        <i className="fa-solid fa-pause" />
+                                                        <i className="fa-solid fa-pause fa-2xl single-pause" />
 
                                                     </button> :
 
@@ -113,7 +113,7 @@ export default function SingleSong() {
                                                     onClick={() => dispatch(playSong(Song.id))}
                                                 >
 
-                                                    <i className="fa-solid fa-play" />
+                                                    <i className="fa-solid fa-play fa-2xl" />
 
                                                 </button>
                                             }

@@ -52,7 +52,12 @@ router.get('/user/:userId', async (req, res) => {
 
     const userId = +req.params.userId;
 
-    const userSongs = await Song.findAll({ where: { userId } })
+    const userSongs = await Song.findAll({
+        where: { userId },
+        include: [
+            { model: User, attributes: ['id', 'username'] }
+        ]
+    })
 
     res.json(userSongs)
 })

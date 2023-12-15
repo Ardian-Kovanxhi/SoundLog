@@ -35,27 +35,35 @@ router.get('/user/:userId', async (req, res) => {
     const userId = +req.params.userId
     const Likes = await Like.findAll({
         where: { userId },
+        exclude: [
+            { arrtributes: [] }
+        ],
         include: [
             {
-                model: Song
+                model: Song,
+                include: [
+                    {
+                        model: User,
+                        attributes: ['id', 'username']
+                    }
+                ]
             }
         ]
     })
     return res.json({ Likes })
 })
-// //Auth true
-// //GET /api/likes/current | Return all likes by a user
-// router.get('/current', requireAuth, async (req, res) => {
-//     const Likes = await Like.findAll({
-//         where: { userId: req.user.id },
-//         include: [
-//             {
-//                 model: Song
-//             }
-//         ]
-//     })
-//     return res.json({ Likes })
-// })
+
+//Auth true
+//GET /api/likes/current | Return all likes by a user
+router.get('/current', requireAuth, async (req, res) => {
+    const Likes = await Like.findAll({
+        where: { userId: req.user.id },
+        // include: [
+        //     { attributes: ['songId'] }
+        // ]
+    })
+    return res.json({ Likes })
+})
 
 //Auth true
 //GET /api/likes/current/:songId | Return single user like of a song
