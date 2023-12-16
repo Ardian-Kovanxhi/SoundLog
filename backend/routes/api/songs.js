@@ -10,8 +10,18 @@ const router = express.Router();
 
 //GET /api/songs | all songs
 router.get('/', async (req, res) => {
+    let { page, size } = req.query;
+    if (!page) page = 1;
+    if (!size || size > 20) size = 20;
+
+    // const pagination = {
+    //     limit: size,
+    //     offset: size * (page - 1)
+    // };
 
     const songs = await Song.findAll({
+        limit: 5,
+        offset: 0,
         include: [
             { model: User, attributes: ['id', 'username'] }
         ]

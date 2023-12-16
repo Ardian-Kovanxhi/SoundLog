@@ -17,7 +17,8 @@ export default function AllSongs() {
     const pageState = useSelector(state => state.global.lightState)
     const history = useHistory()
 
-    const [hoveredIndex, setHoveredIndex] = useState(null)
+    const [hoveredIndex, setHoveredIndex] = useState(null);
+    const [test, setTest] = useState([1, 2, 3])
 
     async function fetchData() {
         dispatch(getLoad(true))
@@ -118,6 +119,13 @@ export default function AllSongs() {
                         </div>
                     )
                 })}
+                <div>
+                    {test.map(el => (
+                        <button>
+                            {el}
+                        </button>
+                    ))}
+                </div>
             </div>
         </div>
     )
