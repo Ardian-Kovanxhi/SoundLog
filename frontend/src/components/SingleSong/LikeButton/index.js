@@ -7,9 +7,9 @@ import { createLike, getAllSongLikes, getAllUserLikes, getLikesByUser, removeLik
 import './LikeButton.css'
 
 
-export default function LikeButton() {
+export default function LikeButton({ songId }) {
     const dispatch = useDispatch();
-    const { songId } = useParams();
+    // const { songId } = useParams();
 
     const User = useSelector(state => state.session.user);
     const likeState = useSelector(state => state.likes.loggedUserLikes);
@@ -32,7 +32,7 @@ export default function LikeButton() {
                     <div>
 
                         <button
-                            className={`likeBtn${pageState ? '' : ' night'}`}
+                            // className={`likeBtn${pageState ? '' : ' night'}`}
                             onClick={async () => {
                                 await dispatch(removeLike(songId))
                                 await dispatch(getLikesByUser(songId))
@@ -48,7 +48,7 @@ export default function LikeButton() {
                     <div>
 
                         <button
-                            className={`likeBtn${pageState ? '' : ' night'}`}
+                            // className={`likeBtn${pageState ? '' : ' night'}`}
                             onClick={async () => {
                                 await dispatch(createLike(songId))
                                 await dispatch(getLikesByUser(songId))
@@ -62,7 +62,7 @@ export default function LikeButton() {
                     </div>
                 :
                 <div
-                    className={`likeBtn${pageState ? '' : ' night'}`}
+                    // className={`likeBtn${pageState ? '' : ' night'}`}
                     onMouseEnter={() => setHover(true)}
                     onMouseLeave={() => setHover(false)}
                 >
@@ -72,9 +72,11 @@ export default function LikeButton() {
                     />
                 </div>
             }
-            <div className={`likeCount${pageState ? '' : ' night'}`}>
+            <div
+            // className={`likeCount${pageState ? '' : ' night'}`}
+            >
                 {totalLikes}
-            </div>
+            </div >
         </>
     )
 }

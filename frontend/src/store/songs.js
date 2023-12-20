@@ -74,6 +74,8 @@ export const getSongs = () => async dispatch => {
 
     if (response.ok) {
         const songs = await response.json();
+        console.log(songs)
+
         dispatch(readSongs(songs))
         return songs
     }
@@ -196,14 +198,30 @@ export const clearPlayingSong = () => dispatch => {
 
 
 
-const initialState = { allSongs: {}, singleSong: {}, playingSong: {}, userSongs: {} }
+const initialState = {
+    allSongs: {},
+
+    allSongsPage: {
+        totalPages: 1,
+        currPage: 1
+    },
+
+    singleSong: {},
+
+    playingSong: {},
+
+    userSongs: {}
+
+}
 
 export default function songsReducer(state = initialState, action) {
     let newState;
     switch (action.type) {
         case READ_SONGS: {
-            newState = { ...state, allSongs: {} }
-            action.songs.forEach(song => newState.allSongs[song.id] = song);
+            newState = { ...state, allSongs: {} };
+            action.songs.songs.forEach(song => newState.allSongs[song.id] = song);
+            newState.allSongsPage.totalPages = action.songs.pageCount
+            if (newState.allSongsPage.currPage > action.songs.pageCount) newState.allSongsPage.currPage = action.songs.pageCount
             return newState
         }
         case READ_USER_SONGS: {

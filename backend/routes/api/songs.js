@@ -10,24 +10,24 @@ const router = express.Router();
 
 //GET /api/songs | all songs
 router.get('/', async (req, res) => {
-    let { page, size } = req.query;
+    let { page } = req.query;
     if (!page) page = 1;
-    if (!size || size > 20) size = 20;
 
-    // const pagination = {
-    //     limit: size,
-    //     offset: size * (page - 1)
-    // };
+    const pagination = {
+        limit: 20,
+        offset: 20 * (page - 1)
+    };
 
-    const songs = await Song.findAll({
-        limit: 5,
-        offset: 0,
+    const { rows: songs, count } = await Song.findAndCountAll({
+        ...pagination,
         include: [
             { model: User, attributes: ['id', 'username'] }
         ]
     });
 
-    res.json(songs);
+    const pageCount = Math.ceil(count / 20);
+
+    return res.json({ songs, pageCount });
 });
 
 //auth true

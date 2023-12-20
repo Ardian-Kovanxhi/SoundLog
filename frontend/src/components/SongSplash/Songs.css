@@ -1,22 +1,52 @@
 .all-songs-div-container {
-    position: absolute;
-    z-index: 1;
-    top: 0;
+    width: 1220px;
     height: fit-content;
-    margin-bottom: 88px;
-    /* background-color: rgb(210, 255, 210); */
-    background-color: transparent;
-}
-
-.all-songs-div {
-    /* background-color: rgb(210, 255, 210); */
-    background-color: transparent;
+    position: absolute;
+    top: 0;
+    margin: 50px 10px 88px;
+    z-index: 1;
     display: flex;
     flex-wrap: wrap;
     align-items: baseline;
-    margin: 50px 10px 88px;
-    width: 1220px;
+}
+
+.all-songs-single {
+    margin: 5px;
+    width: fit-content;
     height: fit-content;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(170, 200, 170, .2);
+    transition: background-color 1s;
+}
+
+.all-songs-single:hover {
+    cursor: pointer;
+    background-color: rgba(34, 139, 34, 0.4);
+}
+
+/* unnamed div in between */
+
+/* ↓↓↓ to be renamed and refactored ↓↓↓ */
+
+.all-songs-img-div {
+    display: flex;
+    justify-content: end;
+    align-items: end;
+    height: 200px;
+    width: 200px;
+    margin-bottom: 5px;
+}
+
+/* ↑↑↑ to be renamed and refactored ↑↑↑ */
+
+.all-songs-single-img {
+    position: absolute;
+    height: 200px;
+    width: 200px;
+    border: 1px rgba(0, 0, 0, .4) solid;
+    border-radius: 5px;
 }
 
 .all-songs-song-name {
@@ -32,16 +62,6 @@
     transition: color .5s;
 }
 
-.all-songs-song-name.night {
-    color: white;
-}
-
-/* save for potential text animation */
-/* .all-songs-song-name:hover {
-    text-overflow: clip;
-} */
-
-
 .all-songs-username {
     width: 180px;
     font-size: small;
@@ -51,88 +71,44 @@
     transition: color .5s;
 }
 
-.all-songs-single {
-    /* border: 1px black solid; */
-    margin: 5px 5px;
-    width: 200px;
-    padding: 17px;
-    border-radius: 10px;
-    height: fit-content;
-    display: flex;
-    flex-direction: column;
-    background-color: rgba(170, 200, 170, .2);
-    transition: background-color 1s;
-}
-
-.all-songs-single:hover {
-    cursor: pointer;
-    background-color: rgba(34, 139, 34, 0.4);
-}
-
-.all-song-img-btn-div {
-    display: flex;
-    justify-content: flex-end;
-    align-items: flex-end;
-    height: 200px;
-    width: 200px;
-    margin-bottom: 3px;
-}
-
 .univ-play-pause-button {
     background-color: transparent;
     color: transparent;
     border: 0;
-    margin-right: 10px;
+    margin-left: 151px;
+    margin-top: 160px;
     border-radius: 100%;
     padding: 20px 18px;
     position: absolute;
     transition:
         background-color .5s,
         color .5s,
-        margin-bottom .5s,
+        margin-top .5s,
 }
 
 .splash-pause {
     padding: 0px 1.67px;
 }
 
+
 .univ-play-pause-button.hovered {
     background-color: forestgreen;
     color: black;
-    margin-bottom: 10px;
+    margin-top: 154px;
 }
 
-
-
-.all-song-img-btn-div>button:hover {
+.univ-play-pause-button.hovered:hover {
     background-color: green;
-    /* border-radius: 10px; */
 }
 
-.all-songs-single-img {
-    position: absolute;
-    height: 200px;
-    width: 200px;
-    border: 1px rgba(0, 0, 0, .4) solid;
-    border-radius: 5px;
-}
-
-/* NIGHT MODE */
+/* ↓↓↓ NIGHT MODE ↓↓↓ */
 
 .all-songs-single.night {
-    /* background-color: rgba(170, 170, 200, .2); */
     background-color: rgba(99, 99, 147, .3);
-    /* background-color: rgba(34, 34, 139, .6); */
-
 }
 
 .all-songs-single.night:hover {
-    cursor: pointer;
-    /* background-color: rgba(34, 34, 139, .6); */
-    /* background-color: rgba(76, 76, 255, .7); */
-    /* background-color: rgba(138, 43, 226, .5); */
     background-color: rgba(62, 110, 170, .4);
-
 }
 
 .all-songs-song-name.night {

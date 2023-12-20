@@ -8,17 +8,28 @@ import { getPaused } from '../../store/audioPlayerState';
 import { getLoad } from '../../store/global';
 import placeholderImg from '../../images/song-placeholder.png'
 import './Songs.css'
+import LikeButton from '../SingleSong/LikeButton';
 
 export default function AllSongs() {
     const dispatch = useDispatch();
     const Songs = useSelector(state => state.songs.allSongs);
+    const pageCounter = useSelector(state => state.songs.allSongsPage);
     const song = useSelector(state => state.songs.playingSong);
     const paused = useSelector(state => state.audioState.pauseState);
     const pageState = useSelector(state => state.global.lightState)
     const history = useHistory()
 
     const [hoveredIndex, setHoveredIndex] = useState(null);
-    const [test, setTest] = useState([1, 2, 3])
+
+    const pageButtons = [];
+
+    for (let i = 1; i <= pageCounter.totalPages; i++) {
+        pageButtons.push(
+            <button key={i}>
+                {i}
+            </button>
+        )
+    }
 
     async function fetchData() {
         dispatch(getLoad(true))
@@ -32,6 +43,7 @@ export default function AllSongs() {
     }, [])
 
     const singleLoader = async singleId => {
+        //pre-loads data for single song page
         await dispatch(getSong(singleId))
         await dispatch(getCommentsBySong(singleId))
         await dispatch(getAllSongLikes(singleId))
@@ -43,89 +55,89 @@ export default function AllSongs() {
 
     return (
         <div className='all-songs-div-container'>
-            <div className='all-songs-div'>
-                {songArr.map((el, index) => {
+            {songArr.map((el, index) => {
 
-                    const btnClass = `univ-play-pause-button${hoveredIndex === index ? ' hovered' : ''} ${pageState ? '' : ' night'}`
-                    // const btnClass = `univ-play-pause-button hovered ${pageState ? '' : ' night'}` //used for testing
+                const btnClass = `univ-play-pause-button${hoveredIndex === index ? ' hovered' : ''} ${pageState ? '' : ' night'}`
+                // const btnClass = `univ-play-pause-button hovered ${pageState ? '' : ' night'}` //used for testing
 
 
-                    return (
+                return (
+                    <div
+                        className={`all-songs-single ${pageState ? '' : ' night'}`}
+                        onMouseEnter={() => setHoveredIndex(index)}
+                        onMouseLeave={() => setHoveredIndex(null)}
+                        key={index}
+                    >
                         <div
-                            // className='all-songs-single'
-                            className={`all-songs-single ${pageState ? '' : ' night'}`}
-                            onMouseEnter={() => setHoveredIndex(index)}
-                            onMouseLeave={() => setHoveredIndex(null)}
-                            key={index}
+                            style={{
+                                width: '200px',
+                                height: '237px',
+                                padding: '17px'
+
+                            }}
+                            onClick={() => {
+                                dispatch(getLoad(true))
+                                singleLoader(el.id)
+                            }}
                         >
-                            <div className='all-song-img-btn-div'>
+                            <div className='all-songs-img-div'>
 
                                 <img
                                     className='all-songs-single-img'
-                                    onClick={() => {
-                                        dispatch(getLoad(true))
-                                        singleLoader(el.id)
-                                    }}
                                     src={el.img || placeholderImg}
                                     alt='Album Cover'
                                 />
 
-                                {
-                                    // hoveredIndex === index ?
-                                    song.id === el.id ?
-                                        paused ?
-                                            <button
-                                                className={btnClass}
-                                                onClick={() => { dispatch(getPaused(false)) }}
-                                            >
-
-                                                <i className="fa-solid fa-play fa-2xl" />
-
-                                            </button> :
-
-                                            <button
-                                                className={`pause ${btnClass}`}
-                                                onClick={() => { dispatch(getPaused(true)) }}
-                                            >
-
-                                                <i className="fa-solid fa-pause fa-2xl splash-pause" />
-
-                                            </button> :
-
-                                        <button
-                                            className={btnClass}
-                                            onClick={() => dispatch(playSong(el.id))}
-                                        >
-
-                                            <i className="fa-solid fa-play fa-2xl" />
-
-                                        </button>
-                                }
-
                             </div>
-                            <div
-                                onClick={() => singleLoader(el.id)}
-                            >
+                            <div>
 
                                 <div className={`all-songs-song-name ${pageState ? '' : ' night'}`}>
-
                                     {el.name}
                                 </div>
+
                                 <div className={`all-songs-username ${pageState ? '' : ' night'}`}>
                                     {el.User.username}
                                 </div>
 
                             </div>
                         </div>
-                    )
-                })}
-                <div>
-                    {test.map(el => (
-                        <button>
-                            {el}
-                        </button>
-                    ))}
-                </div>
+
+                        {
+                            song.id === el.id ?
+                                paused ?
+                                    <button
+                                        className={btnClass}
+                                        onClick={() => { dispatch(getPaused(false)) }}
+                                    >
+
+                                        <i className="fa-solid fa-play fa-2xl" />
+
+                                    </button> :
+
+                                    <button
+                                        className={`pause ${btnClass}`}
+                                        onClick={() => { dispatch(getPaused(true)) }}
+                                    >
+
+                                        <i className="fa-solid fa-pause fa-2xl splash-pause" />
+
+                                    </button> :
+
+                                <button
+                                    className={btnClass}
+                                    onClick={() => dispatch(playSong(el.id))}
+                                >
+
+                                    <i className="fa-solid fa-play fa-2xl" />
+
+                                </button>
+                        }
+                        {/* <LikeButton songId={el.id} /> */}
+                    </div>
+                )
+            })}
+            <div>
+                {pageButtons}
             </div>
         </div>
     )
