@@ -25,7 +25,12 @@ export default function AllSongs() {
 
     for (let i = 1; i <= pageCounter.totalPages; i++) {
         pageButtons.push(
-            <button key={i}>
+            <button
+                key={i}
+                onClick={() => {
+                    dispatch(getSongs(i))
+                }}
+            >
                 {i}
             </button>
         )
@@ -54,91 +59,99 @@ export default function AllSongs() {
     const songArr = Object.values(Songs);
 
     return (
-        <div className='all-songs-div-container'>
-            {songArr.map((el, index) => {
+        <>
+            <div className='all-songs-div-container'>
+                {songArr.map((el, index) => {
 
-                const btnClass = `univ-play-pause-button${hoveredIndex === index ? ' hovered' : ''} ${pageState ? '' : ' night'}`
-                // const btnClass = `univ-play-pause-button hovered ${pageState ? '' : ' night'}` //used for testing
+                    const btnClass = `univ-play-pause-button${hoveredIndex === index ? ' hovered' : ''} ${pageState ? '' : ' night'}`
+                    // const btnClass = `univ-play-pause-button hovered ${pageState ? '' : ' night'}` //used for testing
 
 
-                return (
-                    <div
-                        className={`all-songs-single ${pageState ? '' : ' night'}`}
-                        onMouseEnter={() => setHoveredIndex(index)}
-                        onMouseLeave={() => setHoveredIndex(null)}
-                        key={index}
-                    >
+                    return (
                         <div
-                            style={{
-                                width: '200px',
-                                height: '237px',
-                                padding: '17px'
-
-                            }}
-                            onClick={() => {
-                                dispatch(getLoad(true))
-                                singleLoader(el.id)
-                            }}
+                            className={`all-songs-single ${pageState ? '' : ' night'}`}
+                            onMouseEnter={() => setHoveredIndex(index)}
+                            onMouseLeave={() => setHoveredIndex(null)}
+                            key={index}
                         >
-                            <div className='all-songs-img-div'>
-
-                                <img
-                                    className='all-songs-single-img'
-                                    src={el.img || placeholderImg}
-                                    alt='Album Cover'
-                                />
-
+                            <div className={`like-btn-render${hoveredIndex === index ? ' hovered' : ''}`}>
+                                <LikeButton songId={el.id} pageRendered={false} />
                             </div>
-                            <div>
 
-                                <div className={`all-songs-song-name ${pageState ? '' : ' night'}`}>
-                                    {el.name}
+                            <div
+                                style={{
+                                    width: '200px',
+                                    height: '237px',
+                                    padding: '17px'
+
+                                }}
+                                onClick={() => {
+                                    dispatch(getLoad(true))
+                                    singleLoader(el.id)
+                                }}
+                            >
+                                <div className='all-songs-img-div'>
+
+                                    <img
+                                        className='all-songs-single-img'
+                                        src={el.img || placeholderImg}
+                                        alt='Album Cover'
+                                    />
+                                    <div className={`gradient-div${hoveredIndex === index ? ' hovered' : ''}`}></div>
+
                                 </div>
+                                <div>
 
-                                <div className={`all-songs-username ${pageState ? '' : ' night'}`}>
-                                    {el.User.username}
+                                    <div className={`all-songs-song-name ${pageState ? '' : ' night'}`}>
+                                        {el.name}
+                                    </div>
+
+                                    <div className={`all-songs-username ${pageState ? '' : ' night'}`}>
+                                        {el.User.username}
+                                    </div>
+
                                 </div>
-
                             </div>
-                        </div>
 
-                        {
-                            song.id === el.id ?
-                                paused ?
+                            {
+                                song.id === el.id ?
+                                    paused ?
+                                        <button
+                                            className={btnClass}
+                                            onClick={() => { dispatch(getPaused(false)) }}
+                                        >
+
+                                            <i className="fa-solid fa-play fa-2xl" />
+
+                                        </button> :
+
+                                        <button
+                                            className={`pause ${btnClass}`}
+                                            onClick={() => { dispatch(getPaused(true)) }}
+                                        >
+
+                                            <i className="fa-solid fa-pause fa-2xl splash-pause" />
+
+                                        </button> :
+
                                     <button
                                         className={btnClass}
-                                        onClick={() => { dispatch(getPaused(false)) }}
+                                        onClick={() => dispatch(playSong(el.id))}
                                     >
 
                                         <i className="fa-solid fa-play fa-2xl" />
 
-                                    </button> :
-
-                                    <button
-                                        className={`pause ${btnClass}`}
-                                        onClick={() => { dispatch(getPaused(true)) }}
-                                    >
-
-                                        <i className="fa-solid fa-pause fa-2xl splash-pause" />
-
-                                    </button> :
-
-                                <button
-                                    className={btnClass}
-                                    onClick={() => dispatch(playSong(el.id))}
-                                >
-
-                                    <i className="fa-solid fa-play fa-2xl" />
-
-                                </button>
-                        }
-                        {/* <LikeButton songId={el.id} /> */}
-                    </div>
-                )
-            })}
-            <div>
-                {pageButtons}
+                                    </button>
+                            }
+                        </div>
+                    )
+                })}
+                <div
+                    className={`page-btns${pageState ? ' night' : ''}`}
+                >
+                    {pageButtons}
+                </div>
             </div>
-        </div>
+        </>
     )
 }

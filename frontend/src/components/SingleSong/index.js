@@ -130,7 +130,7 @@ export default function SingleSong() {
                                                         {Song.name}
                                                     </div>
 
-                                                    <LikeButton songId={songId} />
+                                                    <LikeButton songId={songId} pageRendered={true} />
 
                                                     {
                                                         User ?

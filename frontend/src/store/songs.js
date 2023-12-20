@@ -69,8 +69,8 @@ const clearPlaying = () => {
 
 
 
-export const getSongs = () => async dispatch => {
-    const response = await csrfFetch('/api/songs')
+export const getSongs = (page = 1) => async dispatch => {
+    const response = await csrfFetch(`/api/songs?page=${page}`)
 
     if (response.ok) {
         const songs = await response.json();
@@ -114,11 +114,12 @@ export const playSong = (songId) => async dispatch => {
     }
 }
 
-export const playSong404 = (url) => async dispatch => {
+export const playSong404 = () => async dispatch => {
     const song = {
-        content: url,
+        id: 1,
+        content: 'https://aa-sounclod-clone-bucket.s3.amazonaws.com/jelly_fish_jam.mp3',
         name: 'Jelly Fish Jam',
-        img: 'https://media.tenor.com/UFd4D0yQGdwAAAAC/party-dance.gif'
+        img: 'https://media.tenor.com/UFd4D0yQGdwAAAAC/party-dance.gif',
     }
     dispatch(playingSong404(song))
     return song

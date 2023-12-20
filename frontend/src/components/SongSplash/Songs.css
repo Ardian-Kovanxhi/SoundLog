@@ -2,8 +2,9 @@
     width: 1220px;
     height: fit-content;
     position: absolute;
-    top: 0;
-    margin: 50px 10px 88px;
+    /* top: 0; */
+    margin: 50px 10px 0px;
+    padding-bottom: 88px;
     z-index: 1;
     display: flex;
     flex-wrap: wrap;
@@ -13,7 +14,7 @@
 .all-songs-single {
     margin: 5px;
     width: fit-content;
-    height: fit-content;
+    height: 271px;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
@@ -24,6 +25,26 @@
 .all-songs-single:hover {
     cursor: pointer;
     background-color: rgba(34, 139, 34, 0.4);
+}
+
+.like-btn-render button {
+    opacity: 0;
+    transition: opacity .5s linear;
+}
+
+
+.like-btn-render.hovered button {
+    opacity: 1;
+}
+
+/*brute force solution for modal button*/
+.like-btn-render .loginBtn button {
+    opacity: 0;
+    transition: opacity .5s linear;
+}
+
+.like-btn-render.hovered .loginBtn button {
+    opacity: 1;
 }
 
 /* unnamed div in between */
@@ -47,6 +68,19 @@
     width: 200px;
     border: 1px rgba(0, 0, 0, .4) solid;
     border-radius: 5px;
+}
+
+.gradient-div {
+    width: 200px;
+    height: 200px;
+    z-index: 1;
+    background: linear-gradient(30deg, rgba(0, 0, 0, .5), transparent, transparent, transparent, transparent);
+    opacity: 0;
+    transition: opacity .5s linear;
+}
+
+.gradient-div.hovered {
+    opacity: 1;
 }
 
 .all-songs-song-name {
@@ -80,6 +114,7 @@
     border-radius: 100%;
     padding: 20px 18px;
     position: absolute;
+    z-index: 2;
     transition:
         background-color .5s,
         color .5s,
@@ -126,4 +161,13 @@
 
 .univ-play-pause-button.night:hover {
     background-color: rgb(7, 19, 38);
+}
+
+/* style={{ position: 'absolute', bottom: 95, width: '100%', display: 'flex', justifyContent: 'center', zIndex: 1 }} */
+.page-btns {
+    z-index: 1;
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
 }

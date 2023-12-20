@@ -7,9 +7,8 @@ import { createLike, getAllSongLikes, getAllUserLikes, getLikesByUser, removeLik
 import './LikeButton.css'
 
 
-export default function LikeButton({ songId }) {
+export default function LikeButton({ songId, pageRendered }) {
     const dispatch = useDispatch();
-    // const { songId } = useParams();
 
     const User = useSelector(state => state.session.user);
     const likeState = useSelector(state => state.likes.loggedUserLikes);
@@ -24,6 +23,8 @@ export default function LikeButton({ songId }) {
         likeState.has(Number(songId)) ? setLike(true) : setLike(false);
     }, [likeState])
 
+    const likeBtnClass = `likeBtn${pageRendered ? ' singlePage' : ' splashPage'}${pageState ? '' : ' night'}`
+
 
     return (
         <>
@@ -32,7 +33,7 @@ export default function LikeButton({ songId }) {
                     <div>
 
                         <button
-                            // className={`likeBtn${pageState ? '' : ' night'}`}
+                            className={likeBtnClass}
                             onClick={async () => {
                                 await dispatch(removeLike(songId))
                                 await dispatch(getLikesByUser(songId))
@@ -48,7 +49,7 @@ export default function LikeButton({ songId }) {
                     <div>
 
                         <button
-                            // className={`likeBtn${pageState ? '' : ' night'}`}
+                            className={likeBtnClass}
                             onClick={async () => {
                                 await dispatch(createLike(songId))
                                 await dispatch(getLikesByUser(songId))
@@ -62,7 +63,7 @@ export default function LikeButton({ songId }) {
                     </div>
                 :
                 <div
-                    // className={`likeBtn${pageState ? '' : ' night'}`}
+                    className={likeBtnClass + ' loginBtn'}
                     onMouseEnter={() => setHover(true)}
                     onMouseLeave={() => setHover(false)}
                 >
@@ -73,7 +74,8 @@ export default function LikeButton({ songId }) {
                 </div>
             }
             <div
-            // className={`likeCount${pageState ? '' : ' night'}`}
+                style={pageRendered ? {} : { display: 'none' }}
+                className={`likeCount${pageState ? '' : ' night'}`}
             >
                 {totalLikes}
             </div >

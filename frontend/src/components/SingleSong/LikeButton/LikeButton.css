@@ -1,7 +1,5 @@
 .likeBtn {
     position: absolute;
-    top: 50px;
-    right: 0;
     padding: 10px 5px;
     margin-right: 4px;
     background-color: transparent;
@@ -9,6 +7,11 @@
     color: black;
     border-radius: 100%;
     transition: color .5s;
+}
+
+.likeBtn.singlePage {
+    top: 50px;
+    right: 0;
 }
 
 .likeBtn>button {
@@ -47,5 +50,20 @@
 }
 
 .likeCount.night {
+    color: white;
+}
+
+/*↓↓↓ Splash Page Styling ↓↓↓*/
+
+.likeBtn.splashPage {
+    margin: 0px;
+    margin-left: 20px;
+    margin-top: 180px;
+    z-index: 1;
+    color: white;
+    z-index: 2;
+}
+
+.likeBtn.splashPage button {
     color: white;
 }

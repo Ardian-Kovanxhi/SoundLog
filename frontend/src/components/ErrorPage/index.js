@@ -9,12 +9,13 @@ export default function ErrorPage() {
     const dispatch = useDispatch()
     const history = useHistory()
 
-    const pageState = useSelector(state => state.global.lightState)
+    const pageState = useSelector(state => state.global.lightState);
+    const paused = useSelector(state => state.audioState.pauseState);
 
     const [easter, setEaster] = useState(false)
 
-    const gifClass = 'test404 ' + (easter ? 'gif' : '')
-    const btnClass = 'easter-btn ' + (easter ? 'gif' : '')
+    const gifClass = `test404${easter ? ' gif' : ''}`
+    const btnClass = `easter-btn${easter ? ' gif' : ''}`
 
     useEffect(() => {
         dispatch(getLoad(false))
@@ -42,21 +43,20 @@ export default function ErrorPage() {
                 </div>
 
 
-                {/* <button
+                <button
                     className={btnClass}
                     onClick={() => {
-                        dispatch(playSong404('https://aa-sounclod-clone-bucket.s3.amazonaws.com/1690097319856.mp3'))
-                        setEaster(true)
+                        dispatch(playSong404());
+                        setEaster(true);
                     }}
                 >
                     Click for an Easter Egg
-                </button> */}
+                </button>
 
                 <div style={{ visibility: 'hidden' }}>
                     filler2
                 </div>
             </div>
-            {/* https://aa-sounclod-clone-bucket.s3.amazonaws.com/1690097319856.mp3 */}
         </>
     )
 }

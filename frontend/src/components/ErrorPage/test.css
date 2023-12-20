@@ -53,12 +53,13 @@
 .easter-btn {
     /* background-color: rgb(52, 68, 93); */
     background-color: transparent;
+    color: transparent;
     border: 0;
     padding: 30px;
     border-radius: 100px;
     font-size: x-large;
     font-weight: bolder;
-    transition: background-color 1s;
+    transition: background-color .5s, color .5s;
 }
 
 .easter-btn.gif {
@@ -67,4 +68,5 @@
 
 .easter-btn:hover {
     background-color: rgba(0, 0, 0, .4);
+    color: white;
 }
