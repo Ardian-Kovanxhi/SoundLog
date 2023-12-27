@@ -189,15 +189,25 @@
     display: flex;
     justify-content: center;
     font-size: large;
+    transition: color .5s;
 }
 
 .page-btns button {
     font-size: large;
     background-color: transparent;
     border: 0;
+    transition: color .5s;
 }
 
 .page-btns button:hover {
     text-decoration: underline;
     font-weight: bold;
+}
+
+.page-btns.night {
+    color: white;
+}
+
+.page-btns.night * {
+    color: white;
 }

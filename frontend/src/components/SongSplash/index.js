@@ -164,7 +164,7 @@ export default function AllSongs() {
                     )
                 })}
                 <div
-                    className={`page-btns${pageState ? ' night' : ''}`}
+                    className={`page-btns${pageState ? '' : ' night'}`}
                 >
                     Page: {pageButtons}
                 </div>
