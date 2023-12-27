@@ -1,23 +1,26 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import { getSongs, playSong, getSong, clearSongStore } from '../../store/songs';
+import { getSongs, playSong, getSong, clearSongStore, setCurrPage, getUserSongs } from '../../store/songs';
 import { getCommentsBySong } from '../../store/comments';
-import { getAllSongLikes } from '../../store/likes';
+import { getAllSongLikes, getAllUserLikes } from '../../store/likes';
 import { getPaused } from '../../store/audioPlayerState';
 import { getLoad } from '../../store/global';
 import placeholderImg from '../../images/song-placeholder.png'
 import './Songs.css'
 import LikeButton from '../SingleSong/LikeButton';
+import { getUser } from '../../store/session';
 
 export default function AllSongs() {
     const dispatch = useDispatch();
+    const history = useHistory();
+
     const Songs = useSelector(state => state.songs.allSongs);
     const pageCounter = useSelector(state => state.songs.allSongsPage);
     const song = useSelector(state => state.songs.playingSong);
     const paused = useSelector(state => state.audioState.pauseState);
-    const pageState = useSelector(state => state.global.lightState)
-    const history = useHistory()
+    const pageState = useSelector(state => state.global.lightState);
+    const songPageInfo = useSelector(state => state.songs.allSongsPage)
 
     const [hoveredIndex, setHoveredIndex] = useState(null);
 
@@ -26,9 +29,11 @@ export default function AllSongs() {
     for (let i = 1; i <= pageCounter.totalPages; i++) {
         pageButtons.push(
             <button
+                style={songPageInfo.currPage === i ? { textDecoration: 'underline', fontWeight: 'bold' } : {}}
                 key={i}
                 onClick={() => {
-                    dispatch(getSongs(i))
+                    dispatch(getSongs(i));
+                    dispatch(setCurrPage(i));
                 }}
             >
                 {i}
@@ -38,7 +43,7 @@ export default function AllSongs() {
 
     async function fetchData() {
         dispatch(getLoad(true))
-        await dispatch(getSongs())
+        await dispatch(getSongs(songPageInfo.currPage))
         await dispatch(clearSongStore())
         dispatch(getLoad(false))
     }
@@ -49,11 +54,18 @@ export default function AllSongs() {
 
     const singleLoader = async singleId => {
         //pre-loads data for single song page
-        await dispatch(getSong(singleId))
-        await dispatch(getCommentsBySong(singleId))
-        await dispatch(getAllSongLikes(singleId))
-        await dispatch(getAllSongLikes(singleId))
-        history.push(`/songs/${singleId}`)
+        await dispatch(getSong(singleId));
+        await dispatch(getCommentsBySong(singleId));
+        await dispatch(getAllSongLikes(singleId));
+        history.push(`/songs/${singleId}`);
+    }
+
+    const userLoader = async userId => {
+        console.log(userId)
+        await dispatch(getUser(userId));
+        await dispatch(getAllUserLikes(userId));
+        await dispatch(getUserSongs(userId));
+        history.push(`/users/${Number(userId) - 1}`);
     }
 
     const songArr = Object.values(Songs);
@@ -86,8 +98,8 @@ export default function AllSongs() {
 
                                 }}
                                 onClick={() => {
-                                    dispatch(getLoad(true))
-                                    singleLoader(el.id)
+                                    dispatch(getLoad(true));
+                                    singleLoader(el.id);
                                 }}
                             >
                                 <div className='all-songs-img-div'>
@@ -100,18 +112,23 @@ export default function AllSongs() {
                                     <div className={`gradient-div${hoveredIndex === index ? ' hovered' : ''}`}></div>
 
                                 </div>
-                                <div>
 
-                                    <div className={`all-songs-song-name ${pageState ? '' : ' night'}`}>
-                                        {el.name}
-                                    </div>
-
-                                    <div className={`all-songs-username ${pageState ? '' : ' night'}`}>
-                                        {el.User.username}
-                                    </div>
-
+                                <div className={`all-songs-song-name ${pageState ? '' : ' night'}`}>
+                                    {el.name}
                                 </div>
+
                             </div>
+
+                            <div
+                                className={`all-songs-username ${pageState ? '' : ' night'}`}
+                                onClick={() => {
+                                    userLoader(el.User.id);
+                                    dispatch(getLoad(true));
+                                }}
+                            >
+                                {el.User.username}
+                            </div>
+
 
                             {
                                 song.id === el.id ?
@@ -149,7 +166,7 @@ export default function AllSongs() {
                 <div
                     className={`page-btns${pageState ? ' night' : ''}`}
                 >
-                    {pageButtons}
+                    Page: {pageButtons}
                 </div>
             </div>
         </>

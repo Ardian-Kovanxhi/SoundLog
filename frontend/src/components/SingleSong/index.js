@@ -32,16 +32,13 @@ export default function SingleSong() {
         await dispatch(getSong(songId));
         await dispatch(getCommentsBySong(songId));
         await dispatch(getAllSongLikes(songId));
-        // if (User) {
-        //     await dispatch(getLikesByUser(songId));
-        // }
     }
 
     useEffect(() => {
-        dispatch(getLoad(true))
-        fetchData()
-        dispatch(getLoad(false))
-    }, [])
+        dispatch(getLoad(true));
+        fetchData();
+        dispatch(getLoad(false));
+    }, []);
 
     const handleSeek = (seekTime) => {
         if (currSong.id !== Song.id) {

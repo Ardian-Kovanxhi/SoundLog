@@ -2,12 +2,14 @@ import { useDispatch, useSelector } from "react-redux"
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { useState } from "react";
 import { getLoad } from "../../../store/global";
-import { getSong, playSong } from "../../../store/songs";
+import { getSong, getUserSongs, playSong } from "../../../store/songs";
 import { getCommentsBySong } from "../../../store/comments";
-import { getAllSongLikes } from "../../../store/likes";
+import { getAllSongLikes, getAllUserLikes } from "../../../store/likes";
 import { getPaused, getRawTime, getTime } from "../../../store/audioPlayerState";
-import './Lists.css'
 import ProgressBar from "../ProgressBar";
+import { getUser } from "../../../store/session";
+import './Lists.css'
+
 export default function SongList({ focused }) {
     const history = useHistory();
     const dispatch = useDispatch();
@@ -15,6 +17,7 @@ export default function SongList({ focused }) {
 
     const currSong = useSelector(state => state.songs.playingSong);
     const paused = useSelector(state => state.audioState.pauseState);
+    const pageState = useSelector(state => state.global.lightState);
     const Songs = useSelector(state => state.songs.userSongs);
     const songArr = Object.values(Songs);
 
@@ -25,9 +28,16 @@ export default function SongList({ focused }) {
         history.push(`/songs/${singleId}`)
     }
 
+    const userLoader = async userId => {
+        await dispatch(getUser(userId));
+        await dispatch(getAllUserLikes(userId));
+        await dispatch(getUserSongs(userId));
+        history.push(`/users/${Number(userId) - 1}`);
+    }
+
     return (
         <div
-            className={`song-list${focused === 2 ? ' unfocused' : ''}`}
+            className={`song-list${focused === 1 ? ' unfocused' : ''}`}
         >
 
             {songArr.length > 0 ? songArr.map((song, index) => {
@@ -64,57 +74,78 @@ export default function SongList({ focused }) {
                                 }}
                             />
 
-                            {
-                                song.id === currSong.id ?
-                                    paused ?
-                                        <button
-                                            className="user-univ-button"
-                                            onClick={() => { dispatch(getPaused(false)) }}
-                                        >
+                            <div style={{ display: 'flex', flexDirection: 'column', height: '130px', justifyContent: 'space-between' }}>
 
-                                            <i className="fa-solid fa-play" />
+                                <div
+                                    style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', width: '100%' }}
+                                >
+                                    {
+                                        song.id === currSong.id ?
+                                            paused ?
+                                                <button
+                                                    className={`user-univ-button${pageState ? '' : ' night'}`}
 
-                                        </button> :
+                                                    onClick={() => { dispatch(getPaused(false)) }}
+                                                >
 
-                                        <button
-                                            className="user-univ-button"
-                                            onClick={() => { dispatch(getPaused(true)) }}
-                                        >
+                                                    <i className="fa-solid fa-play" />
 
-                                            <i className="fa-solid fa-pause user-pause" />
+                                                </button> :
 
-                                        </button> :
+                                                <button
+                                                    className={`user-univ-button${pageState ? '' : ' night'}`}
 
-                                    <button
-                                        className="user-univ-button"
-                                        onClick={() => dispatch(playSong(song.id))}
+                                                    onClick={() => { dispatch(getPaused(true)) }}
+                                                >
+
+                                                    <i className="fa-solid fa-pause user-pause" />
+
+                                                </button> :
+
+                                            <button
+                                                className={`user-univ-button${pageState ? '' : ' night'}`}
+
+                                                onClick={() => dispatch(playSong(song.id))}
+                                            >
+
+                                                <i className="fa-solid fa-play" />
+
+                                            </button>
+                                    }
+                                    <div
+                                        className="user-list-song-username-div"
                                     >
+                                        <div
+                                            className={`user-list-username${pageState ? '' : ' night'}`}
 
-                                        <i className="fa-solid fa-play" />
-
-                                    </button>
-                            }
-
-                            <div
-                                className="user-list-song-username-div"
-                                onClick={() => {
-                                    dispatch(getLoad(true));
-                                    singleLoader(song.id);
-                                }}
-                            >
-                                <div>
-                                    {song.User.username}
+                                            onClick={() => {
+                                                userLoader(song.User.id);
+                                            }}
+                                        >
+                                            {song.User.username}
+                                        </div>
+                                        <div
+                                            className={`user-list-song-name${pageState ? '' : ' night'}`}
+                                            onClick={() => {
+                                                dispatch(getLoad(true));
+                                                singleLoader(song.id);
+                                            }}
+                                        >
+                                            {song.name}
+                                        </div>
+                                    </div>
                                 </div>
-                                <div>
-                                    {song.name}
-                                </div>
+
+                                <ProgressBar onSeek={handleSeek} listSong={song} />
                             </div>
-
                         </div>
-                        <ProgressBar onSeek={handleSeek} listSong={song} />
                     </div>
                 )
-            }) : 'No Songs'}
-        </div>
+            }) :
+                <div style={pageState ? { color: "black" } : { color: "white" }}>
+                    No Songs
+                </div>
+            }
+        </div >
     )
 }

@@ -35,11 +35,12 @@
 
 .dropdown-logged-in>button {
     width: 200px;
-    /* display: flex; */
-    /* justify-content: b; */
+    display: flex;
+    justify-content: flex-start;
     background-color: transparent;
     border: 0px;
     padding: 10px 0px;
+    padding-left: 10px;
     font-size: medium
 }
 

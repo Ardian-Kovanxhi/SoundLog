@@ -32,8 +32,8 @@
 }
 
 .profile-picture {
-    width: 500px;
-    height: 300px;
+    width: 300px;
+    height: 200px;
     /* border-radius: 100%; */
 }
 
@@ -45,6 +45,8 @@
     height: 260px;
     overflow: hidden;
     margin-bottom: 10px;
+    background: linear-gradient(90deg, skyblue, #FF7F7F);
+    /* color: pink; */
 }
 
 .profile-background {
@@ -74,4 +76,15 @@
 .toggle-btns.focused {
     border-bottom: 2px black solid;
     color: black;
+}
+
+/* ↓↓↓ NIGHT MODE ↓↓↓ */
+.toggle-btns.night {
+    color: rgb(170, 170, 170);
+    border-bottom: 2px solid rgb(190, 190, 190);
+}
+
+.toggle-btns.focused.night {
+    color: white;
+    border-bottom: 2px white solid;
 }

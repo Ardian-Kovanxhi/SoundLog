@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import * as sessionActions from '../../../store/session';
 import OpenModalMenuItem from './OpenModalMenuItem';
 import LoginFormModal from '../../Modals/LoginFormModal';
@@ -7,6 +8,7 @@ import SignupFormModal from '../../Modals/SignupFormModal';
 
 function ProfileButton({ user }) {
     const dispatch = useDispatch();
+    const history = useHistory();
     const pageState = useSelector(state => state.global.lightState)
     const [showMenu, setShowMenu] = useState(false);
     const ulRef = useRef();
@@ -51,9 +53,9 @@ function ProfileButton({ user }) {
                 ref={ulRef}>
                 {user ? (
                     <div className="dropdown-logged-in">
-                        <div>{user.username}</div>
+                        {/* <div>{user.username}</div>
                         <div>{user.firstName} {user.lastName}</div>
-                        <div>{user.email}</div>
+                        <div>{user.email}</div> */}
 
                         {/* <button
                             onClick={() => history.push('/likes')}
@@ -62,6 +64,7 @@ function ProfileButton({ user }) {
                             onClick={() => history.push('/playlists')}
                         >Playlists</button> */}
 
+                        <button onClick={() => history.push(`/users/${Number(user.id) - 1}`)}>View Profile</button>
                         <button onClick={logout}>Log Out</button>
 
                     </div>

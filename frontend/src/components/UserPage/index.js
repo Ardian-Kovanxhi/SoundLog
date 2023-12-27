@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getLoad } from "../../store/global";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
@@ -6,10 +7,10 @@ import { getUser } from "../../store/session";
 import { getAllUserLikes } from "../../store/likes";
 import { getUserSongs } from "../../store/songs";
 import ErrorPage from "../ErrorPage";
-import './UserPage.css'
 import LikeList from "./Lists/likeList";
 import SongList from "./Lists/songList";
-import { useState } from "react";
+import tempImg from '../../images/song-placeholder.png'
+import './UserPage.css'
 
 export default function UserPage() {
     const dispatch = useDispatch();
@@ -19,6 +20,7 @@ export default function UserPage() {
     const { userId } = useParams();
 
     const User = useSelector(state => state.session.viewedUser);
+    const pageState = useSelector(state => state.global.lightState);
 
 
     async function fetchData() {
@@ -29,6 +31,8 @@ export default function UserPage() {
     }
 
     useEffect(() => {
+        dispatch(getLoad(true))
+        setFocused(2)
         fetchData()
         dispatch(getLoad(false))
     }, [userId])
@@ -36,7 +40,7 @@ export default function UserPage() {
     return (
         <>
             {User ?
-                <div className="user-container">
+                <div className={`user-container`}>
                     <div className="profile-background-container">
                         <img
                             className="profile-background"
@@ -47,7 +51,7 @@ export default function UserPage() {
                     <div className="pfp-username-div">
                         <div className="profile-picture-container">
                             <img
-                                src={User.profilePicture}
+                                src={User.profilePicture || tempImg}
                                 className="profile-picture"
                             />
                         </div>
@@ -61,17 +65,17 @@ export default function UserPage() {
                         <div className="toggle-btn-div">
 
                             <button
-                                className={`like-toggle toggle-btns ${focused === 2 ? ' focused' : ''}`}
+                                className={`song-toggle toggle-btns ${focused === 2 ? ' focused' : ''}${pageState ? '' : ' night'}`}
                                 onClick={() => setFocused(2)}
                             >
-                                Likes
+                                Songs
                             </button>
 
                             <button
-                                className={`song-toggle toggle-btns ${focused === 1 ? ' focused' : ''}`}
+                                className={`like-toggle toggle-btns ${focused === 1 ? ' focused' : ''}${pageState ? '' : ' night'}`}
                                 onClick={() => setFocused(1)}
                             >
-                                Songs
+                                Likes
                             </button>
 
                         </div>

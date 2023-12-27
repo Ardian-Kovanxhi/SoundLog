@@ -1,3 +1,8 @@
+.like-list,
+.song-list {
+    margin-bottom: 88px;
+}
+
 .user-list-items {
     display: flex;
     flex-direction: row;
@@ -20,19 +25,38 @@
 .user-list-song-username-div {
     display: flex;
     flex-direction: column;
-}
-
-.user-list-song-username-div:hover {
-    cursor: pointer;
+    justify-content: space-between;
+    height: 41px;
+    margin-left: 10px;
 }
 
 .user-list-song-username-div>div {
-    width: 200px;
+    width: fit-content;
+    max-width: 600px;
 }
 
+.user-list-song-username-div>div:hover {
+    cursor: pointer;
+}
+
+.user-list-username {
+    font-size: small;
+    color: gray;
+}
+
+.user-list-username:hover {
+    color: black;
+}
+
+.user-list-song-name {
+    font-size: large;
+}
+
+
 .user-univ-button {
-    z-index: 1000;
+    z-index: 1;
     background-color: forestgreen;
+    color: black;
     border: 0;
     border-radius: 100%;
     padding: 10.5px 13px;
@@ -48,4 +72,19 @@
 
 .user-univ-button:hover {
     background-color: green;
+}
+
+/* ↓↓↓ NIGHT MODE ↓↓↓ */
+
+.user-list-username.night:hover {
+    color: white;
+}
+
+.user-list-song-name.night {
+    color: white;
+}
+
+.user-univ-button.night {
+    color: rgb(16, 48, 97);
+    background-color: rgb(62, 110, 170);
 }

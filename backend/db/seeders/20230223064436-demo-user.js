@@ -24,7 +24,7 @@ module.exports = {
         username: 'Demo-lition',
         hashedPassword: bcrypt.hashSync('password'),
         profilePicture: 'https://images.pushsquare.com/0096e1b088b8c/fallout-4-vault-boy-annoyed.900x.jpg',
-        backgroundPicture: 'https://i.ytimg.com/vi/Xw51NADAmwo/maxresdefault.jpg'
+        backgroundPicture: 'https://cdn.discordapp.com/attachments/750805294358986783/1188525693198413924/maxresdefault.jpg?ex=659ad7ce&is=658862ce&hm=8799e182993c858ea023e52286c2508dff5805e1fb21ee9f19c158b065568fac&'
       },
       {
         firstName: 'Demo2',
@@ -33,7 +33,7 @@ module.exports = {
         username: 'Paparrr',
         hashedPassword: bcrypt.hashSync('password2'),
         profilePicture: 'https://images.pushsquare.com/0096e1b088b8c/fallout-4-vault-boy-annoyed.900x.jpg',
-        backgroundPicture: 'https://i.ytimg.com/vi/Xw51NADAmwo/maxresdefault.jpg'
+        backgroundPicture: 'https://cdn.discordapp.com/attachments/750805294358986783/1188525693198413924/maxresdefault.jpg?ex=659ad7ce&is=658862ce&hm=8799e182993c858ea023e52286c2508dff5805e1fb21ee9f19c158b065568fac&'
       },
       {
         firstName: 'Demo3',
@@ -42,7 +42,7 @@ module.exports = {
         username: 'VICT0RYSCR33CH',
         hashedPassword: bcrypt.hashSync('password3'),
         profilePicture: 'https://images.pushsquare.com/0096e1b088b8c/fallout-4-vault-boy-annoyed.900x.jpg',
-        backgroundPicture: 'https://i.ytimg.com/vi/Xw51NADAmwo/maxresdefault.jpg'
+        backgroundPicture: 'https://cdn.discordapp.com/attachments/750805294358986783/1188525693198413924/maxresdefault.jpg?ex=659ad7ce&is=658862ce&hm=8799e182993c858ea023e52286c2508dff5805e1fb21ee9f19c158b065568fac&'
       },
       {
         firstName: 'David',
@@ -51,7 +51,7 @@ module.exports = {
         username: 'Pink Floyd',
         hashedPassword: bcrypt.hashSync('ShineOn'),
         profilePicture: 'https://cdn.britannica.com/64/23164-050-A7D2E9D9/Pink-Floyd.jpg',
-        backgroundPicture: 'https://cdn.discordapp.com/attachments/750805294358986783/1187220329966358569/a7uei14hc80z.jpg?ex=65961818&is=6583a318&hm=2f24aa10013077782105acc4ef54e195bd4f72eafe2407d316cc381b72401072&'
+        backgroundPicture: 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/b32f58d6-2993-44cf-9d14-c59e70f9ec62/dcsrb8f-df8eb016-9826-4fcd-a171-514978d609e4.png/v1/fill/w_1600,h_450/prism_by_octoplad_dcsrb8f-fullview.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NDUwIiwicGF0aCI6IlwvZlwvYjMyZjU4ZDYtMjk5My00NGNmLTlkMTQtYzU5ZTcwZjllYzYyXC9kY3NyYjhmLWRmOGViMDE2LTk4MjYtNGZjZC1hMTcxLTUxNDk3OGQ2MDllNC5wbmciLCJ3aWR0aCI6Ijw9MTYwMCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.D5fAtWZYtBB9iwXxUYggvoaPdThkFc7t6UzDWS-ZdYQ'
       },
       {
         firstName: 'Julian',

@@ -2,14 +2,15 @@ import Cookies from "js-cookie";
 import { csrfFetch } from "./csrf";
 
 
-const READ_SONGS = 'songs/READ_SONGS'
-const READ_USER_SONGS = 'songs/READ_USER_SONGS'
-const READ_SONG = 'song/READ_SONG'
-const PLAY_SONG = 'song/PLAY_SONG'
-const PLAY_SONG_404 = 'song/PLAY_SONG_404'
-const DELETE_SONG = 'song/DELETE_SONG'
-const CLEAR_SONG_STORE = 'song/CLEAR_SONG_STORE'
-const CLEAR_PLAYING_SONG = 'song/CLEAR_PLAYING_SONG'
+const READ_SONGS = 'songs/READ_SONGS';
+const READ_USER_SONGS = 'songs/READ_USER_SONGS';
+const READ_SONG = 'song/READ_SONG';
+const PLAY_SONG = 'song/PLAY_SONG';
+const PLAY_SONG_404 = 'song/PLAY_SONG_404';
+const DELETE_SONG = 'song/DELETE_SONG';
+const CLEAR_SONG_STORE = 'song/CLEAR_SONG_STORE';
+const CLEAR_PLAYING_SONG = 'song/CLEAR_PLAYING_SONG';
+const SET_PAGE = 'page/SET_PAGE';
 
 
 const readSongs = (songs) => {
@@ -65,6 +66,12 @@ const clearPlaying = () => {
     }
 }
 
+const setPage = (page) => {
+    return {
+        type: SET_PAGE,
+        page
+    }
+}
 
 
 
@@ -197,6 +204,10 @@ export const clearPlayingSong = () => dispatch => {
     dispatch(clearPlaying())
 }
 
+export const setCurrPage = (pageNum) => dispatch => {
+    dispatch(setPage(pageNum))
+}
+
 
 
 const initialState = {
@@ -224,6 +235,12 @@ export default function songsReducer(state = initialState, action) {
             newState.allSongsPage.totalPages = action.songs.pageCount
             if (newState.allSongsPage.currPage > action.songs.pageCount) newState.allSongsPage.currPage = action.songs.pageCount
             return newState
+        }
+        case SET_PAGE: {
+            newState = { ...state };
+            if (action.page > newState.allSongsPage.totalPages) newState.allSongsPage.currPage = newState.allSongsPage.totalPages;
+            else newState.allSongsPage.currPage = action.page;
+            return newState;
         }
         case READ_USER_SONGS: {
             newState = { ...state, userSongs: {} };
