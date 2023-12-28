@@ -51,7 +51,7 @@ module.exports = {
         username: 'Pink Floyd',
         hashedPassword: bcrypt.hashSync('ShineOn'),
         profilePicture: 'https://cdn.britannica.com/64/23164-050-A7D2E9D9/Pink-Floyd.jpg',
-        backgroundPicture: 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/b32f58d6-2993-44cf-9d14-c59e70f9ec62/dcsrb8f-df8eb016-9826-4fcd-a171-514978d609e4.png/v1/fill/w_1600,h_450/prism_by_octoplad_dcsrb8f-fullview.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NDUwIiwicGF0aCI6IlwvZlwvYjMyZjU4ZDYtMjk5My00NGNmLTlkMTQtYzU5ZTcwZjllYzYyXC9kY3NyYjhmLWRmOGViMDE2LTk4MjYtNGZjZC1hMTcxLTUxNDk3OGQ2MDllNC5wbmciLCJ3aWR0aCI6Ijw9MTYwMCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.D5fAtWZYtBB9iwXxUYggvoaPdThkFc7t6UzDWS-ZdYQ'
+        backgroundPicture: 'https://cdn.discordapp.com/attachments/750805294358986783/1189718864544682105/prism_by_octoplad_dcsrb8f-fullview.png?ex=659f2f09&is=658cba09&hm=ec64337b6bb812895ef3655640593fcba8672daa51ec1cdca1b284a0f1acf471&'
       },
       {
         firstName: 'Julian',
@@ -132,7 +132,7 @@ module.exports = {
         username: 'Muse',
         hashedPassword: bcrypt.hashSync('PlugInBaby'),
         profilePicture: 'https://www.riffyou.com/wp-content/uploads/2015/04/muse-2105.jpg',
-        backgroundPicture: 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/55098ae1-95ed-4dea-a3ad-53f809890edd/d6fchs-89e0675b-d112-4e4e-9943-411fe15af96e.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzU1MDk4YWUxLTk1ZWQtNGRlYS1hM2FkLTUzZjgwOTg5MGVkZFwvZDZmY2hzLTg5ZTA2NzViLWQxMTItNGU0ZS05OTQzLTQxMWZlMTVhZjk2ZS5qcGcifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6ZmlsZS5kb3dubG9hZCJdfQ.nwTLeJB3ZVewRjJ3X6AKfuyw8NWhRs6RG16_vYSrAIA'
+        backgroundPicture: 'https://cdn.discordapp.com/attachments/750805294358986783/1189718857884110979/d6fchs-89e0675b-d112-4e4e-9943-411fe15af96e.jpg?ex=659f2f07&is=658cba07&hm=caf913584ec220b7ce153c4cd4febe1abee163aecd0b1a02fc39ef5ac3b8f92f&'
       },
       {
         firstName: 'James',
@@ -159,7 +159,7 @@ module.exports = {
         username: 'Radiohead',
         hashedPassword: bcrypt.hashSync('NothingToFear'),
         profilePicture: 'https://media.npr.org/assets/img/2019/06/11/gettyimages-80530629-f148b8e014c67ed40c18fa8d2f50aa5ee7d87d67-s1100-c50.jpg',
-        backgroundPicture: 'https://d94thh4m1x8qv.cloudfront.net/eyJidWNrZXQiOiJkaXktbWFnYXppbmUiLCJrZXkiOiJkL2RpeS9BcnRpc3RzL1IvUmFkaW9oZWFkL3JhZGlvaGVhZC10aGUtYmVuZHMtaGVhZGVyLTEyMDB4ODAwLmpwZyIsImVkaXRzIjp7ImpwZWciOnsicXVhbGl0eSI6MTAwLCJwcm9ncmVzc2l2ZSI6dHJ1ZSwidHJlbGxpc1F1YW50aXNhdGlvbiI6dHJ1ZSwib3ZlcnNob290RGVyaW5naW5nIjp0cnVlLCJvcHRpbWl6ZVNjYW5zIjp0cnVlfSwicmVzaXplIjp7IndpZHRoIjoxNTAwLCJoZWlnaHQiOjEwMDAsImZpdCI6ImNvdmVyIn0sInNoYXJwZW4iOnRydWV9fQ=='
+        backgroundPicture: 'https://cdn.discordapp.com/attachments/750805294358986783/1189718849596170350/radiohead.webp?ex=659f2f05&is=658cba05&hm=11aa89900028164488fcfdb0e1dc98a7f76af6508d629e6e588448daf2a211bb&'
       },
       {
         firstName: 'Song',
