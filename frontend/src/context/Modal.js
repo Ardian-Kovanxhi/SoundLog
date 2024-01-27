@@ -1,7 +1,7 @@
 import React, { useRef, useState, useContext } from 'react';
-import ReactDOM from 'react-dom';
-import './Modal.css';
 import { useSelector } from 'react-redux';
+import ReactDOM from 'react-dom';
+import './Modal.scss';
 
 const ModalContext = React.createContext();
 

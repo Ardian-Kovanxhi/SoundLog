@@ -23,43 +23,74 @@
     position: absolute;
     background-color: rgb(230, 255, 230);
     border-radius: 20px;
-}
 
-#modal-content input {
-    background-color: transparent;
-    transition: color .5s;
-}
+    & input {
+        background-color: transparent;
+        transition: color .5s;
 
-#modal-content textarea {
-    background-color: transparent;
-    transition: color .5s;
-}
+        &:focus {
+            outline: none;
+            color: white;
+            border: 0;
+        }
 
-#modal-content button {
-    transition: background-color .6s;
-}
+        &::placeholder {
+            color: rgb(80, 160, 80);
+        }
+    }
 
-#modal-content button:hover {
-    background-color: green;
-}
+    & textarea {
+        background-color: transparent;
+        transition: color .5s;
 
-#modal-content input:focus {
-    outline: none;
-    color: white;
-    border: 0;
-}
+        &:focus {
+            outline: none;
+            color: white;
+        }
+    }
 
-#modal-content input::placeholder {
-    color: rgb(80, 160, 80);
-}
+    & button {
+        transition: background-color .6s;
 
-#modal-content textarea:focus {
-    outline: none;
-    color: white;
-}
+        &:hover {
+            background-color: green;
+        }
+    }
 
-#modal-content label:hover {
-    cursor: text;
+    & label {
+        &:hover {
+            cursor: text;
+        }
+    }
+
+
+    &.night {
+        background-color: rgb(7, 15, 50);
+        color: rgb(221, 221, 221);
+
+
+        & input {
+            color: white;
+
+            &::placeholder {
+                color: rgb(26, 71, 143);
+            }
+        }
+
+        & textarea {
+            color: white;
+        }
+
+        & button {
+            background-color: rgb(16, 48, 97);
+            transition: background-color .6s;
+
+            &:hover {
+                /* background-color: rgb(26, 71, 143); */
+                background-color: rgb(26, 71, 143);
+            }
+        }
+    }
 }
 
 .fa-xmark {
@@ -69,10 +100,10 @@
     margin-bottom: 0;
     right: 0;
     top: 0;
-}
 
-.fa-xmark:hover {
-    cursor: pointer;
+    &:hover {
+        cursor: pointer;
+    }
 }
 
 .label-in-div {
@@ -109,6 +140,11 @@
     background-color: rgb(80, 160, 80);
     box-shadow: 0px 0px 3px 3px rgba(0, 0, 0, .5);
     color: white;
+
+    &.night {
+        background-color: #1a478f;
+        box-shadow: 0 0 1px 1px rgba(255, 255, 255, 1);
+    }
 }
 
 .sign-up {
@@ -118,38 +154,4 @@
 .comment {
     margin: 0px 0px 20px;
     width: 95%;
-}
-
-/*   NIGHT MODE   */
-
-#modal-content.night {
-    background-color: rgb(7, 15, 50);
-    color: rgb(221, 221, 221);
-}
-
-#modal-content.night input {
-    color: white;
-}
-
-#modal-content.night input::placeholder {
-    color: rgb(26, 71, 143);
-}
-
-#modal-content.night textarea {
-    color: white;
-}
-
-#modal-content.night button {
-    background-color: rgb(16, 48, 97);
-    transition: background-color .6s;
-}
-
-#modal-content.night button:hover {
-    /* background-color: rgb(26, 71, 143); */
-    background-color: rgb(26, 71, 143);
-}
-
-.focus.night {
-    background-color: #1a478f;
-    box-shadow: 0 0 1px 1px rgba(255, 255, 255, 1);
 }
