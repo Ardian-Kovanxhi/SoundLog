@@ -23,31 +23,39 @@
     flex-direction: column;
     background-color: rgba(170, 200, 170, .2);
     transition: background-color 1s;
+
+    &:hover {
+        cursor: pointer;
+        background-color: rgba(34, 139, 34, 0.4);
+    }
+
+    &.night {
+        background-color: rgba(99, 99, 147, .3);
+
+        &:hover {
+            background-color: rgba(62, 110, 170, .4);
+        }
+    }
 }
 
-.all-songs-single:hover {
-    cursor: pointer;
-    background-color: rgba(34, 139, 34, 0.4);
-}
+.like-btn-render {
+    & button {
+        opacity: 0;
+        transition: opacity .5s linear;
+    }
 
-.like-btn-render button {
-    opacity: 0;
-    transition: opacity .5s linear;
-}
+    .hovered button {
+        opacity: 1;
+    }
 
+    & .loginBtn button {
+        opacity: 0;
+        transition: opacity .5s linear;
+    }
 
-.like-btn-render.hovered button {
-    opacity: 1;
-}
-
-/*brute force solution for modal button*/
-.like-btn-render .loginBtn button {
-    opacity: 0;
-    transition: opacity .5s linear;
-}
-
-.like-btn-render.hovered .loginBtn button {
-    opacity: 1;
+    &.hovered .loginBtn button {
+        opacity: 1;
+    }
 }
 
 /* unnamed div in between */
@@ -82,10 +90,10 @@
     background: linear-gradient(30deg, rgba(0, 0, 0, .5), transparent, transparent, transparent, transparent);
     opacity: 0;
     transition: opacity .5s linear;
-}
 
-.gradient-div.hovered {
-    opacity: 1;
+    &.hovered {
+        opacity: 1;
+    }
 }
 
 .all-songs-song-name {
@@ -100,6 +108,10 @@
     translate: text-overflow 1s;
     color: black;
     transition: color .5s;
+
+    &.night {
+        color: white;
+    }
 }
 
 .all-songs-username {
@@ -113,10 +125,19 @@
     overflow: hidden;
     text-overflow: ellipsis;
     transition: color .5s;
-}
 
-.all-songs-username:hover {
-    color: black;
+    &:hover {
+        color: black;
+    }
+
+    &.night {
+        color: rgb(170, 170, 170);
+
+        &:hover {
+            color: white;
+        }
+    }
+
 }
 
 .univ-play-pause-button {
@@ -132,7 +153,31 @@
     transition:
         background-color .5s,
         color .5s,
-        margin-top .5s,
+        margin-top .5;
+
+    &.hovered {
+        background-color: forestgreen;
+        color: black;
+        margin-top: 154px;
+
+        &:hover {
+            background-color: green;
+        }
+
+        &.night {
+            color: rgb(62, 110, 170);
+            background-color: rgb(16, 48, 97);
+        }
+
+        &.night {
+            color: rgb(62, 110, 170);
+            background-color: rgb(16, 48, 97);
+        }
+    }
+
+    &.night:hover {
+        background-color: rgb(7, 19, 38);
+    }
 }
 
 .splash-pause {
@@ -140,47 +185,7 @@
 }
 
 
-.univ-play-pause-button.hovered {
-    background-color: forestgreen;
-    color: black;
-    margin-top: 154px;
-}
-
-.univ-play-pause-button.hovered:hover {
-    background-color: green;
-}
-
 /* ↓↓↓ NIGHT MODE ↓↓↓ */
-
-.all-songs-single.night {
-    background-color: rgba(99, 99, 147, .3);
-}
-
-.all-songs-single.night:hover {
-    background-color: rgba(62, 110, 170, .4);
-}
-
-.all-songs-song-name.night {
-    color: white;
-}
-
-.all-songs-username.night {
-    color: rgb(170, 170, 170);
-    /* transition: color .5s; */
-}
-
-.all-songs-username.night:hover {
-    color: white;
-}
-
-.univ-play-pause-button.hovered.night {
-    color: rgb(62, 110, 170);
-    background-color: rgb(16, 48, 97);
-}
-
-.univ-play-pause-button.night:hover {
-    background-color: rgb(7, 19, 38);
-}
 
 /* style={{ position: 'absolute', bottom: 95, width: '100%', display: 'flex', justifyContent: 'center', zIndex: 1 }} */
 .page-btns {
@@ -190,24 +195,24 @@
     justify-content: center;
     font-size: large;
     transition: color .5s;
-}
 
-.page-btns button {
-    font-size: large;
-    background-color: transparent;
-    border: 0;
-    transition: color .5s;
-}
+    & button {
+        font-size: large;
+        background-color: transparent;
+        border: 0;
+        transition: color .5s;
 
-.page-btns button:hover {
-    text-decoration: underline;
-    font-weight: bold;
-}
+        &:hover {
+            text-decoration: underline;
+            font-weight: bold;
+        }
+    }
 
-.page-btns.night {
-    color: white;
-}
+    &.night {
+        color: white;
 
-.page-btns.night * {
-    color: white;
+        & * {
+            color: white;
+        }
+    }
 }

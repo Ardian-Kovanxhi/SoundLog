@@ -7,9 +7,9 @@ import { getAllSongLikes, getAllUserLikes } from '../../store/likes';
 import { getPaused } from '../../store/audioPlayerState';
 import { getLoad } from '../../store/global';
 import placeholderImg from '../../images/song-placeholder.png'
-import './Songs.css'
 import LikeButton from '../SingleSong/LikeButton';
 import { getUser } from '../../store/session';
+import './Songs.scss'
 
 export default function AllSongs() {
     const dispatch = useDispatch();
