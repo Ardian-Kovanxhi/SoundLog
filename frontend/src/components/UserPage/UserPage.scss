@@ -71,20 +71,19 @@
     padding: 0px 10px;
     margin: 0px 5px;
     font-size: x-large;
-}
 
-.toggle-btns.focused {
-    border-bottom: 2px black solid;
-    color: black;
-}
+    &.focused {
+        border-bottom: 2px black solid;
+        color: black;
+    }
 
-/* ↓↓↓ NIGHT MODE ↓↓↓ */
-.toggle-btns.night {
-    color: rgb(170, 170, 170);
-    border-bottom: 2px solid rgb(190, 190, 190);
-}
+    &.night {
+        color: rgb(170, 170, 170);
+        border-bottom: 2px solid rgb(190, 190, 190);
 
-.toggle-btns.focused.night {
-    color: white;
-    border-bottom: 2px white solid;
+        &.focused {
+            color: white;
+            border-bottom: 2px white solid;
+        }
+    }
 }

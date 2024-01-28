@@ -8,7 +8,7 @@ import { getAllSongLikes, getAllUserLikes } from "../../../store/likes";
 import { getPaused, getRawTime, getTime } from "../../../store/audioPlayerState";
 import ProgressBar from "../ProgressBar";
 import { getUser } from "../../../store/session";
-import './Lists.css'
+import './Lists.scss'
 
 export default function SongList({ focused }) {
     const history = useHistory();

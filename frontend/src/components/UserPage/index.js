@@ -10,7 +10,7 @@ import ErrorPage from "../ErrorPage";
 import LikeList from "./Lists/likeList";
 import SongList from "./Lists/songList";
 import tempImg from '../../images/song-placeholder.png'
-import './UserPage.css'
+import './UserPage.scss'
 
 export default function UserPage() {
     const dispatch = useDispatch();

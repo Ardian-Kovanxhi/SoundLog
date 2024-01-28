@@ -8,7 +8,7 @@ import { useState } from "react";
 import { getPaused, getRawTime, getTime } from "../../../store/audioPlayerState";
 import { getUser } from "../../../store/session";
 import ProgressBar from "../ProgressBar";
-import './Lists.css'
+import './Lists.scss'
 
 export default function LikeList({ focused }) {
     const history = useHistory();

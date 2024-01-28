@@ -28,28 +28,36 @@
     justify-content: space-between;
     height: 41px;
     margin-left: 10px;
-}
 
-.user-list-song-username-div>div {
-    width: fit-content;
-    max-width: 600px;
-}
+    &>div {
+        width: fit-content;
+        max-width: 600px;
 
-.user-list-song-username-div>div:hover {
-    cursor: pointer;
+        &:hover {
+            cursor: pointer;
+        }
+    }
 }
 
 .user-list-username {
     font-size: small;
     color: gray;
-}
 
-.user-list-username:hover {
-    color: black;
+    &:hover {
+        color: black;
+    }
+
+    &.night:hover {
+        color: white;
+    }
 }
 
 .user-list-song-name {
     font-size: large;
+
+    &.night {
+        color: white;
+    }
 }
 
 
@@ -64,27 +72,17 @@
     transition:
         background-color .5s,
         color .5s;
+
+    &:hover {
+        background-color: green;
+    }
+
+    &.night {
+        color: rgb(16, 48, 97);
+        background-color: rgb(62, 110, 170);
+    }
 }
 
 .user-pause {
     padding: 0px .83px;
-}
-
-.user-univ-button:hover {
-    background-color: green;
-}
-
-/* ↓↓↓ NIGHT MODE ↓↓↓ */
-
-.user-list-username.night:hover {
-    color: white;
-}
-
-.user-list-song-name.night {
-    color: white;
-}
-
-.user-univ-button.night {
-    color: rgb(16, 48, 97);
-    background-color: rgb(62, 110, 170);
 }

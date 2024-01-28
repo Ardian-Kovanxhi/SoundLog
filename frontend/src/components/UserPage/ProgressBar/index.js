@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import './ProgressBar.css'
+import './ProgressBar.scss'
 
 const ProgressBar = ({ onSeek, listSong }) => {
     const [isSeeking, setIsSeeking] = useState(false);

@@ -8,14 +8,14 @@
     justify-content: space-between;
     /* padding: 10px; */
     border-radius: 10px;
+
+    &.night {
+        color: white;
+    }
 }
 
 .time-div-list {
     width: 40px;
-    /* display: flex; */
-    /* width: 570px; */
-    /* justify-content: space-between; */
-    /* margin-bottom: 5px; */
 }
 
 .progress-bar-list {
@@ -29,6 +29,10 @@
     border-radius: 10px;
     transition: background-color .5s;
     margin: 0px 10px;
+
+    &.night {
+        background-color: skyblue;
+    }
 }
 
 .progress-list {
@@ -41,6 +45,10 @@
     justify-content: flex-end;
     align-items: center;
     transition: background-color .5s;
+
+    &.night {
+        background-color: blue;
+    }
 }
 
 .fa-solid.fa-circle {
@@ -49,21 +57,8 @@
     position: 'sticky';
     left: '0';
     transition: color .5s;
-}
 
-/*   NIGHT MODE   */
-.progress-container-list.night {
-    color: white;
-}
-
-.progress-bar-list.night {
-    background-color: skyblue;
-}
-
-.progress-list.night {
-    background-color: blue;
-}
-
-.fa-solid.fa-circle.night {
-    color: blue;
+    &.night {
+        color: blue;
+    }
 }
