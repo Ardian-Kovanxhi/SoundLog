@@ -126,7 +126,7 @@ module.exports = {
         name: 'Layla',
         content: 'https://aa-sounclod-clone-bucket.s3.amazonaws.com/layla.mp3',
         duration: 423,
-        img: 'https://e.snmc.io/i/600/s/8ed126d701eb838b86808bdc87bc3922/1210092/derek-and-the-dominos-layla-and-other-assorted-love-songs-cover-art.jpg',
+        img: 'https://m.media-amazon.com/images/I/91EhdslXW2L._UF1000,1000_QL80_.jpg',
         description: null
       },
       {
