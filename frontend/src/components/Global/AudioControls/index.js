@@ -71,19 +71,6 @@ function AudioControls() {
     }, [pauseState])
 
 
-
-
-    const playerStateCheck = () => {
-
-
-        // player.current.audio.current.play();
-        console.log(`Paused: ${player.current.audio.current.paused}`);
-        console.log(`Current Time: ${player.current.audio.current.currentTime}`);
-        console.log(`Duration: ${player.current.audio.current.duration}`);
-
-    };
-
-
     const singleLoader = async singleId => {
         // setLoadState(false)
         await dispatch(getSong(singleId))
@@ -106,14 +93,14 @@ function AudioControls() {
 
 
                     <img
-                        // className='player-img-actual'
                         className={imgClass}
                         src={
                             song.img
                             ||
                             'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png'
-
-                        } />
+                        }
+                        alt=''
+                    />
 
                     <div className='song-name-display'>
                         <div

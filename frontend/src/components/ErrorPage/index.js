@@ -10,7 +10,6 @@ export default function ErrorPage() {
     const history = useHistory()
 
     const pageState = useSelector(state => state.global.lightState);
-    const paused = useSelector(state => state.audioState.pauseState);
 
     const [easter, setEaster] = useState(false)
 

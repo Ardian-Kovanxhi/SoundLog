@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import LoginFormModal from '../../Modals/LoginFormModal';
 import OpenModalMenuItem from '../../Modals/OpenModalButton';
-import { getLight, getLoad } from "../../../store/global";
+import { getLight } from "../../../store/global";
 import homeBarLogo from '../../../images/log3.png'
 import './Navigation.scss';
 
@@ -26,7 +26,11 @@ function Navigation({ isLoaded }) {
                     }}
                     className={`title-icon-div ${pageState ? '' : 'night'}`}
                 >
-                    <img src={homeBarLogo} className='log-icon-img' />
+                    <img
+                        src={homeBarLogo}
+                        className='log-icon-img'
+                        alt=''
+                    />
                     <div className='title-actual'>
                         SoundLog
                     </div>
