@@ -4,7 +4,7 @@ import { useParams, useHistory } from 'react-router-dom'
 import OpenModalMenuItem from '../../Modals/OpenModalButton';
 import SongEditModal from "../../Modals/SongEditModal";
 import { useEffect, useRef, useState } from "react";
-import './DropdownStyle.css'
+import './DropdownStyle.scss'
 
 
 export default function BtnMenu() {

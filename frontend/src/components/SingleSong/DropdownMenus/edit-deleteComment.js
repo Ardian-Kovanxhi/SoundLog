@@ -4,7 +4,7 @@ import OpenModalMenuItem from '../../Modals/OpenModalButton';
 import CommentEditModal from "../../Modals/CommentEditModal";
 import { removeComment } from "../../../store/comments";
 import { useEffect, useRef, useState } from "react";
-import './DropdownStyle.css'
+import './DropdownStyle.scss'
 
 export default function CommentBtnMenu({ passedCommId }) {
     const dispatch = useDispatch()

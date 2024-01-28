@@ -41,6 +41,11 @@
     z-index: 2;
     background-color: rgba(255, 255, 255, .2);
     transition: background-color .5s;
+
+    &.night {
+        background-color: rgba(0, 0, 0, .4);
+        transition: background-color .5s;
+    }
 }
 
 .single-song-info-img-div {
@@ -70,6 +75,10 @@
     word-break: normal;
     text-overflow: ellipsis;
     transition: background-color .5s;
+
+    &.night {
+        background-color: rgb(0, 0, 22);
+    }
 }
 
 .song-uploader-div {
@@ -82,6 +91,10 @@
     width: fit-content;
     font-size: small;
     transition: background-color .5s;
+
+    &.night {
+        background-color: rgb(0, 0, 22);
+    }
 }
 
 .single-song-info-div {
@@ -104,10 +117,14 @@
     color: white;
     padding: 5px;
     border-radius: 10px;
-}
 
-.single-song-desc.false {
-    visibility: hidden;
+    &.false {
+        visibility: hidden;
+    }
+
+    &.night {
+        background-color: rgba(0, 0, 0, .6);
+    }
 }
 
 .info-buttons-div {
@@ -128,14 +145,25 @@
     transition:
         background-color .5s,
         color .5s;
+
+    &:hover {
+        background-color: green;
+    }
+
+    &.night {
+        color: rgb(62, 110, 170);
+        background-color: rgb(16, 48, 97);
+
+
+        &:hover {
+            background-color: rgb(7, 19, 38);
+        }
+    }
+
 }
 
 .single-pause {
     padding: 0px 1.67px;
-}
-
-.single-univ-button:hover {
-    background-color: green;
 }
 
 .pfp-info-div {
@@ -164,34 +192,4 @@
     top: 100px;
     right: 0px;
     padding-right: 10px;
-    /* margin-right: 510px; */
-    /* margin-top: 10px; */
-}
-
-/*↓↓↓ NIGHT MODE ↓↓↓*/
-
-.filler-color-2.night {
-    background-color: rgba(0, 0, 0, .4);
-    transition: background-color .5s;
-}
-
-.single-univ-button.night {
-    color: rgb(62, 110, 170);
-    background-color: rgb(16, 48, 97);
-}
-
-.single-song-desc.night {
-    background-color: rgba(0, 0, 0, .6);
-}
-
-.single-univ-button.night:hover {
-    background-color: rgb(7, 19, 38);
-}
-
-.song-name-div.night {
-    background-color: rgb(0, 0, 22);
-}
-
-.song-uploader-div.night {
-    background-color: rgb(0, 0, 22);
 }

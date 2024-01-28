@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom'
 import OpenModalMenuItem from '../../Modals/OpenModalButton';
 import LoginFormModal from '../../Modals/LoginFormModal';
 import { createLike, getAllSongLikes, getAllUserLikes, getLikesByUser, removeLike } from '../../../store/likes';
-import './LikeButton.css'
+import './LikeButton.scss'
 
 
 export default function LikeButton({ songId, pageRendered }) {

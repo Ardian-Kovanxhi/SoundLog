@@ -6,7 +6,7 @@ import OpenModalMenuItem from '../../Modals/OpenModalButton';
 import LoginFormModal from '../../Modals/LoginFormModal';
 import CommentBtnMenu from '../DropdownMenus/edit-deleteComment';
 import userImg from '../../../images/user-img.png'
-import './Comments.css'
+import './Comments.scss'
 
 
 

@@ -44,7 +44,7 @@
         transition: opacity .5s linear;
     }
 
-    .hovered button {
+    &.hovered button {
         opacity: 1;
     }
 
@@ -183,9 +183,6 @@
 .splash-pause {
     padding: 0px 1.67px;
 }
-
-
-/* ↓↓↓ NIGHT MODE ↓↓↓ */
 
 /* style={{ position: 'absolute', bottom: 95, width: '100%', display: 'flex', justifyContent: 'center', zIndex: 1 }} */
 .page-btns {

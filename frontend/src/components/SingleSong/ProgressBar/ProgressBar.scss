@@ -7,6 +7,10 @@
     flex-direction: column;
     padding: 10px;
     border-radius: 10px;
+
+    &.night {
+        background-color: rgba(0, 0, 0, .6);
+    }
 }
 
 .time-div {
@@ -29,6 +33,10 @@
     border-radius: 10px;
     /* overflow: hidden; */
     transition: background-color .5s;
+
+    &.night {
+        background-color: skyblue;
+    }
 }
 
 .progress {
@@ -42,6 +50,10 @@
     justify-content: flex-end;
     align-items: center;
     transition: background-color .5s;
+
+    &.night {
+        background-color: blue;
+    }
 }
 
 .fa-solid.fa-circle {
@@ -50,21 +62,8 @@
     position: 'sticky';
     left: '0';
     transition: color .5s;
-}
 
-/*   NIGHT MODE   */
-.progress-container.night {
-    background-color: rgba(0, 0, 0, .6);
-}
-
-.progress-bar.night {
-    background-color: skyblue;
-}
-
-.progress.night {
-    background-color: blue;
-}
-
-.fa-solid.fa-circle.night {
-    color: blue;
+    &.night {
+        color: blue;
+    }
 }

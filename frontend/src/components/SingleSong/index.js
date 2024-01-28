@@ -12,7 +12,7 @@ import SongComments from './SongComments'
 import ProgressBar from './ProgressBar';
 import LikeButton from './LikeButton';
 import placeholderImg from '../../images/song-placeholder.png'
-import './SingleSong.css'
+import './SingleSong.scss'
 
 
 
