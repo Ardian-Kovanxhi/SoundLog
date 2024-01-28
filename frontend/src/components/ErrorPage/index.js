@@ -3,7 +3,7 @@ import { playSong404 } from '../../store/songs'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
 import { getLoad } from '../../store/global';
-import './test.css'
+import './test.scss'
 
 export default function ErrorPage() {
     const dispatch = useDispatch()

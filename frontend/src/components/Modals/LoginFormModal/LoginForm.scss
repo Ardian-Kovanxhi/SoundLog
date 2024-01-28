@@ -1,0 +1,35 @@
+.log-in-form-container {
+    padding: 30px;
+    width: 400px;
+    height: 400px;
+
+    & h1:hover {
+        cursor: default;
+    }
+
+    & ul {
+        position: absolute;
+        left: 0;
+        color: red;
+        margin-left: 0;
+        font-weight: 700;
+    }
+}
+
+.log-in-form-actual {
+    display: flex;
+    flex-direction: column;
+
+    & button {
+        background-color: forestgreen;
+        color: white;
+        border: 0px;
+        border-radius: 10px;
+        padding: 10px 0px;
+        margin: 10px 0px;
+    }
+}
+
+.error-spacer-div {
+    margin-top: 40px;
+}

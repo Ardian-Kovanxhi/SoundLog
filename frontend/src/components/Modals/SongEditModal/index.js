@@ -3,7 +3,7 @@ import { getSong, editSong } from '../../../store/songs'
 import { useSelector, useDispatch } from 'react-redux'
 import { useHistory, useParams } from 'react-router-dom'
 import { useModal } from "../../../context/Modal";
-import './SongEditPage.css'
+import './SongEditPage.scss'
 
 //
 //Actually rendered in a modal

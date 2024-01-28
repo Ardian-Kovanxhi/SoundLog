@@ -1,0 +1,55 @@
+.sign-up-form-container {
+    padding: 30px;
+    width: 400px;
+
+    ul {
+        position: absolute;
+        left: 0;
+        color: red;
+        margin-left: 0;
+        font-weight: 700;
+    }
+}
+
+.sign-up-form-actual {
+    display: flex;
+    flex-direction: column;
+
+    >label {
+        display: flex;
+        flex-direction: column;
+        border: 1px lightgray solid;
+        margin: 10px 0px;
+    }
+
+    >button {
+        background-color: forestgreen;
+        color: white;
+        border: 0px;
+        border-radius: 5px;
+        padding: 10px 0px;
+        margin: 10px 0px;
+    }
+}
+
+.error-spacer-sign-up {
+    margin-top: 80px;
+}
+
+.user-memo-div {
+    display: flex;
+}
+
+.star {
+    visibility: hidden;
+    margin: 0px 2px;
+}
+
+.memo-div {
+    font-size: small;
+    color: rgb(230, 255, 230);
+
+    &.night {
+        color: rgb(7, 15, 50);
+    }
+}

@@ -7,7 +7,7 @@ import 'react-h5-audio-player/lib/styles.css';
 import { getPaused, getTime, getRawTime } from '../../../store/audioPlayerState';
 import { getSong } from '../../../store/songs';
 import { getCommentsBySong } from '../../../store/comments';
-import './AudioControls.css'
+import './AudioControls.scss'
 
 
 function AudioControls() {

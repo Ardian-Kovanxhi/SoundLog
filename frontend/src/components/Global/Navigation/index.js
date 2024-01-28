@@ -6,7 +6,7 @@ import LoginFormModal from '../../Modals/LoginFormModal';
 import OpenModalMenuItem from '../../Modals/OpenModalButton';
 import { getLight, getLoad } from "../../../store/global";
 import homeBarLogo from '../../../images/log3.png'
-import './Navigation.css';
+import './Navigation.scss';
 
 function Navigation({ isLoaded }) {
     const dispatch = useDispatch()

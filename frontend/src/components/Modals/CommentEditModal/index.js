@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useHistory, useParams } from 'react-router-dom'
 import { editComment, getCommentById, getCommentsBySong } from '../../../store/comments';
 import { useModal } from '../../../context/Modal'
-import './CommentEditModal.css'
+import './CommentEditModal.scss'
 
 export default function CommentEditModal({ commentId, songId }) {
     // const { songId, commentId } = useParams();

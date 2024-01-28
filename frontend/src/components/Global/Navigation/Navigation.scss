@@ -10,6 +10,25 @@
     border: lightgray 1px solid;
     width: 200px;
     overflow: hidden;
+
+    &.night {
+        background-color: black;
+        color: white;
+        border: 1px solid rgba(255, 255, 255, .3);
+
+        & button {
+            color: white;
+
+            &:hover {
+                background-color: rgba(255, 255, 255, .2);
+
+            }
+        }
+
+        & .open-modal-button:hover {
+            background-color: rgba(255, 255, 255, .2);
+        }
+    }
 }
 
 .dropdown-logged-in {
@@ -19,33 +38,33 @@
     justify-content: space-around;
     align-items: center;
     overflow: hidden;
-}
 
-.dropdown-logged-in>div {
-    width: 190px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    padding: 10px 0px 10px 10px;
-}
+    &>div {
+        width: 190px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        padding: 10px 0px 10px 10px;
 
-.dropdown-logged-in>div:hover {
-    background-color: rgba(0, 0, 0, .1);
-    cursor: default;
-}
+        &:hover {
+            background-color: rgba(0, 0, 0, .1);
+            cursor: default;
+        }
+    }
 
-.dropdown-logged-in>button {
-    width: 200px;
-    display: flex;
-    justify-content: flex-start;
-    background-color: transparent;
-    border: 0px;
-    padding: 10px 0px;
-    padding-left: 10px;
-    font-size: medium
-}
+    &>button {
+        width: 200px;
+        display: flex;
+        justify-content: flex-start;
+        background-color: transparent;
+        border: 0px;
+        padding: 10px 0px;
+        padding-left: 10px;
+        font-size: medium;
 
-.dropdown-logged-in>button:hover {
-    background-color: lightgray;
+        &:hover {
+            background-color: lightgray;
+        }
+    }
 }
 
 .dropdown-logged-out {
@@ -54,31 +73,31 @@
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-}
 
-.dropdown-logged-out>button {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    background-color: transparent;
-    border: 0px;
-    padding: 10px 0px;
-    font-size: medium
-}
+    &>button {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        background-color: transparent;
+        border: 0px;
+        padding: 10px 0px;
+        font-size: medium;
 
-.dropdown-logged-out>button:hover {
-    background-color: lightgray;
-}
+        &:hover {
+            background-color: lightgray;
+        }
+    }
 
-.dropdown-logged-out>.open-modal-button {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    padding: 10px 0px;
-}
+    &>.open-modal-button {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        padding: 10px 0px;
 
-.dropdown-logged-out>.open-modal-button:hover {
-    background-color: lightgray;
+        &:hover {
+            background-color: lightgray;
+        }
+    }
 }
 
 .hidden {
@@ -89,17 +108,23 @@
     cursor: pointer;
 }
 
-.modal-but-test>button {
-    background-color: transparent;
-    color: white;
-    font-size: larger;
-    padding: 0px 10px;
-    height: 100%;
-    border: 0px;
-}
+.modal-but-test {
+    &>button {
+        background-color: transparent;
+        color: white;
+        font-size: larger;
+        padding: 0px 10px;
+        height: 100%;
+        border: 0px;
 
-.modal-but-test>button:hover {
-    background-color: rgba(0, 10, 0, .7);
+        &:hover {
+            background-color: rgba(0, 10, 0, .7);
+        }
+    }
+
+    &.night>button:hover {
+        background-color: rgb(0, 0, 22);
+    }
 }
 
 .fas {
@@ -139,10 +164,14 @@
     border: 0px;
     height: 50px;
     margin: 0px;
-}
 
-.profile-button-actual:hover {
-    background-color: rgba(0, 10, 0, .7);
+    &:hover {
+        background-color: rgba(0, 10, 0, .7);
+    }
+
+    &.night:hover {
+        background-color: rgb(0, 0, 22);
+    }
 }
 
 .nav-container {
@@ -158,6 +187,10 @@
     display: flex;
     justify-content: center;
     transition: background-color .5s;
+
+    &.night {
+        background-color: rgb(23, 31, 44);
+    }
 }
 
 .nav-bar-div {
@@ -179,10 +212,14 @@
     align-items: center;
     font-size: xx-large;
     transition: background-color .5s;
-}
 
-.title-icon-div:hover {
-    cursor: pointer;
+    &:hover {
+        cursor: pointer;
+    }
+
+    &.night {
+        background-color: rgba(0, 0, 22, 1);
+    }
 }
 
 .log-icon-img {
@@ -197,40 +234,4 @@
 .nav-button-div {
     display: flex;
     /* margin-right: 90px; */
-}
-
-/*   NIGHT MODE   */
-
-.profile-dropdown.night {
-    background-color: black;
-    color: white;
-    border: 1px solid rgba(255, 255, 255, .3);
-}
-
-.profile-dropdown.night button {
-    color: white;
-}
-
-.profile-dropdown.night button:hover {
-    background-color: rgba(255, 255, 255, .2);
-}
-
-.profile-dropdown.night .open-modal-button:hover {
-    background-color: rgba(255, 255, 255, .2);
-}
-
-.nav-container.night {
-    background-color: rgb(23, 31, 44);
-}
-
-.title-icon-div.night {
-    background-color: rgba(0, 0, 22, 1);
-}
-
-.profile-button-actual.night:hover {
-    background-color: rgb(0, 0, 22);
-}
-
-.modal-but-test.night>button:hover {
-    background-color: rgb(0, 0, 22);
 }

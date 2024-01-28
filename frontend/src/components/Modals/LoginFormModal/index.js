@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import * as sessionActions from "../../../store/session";
 import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../../context/Modal";
-import "./LoginForm.css";
+import "./LoginForm.scss";
 
 function LoginFormModal() {
     const dispatch = useDispatch();

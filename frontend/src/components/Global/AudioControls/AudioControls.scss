@@ -2,6 +2,10 @@
     position: fixed;
     bottom: 0;
     z-index: 10;
+
+    &.invisible {
+        visibility: hidden;
+    }
 }
 
 .rhap_container {
@@ -11,14 +15,31 @@
     align-items: center;
     background-color: rgba(255, 255, 255, .1);
     transition: background-color .5s;
-}
 
-.rhap_container * {
-    transition: background-color .5s, color .5s;
-}
+    & * {
+        transition: background-color .5s, color .5s;
+    }
 
-.night.rhap_container {
-    background-color: rgba(0, 0, 0, .5);
+    &.night {
+        background-color: rgba(0, 0, 0, .5);
+
+        & * {
+            /* color: rgb(0, 191, 255); */
+            color: rgb(62, 110, 170);
+
+            &:hover {
+                color: rgb(0, 46, 102);
+            }
+        }
+    }
+
+    & svg {
+        color: forestgreen;
+
+        &:hover {
+            color: green;
+        }
+    }
 }
 
 .rhap_main {
@@ -30,10 +51,6 @@
     height: 100%;
     /* background-color: rgb(215, 255, 215); */
     background-color: transparent;
-}
-
-.audio-player.invisible {
-    visibility: hidden;
 }
 
 /* SONG DISPLAY */
@@ -49,16 +66,16 @@
     height: 88px;
     z-index: 11;
     overflow-wrap: break-word;
+
+    &.invisible {
+        visibility: none;
+    }
 }
 
-.player-img-name-container.invisible {
-    visibility: none;
-}
-
-.rhap_progress-indicator,
-.rhap_progress-filled,
-.rhap_volume-indicator {
-    background-color: green;
+.night .rhap_progress-indicator,
+.night .rhap_volume-indicator,
+.night .rhap_progress-filled {
+    background-color: blue;
     box-shadow: transparent 0 0 5px;
 }
 
@@ -68,12 +85,11 @@
     background-color: lightgreen;
 }
 
-.rhap_container svg {
-    color: forestgreen;
-}
-
-.rhap_container svg:hover {
-    color: green;
+.night .rhap_progress-bar,
+.night .rhap_download-progress,
+.night .rhap_volume-bar {
+    /* background-color: rgba(100, 255, 100, .5); */
+    background-color: skyblue;
 }
 
 .place-container {
@@ -90,6 +106,10 @@
     width: 100%;
     position: fixed;
     bottom: 0;
+
+    &.invisible {
+        visibility: hidden;
+    }
 }
 
 .song-name-display {
@@ -113,60 +133,20 @@
     max-height: 40px;
     transition: color .5s;
     /* color: rgb(0, 107, 0); */
-}
 
-.currSong-redirect:hover {
-    cursor: pointer;
-    text-decoration: underline;
-    /* color: rgb(0, 190, 0); */
-}
-
-.player-img-actual.invisible {
-    visibility: hidden;
-}
-
-/*   NIGHT MODE   */
-
-.night.rhap_container {
-    background-color: rgba(0, 0, 0, .5);
-}
-
-.night.rhap_container * {
-    /* color: rgb(0, 191, 255); */
-    color: rgb(62, 110, 170);
-}
-
-.night.rhap_container *:hover {
-    color: rgb(0, 46, 102);
-}
-
-.night .rhap_time {
-    color: white;
-}
-
-.night .rhap_progress-indicator,
-.night .rhap_volume-indicator,
-.night .rhap_progress-filled {
-    background-color: blue;
-    box-shadow: transparent 0 0 5px;
-}
-
-/* .night .rhap_volume-indicator {
-    background-color: blue;
-    box-shadow: #FFFFFF 0 0 5px;
-} */
-
-.night .rhap_progress-bar,
-.night .rhap_download-progress,
-.night .rhap_volume-bar {
-    /* background-color: rgba(100, 255, 100, .5); */
-    background-color: skyblue;
+    &:hover {
+        cursor: pointer;
+        text-decoration: underline;
+        /* color: rgb(0, 190, 0); */
+    }
 }
 
 .night .currSong-redirect {
     color: white;
 }
 
-/* .night .currSong-redirect:hover {
+/*   NIGHT MODE   */
+
+.night .rhap_time {
     color: white;
-} */
+}
