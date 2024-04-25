@@ -13,11 +13,14 @@ import ProgressBar from './ProgressBar';
 import LikeButton from './LikeButton';
 import placeholderImg from '../../images/song-placeholder.png'
 import './SingleSong.scss'
+import GenClass from '../StoreFunctionClasses/GenClass';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 
 
 export default function SingleSong() {
     const dispatch = useDispatch();
+    const history = useHistory();
     const { songId } = useParams();
 
 
@@ -29,15 +32,15 @@ export default function SingleSong() {
     let Uploader = '';
 
     async function fetchData() {
+        await dispatch(getLoad(true));
         await dispatch(getSong(songId));
         await dispatch(getCommentsBySong(songId));
         await dispatch(getAllSongLikes(songId));
+        await dispatch(getLoad(false));
     }
 
     useEffect(() => {
-        dispatch(getLoad(true));
         fetchData();
-        dispatch(getLoad(false));
     }, []);
 
     const handleSeek = (seekTime) => {
@@ -142,7 +145,10 @@ export default function SingleSong() {
 
                                                 </div>
 
-                                                <div className={`song-uploader-div${pageState ? '' : ' night'}`}>
+                                                <div
+                                                    className={`song-uploader-div${pageState ? '' : ' night'}`}
+                                                    onClick={() => GenClass.userRedirect(Number(Song.User.id), history)}
+                                                >
                                                     {Uploader}
                                                 </div>
 

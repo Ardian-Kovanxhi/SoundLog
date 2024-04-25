@@ -26,8 +26,9 @@ export const getLight = (lightState) => dispatch => {
     dispatch(readLight(lightState))
 }
 
-export const getLoad = (loadState) => dispatch => {
+export const getLoad = (loadState) => async dispatch => {
     dispatch(readLoad(loadState))
+    return 1
 }
 
 // const initialState = { lightState: true, loadState: true }

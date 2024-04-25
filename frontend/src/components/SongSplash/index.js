@@ -1,15 +1,15 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import { getSongs, playSong, getSong, clearSongStore, setCurrPage, getUserSongs } from '../../store/songs';
-import { getCommentsBySong } from '../../store/comments';
-import { getAllSongLikes, getAllUserLikes } from '../../store/likes';
+import { getSongs, playSong, setCurrPage } from '../../store/songs';
 import { getPaused } from '../../store/audioPlayerState';
 import { getLoad } from '../../store/global';
 import placeholderImg from '../../images/song-placeholder.png'
 import LikeButton from '../SingleSong/LikeButton';
-import { getUser } from '../../store/session';
+import GenClass from '../StoreFunctionClasses/GenClass';
 import './Songs.scss'
+
+
 
 export default function AllSongs() {
     const dispatch = useDispatch();
@@ -26,7 +26,11 @@ export default function AllSongs() {
 
     const pageButtons = [];
 
-    for (let i = 1; i <= pageCounter.totalPages; i++) {
+    useEffect(() => {
+        GenClass.fetchData(dispatch, songPageInfo.currPage)
+    }, [])
+
+    for (let i = 1; i < pageCounter.totalPages + 1; i++) {
         pageButtons.push(
             <button
                 style={songPageInfo.currPage === i ? { textDecoration: 'underline', fontWeight: 'bold' } : {}}
@@ -41,39 +45,10 @@ export default function AllSongs() {
         )
     }
 
-    async function fetchData() {
-        dispatch(getLoad(true))
-        await dispatch(getSongs(songPageInfo.currPage))
-        await dispatch(clearSongStore())
-        dispatch(getLoad(false))
-    }
-
-    useEffect(() => {
-        fetchData()
-    }, [])
-
-    const singleLoader = async singleId => {
-        //pre-loads data for single song page
-        await dispatch(getSong(singleId));
-        await dispatch(getCommentsBySong(singleId));
-        await dispatch(getAllSongLikes(singleId));
-        history.push(`/songs/${singleId}`);
-    }
-
-    const userLoader = async userId => {
-        console.log(userId)
-        await dispatch(getUser(userId));
-        await dispatch(getAllUserLikes(userId));
-        await dispatch(getUserSongs(userId));
-        history.push(`/users/${Number(userId) - 1}`);
-    }
-
-    const songArr = Object.values(Songs);
-
     return (
         <>
             <div className='all-songs-div-container'>
-                {songArr.map((el, index) => {
+                {Object.values(Songs).map((el, index) => {
 
                     const btnClass = `univ-play-pause-button${hoveredIndex === index ? ' hovered' : ''} ${pageState ? '' : ' night'}`
                     // const btnClass = `univ-play-pause-button hovered ${pageState ? '' : ' night'}` //used for testing
@@ -97,9 +72,10 @@ export default function AllSongs() {
                                     padding: '17px'
 
                                 }}
-                                onClick={() => {
-                                    dispatch(getLoad(true));
-                                    singleLoader(el.id);
+                                onClick={async () => {
+                                    let test = await dispatch(getLoad(true))
+                                    if (test) history.push(`/songs/${el.id}`);
+                                    GenClass.singleRedirect(el.id, dispatch, history);
                                 }}
                             >
                                 <div className='all-songs-img-div'>
@@ -122,8 +98,7 @@ export default function AllSongs() {
                             <div
                                 className={`all-songs-username ${pageState ? '' : ' night'}`}
                                 onClick={() => {
-                                    userLoader(el.User.id);
-                                    dispatch(getLoad(true));
+                                    GenClass.userRedirect(el.User.id, history);
                                 }}
                             >
                                 {el.User.username}
@@ -139,7 +114,8 @@ export default function AllSongs() {
                                         >
 
                                             <i className="fa-solid fa-play fa-2xl" />
-
+                                            {/* <i class="fa-solid fa-play fa-2xl"></i> */}
+                                            {/* <PlaySvg /> */}
                                         </button> :
 
                                         <button
@@ -157,6 +133,8 @@ export default function AllSongs() {
                                     >
 
                                         <i className="fa-solid fa-play fa-2xl" />
+                                        {/* <i class="fa-solid fa-play fa-2xl"></i> */}
+                                        {/* <PlaySvg /> */}
 
                                     </button>
                             }

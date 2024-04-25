@@ -48,6 +48,7 @@ router.post('/', validateSignup, async (req, res) => {
 }
 );
 
+//get user by ID
 router.get('/:userId', async (req, res) => {
     const userId = req.params.userId;
 
@@ -60,6 +61,32 @@ router.get('/:userId', async (req, res) => {
 
     return res.send(user)
 })
+
+//Edit user
+router.put('/:userId', requireAuth, async (req, res) => {
+    const userId = +req.params.userId;
+
+    const { user } = req;
+
+    const userObj = await User.findByPk(userId);
+
+    if (!userObj) {
+        res.statusCode = 404;
+        return res.json({ message: "User couldn't be found", statusCode: 404 });
+    } else if (userId !== user.dataValues.id) {
+        const err = new Error('Edit failed');
+        err.status = 401;
+        err.title = 'Edit failed';
+        err.errors = ['Invalid account '];
+        return next(err);
+    }
+
+    const { data } = req.body;
+
+
+})
+
+
 
 // // Sign up
 // router.post(

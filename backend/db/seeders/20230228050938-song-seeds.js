@@ -62,7 +62,7 @@ module.exports = {
         name: "Since I've Been Loving You",
         content: 'https://aa-sounclod-clone-bucket.s3.amazonaws.com/since_ive_been_loving_you.mp3',
         duration: 488,
-        img: 'https://extrachill.com/wp-content/uploads/2021/03/led-zeppelin-angel-logo.jpeg',
+        img: 'https://m.media-amazon.com/images/I/81lVMzMGeYL._UF1000,1000_QL80_.jpg',
         description: null
       },
       {

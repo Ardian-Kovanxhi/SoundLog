@@ -5,6 +5,7 @@ import * as sessionActions from '../../../store/session';
 import OpenModalMenuItem from './OpenModalMenuItem';
 import LoginFormModal from '../../Modals/LoginFormModal';
 import SignupFormModal from '../../Modals/SignupFormModal';
+import GenClass from "../../StoreFunctionClasses/GenClass";
 
 function ProfileButton({ user }) {
     const dispatch = useDispatch();
@@ -64,7 +65,8 @@ function ProfileButton({ user }) {
                             onClick={() => history.push('/playlists')}
                         >Playlists</button> */}
 
-                        <button onClick={() => history.push(`/users/${Number(user.id) - 1}`)}>View Profile</button>
+                        {/* <button onClick={() => history.push(`/users/${Number(user.id) - 1}`)}>View Profile</button> */}
+                        <button onClick={() => GenClass.userRedirect(Number(user.id), dispatch, history)}>View Profile</button>
                         <button onClick={logout}>Log Out</button>
 
                     </div>

@@ -70,7 +70,7 @@ function AudioControls() {
 
     }, [pauseState])
 
-
+    //same as splash page
     const singleLoader = async singleId => {
         // setLoadState(false)
         await dispatch(getSong(singleId))

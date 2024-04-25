@@ -107,7 +107,12 @@
     text-overflow: ellipsis;
     translate: text-overflow 1s;
     color: black;
-    transition: color .5s;
+    text-decoration: underline transparent;
+    transition: color .5s, text-decoration-color .5s;
+
+    &:hover {
+        text-decoration-color: black;
+    }
 
     &.night {
         color: white;
@@ -124,10 +129,13 @@
     color: rgb(117, 117, 117);
     overflow: hidden;
     text-overflow: ellipsis;
-    transition: color .5s;
+    padding-bottom: -5px;
+    text-decoration: underline transparent;
+    transition: color .5s, text-decoration-color .5s;
 
     &:hover {
         color: black;
+        text-decoration-color: black;
     }
 
     &.night {

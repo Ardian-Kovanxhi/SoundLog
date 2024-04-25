@@ -3,7 +3,7 @@ import { playSong404 } from '../../store/songs'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
 import { getLoad } from '../../store/global';
-import './test.scss'
+import './Error.scss'
 
 export default function ErrorPage() {
     const dispatch = useDispatch()
@@ -16,9 +16,12 @@ export default function ErrorPage() {
     const gifClass = `test404${easter ? ' gif' : ''}`
     const btnClass = `easter-btn${easter ? ' gif' : ''}`
 
+    async function timedDeRender() {
+    }
+
     useEffect(() => {
         dispatch(getLoad(false))
-    }, [dispatch])
+    }, [])
 
     return (
         <>

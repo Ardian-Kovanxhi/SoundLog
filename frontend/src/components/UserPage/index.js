@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getLoad } from "../../store/global";
-import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+import { useHistory, useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { getUser } from "../../store/session";
 import { getAllUserLikes } from "../../store/likes";
 import { getUserSongs } from "../../store/songs";
@@ -14,6 +14,7 @@ import './UserPage.scss'
 
 export default function UserPage() {
     const dispatch = useDispatch();
+    const history = useHistory();
 
     const [focused, setFocused] = useState(2);
 
@@ -22,19 +23,23 @@ export default function UserPage() {
     const User = useSelector(state => state.session.viewedUser);
     const pageState = useSelector(state => state.global.lightState);
 
-
     async function fetchData() {
-        if (Number(userId) === 0) return
-        await dispatch(getUser(Number(userId) + 1));
-        await dispatch(getAllUserLikes(Number(userId) + 1))
-        await dispatch(getUserSongs(Number(userId) + 1))
+        const unhashed = ((parseInt(userId, 16) / 7678831) - 79)
+        if (Number(unhashed) === 1) {
+            await dispatch(getLoad(false));
+            history.push('/')
+            return
+        }
+        await dispatch(getLoad(true));
+        await dispatch(getUser(Number(unhashed)));
+        await dispatch(getAllUserLikes(Number(unhashed)));
+        await dispatch(getUserSongs(Number(unhashed)));
+        await dispatch(getLoad(false));
     }
 
     useEffect(() => {
-        dispatch(getLoad(true))
         setFocused(2)
         fetchData()
-        dispatch(getLoad(false))
     }, [userId])
 
     return (

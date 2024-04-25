@@ -72,11 +72,20 @@
     }
 }
 
+
+
+.rhap_progress-indicator,
+.rhap_volume-indicator,
+.rhap_progress-filled {
+    background-color: forestgreen;
+    box-shadow: transparent 0 0 5px;
+    transition: background-color .5s;
+}
+
 .night .rhap_progress-indicator,
 .night .rhap_volume-indicator,
 .night .rhap_progress-filled {
     background-color: blue;
-    box-shadow: transparent 0 0 5px;
 }
 
 .rhap_download-progress,

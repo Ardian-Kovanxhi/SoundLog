@@ -77,6 +77,7 @@ const setPage = (page) => {
 
 
 export const getSongs = (page = 1) => async dispatch => {
+    if (page < 1) page = 1;
     const response = await csrfFetch(`/api/songs?page=${page}`)
 
     if (response.ok) {
@@ -101,7 +102,7 @@ export const getUserSongs = (userId) => async dispatch => {
 
 export const getSong = (songId) => async dispatch => {
 
-    const response = await csrfFetch(`/api/songs/${songId}`)
+    const response = await csrfFetch(`/api/songs/${songId}`);
 
     if (response.ok) {
         const song = await response.json();
@@ -191,6 +192,7 @@ export const removeSong = (songId) => async dispatch => {
         method: 'DELETE',
     });
     if (response.ok) {
+
         await dispatch(deleteSong());
         return response;
     }
@@ -265,9 +267,6 @@ export default function songsReducer(state = initialState, action) {
         case DELETE_SONG: {
             newState = { ...state }
             newState.singleSong = {};
-            // if (newState.allSongs[action.song.id]) {
-            //     delete newState.allSongs[action.song.id]
-            // }
             return newState
         }
         case CLEAR_SONG_STORE: {

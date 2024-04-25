@@ -1,14 +1,8 @@
-import React, { useEffect, useState } from 'react'
-import { getSong, editSong } from '../../../store/songs'
+import React, { useState } from 'react'
+import { editSong } from '../../../store/songs'
 import { useSelector, useDispatch } from 'react-redux'
-import { useHistory, useParams } from 'react-router-dom'
 import { useModal } from "../../../context/Modal";
 import './SongEditPage.scss'
-
-//
-//Actually rendered in a modal
-//Didn't change file name to avoid breaking imports
-//
 
 export default function SongEditModal() {
     const dispatch = useDispatch();
@@ -19,10 +13,6 @@ export default function SongEditModal() {
 
 
     const songId = sessionSong.id;
-
-    useEffect(() => {
-        dispatch(getSong(songId))
-    }, [])
 
     // const songUrl = sessionSong.content
     const [name, setName] = useState(sessionSong.name);

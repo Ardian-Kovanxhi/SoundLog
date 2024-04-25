@@ -9,6 +9,7 @@ import { getPaused, getRawTime, getTime } from "../../../store/audioPlayerState"
 import { getUser } from "../../../store/session";
 import ProgressBar from "../ProgressBar";
 import './Lists.scss'
+import GenClass from "../../StoreFunctionClasses/GenClass";
 
 export default function LikeList({ focused }) {
     const history = useHistory();
@@ -110,8 +111,9 @@ export default function LikeList({ focused }) {
                                         <div
                                             className={`user-list-username${pageState ? '' : ' night'}`}
                                             onClick={() => {
-                                                dispatch(getLoad(true))
-                                                userLoader(like.Song.User.id);
+                                                // dispatch(getLoad(true))
+                                                // userLoader(like.Song.User.id);
+                                                GenClass.userRedirect(+like.Song.User.id, history);
                                             }}
                                         >
                                             {like.Song.User.username}

@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux"
-import { clearPlayingSong, removeSong } from "../../../store/songs"
+import { clearPlayingSong, getSongs, removeSong, setCurrPage } from "../../../store/songs"
 import { useParams, useHistory } from 'react-router-dom'
 import OpenModalMenuItem from '../../Modals/OpenModalButton';
 import SongEditModal from "../../Modals/SongEditModal";
@@ -11,8 +11,12 @@ export default function BtnMenu() {
     const dispatch = useDispatch()
     const history = useHistory()
     const { songId } = useParams();
+
     const currSong = useSelector(state => state.songs.playingSong);
     const pageState = useSelector(state => state.global.lightState);
+    const Songs = useSelector(state => state.songs.allSongs);
+    const pageCounter = useSelector(state => state.songs.allSongsPage);
+
     const [showMenu, setShowMenu] = useState(false);
     const btnLstRef = useRef();
 
@@ -23,6 +27,10 @@ export default function BtnMenu() {
         }
         const rem = await dispatch(removeSong(songId))
         if (rem.ok) {
+            if (Object.keys(Songs).length === 1) {
+                await dispatch(getSongs(pageCounter.currPage - 1));
+                await dispatch(setCurrPage(pageCounter.currPage - 1));
+            }
             history.push('/')
         }
     }

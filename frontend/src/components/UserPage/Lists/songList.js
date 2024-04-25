@@ -9,6 +9,7 @@ import { getPaused, getRawTime, getTime } from "../../../store/audioPlayerState"
 import ProgressBar from "../ProgressBar";
 import { getUser } from "../../../store/session";
 import './Lists.scss'
+import GenClass from "../../StoreFunctionClasses/GenClass";
 
 export default function SongList({ focused }) {
     const history = useHistory();
@@ -119,7 +120,8 @@ export default function SongList({ focused }) {
                                             className={`user-list-username${pageState ? '' : ' night'}`}
 
                                             onClick={() => {
-                                                userLoader(song.User.id);
+                                                // userLoader(song.User.id);
+                                                GenClass.userRedirect(Number(song.User.id), history)
                                             }}
                                         >
                                             {song.User.username}
