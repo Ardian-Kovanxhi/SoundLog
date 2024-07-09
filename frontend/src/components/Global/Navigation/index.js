@@ -55,7 +55,7 @@ function Navigation({ isLoaded }) {
                     </div>
                     <div className='brand-btn-div'>
                         <button
-                            onClick={() => window.location.replace('https://www.linkedin.com/in/ardian-kovanxhi-341177145/')}
+                            onClick={() => window.location.replace('https://www.linkedin.com/in/ardian-kovanxhi/')}
                             // className='profile-button-actual'
                             className={`profile-button-actual ${pageState ? '' : 'night'}`}
                         >
