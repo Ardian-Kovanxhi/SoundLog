@@ -1,10 +1,8 @@
 import { useDispatch, useSelector } from "react-redux"
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-import { getLoad } from "../../../store/global";
 import { getSong, getUserSongs, playSong } from "../../../store/songs";
 import { getCommentsBySong } from "../../../store/comments";
 import { getAllSongLikes, getAllUserLikes } from "../../../store/likes";
-import { useState } from "react";
 import { getPaused, getRawTime, getTime } from "../../../store/audioPlayerState";
 import { getUser } from "../../../store/session";
 import ProgressBar from "../ProgressBar";
@@ -21,7 +19,7 @@ export default function LikeList({ focused }) {
     const likes = useSelector(state => state.likes.viewedUserLikes);
     const likeArr = Object.values(likes);
 
-    const { lightMode } = usePage();
+    const { lightMode, setLoadState } = usePage();
 
     const singleLoader = async singleId => {
         await dispatch(getSong(singleId));
@@ -68,9 +66,10 @@ export default function LikeList({ focused }) {
                                 className='user-list-song-img'
                                 src={like.Song.img}
                                 onClick={() => {
-                                    dispatch(getLoad(true));
+                                    setLoadState(true)
                                     singleLoader(like.Song.id);
                                 }}
+                                alt=""
                             />
 
                             <div style={{ display: 'flex', flexDirection: 'column', height: '130px', justifyContent: 'space-between' }}>
@@ -113,8 +112,6 @@ export default function LikeList({ focused }) {
                                         <div
                                             className={`user-list-username${lightMode ? '' : ' night'}`}
                                             onClick={() => {
-                                                // dispatch(getLoad(true))
-                                                // userLoader(like.Song.User.id);
                                                 GenClass.userRedirect(+like.Song.User.id, history);
                                             }}
                                         >
@@ -123,7 +120,7 @@ export default function LikeList({ focused }) {
                                         <div
                                             className={`user-list-song-name${lightMode ? '' : ' night'}`}
                                             onClick={() => {
-                                                dispatch(getLoad(true));
+                                                setLoadState(true);
                                                 singleLoader(like.Song.id);
                                             }}
                                         >

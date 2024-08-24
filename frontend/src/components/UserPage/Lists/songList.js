@@ -1,7 +1,6 @@
 import { useDispatch, useSelector } from "react-redux"
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { useState } from "react";
-import { getLoad } from "../../../store/global";
 import { getSong, getUserSongs, playSong } from "../../../store/songs";
 import { getCommentsBySong } from "../../../store/comments";
 import { getAllSongLikes, getAllUserLikes } from "../../../store/likes";
@@ -22,7 +21,7 @@ export default function SongList({ focused }) {
     const Songs = useSelector(state => state.songs.userSongs);
     const songArr = Object.values(Songs);
 
-    const { lightMode } = usePage();
+    const { lightMode, setLoadState } = usePage();
 
     const singleLoader = async singleId => {
         await dispatch(getSong(singleId));
@@ -72,9 +71,10 @@ export default function SongList({ focused }) {
                                 className='user-list-song-img'
                                 src={song.img}
                                 onClick={() => {
-                                    dispatch(getLoad(true));
+                                    setLoadState(true)
                                     singleLoader(song.id);
                                 }}
+                                alt=""
                             />
 
                             <div style={{ display: 'flex', flexDirection: 'column', height: '130px', justifyContent: 'space-between' }}>
@@ -131,7 +131,7 @@ export default function SongList({ focused }) {
                                         <div
                                             className={`user-list-song-name${lightMode ? '' : ' night'}`}
                                             onClick={() => {
-                                                dispatch(getLoad(true));
+                                                setLoadState(true);
                                                 singleLoader(song.id);
                                             }}
                                         >

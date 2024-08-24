@@ -68,7 +68,7 @@ function ProfileButton({ user }) {
                         >Playlists</button> */}
 
                         {/* <button onClick={() => history.push(`/users/${Number(user.id) - 1}`)}>View Profile</button> */}
-                        <button onClick={() => GenClass.userRedirect(Number(user.id), dispatch, history)}>View Profile</button>
+                        <button onClick={() => GenClass.userRedirect(Number(user.id), history)}>View Profile</button>
                         <button onClick={logout}>Log Out</button>
 
                     </div>

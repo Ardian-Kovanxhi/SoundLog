@@ -22,10 +22,9 @@ function App() {
 	const dispatch = useDispatch();
 	const [isLoaded, setIsLoaded] = useState(false);
 	const playing = useSelector(state => state.songs.playingSong)
-	const loadState = useSelector(state => state.global.loadState)
 	const User = useSelector(state => state.session.user)
 
-	const { lightMode } = usePage()
+	const { lightMode, loadState } = usePage()
 
 
 	useEffect(() => {

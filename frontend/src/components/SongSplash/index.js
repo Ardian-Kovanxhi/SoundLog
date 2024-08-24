@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { getSongs, playSong, setCurrPage } from '../../store/songs';
 import { getPaused } from '../../store/audioPlayerState';
-import { getLoad } from '../../store/global';
 import placeholderImg from '../../images/song-placeholder.png'
 import LikeButton from '../SingleSong/LikeButton';
 import GenClass from '../StoreFunctionClasses/GenClass';
@@ -22,14 +21,14 @@ export default function AllSongs() {
     const paused = useSelector(state => state.audioState.pauseState);
     const songPageInfo = useSelector(state => state.songs.allSongsPage);
 
-    const { lightMode } = usePage();
+    const { lightMode, setLoadState } = usePage();
 
     const [hoveredIndex, setHoveredIndex] = useState(null);
 
     const pageButtons = [];
 
     useEffect(() => {
-        GenClass.fetchData(dispatch, songPageInfo.currPage)
+        GenClass.fetchData(dispatch, songPageInfo.currPage, setLoadState)
     }, [])
 
     for (let i = 1; i < pageCounter.totalPages + 1; i++) {
@@ -75,9 +74,9 @@ export default function AllSongs() {
 
                                 }}
                                 onClick={async () => {
-                                    let test = await dispatch(getLoad(true))
-                                    if (test) history.push(`/songs/${el.id}`);
-                                    GenClass.singleRedirect(el.id, dispatch, history);
+                                    setLoadState(true);
+                                    history.push(`/songs/${el.id}`);
+                                    GenClass.singleRedirect(el.id, dispatch, history, setLoadState);
                                 }}
                             >
                                 <div className='all-songs-img-div'>

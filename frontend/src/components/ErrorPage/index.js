@@ -1,10 +1,9 @@
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
 import { playSong404 } from '../../store/songs'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { useEffect, useState } from 'react'
-import { getLoad } from '../../store/global';
-import './Error.scss'
 import { usePage } from '../../context/Page/Page';
+import './Error.scss'
 
 export default function ErrorPage() {
     const dispatch = useDispatch()
@@ -15,14 +14,11 @@ export default function ErrorPage() {
     const gifClass = `test404${easter ? ' gif' : ''}`
     const btnClass = `easter-btn${easter ? ' gif' : ''}`
 
-    async function timedDeRender() {
-    }
-
-    const { lightMode } = usePage();
+    const { lightMode, setLoadState } = usePage();
 
     useEffect(() => {
-        dispatch(getLoad(false))
-    }, [])
+        setLoadState(false)
+    }, [setLoadState])
 
     return (
         <>

@@ -5,14 +5,14 @@ const PageContext = createContext()
 
 export function PageProvider({ children }) {
     const [lightMode, setLightMode] = useState(Cookies.get('pageTheme') ? Cookies.get('pageTheme') === 'day' ? true : false : true);
-    const [loadState, setLoadState] = useState(false);
+    const [loadState, setLoadState] = useState(true);
     const [pageNum, setPageNum] = useState(1);
 
     return (
         <PageContext.Provider value={{
             lightMode, setLightMode,
+            loadState, setLoadState,
             pageNum, setPageNum,
-            loadState, setLoadState
         }}>
             {children}
         </PageContext.Provider>

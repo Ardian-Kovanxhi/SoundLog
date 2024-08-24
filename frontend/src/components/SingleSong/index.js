@@ -4,8 +4,7 @@ import { useParams } from 'react-router-dom'
 import { getCommentsBySong } from "../../store/comments";
 import { getSong, playSong } from '../../store/songs';
 import { getPaused, getTime, getRawTime } from '../../store/audioPlayerState';
-import { getLoad } from '../../store/global';
-import { getAllSongLikes, getLikesByUser } from '../../store/likes';
+import { getAllSongLikes } from '../../store/likes';
 import ErrorPage from '../ErrorPage';
 import BtnMenu from './DropdownMenus/edit-deleteMenu';
 import SongComments from './SongComments'
@@ -31,14 +30,14 @@ export default function SingleSong() {
     const paused = useSelector(state => state.audioState.pauseState);
     let Uploader = '';
 
-    const { lightMode } = usePage();
+    const { lightMode, setLoadState } = usePage();
 
     async function fetchData() {
-        await dispatch(getLoad(true));
+        await setLoadState(true);
         await dispatch(getSong(songId));
         await dispatch(getCommentsBySong(songId));
         await dispatch(getAllSongLikes(songId));
-        await dispatch(getLoad(false));
+        await setLoadState(false);
     }
 
     useEffect(() => {

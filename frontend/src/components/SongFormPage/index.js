@@ -17,14 +17,14 @@ export default function SongFormPage() {
 
     const user = useSelector(state => state.session.user);
 
-    const { lightMode } = usePage();
+    const { lightMode, loadState, setLoadState } = usePage();
 
     const [name, setName] = useState('')
     const [content, setContent] = useState(null)
     const [img, setImg] = useState('')
     const [description, setDescription] = useState('')
     // const [errors, setErrors] = useState([])
-    const [loadState, setLoadState] = useState(true)
+    // const [loadState, setLoadState] = useState(true)
 
     const [nameFocus, setNameFocus] = useState(false)
     const [songFocus, setSongFocus] = useState(false)
@@ -42,16 +42,12 @@ export default function SongFormPage() {
     // const iBoxClass = `new-song-img-assignment focus-img-box ${lightMode ? '' : 'night'}`
 
     useEffect(() => {
-        dispatch(getLoad(false))
+        setLoadState(false)
         if (!user) {
             history.push('/')
         }
 
     }, [user])
-
-    // useEffect(() => {
-    //     dispatch(getLoad(false))
-    // })
 
     const submitHandler = async (e) => {
         e.preventDefault();
@@ -92,6 +88,14 @@ export default function SongFormPage() {
         <>
             {
                 loadState ?
+                    <div className="loader">
+                        <img
+                            // src="https://i.imgur.com/DwJvkT6.gif" 
+                            src={lightMode ? dayLoad : nightLoad}
+                            alt="loader gif"
+                        />
+                    </div>
+                    :
                     <div className="song-form-div">
 
                         {/* <ul>
@@ -189,6 +193,7 @@ export default function SongFormPage() {
                                     <img
                                         className="new-song-img"
                                         src={img || placeholderImg}
+                                        alt="uploaded img"
                                     />
 
                                 </div>
@@ -215,13 +220,6 @@ export default function SongFormPage() {
 
                             </div>
                         </form>
-                    </div>
-                    :
-                    <div className="loader">
-                        <img
-                            // src="https://i.imgur.com/DwJvkT6.gif" 
-                            src={lightMode ? dayLoad : nightLoad}
-                        />
                     </div>
 
             }

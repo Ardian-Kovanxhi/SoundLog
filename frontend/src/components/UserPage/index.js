@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getLoad } from "../../store/global";
 import { useHistory, useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { getUser } from "../../store/session";
 import { getAllUserLikes } from "../../store/likes";
@@ -23,20 +22,20 @@ export default function UserPage() {
 
     const User = useSelector(state => state.session.viewedUser);
 
-    const { lightMode } = usePage();
+    const { lightMode, setLoadState } = usePage();
 
     async function fetchData() {
         const unhashed = ((parseInt(userId, 16) / 7678831) - 79)
         if (Number(unhashed) === 1) {
-            await dispatch(getLoad(false));
+            await dispatch(setLoadState(false));
             history.push('/')
             return
         }
-        await dispatch(getLoad(true));
+        await setLoadState(true);
         await dispatch(getUser(Number(unhashed)));
         await dispatch(getAllUserLikes(Number(unhashed)));
         await dispatch(getUserSongs(Number(unhashed)));
-        await dispatch(getLoad(false));
+        await setLoadState(false);
     }
 
     useEffect(() => {
@@ -52,6 +51,7 @@ export default function UserPage() {
                         <img
                             className="profile-background"
                             src={User.backgroundPicture}
+                            alt="User Banner"
                         />
                     </div>
 
@@ -60,6 +60,7 @@ export default function UserPage() {
                             <img
                                 src={User.profilePicture || tempImg}
                                 className="profile-picture"
+                                alt="pro"
                             />
                         </div>
                         <div style={{ fontSize: 'x-large', marginLeft: '20px', marginTop: '50px', padding: '10px', backgroundColor: 'black', color: 'white', height: 'fit-content' }}>

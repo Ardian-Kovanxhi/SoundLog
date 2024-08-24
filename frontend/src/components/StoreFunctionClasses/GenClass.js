@@ -1,21 +1,23 @@
+import { usePage } from "../../context/Page/Page";
 import { getCommentsBySong } from "../../store/comments";
 import { getLoad } from "../../store/global";
 import { getAllSongLikes, getAllUserLikes } from "../../store/likes";
 import { getUser } from "../../store/session";
 import { getSongs, clearSongStore, getSong, getUserSongs } from "../../store/songs";
 
+
 export default class GenClass {
 
     //Used in useEffect
-    static async fetchData(dispatch, page) {
-        await dispatch(getLoad(true))
+    static async fetchData(dispatch, page, setLoadState) {
+        await setLoadState(true)
         await dispatch(getSongs(page))
         await dispatch(clearSongStore())
-        await dispatch(getLoad(false))
+        await setLoadState(false)
     }
 
-    static async singleRedirect(singleId, dispatch, history) {
-        await dispatch(getLoad(true));
+    static async singleRedirect(singleId, dispatch, history, setLoadState) {
+        await setLoadState(true);
         history.push(`/songs/${singleId}`);
     }
 

@@ -10,7 +10,7 @@ import audioPlayerReducer from './audioPlayerState';
 const rootReducer = combineReducers({
     audioState: audioPlayerReducer,
     comments: commentsReducer,
-    global: globalReducer,
+    // global: globalReducer,
     likes: likesReducer,
     session: sessionReducer,
     songs: songsReducer
