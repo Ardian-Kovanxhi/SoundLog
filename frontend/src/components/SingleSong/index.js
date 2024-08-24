@@ -42,6 +42,7 @@ export default function SingleSong() {
 
     useEffect(() => {
         fetchData();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const handleSeek = (seekTime) => {

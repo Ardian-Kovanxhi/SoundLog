@@ -41,6 +41,7 @@ export default function UserPage() {
     useEffect(() => {
         setFocused(2)
         fetchData()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [userId])
 
     return (

@@ -1,9 +1,9 @@
-import { usePage } from "../../context/Page/Page";
-import { getCommentsBySong } from "../../store/comments";
-import { getLoad } from "../../store/global";
-import { getAllSongLikes, getAllUserLikes } from "../../store/likes";
-import { getUser } from "../../store/session";
-import { getSongs, clearSongStore, getSong, getUserSongs } from "../../store/songs";
+// import { usePage } from "../../context/Page/Page";
+// import { getCommentsBySong } from "../../store/comments";
+// import { getLoad } from "../../store/global";
+// import { getAllSongLikes, getAllUserLikes } from "../../store/likes";
+// import { getUser } from "../../store/session";
+import { getSongs, clearSongStore, /*getSong, getUserSongs*/ } from "../../store/songs";
 
 
 export default class GenClass {
@@ -24,6 +24,7 @@ export default class GenClass {
     //pre-loads data for user page
     static async userRedirect(userId, history) {
         // await dispatch(getLoad(true));
+        // eslint-disable-next-line no-eval
         const hexId = await eval((userId + 79) * 7678831).toString(16);
         history.push(`/users/${hexId}`);
     }

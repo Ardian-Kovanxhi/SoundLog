@@ -29,7 +29,7 @@ export default function AllSongs() {
 
     useEffect(() => {
         GenClass.fetchData(dispatch, songPageInfo.currPage, setLoadState)
-    }, [])
+    }, [dispatch, setLoadState, songPageInfo.currPage])
 
     for (let i = 1; i < pageCounter.totalPages + 1; i++) {
         pageButtons.push(

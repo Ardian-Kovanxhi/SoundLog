@@ -5,9 +5,8 @@ import { submitSong } from "../../store/songs";
 import dayLoad from '../../images/light-mode-load.gif'
 import nightLoad from '../../images/dark-mode-load.gif'
 import placeholderImg from '../../images/song-placeholder.png'
-import './SongFormPage.scss'
-import { getLoad } from "../../store/global";
 import { usePage } from "../../context/Page/Page";
+import './SongFormPage.scss'
 
 
 
@@ -47,7 +46,7 @@ export default function SongFormPage() {
             history.push('/')
         }
 
-    }, [user])
+    }, [user, setLoadState, history])
 
     const submitHandler = async (e) => {
         e.preventDefault();

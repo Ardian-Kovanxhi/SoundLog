@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import * as sessionActions from '../../../store/session';
 import OpenModalMenuItem from './OpenModalMenuItem';
