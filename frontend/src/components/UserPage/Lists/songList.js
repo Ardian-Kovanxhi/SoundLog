@@ -30,6 +30,7 @@ export default function SongList({ focused }) {
         history.push(`/songs/${singleId}`)
     }
 
+    // eslint-disable-next-line no-unused-vars
     const userLoader = async userId => {
         await dispatch(getUser(userId));
         await dispatch(getAllUserLikes(userId));
