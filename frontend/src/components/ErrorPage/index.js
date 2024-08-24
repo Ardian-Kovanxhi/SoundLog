@@ -4,12 +4,11 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
 import { getLoad } from '../../store/global';
 import './Error.scss'
+import { usePage } from '../../context/Page/Page';
 
 export default function ErrorPage() {
     const dispatch = useDispatch()
     const history = useHistory()
-
-    const pageState = useSelector(state => state.global.lightState);
 
     const [easter, setEaster] = useState(false)
 
@@ -18,6 +17,8 @@ export default function ErrorPage() {
 
     async function timedDeRender() {
     }
+
+    const { lightMode } = usePage();
 
     useEffect(() => {
         dispatch(getLoad(false))
@@ -28,7 +29,7 @@ export default function ErrorPage() {
             <div className={gifClass}>
                 filler
 
-                <div className={`info-div-404${pageState ? '' : ' night'}`}>
+                <div className={`info-div-404${lightMode ? '' : ' night'}`}>
 
                     <div>
                         ERROR 404

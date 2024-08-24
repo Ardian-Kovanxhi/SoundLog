@@ -15,6 +15,7 @@ import placeholderImg from '../../images/song-placeholder.png'
 import './SingleSong.scss'
 import GenClass from '../StoreFunctionClasses/GenClass';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import { usePage } from '../../context/Page/Page';
 
 
 
@@ -28,8 +29,9 @@ export default function SingleSong() {
     const currSong = useSelector(state => state.songs.playingSong);
     const User = useSelector(state => state.session.user);
     const paused = useSelector(state => state.audioState.pauseState);
-    const pageState = useSelector(state => state.global.lightState);
     let Uploader = '';
+
+    const { lightMode } = usePage();
 
     async function fetchData() {
         await dispatch(getLoad(true));
@@ -68,7 +70,7 @@ export default function SingleSong() {
                             className='blur-box'
                         >
 
-                            <div className={`filler-color-2${pageState ? '' : ' night'}`}></div>
+                            <div className={`filler-color-2${lightMode ? '' : ' night'}`}></div>
 
                             <img
                                 className='blur-img'
@@ -91,7 +93,7 @@ export default function SingleSong() {
                                                 paused ?
 
                                                     <button
-                                                        className={`single-univ-button${pageState ? '' : ' night'}`}
+                                                        className={`single-univ-button${lightMode ? '' : ' night'}`}
                                                         onClick={() => { dispatch(getPaused(false)) }}
                                                     >
 
@@ -100,7 +102,7 @@ export default function SingleSong() {
                                                     </button> :
 
                                                     <button
-                                                        className={`single-univ-button${pageState ? '' : ' night'}`}
+                                                        className={`single-univ-button${lightMode ? '' : ' night'}`}
                                                         onClick={() => { dispatch(getPaused(true)) }}
                                                     >
 
@@ -109,7 +111,7 @@ export default function SingleSong() {
                                                     </button> :
 
                                                 <button
-                                                    className={`single-univ-button${pageState ? '' : ' night'}`}
+                                                    className={`single-univ-button${lightMode ? '' : ' night'}`}
                                                     onClick={() => dispatch(playSong(Song.id))}
                                                 >
 
@@ -126,7 +128,7 @@ export default function SingleSong() {
                                                         flexDirection: 'column',
                                                     }}
                                                 >
-                                                    <div className={`song-name-div${pageState ? '' : ' night'}`}>
+                                                    <div className={`song-name-div${lightMode ? '' : ' night'}`}>
                                                         {Song.name}
                                                     </div>
 
@@ -146,7 +148,7 @@ export default function SingleSong() {
                                                 </div>
 
                                                 <div
-                                                    className={`song-uploader-div${pageState ? '' : ' night'}`}
+                                                    className={`song-uploader-div${lightMode ? '' : ' night'}`}
                                                     onClick={() => GenClass.userRedirect(Number(Song.User.id), history)}
                                                 >
                                                     {Uploader}
@@ -160,7 +162,7 @@ export default function SingleSong() {
                                 </div>
 
                                 <div
-                                    className={`single-song-desc ${!!Song.description ? '' : 'false'} ${pageState ? '' : 'night'}`}
+                                    className={`single-song-desc ${!!Song.description ? '' : 'false'} ${lightMode ? '' : 'night'}`}
                                 >
                                     {Song.description}
                                 </div>

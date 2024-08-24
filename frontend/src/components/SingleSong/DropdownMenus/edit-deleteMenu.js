@@ -5,6 +5,7 @@ import OpenModalMenuItem from '../../Modals/OpenModalButton';
 import SongEditModal from "../../Modals/SongEditModal";
 import { useEffect, useRef, useState } from "react";
 import './DropdownStyle.scss'
+import { usePage } from "../../../context/Page/Page";
 
 
 export default function BtnMenu() {
@@ -13,9 +14,10 @@ export default function BtnMenu() {
     const { songId } = useParams();
 
     const currSong = useSelector(state => state.songs.playingSong);
-    const pageState = useSelector(state => state.global.lightState);
     const Songs = useSelector(state => state.songs.allSongs);
     const pageCounter = useSelector(state => state.songs.allSongsPage);
+
+    const { lightMode } = usePage();
 
     const [showMenu, setShowMenu] = useState(false);
     const btnLstRef = useRef();
@@ -57,10 +59,10 @@ export default function BtnMenu() {
 
     const closeMenu = () => setShowMenu(false);
 
-    const ulClassName = `song-drop btn-dropdown-div${showMenu ? "" : " hidden"}${pageState ? '' : ' night'}`;
+    const ulClassName = `song-drop btn-dropdown-div${showMenu ? "" : " hidden"}${lightMode ? '' : ' night'}`;
 
     return (
-        <div className={`btn-drop-container song-elip ${pageState ? '' : 'night'}`}>
+        <div className={`btn-drop-container song-elip ${lightMode ? '' : 'night'}`}>
             <button
                 className="elip-btn"
                 onClick={openMenu}

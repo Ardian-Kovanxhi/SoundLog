@@ -6,13 +6,15 @@ import OpenModalMenuItem from './OpenModalMenuItem';
 import LoginFormModal from '../../Modals/LoginFormModal';
 import SignupFormModal from '../../Modals/SignupFormModal';
 import GenClass from "../../StoreFunctionClasses/GenClass";
+import { usePage } from "../../../context/Page/Page";
 
 function ProfileButton({ user }) {
     const dispatch = useDispatch();
     const history = useHistory();
-    const pageState = useSelector(state => state.global.lightState)
     const [showMenu, setShowMenu] = useState(false);
     const ulRef = useRef();
+
+    const { lightMode } = usePage();
 
     const openMenu = () => {
         if (showMenu) return;
@@ -45,12 +47,12 @@ function ProfileButton({ user }) {
         <div>
             <button
                 onClick={openMenu}
-                className={`profile-button-actual ${pageState ? '' : 'night'}`}
+                className={`profile-button-actual ${lightMode ? '' : 'night'}`}
             >
                 <i className="fas fa-user-circle" />
             </button>
             <div
-                className={`profile-dropdown ${showMenu ? "" : "hidden"} ${pageState ? '' : 'night'}`}
+                className={`profile-dropdown ${showMenu ? "" : "hidden"} ${lightMode ? '' : 'night'}`}
                 ref={ulRef}>
                 {user ? (
                     <div className="dropdown-logged-in">

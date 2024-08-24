@@ -7,6 +7,7 @@ import LoginFormModal from '../../Modals/LoginFormModal';
 import CommentBtnMenu from '../DropdownMenus/edit-deleteComment';
 import userImg from '../../../images/user-img.png'
 import './Comments.scss'
+import { usePage } from '../../../context/Page/Page';
 
 
 
@@ -18,7 +19,8 @@ export default function SongComments() {
     const Comments = useSelector(state => state.comments.allComments);
     const commentArr = Object.values(Comments)
     const User = useSelector(state => state.session.user)
-    const pageState = useSelector(state => state.global.lightState)
+
+    const { lightMode } = usePage();
 
     const [comment, setComment] = useState('');
 
@@ -46,7 +48,7 @@ export default function SongComments() {
                 User ?
                     <form
                         onSubmit={submitHandler}
-                        className={`comment-form ${pageState ? '' : 'night'}`}
+                        className={`comment-form ${lightMode ? '' : 'night'}`}
                     >
                         <input
                             id='comment-form-input-id'
@@ -58,13 +60,13 @@ export default function SongComments() {
                             placeholder='Write a comment here'
                         />
                         <label
-                            className={`chara-count ${pageState ? '' : 'night'}`}
+                            className={`chara-count ${lightMode ? '' : 'night'}`}
                             htmlFor="comment-form-input-id">
                             {`${100 - comment.length} characters left`}
                         </label>
                     </form>
                     :
-                    <div className={`conditional-bar-button ${pageState ? '' : 'night'}`}>
+                    <div className={`conditional-bar-button ${lightMode ? '' : 'night'}`}>
                         <OpenModalMenuItem
                             buttonText="If you would like to leave a comment click here to login"
                             modalComponent={<LoginFormModal />}
@@ -75,12 +77,12 @@ export default function SongComments() {
 
 
             <div
-                className={`all-comments-div ${pageState ? '' : 'night'}`}
+                className={`all-comments-div ${lightMode ? '' : 'night'}`}
             >
 
                 {commentArr.map(el => (
                     <div className='single-comment-div' key={el.id}>
-                        <img className='comment-pfp' src={userImg} />
+                        <img className='comment-pfp' src={userImg} alt='commenter pfp' />
                         <div>
                             <div>
                                 <div className='username-conditional-div'>
@@ -93,7 +95,7 @@ export default function SongComments() {
                                             ?
                                             <div
                                                 // className='comment-drop-comp-container'
-                                                className={`comment-drop-comp-container ${pageState ? '' : 'night'}`}
+                                                className={`comment-drop-comp-container ${lightMode ? '' : 'night'}`}
                                             >
                                                 <CommentBtnMenu passedCommId={el.id} />
                                             </div>

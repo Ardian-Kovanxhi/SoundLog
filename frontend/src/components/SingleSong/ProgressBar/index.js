@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import './ProgressBar.scss'
+import { usePage } from '../../../context/Page/Page';
 
 const ProgressBar = ({ onSeek }) => {
     const [isSeeking, setIsSeeking] = useState(false);
@@ -10,8 +11,9 @@ const ProgressBar = ({ onSeek }) => {
     const currSong = useSelector(state => state.songs.playingSong);
     const songRawTime = useSelector(state => state.audioState.runtimeState.raw);
     const songTime = useSelector(state => state.audioState.runtimeState.str);
-    const pageState = useSelector(state => state.global.lightState);
     let time = ''
+
+    const { lightMode } = usePage();
 
     if (Song.duration) {
         const mins = Math.floor(Song.duration / 60)
@@ -65,7 +67,7 @@ const ProgressBar = ({ onSeek }) => {
     }, [isSeeking]);
 
     return (
-        <div className={`progress-container ${pageState ? '' : 'night'}`}>
+        <div className={`progress-container ${lightMode ? '' : 'night'}`}>
 
             <div className='time-div'>
 
@@ -80,7 +82,7 @@ const ProgressBar = ({ onSeek }) => {
             </div>
 
             <div
-                className={`progress-bar ${pageState ? '' : 'night'}`}
+                className={`progress-bar ${lightMode ? '' : 'night'}`}
                 ref={progressBarRef}
                 onMouseDown={handleMouseDown}
                 onMouseMove={handleMouseMove}
@@ -89,18 +91,18 @@ const ProgressBar = ({ onSeek }) => {
                 {
                     currSong.id === Song.id ?
                         <div
-                            className={`progress ${pageState ? '' : 'night'}`}
+                            className={`progress ${lightMode ? '' : 'night'}`}
                             style={{ width: `${(songRawTime / Song.duration) * 100}%`, }}
                         >
                             <i
-                                className={`fa-solid fa-circle ${pageState ? '' : 'night'}`}
+                                className={`fa-solid fa-circle ${lightMode ? '' : 'night'}`}
                             ></i>
 
                         </div>
                         :
                         // ''
                         <i
-                            className={`fa-solid fa-circle ${pageState ? '' : 'night'}`}
+                            className={`fa-solid fa-circle ${lightMode ? '' : 'night'}`}
                         // style={{
                         //     color: 'green',
                         //     fontSize: 'large',

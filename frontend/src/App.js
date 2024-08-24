@@ -15,15 +15,17 @@ import ErrorPage from "./components/ErrorPage";
 import SingleSong from "./components/SingleSong";
 import AudioControls from './components/Global/AudioControls'
 import { getLikesByUser } from "./store/likes";
+import { usePage } from "./context/Page/Page";
 
 
 function App() {
 	const dispatch = useDispatch();
 	const [isLoaded, setIsLoaded] = useState(false);
 	const playing = useSelector(state => state.songs.playingSong)
-	const pageState = useSelector(state => state.global.lightState)
 	const loadState = useSelector(state => state.global.loadState)
 	const User = useSelector(state => state.session.user)
+
+	const { lightMode } = usePage()
 
 
 	useEffect(() => {
@@ -33,77 +35,75 @@ function App() {
 
 	useEffect(() => {
 		if (User) dispatch(getLikesByUser());
-	}, [User])
+	}, [User, dispatch])
 
 	return (
 
 		<div
-		className='page-container-div'
-		style={{
-			backgroundImage: `url(${pageState ? dayImage : nightImage})`,
+			className='page-container-div'
+			style={{
+				backgroundImage: `url(${lightMode ? dayImage : nightImage})`,
 				backgroundSize: 'cover',
 				backgroundPosition: '50% 50%',
 				transition: 'background-image .5s ease'
-		}}
+			}}
 		>
 
-		<div
-		className="loader"
-		style={{
-			zIndex: loadState ? 9 : 0
-		}}
-		>
-		<img
-		style={{
-			position: 'absolute',
-				opacity: pageState ? '100%' : 0,
-				transition: 'opacity .5s'
-		}}
-		alt="loader"
-		src={dayLoad}
-		/>
-		<img
-		// src="https://i.imgur.com/DwJvkT6.gif" 
-		// src={pageState ? dayLoad : nightLoad}
-		src={nightLoad}
-		style={{
-			opacity: pageState ? 0 : '100%',
-				transition: 'opacity .5s'
-		}}
-		alt="loader"
-		/>
-		</div>
+			<div
+				className="loader"
+				style={{
+					zIndex: loadState ? 9 : 0
+				}}
+			>
+				<img
+					style={{
+						position: 'absolute',
+						opacity: lightMode ? '100%' : 0,
+						transition: 'opacity .5s'
+					}}
+					alt="loader"
+					src={dayLoad}
+				/>
+				<img
+					src={nightLoad}
+					style={{
+						opacity: lightMode ? 0 : '100%',
+						transition: 'opacity .5s'
+					}}
+					alt="loader"
+				/>
+			</div>
 
-		<div
-		className={`filler-color ${pageState ? '' : ' night'}`}
-		style={{
-			zIndex: loadState ? 8 : 0
-		}}
-		></div>
+			<div
+				className={`filler-color ${lightMode ? '' : ' night'}`}
+				style={{
+					zIndex: loadState ? 8 : 0
+				}}
+			></div>
 
-		{
-			playing.content ?
-			<div className={`bottom-filler ${pageState ? '' : ' night'}`}></div>
-			:
-			''
-		}
+			{
+				playing.content ?
+					<div className={`bottom-filler ${lightMode ? '' : ' night'}`}></div>
+					:
+					''
+			}
 
-		<Navigation isLoaded={isLoaded} />
-		{
-			isLoaded && (
-				<>
-				<Switch>
-				<Route path={'/songs/:songId'} component={SingleSong} />
-				<Route path={'/songs'} component={SongFormPage} />
-				<Route path={'/users/:userId'} component={UserPage} />
-				<Route exact path={'/'} component={SongSplash} />
-				<Route path={'*'} component={ErrorPage} />
-				</Switch>
-				</>
-			)
-		}
+			<Navigation isLoaded={isLoaded} />
+			{
+				isLoaded && (
+					<>
+						<Switch>
+							<Route path={'/songs/:songId'} component={SingleSong} />
+							<Route path={'/songs'} component={SongFormPage} />
+							<Route path={'/users/:userId'} component={UserPage} />
+							<Route exact path={'/'} component={SongSplash} />
+							<Route path={'*'} component={ErrorPage} />
+						</Switch>
+					</>
+				)
+			}
 
-		<AudioControls />
+			<AudioControls />
 		</div >
 	);
 }

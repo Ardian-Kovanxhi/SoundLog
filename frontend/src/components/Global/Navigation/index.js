@@ -1,30 +1,36 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import LoginFormModal from '../../Modals/LoginFormModal';
 import OpenModalMenuItem from '../../Modals/OpenModalButton';
-import { getLight } from "../../../store/global";
 import homeBarLogo from '../../../images/log3.png'
+import { usePage } from '../../../context/Page/Page';
+import Cookies from "js-cookie";
 import './Navigation.scss';
 
 function Navigation({ isLoaded }) {
-    const dispatch = useDispatch()
     const sessionUser = useSelector(state => state.session.user);
-    const pageState = useSelector(state => state.global.lightState)
     const history = useHistory()
+
+    const { setLightMode, lightMode } = usePage();
+
+    const lightHandler = () => {
+        setLightMode(lightMode ? false : true);
+        Cookies.set('pageTheme', lightMode ? "night" : "day", { expires: 604800 })
+    }
 
     return (
 
         // <div className='nav-container'>
-        <div className={`nav-container ${pageState ? '' : ' night'}`}>
+        <div className={`nav-container ${lightMode ? '' : ' night'}`}>
 
             <div className="nav-bar-div">
                 <div
                     onClick={() => {
                         history.push('/')
                     }}
-                    className={`title-icon-div ${pageState ? '' : 'night'}`}
+                    className={`title-icon-div ${lightMode ? '' : 'night'}`}
                 >
                     <img
                         src={homeBarLogo}
@@ -39,13 +45,14 @@ function Navigation({ isLoaded }) {
 
                     <div className='brand-btn-div'>
                         <button
-                            onClick={() => dispatch(getLight(pageState ? false : true))}
+                            // onClick={() => setLightMode(lightMode ? false : true)}
+                            onClick={lightHandler}
 
-                            className={`profile-button-actual ${pageState ? '' : 'night'}`}
+                            className={`profile-button-actual ${lightMode ? '' : 'night'}`}
                         >
 
                             {
-                                pageState ?
+                                lightMode ?
                                     <i className="fa-solid fa-moon"></i>
                                     :
                                     <i className="fa-solid fa-sun"></i>
@@ -57,7 +64,7 @@ function Navigation({ isLoaded }) {
                         <button
                             onClick={() => window.location.replace('https://www.linkedin.com/in/ardian-kovanxhi/')}
                             // className='profile-button-actual'
-                            className={`profile-button-actual ${pageState ? '' : 'night'}`}
+                            className={`profile-button-actual ${lightMode ? '' : 'night'}`}
                         >
 
                             <i className="fa-brands fa-linkedin"></i>
@@ -69,13 +76,13 @@ function Navigation({ isLoaded }) {
                         <button
                             onClick={() => window.location.replace('https://github.com/Ardian-Kovanxhi')}
                             // className='profile-button-actual'
-                            className={`profile-button-actual ${pageState ? '' : 'night'}`}
+                            className={`profile-button-actual ${lightMode ? '' : 'night'}`}
                         >
                             <i className="fa-brands fa-github"></i>
                         </button>
                     </div>
 
-                    <div className={`modal-but-test ${pageState ? '' : 'night'}`}>
+                    <div className={`modal-but-test ${lightMode ? '' : 'night'}`}>
                         {/* <button
                             onClick={() => history.push('/songs')}
                         >

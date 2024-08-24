@@ -7,6 +7,7 @@ import nightLoad from '../../images/dark-mode-load.gif'
 import placeholderImg from '../../images/song-placeholder.png'
 import './SongFormPage.scss'
 import { getLoad } from "../../store/global";
+import { usePage } from "../../context/Page/Page";
 
 
 
@@ -15,7 +16,8 @@ export default function SongFormPage() {
     const history = useHistory()
 
     const user = useSelector(state => state.session.user);
-    const pageState = useSelector(state => state.global.lightState);
+
+    const { lightMode } = usePage();
 
     const [name, setName] = useState('')
     const [content, setContent] = useState(null)
@@ -29,15 +31,15 @@ export default function SongFormPage() {
     const [descFocus, setDescFocus] = useState(false)
     const [imgFocus, setImgFocus] = useState(false)
 
-    const genClass = `label-in-div-song-form ${pageState ? '' : 'night'}`
+    const genClass = `label-in-div-song-form ${lightMode ? '' : 'night'}`
 
     const nClass = genClass + (nameFocus ? ' focus-song-form' : '')
     const sClass = genClass + (songFocus ? ' focus-song-form' : '')
     const dClass = genClass + (descFocus ? ' focus-song-form' : '') + ' desc'
     const iClass = genClass + (imgFocus ? ' focus-song-form' : '') + ' img'
     // const iClass = genClass + ' focus-song-form img'
-    const iBoxClass = `new-song-img-assignment ${imgFocus ? 'focus-img-box' : ''} ${pageState ? '' : 'night'}`
-    // const iBoxClass = `new-song-img-assignment focus-img-box ${pageState ? '' : 'night'}`
+    const iBoxClass = `new-song-img-assignment ${imgFocus ? 'focus-img-box' : ''} ${lightMode ? '' : 'night'}`
+    // const iBoxClass = `new-song-img-assignment focus-img-box ${lightMode ? '' : 'night'}`
 
     useEffect(() => {
         dispatch(getLoad(false))
@@ -197,7 +199,7 @@ export default function SongFormPage() {
                             <div className="song-form-gen-but-div">
 
                                 <button
-                                    className={`song-form-buttons submit ${pageState ? '' : 'night'}`}>
+                                    className={`song-form-buttons submit ${lightMode ? '' : 'night'}`}>
 
                                     Submit
 
@@ -205,7 +207,7 @@ export default function SongFormPage() {
 
                                 <button
                                     onClick={() => history.push('/')}
-                                    className={`song-form-buttons cancel ${pageState ? '' : 'night'}`}>
+                                    className={`song-form-buttons cancel ${lightMode ? '' : 'night'}`}>
 
                                     Cancel
 
@@ -218,7 +220,7 @@ export default function SongFormPage() {
                     <div className="loader">
                         <img
                             // src="https://i.imgur.com/DwJvkT6.gif" 
-                            src={pageState ? dayLoad : nightLoad}
+                            src={lightMode ? dayLoad : nightLoad}
                         />
                     </div>
 

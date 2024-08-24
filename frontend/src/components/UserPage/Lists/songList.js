@@ -10,6 +10,7 @@ import ProgressBar from "../ProgressBar";
 import { getUser } from "../../../store/session";
 import './Lists.scss'
 import GenClass from "../../StoreFunctionClasses/GenClass";
+import { usePage } from "../../../context/Page/Page";
 
 export default function SongList({ focused }) {
     const history = useHistory();
@@ -18,9 +19,10 @@ export default function SongList({ focused }) {
 
     const currSong = useSelector(state => state.songs.playingSong);
     const paused = useSelector(state => state.audioState.pauseState);
-    const pageState = useSelector(state => state.global.lightState);
     const Songs = useSelector(state => state.songs.userSongs);
     const songArr = Object.values(Songs);
+
+    const { lightMode } = usePage();
 
     const singleLoader = async singleId => {
         await dispatch(getSong(singleId));
@@ -84,7 +86,7 @@ export default function SongList({ focused }) {
                                         song.id === currSong.id ?
                                             paused ?
                                                 <button
-                                                    className={`user-univ-button${pageState ? '' : ' night'}`}
+                                                    className={`user-univ-button${lightMode ? '' : ' night'}`}
 
                                                     onClick={() => { dispatch(getPaused(false)) }}
                                                 >
@@ -94,7 +96,7 @@ export default function SongList({ focused }) {
                                                 </button> :
 
                                                 <button
-                                                    className={`user-univ-button${pageState ? '' : ' night'}`}
+                                                    className={`user-univ-button${lightMode ? '' : ' night'}`}
 
                                                     onClick={() => { dispatch(getPaused(true)) }}
                                                 >
@@ -104,7 +106,7 @@ export default function SongList({ focused }) {
                                                 </button> :
 
                                             <button
-                                                className={`user-univ-button${pageState ? '' : ' night'}`}
+                                                className={`user-univ-button${lightMode ? '' : ' night'}`}
 
                                                 onClick={() => dispatch(playSong(song.id))}
                                             >
@@ -117,7 +119,7 @@ export default function SongList({ focused }) {
                                         className="user-list-song-username-div"
                                     >
                                         <div
-                                            className={`user-list-username${pageState ? '' : ' night'}`}
+                                            className={`user-list-username${lightMode ? '' : ' night'}`}
 
                                             onClick={() => {
                                                 // userLoader(song.User.id);
@@ -127,7 +129,7 @@ export default function SongList({ focused }) {
                                             {song.User.username}
                                         </div>
                                         <div
-                                            className={`user-list-song-name${pageState ? '' : ' night'}`}
+                                            className={`user-list-song-name${lightMode ? '' : ' night'}`}
                                             onClick={() => {
                                                 dispatch(getLoad(true));
                                                 singleLoader(song.id);
@@ -144,7 +146,7 @@ export default function SongList({ focused }) {
                     </div>
                 )
             }) :
-                <div style={pageState ? { color: "black" } : { color: "white" }}>
+                <div style={lightMode ? { color: "black" } : { color: "white" }}>
                     No Songs
                 </div>
             }

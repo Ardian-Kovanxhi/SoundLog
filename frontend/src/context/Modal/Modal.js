@@ -1,5 +1,5 @@
 import React, { useRef, useState, useContext } from 'react';
-import { useSelector } from 'react-redux';
+import { usePage } from '../Page/Page';
 import ReactDOM from 'react-dom';
 import './Modal.scss';
 
@@ -40,7 +40,7 @@ export function ModalProvider({ children }) {
 }
 
 export function Modal() {
-    const pageState = useSelector(state => state.global.lightState)
+    const { lightMode } = usePage();
     const { modalRef, modalContent, closeModal } = useContext(ModalContext);
     // If there is no div referenced by the modalRef or modalContent is not a
     // truthy value, render nothing:
@@ -50,7 +50,7 @@ export function Modal() {
     return ReactDOM.createPortal(
         <div id="modal">
             <div id="modal-background" onClick={closeModal} />
-            <div id="modal-content" className={pageState ? '' : 'night'}>
+            <div id="modal-content" className={lightMode ? '' : 'night'}>
                 {modalContent}
             </div>
         </div>,

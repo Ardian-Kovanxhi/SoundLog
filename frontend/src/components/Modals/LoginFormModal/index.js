@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import * as sessionActions from "../../../store/session";
 import { useDispatch, useSelector } from "react-redux";
-import { useModal } from "../../../context/Modal";
+import { useModal } from "../../../context/Modal/Modal.js";
 import "./LoginForm.scss";
+import { usePage } from "../../../context/Page/Page.js";
 
 function LoginFormModal() {
     const dispatch = useDispatch();
-    const pageState = useSelector(state => state.global.lightState)
+
+    const { lightMode } = usePage()
+
     const [credential, setCredential] = useState("");
     const [password, setPassword] = useState("");
     const [errors, setErrors] = useState([]);
@@ -16,8 +19,8 @@ function LoginFormModal() {
 
     const { closeModal } = useModal();
 
-    const usernameClass = `label-in-div ${ufocus ? 'focus' : ''} ${pageState ? '' : 'night'}`
-    const passClass = `label-in-div ${pfocus ? 'focus' : ''} ${pageState ? '' : 'night'}`
+    const usernameClass = `label-in-div ${ufocus ? 'focus' : ''} ${lightMode ? '' : 'night'}`
+    const passClass = `label-in-div ${pfocus ? 'focus' : ''} ${lightMode ? '' : 'night'}`
 
     const handleSubmit = (e) => {
         e.preventDefault();

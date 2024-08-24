@@ -5,13 +5,15 @@ import CommentEditModal from "../../Modals/CommentEditModal";
 import { removeComment } from "../../../store/comments";
 import { useEffect, useRef, useState } from "react";
 import './DropdownStyle.scss'
+import { usePage } from "../../../context/Page/Page";
 
 export default function CommentBtnMenu({ passedCommId }) {
     const dispatch = useDispatch()
     const { songId } = useParams();
     const [showMenu, setShowMenu] = useState(false);
     const cbtnLstRef = useRef();
-    const pageState = useSelector(state => state.global.lightState)
+
+    const { lightMode } = usePage();
 
 
     const deleteHandler = async (commentId) => {
@@ -43,10 +45,10 @@ export default function CommentBtnMenu({ passedCommId }) {
     const ulClassName =
         "comment-drop btn-dropdown-div" +
         (showMenu ? "" : " hidden") +
-        (pageState ? '' : ' night');
+        (lightMode ? '' : ' night');
 
     return (
-        <div className={`btn-drop-container comment-elip ${pageState ? '' : 'night'}`}>
+        <div className={`btn-drop-container comment-elip ${lightMode ? '' : 'night'}`}>
             <button
                 className="elip-btn"
                 onClick={openMenu}

@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
-import { useParams } from 'react-router-dom'
 import OpenModalMenuItem from '../../Modals/OpenModalButton';
 import LoginFormModal from '../../Modals/LoginFormModal';
 import { createLike, getAllSongLikes, getAllUserLikes, getLikesByUser, removeLike } from '../../../store/likes';
 import './LikeButton.scss'
+import { usePage } from '../../../context/Page/Page';
 
 
 export default function LikeButton({ songId, pageRendered }) {
@@ -13,7 +13,8 @@ export default function LikeButton({ songId, pageRendered }) {
     const User = useSelector(state => state.session.user);
     const likeState = useSelector(state => state.likes.loggedUserLikes);
     const totalLikes = useSelector(state => state.likes.likeCount);
-    const pageState = useSelector(state => state.global.lightState);
+
+    const { lightMode } = usePage();
 
 
     const [like, setLike] = useState(false);
@@ -23,7 +24,7 @@ export default function LikeButton({ songId, pageRendered }) {
         likeState.has(Number(songId)) ? setLike(true) : setLike(false);
     }, [likeState])
 
-    const likeBtnClass = `likeBtn${pageRendered ? ' singlePage' : ' splashPage'}${pageState ? '' : ' night'}`
+    const likeBtnClass = `likeBtn${pageRendered ? ' singlePage' : ' splashPage'}${lightMode ? '' : ' night'}`
 
 
     return (
@@ -75,7 +76,7 @@ export default function LikeButton({ songId, pageRendered }) {
             }
             <div
                 style={pageRendered ? {} : { display: 'none' }}
-                className={`likeCount${pageState ? '' : ' night'}`}
+                className={`likeCount${lightMode ? '' : ' night'}`}
             >
                 {totalLikes}
             </div >

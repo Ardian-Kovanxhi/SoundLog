@@ -5,12 +5,13 @@ import './index.scss';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
-import { ModalProvider, Modal } from './context/Modal';
+import { ModalProvider, Modal } from './context/Modal/Modal.js';
 import App from './App';
 
 import configureStore from './store';
 import { restoreCSRF, csrfFetch } from "./store/csrf";
 import * as sessionActions from './store/session';
+import { PageProvider } from './context/Page/Page.js';
 
 const store = configureStore();
 
@@ -27,14 +28,16 @@ if (process.env.NODE_ENV !== "production") {
 // HTML elements on top of the all the other HTML elements:
 function Root() {
   return (
-    <ModalProvider>
-      <Provider store={store}>
-        <BrowserRouter>
-          <App />
-          <Modal />
-        </BrowserRouter>
-      </Provider>
-    </ModalProvider>
+    <Provider store={store}>
+      <BrowserRouter>
+        <PageProvider>
+          <ModalProvider>
+            <App />
+            <Modal />
+          </ModalProvider>
+        </PageProvider>
+      </BrowserRouter>
+    </Provider>
   );
 }
 

@@ -8,6 +8,7 @@ import { getPaused, getTime, getRawTime } from '../../../store/audioPlayerState'
 import { getSong } from '../../../store/songs';
 import { getCommentsBySong } from '../../../store/comments';
 import './AudioControls.scss'
+import { usePage } from '../../../context/Page/Page';
 
 
 function AudioControls() {
@@ -17,7 +18,8 @@ function AudioControls() {
     const song = useSelector(state => state.songs.playingSong)
     const pauseState = useSelector(state => state.audioState.pauseState)
     const timeSeek = useSelector(state => state.audioState.rawTime)
-    const pageState = useSelector(state => state.global.lightState)
+
+    const { lightMode } = usePage();
 
     const [currPause, setCurrPause] = useState(true)
     const [playerVisible, setPlayerVisible] = useState(false)
@@ -79,8 +81,8 @@ function AudioControls() {
     }
 
 
-    const playerClass = `audio-player ${playerVisible ? '' : 'invisible'} ${pageState ? '' : 'night'}`
-    const containerClass = `player-img-name-container ${(boxVis ? '' : ' invisible')} ${pageState ? '' : 'night'}`
+    const playerClass = `audio-player ${playerVisible ? '' : 'invisible'} ${lightMode ? '' : 'night'}`
+    const containerClass = `player-img-name-container ${(boxVis ? '' : ' invisible')} ${lightMode ? '' : 'night'}`
     const imgClass = 'player-img-actual' + (boxVis ? '' : ' invisible')
 
 

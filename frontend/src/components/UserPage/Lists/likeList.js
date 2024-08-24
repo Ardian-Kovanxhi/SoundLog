@@ -10,6 +10,7 @@ import { getUser } from "../../../store/session";
 import ProgressBar from "../ProgressBar";
 import './Lists.scss'
 import GenClass from "../../StoreFunctionClasses/GenClass";
+import { usePage } from "../../../context/Page/Page";
 
 export default function LikeList({ focused }) {
     const history = useHistory();
@@ -17,9 +18,10 @@ export default function LikeList({ focused }) {
 
     const currSong = useSelector(state => state.songs.playingSong);
     const paused = useSelector(state => state.audioState.pauseState);
-    const pageState = useSelector(state => state.global.lightState);
     const likes = useSelector(state => state.likes.viewedUserLikes);
     const likeArr = Object.values(likes);
+
+    const { lightMode } = usePage();
 
     const singleLoader = async singleId => {
         await dispatch(getSong(singleId));
@@ -79,7 +81,7 @@ export default function LikeList({ focused }) {
                                         like.Song.id === currSong.id ?
                                             paused ?
                                                 <button
-                                                    className={`user-univ-button${pageState ? '' : ' night'}`}
+                                                    className={`user-univ-button${lightMode ? '' : ' night'}`}
                                                     onClick={() => { dispatch(getPaused(false)) }}
                                                 >
 
@@ -88,7 +90,7 @@ export default function LikeList({ focused }) {
                                                 </button> :
 
                                                 <button
-                                                    className={`user-univ-button${pageState ? '' : ' night'}`}
+                                                    className={`user-univ-button${lightMode ? '' : ' night'}`}
                                                     onClick={() => { dispatch(getPaused(true)) }}
                                                 >
 
@@ -97,7 +99,7 @@ export default function LikeList({ focused }) {
                                                 </button> :
 
                                             <button
-                                                className={`user-univ-button${pageState ? '' : ' night'}`}
+                                                className={`user-univ-button${lightMode ? '' : ' night'}`}
                                                 onClick={() => dispatch(playSong(like.Song.id))}
                                             >
 
@@ -109,7 +111,7 @@ export default function LikeList({ focused }) {
                                         className="user-list-song-username-div"
                                     >
                                         <div
-                                            className={`user-list-username${pageState ? '' : ' night'}`}
+                                            className={`user-list-username${lightMode ? '' : ' night'}`}
                                             onClick={() => {
                                                 // dispatch(getLoad(true))
                                                 // userLoader(like.Song.User.id);
@@ -119,7 +121,7 @@ export default function LikeList({ focused }) {
                                             {like.Song.User.username}
                                         </div>
                                         <div
-                                            className={`user-list-song-name${pageState ? '' : ' night'}`}
+                                            className={`user-list-song-name${lightMode ? '' : ' night'}`}
                                             onClick={() => {
                                                 dispatch(getLoad(true));
                                                 singleLoader(like.Song.id);
@@ -136,7 +138,7 @@ export default function LikeList({ focused }) {
                     </div>
                 )
             }) :
-                <div style={pageState ? { color: "black" } : { color: "white" }}>
+                <div style={lightMode ? { color: "black" } : { color: "white" }}>
                     No Likes
                 </div>
             }

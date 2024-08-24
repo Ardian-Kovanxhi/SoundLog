@@ -2,7 +2,8 @@ import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { editComment, getCommentById, getCommentsBySong } from '../../../store/comments';
-import { useModal } from '../../../context/Modal'
+import { useModal } from '../../../context/Modal/Modal.js'
+import { usePage } from '../../../context/Page/Page.js';
 import './CommentEditModal.scss'
 
 export default function CommentEditModal({ commentId, songId }) {
@@ -13,15 +14,15 @@ export default function CommentEditModal({ commentId, songId }) {
 
     // const sessionUser = useSelector((state) => state.session.user)
     const sessionComment = useSelector((state) => state.comments.allComments[commentId])
-    const pageState = useSelector((state) => state.global.lightState)
 
+    const { lightMode } = usePage();
 
 
     const [comment, setComment] = useState(sessionComment.comment);
 
     const [focus, setFocus] = useState(false)
 
-    const comClass = `label-in-div comment ${focus ? 'focus' : ''} ${pageState ? '' : 'night'}`
+    const comClass = `label-in-div comment ${focus ? 'focus' : ''} ${lightMode ? '' : 'night'}`
 
     const submitHandler = async (e) => {
         e.preventDefault();

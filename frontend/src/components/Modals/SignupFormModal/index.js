@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useModal } from "../../../context/Modal";
+import { useModal } from "../../../context/Modal/Modal.js";
 import * as sessionActions from "../../../store/session";
 import './SignupForm.scss';
+import { usePage } from "../../../context/Page/Page.js";
 
 function SignupFormModal() {
     const dispatch = useDispatch();
-    const pageState = useSelector(state => state.global.lightState)
     const [email, setEmail] = useState("");
     const [username, setUsername] = useState("");
     const [firstName, setFirstName] = useState("");
@@ -14,9 +14,11 @@ function SignupFormModal() {
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const [errors, setErrors] = useState([]);
+
+    const { lightMode } = usePage();
     const { closeModal } = useModal();
 
-    const genClass = `label-in-div sign-up ${pageState ? '' : 'night'}`
+    const genClass = `label-in-div sign-up ${lightMode ? '' : 'night'}`
 
     const [emailFocus, setEmailFocus] = useState(false)
     const [usernameFocus, setUsernameFocus] = useState(false)
@@ -90,7 +92,7 @@ function SignupFormModal() {
                             </div>
 
 
-                            <div className={`memo-div ${pageState ? '' : 'night'}`}>
+                            <div className={`memo-div ${lightMode ? '' : 'night'}`}>
                                 ({30 - username.length} Char. reamaining)
                             </div>
 

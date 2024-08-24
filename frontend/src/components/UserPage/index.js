@@ -11,6 +11,7 @@ import LikeList from "./Lists/likeList";
 import SongList from "./Lists/songList";
 import tempImg from '../../images/song-placeholder.png'
 import './UserPage.scss'
+import { usePage } from "../../context/Page/Page";
 
 export default function UserPage() {
     const dispatch = useDispatch();
@@ -21,7 +22,8 @@ export default function UserPage() {
     const { userId } = useParams();
 
     const User = useSelector(state => state.session.viewedUser);
-    const pageState = useSelector(state => state.global.lightState);
+
+    const { lightMode } = usePage();
 
     async function fetchData() {
         const unhashed = ((parseInt(userId, 16) / 7678831) - 79)
@@ -70,14 +72,14 @@ export default function UserPage() {
                         <div className="toggle-btn-div">
 
                             <button
-                                className={`song-toggle toggle-btns ${focused === 2 ? ' focused' : ''}${pageState ? '' : ' night'}`}
+                                className={`song-toggle toggle-btns ${focused === 2 ? ' focused' : ''}${lightMode ? '' : ' night'}`}
                                 onClick={() => setFocused(2)}
                             >
                                 Songs
                             </button>
 
                             <button
-                                className={`like-toggle toggle-btns ${focused === 1 ? ' focused' : ''}${pageState ? '' : ' night'}`}
+                                className={`like-toggle toggle-btns ${focused === 1 ? ' focused' : ''}${lightMode ? '' : ' night'}`}
                                 onClick={() => setFocused(1)}
                             >
                                 Likes

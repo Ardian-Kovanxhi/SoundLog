@@ -1,14 +1,16 @@
 import React, { useState } from 'react'
 import { editSong } from '../../../store/songs'
 import { useSelector, useDispatch } from 'react-redux'
-import { useModal } from "../../../context/Modal";
+import { useModal } from "../../../context/Modal/Modal.js";
 import './SongEditPage.scss'
+import { usePage } from '../../../context/Page/Page.js';
 
 export default function SongEditModal() {
     const dispatch = useDispatch();
     const user = useSelector((state) => state.session.user)
     const sessionSong = useSelector((state) => state.songs.singleSong)
-    const pageState = useSelector((state) => state.global.lightState)
+
+    const { lightMode } = usePage();
     const { closeModal } = useModal();
 
 
@@ -27,7 +29,7 @@ export default function SongEditModal() {
     const [songFocus, setSongFocus] = useState(false)
     const [durationFocus, setDurationFocus] = useState(false)
 
-    const genClass = `label-in-div ${pageState ? '' : 'night'}`
+    const genClass = `label-in-div ${lightMode ? '' : 'night'}`
 
     const nClass = genClass + (nameFocus ? ' focus' : '')
     const dClass = genClass + (descFocus ? ' focus' : '')

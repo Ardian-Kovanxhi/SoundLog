@@ -8,6 +8,7 @@ import placeholderImg from '../../images/song-placeholder.png'
 import LikeButton from '../SingleSong/LikeButton';
 import GenClass from '../StoreFunctionClasses/GenClass';
 import './Songs.scss'
+import { usePage } from '../../context/Page/Page';
 
 
 
@@ -19,8 +20,9 @@ export default function AllSongs() {
     const pageCounter = useSelector(state => state.songs.allSongsPage);
     const song = useSelector(state => state.songs.playingSong);
     const paused = useSelector(state => state.audioState.pauseState);
-    const pageState = useSelector(state => state.global.lightState);
-    const songPageInfo = useSelector(state => state.songs.allSongsPage)
+    const songPageInfo = useSelector(state => state.songs.allSongsPage);
+
+    const { lightMode } = usePage();
 
     const [hoveredIndex, setHoveredIndex] = useState(null);
 
@@ -50,13 +52,13 @@ export default function AllSongs() {
             <div className='all-songs-div-container'>
                 {Object.values(Songs).map((el, index) => {
 
-                    const btnClass = `univ-play-pause-button${hoveredIndex === index ? ' hovered' : ''} ${pageState ? '' : ' night'}`
-                    // const btnClass = `univ-play-pause-button hovered ${pageState ? '' : ' night'}` //used for testing
+                    const btnClass = `univ-play-pause-button${hoveredIndex === index ? ' hovered' : ''} ${lightMode ? '' : ' night'}`
+                    // const btnClass = `univ-play-pause-button hovered ${lightMode ? '' : ' night'}` //used for testing
 
 
                     return (
                         <div
-                            className={`all-songs-single ${pageState ? '' : ' night'}`}
+                            className={`all-songs-single ${lightMode ? '' : ' night'}`}
                             onMouseEnter={() => setHoveredIndex(index)}
                             onMouseLeave={() => setHoveredIndex(null)}
                             key={index}
@@ -89,14 +91,14 @@ export default function AllSongs() {
 
                                 </div>
 
-                                <div className={`all-songs-song-name ${pageState ? '' : ' night'}`}>
+                                <div className={`all-songs-song-name ${lightMode ? '' : ' night'}`}>
                                     {el.name}
                                 </div>
 
                             </div>
 
                             <div
-                                className={`all-songs-username ${pageState ? '' : ' night'}`}
+                                className={`all-songs-username ${lightMode ? '' : ' night'}`}
                                 onClick={() => {
                                     GenClass.userRedirect(el.User.id, history);
                                 }}
@@ -142,7 +144,7 @@ export default function AllSongs() {
                     )
                 })}
                 <div
-                    className={`page-btns${pageState ? '' : ' night'}`}
+                    className={`page-btns${lightMode ? '' : ' night'}`}
                 >
                     Page: {pageButtons}
                 </div>
