@@ -15,7 +15,7 @@ import ErrorPage from "./components/ErrorPage";
 import SingleSong from "./components/SingleSong";
 import AudioControls from './components/Global/AudioControls'
 import { getLikesByUser } from "./store/likes";
-import { usePage } from "./context/Page/Page";
+import { usePage } from "./context/Page";
 
 
 function App() {

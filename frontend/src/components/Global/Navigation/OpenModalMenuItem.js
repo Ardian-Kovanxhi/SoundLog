@@ -1,5 +1,5 @@
 import React from 'react';
-import { useModal } from '../../../context/Modal/Modal.js';
+import { useModal } from '../../../context/Modal.js';
 
 function OpenModalMenuItem({
     modalComponent, // component to render inside the modal

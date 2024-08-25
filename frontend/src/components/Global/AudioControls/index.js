@@ -4,11 +4,11 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
-import { getPaused, getTime, getRawTime } from '../../../store/audioPlayerState';
 import { getSong } from '../../../store/songs';
 import { getCommentsBySong } from '../../../store/comments';
 import './AudioControls.scss'
-import { usePage } from '../../../context/Page/Page';
+import { usePage } from '../../../context/Page';
+import { useAudio } from '../../../context/Audio';
 
 
 function AudioControls() {
@@ -16,10 +16,9 @@ function AudioControls() {
     const history = useHistory()
     const player = useRef();
     const song = useSelector(state => state.songs.playingSong)
-    const pauseState = useSelector(state => state.audioState.pauseState)
-    const timeSeek = useSelector(state => state.audioState.rawTime)
 
     const { lightMode } = usePage();
+    const { pauseState, setPauseState, seekTime, setSeekTime, playTimeHandler } = useAudio();
 
     const [currPause, setCurrPause] = useState(true)
     const [playerVisible, setPlayerVisible] = useState(false)
@@ -42,13 +41,13 @@ function AudioControls() {
     }, [song])
 
     useEffect(() => {
-        if (timeSeek === null) {
+        if (seekTime === null) {
             return
         }
-        player.current.audio.current.currentTime = timeSeek;
-        dispatch(getRawTime(null))
-        dispatch(getTime(timeSeek))
-    }, [timeSeek])
+        player.current.audio.current.currentTime = seekTime;
+        setSeekTime(null)
+        playTimeHandler(seekTime)
+    }, [seekTime])
 
 
     useEffect(() => {
@@ -56,7 +55,7 @@ function AudioControls() {
         if (currPause === true && pauseState === false) {
 
             player.current.audio.current.play()
-            dispatch(getTime(player.current.audio.current.currentTime))
+            playTimeHandler(player.current.audio.current.currentTime)
             setCurrPause(false)
 
         }
@@ -64,7 +63,7 @@ function AudioControls() {
         else if (currPause === false && pauseState === true) {
 
             player.current.audio.current.pause()
-            dispatch(getTime(player.current.audio.current.currentTime))
+            playTimeHandler(player.current.audio.current.currentTime)
             setCurrPause(true)
 
         }
@@ -142,13 +141,12 @@ function AudioControls() {
                 ref={player}
                 autoPlay
                 src={song ? song.content : null}
-                onPlay={e => dispatch(getPaused(false))}
-                onPause={e => dispatch(getPaused(true))}
+                onPlay={() => setPauseState(false)}
+                onPause={() => setPauseState(true)}
                 listenInterval={500}
-                onListen={() => dispatch(getTime(player.current.audio.current.currentTime))}
-                onSeeking={() => dispatch(getTime(player.current.audio.current.currentTime))}
+                onListen={() => playTimeHandler(player.current.audio.current.currentTime)}
+                onSeeking={() => playTimeHandler(player.current.audio.current.currentTime)}
                 onEnded={() => console.log('DONE')}
-            // onSeeked={() => dispatch(getRawTime(player.current.audio.current.currentTime))}
             // other props here
             />
 

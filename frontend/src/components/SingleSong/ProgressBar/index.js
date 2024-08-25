@@ -1,7 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import './ProgressBar.scss'
-import { usePage } from '../../../context/Page/Page';
+import { usePage } from '../../../context/Page';
+import { useAudio } from '../../../context/Audio';
 
 const ProgressBar = ({ onSeek }) => {
     const [isSeeking, setIsSeeking] = useState(false);
@@ -9,11 +10,12 @@ const ProgressBar = ({ onSeek }) => {
 
     const Song = useSelector(state => state.songs.singleSong);
     const currSong = useSelector(state => state.songs.playingSong);
-    const songRawTime = useSelector(state => state.audioState.runtimeState.raw);
-    const songTime = useSelector(state => state.audioState.runtimeState.str);
+    // const songRawTime = useSelector(state => state.audioState.runtimeState.raw);
+    // const songTime = useSelector(state => state.audioState.runtimeState.str);
     let time = ''
 
     const { lightMode } = usePage();
+    const { rawPlayTime, strPlayTime } = useAudio();
 
     if (Song.duration) {
         const mins = Math.floor(Song.duration / 60)
@@ -72,7 +74,8 @@ const ProgressBar = ({ onSeek }) => {
             <div className='time-div'>
 
                 <div>
-                    {currSong.id === Song.id ? songTime : '--:--'}
+                    {/* {currSong.id === Song.id ? songTime : '--:--'} */}
+                    {currSong.id === Song.id ? strPlayTime : '--:--'}
                 </div>
 
                 <div>
@@ -92,7 +95,8 @@ const ProgressBar = ({ onSeek }) => {
                     currSong.id === Song.id ?
                         <div
                             className={`progress ${lightMode ? '' : 'night'}`}
-                            style={{ width: `${(songRawTime / Song.duration) * 100}%`, }}
+                            // style={{ width: `${(songRawTime / Song.duration) * 100}%`, }}
+                            style={{ width: `${(rawPlayTime / Song.duration) * 100}%`, }}
                         >
                             <i
                                 className={`fa-solid fa-circle ${lightMode ? '' : 'night'}`}

@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { getCommentsBySong } from "../../store/comments";
 import { getSong, playSong } from '../../store/songs';
-import { getPaused, getTime, getRawTime } from '../../store/audioPlayerState';
 import { getAllSongLikes } from '../../store/likes';
 import ErrorPage from '../ErrorPage';
 import BtnMenu from './DropdownMenus/edit-deleteMenu';
@@ -14,7 +13,8 @@ import placeholderImg from '../../images/song-placeholder.png'
 import './SingleSong.scss'
 import GenClass from '../StoreFunctionClasses/GenClass';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
-import { usePage } from '../../context/Page/Page';
+import { usePage } from '../../context/Page';
+import { useAudio } from '../../context/Audio';
 
 
 
@@ -27,10 +27,10 @@ export default function SingleSong() {
     const Song = useSelector(state => state.songs.singleSong);
     const currSong = useSelector(state => state.songs.playingSong);
     const User = useSelector(state => state.session.user);
-    const paused = useSelector(state => state.audioState.pauseState);
     let Uploader = '';
 
     const { lightMode, setLoadState } = usePage();
+    const { pauseState, setPauseState, setSeekTime, playTimeHandler } = useAudio();
 
     async function fetchData() {
         await setLoadState(true);
@@ -48,11 +48,11 @@ export default function SingleSong() {
     const handleSeek = (seekTime) => {
         if (currSong.id !== Song.id) {
             dispatch(playSong(Song.id))
-            dispatch(getTime(0))
+            playTimeHandler(0)
             return
         }
         const newSeekTime = (seekTime / 100) * Song.duration;
-        dispatch(getRawTime(newSeekTime))
+        setSeekTime(newSeekTime)
     };
 
     if (Song.User) {
@@ -90,11 +90,11 @@ export default function SingleSong() {
                                         <div className='pfp-info-div'>
                                             {currSong.id === Song.id ?
 
-                                                paused ?
+                                                pauseState ?
 
                                                     <button
                                                         className={`single-univ-button${lightMode ? '' : ' night'}`}
-                                                        onClick={() => { dispatch(getPaused(false)) }}
+                                                        onClick={() => { setPauseState(false) }}
                                                     >
 
                                                         <i className="fa-solid fa-play fa-2xl" />
@@ -103,7 +103,7 @@ export default function SingleSong() {
 
                                                     <button
                                                         className={`single-univ-button${lightMode ? '' : ' night'}`}
-                                                        onClick={() => { dispatch(getPaused(true)) }}
+                                                        onClick={() => { setPauseState(true) }}
                                                     >
 
                                                         <i className="fa-solid fa-pause fa-2xl single-pause" />

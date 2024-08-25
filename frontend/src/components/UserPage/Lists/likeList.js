@@ -3,23 +3,23 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { getSong, getUserSongs, playSong } from "../../../store/songs";
 import { getCommentsBySong } from "../../../store/comments";
 import { getAllSongLikes, getAllUserLikes } from "../../../store/likes";
-import { getPaused, getRawTime, getTime } from "../../../store/audioPlayerState";
 import { getUser } from "../../../store/session";
 import ProgressBar from "../ProgressBar";
-import './Lists.scss'
 import GenClass from "../../StoreFunctionClasses/GenClass";
-import { usePage } from "../../../context/Page/Page";
+import { usePage } from "../../../context/Page";
+import './Lists.scss'
+import { useAudio } from "../../../context/Audio";
 
 export default function LikeList({ focused }) {
     const history = useHistory();
     const dispatch = useDispatch();
 
     const currSong = useSelector(state => state.songs.playingSong);
-    const paused = useSelector(state => state.audioState.pauseState);
     const likes = useSelector(state => state.likes.viewedUserLikes);
     const likeArr = Object.values(likes);
 
     const { lightMode, setLoadState } = usePage();
+    const { pauseState, setPauseState, setSeekTime, playTimeHandler } = useAudio();
 
     const singleLoader = async singleId => {
         await dispatch(getSong(singleId));
@@ -46,11 +46,11 @@ export default function LikeList({ focused }) {
                 const handleSeek = (seekTime) => {
                     if (currSong.id !== like.Song.id) {
                         dispatch(playSong(like.Song.id))
-                        dispatch(getTime(0))
+                        playTimeHandler(0)
                         return
                     }
                     const newSeekTime = (seekTime / 100) * like.Song.duration;
-                    dispatch(getRawTime(newSeekTime))
+                    setSeekTime(newSeekTime)
                 };
 
                 return (
@@ -79,10 +79,10 @@ export default function LikeList({ focused }) {
                                 >
                                     {
                                         like.Song.id === currSong.id ?
-                                            paused ?
+                                            pauseState ?
                                                 <button
                                                     className={`user-univ-button${lightMode ? '' : ' night'}`}
-                                                    onClick={() => { dispatch(getPaused(false)) }}
+                                                    onClick={() => { setPauseState(false) }}
                                                 >
 
                                                     <i className="fa-solid fa-play" />
@@ -91,7 +91,7 @@ export default function LikeList({ focused }) {
 
                                                 <button
                                                     className={`user-univ-button${lightMode ? '' : ' night'}`}
-                                                    onClick={() => { dispatch(getPaused(true)) }}
+                                                    onClick={() => { setPauseState(true) }}
                                                 >
 
                                                     <i className="fa-solid fa-pause user-pause" />

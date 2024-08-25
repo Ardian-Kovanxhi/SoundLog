@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { editSong } from '../../../store/songs'
 import { useSelector, useDispatch } from 'react-redux'
-import { useModal } from "../../../context/Modal/Modal.js";
+import { useModal } from "../../../context/Modal.js";
 import './SongEditPage.scss'
-import { usePage } from '../../../context/Page/Page.js';
+import { usePage } from '../../../context/Page.js';
 
 export default function SongEditModal() {
     const dispatch = useDispatch();

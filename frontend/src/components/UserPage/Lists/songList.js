@@ -4,12 +4,12 @@ import { useState } from "react";
 import { getSong, getUserSongs, playSong } from "../../../store/songs";
 import { getCommentsBySong } from "../../../store/comments";
 import { getAllSongLikes, getAllUserLikes } from "../../../store/likes";
-import { getPaused, getRawTime, getTime } from "../../../store/audioPlayerState";
 import ProgressBar from "../ProgressBar";
 import { getUser } from "../../../store/session";
 import './Lists.scss'
 import GenClass from "../../StoreFunctionClasses/GenClass";
-import { usePage } from "../../../context/Page/Page";
+import { usePage } from "../../../context/Page";
+import { useAudio } from "../../../context/Audio";
 
 export default function SongList({ focused }) {
     const history = useHistory();
@@ -17,11 +17,11 @@ export default function SongList({ focused }) {
     const [hoveredIndex, setHoveredIndex] = useState(null)
 
     const currSong = useSelector(state => state.songs.playingSong);
-    const paused = useSelector(state => state.audioState.pauseState);
     const Songs = useSelector(state => state.songs.userSongs);
     const songArr = Object.values(Songs);
 
     const { lightMode, setLoadState } = usePage();
+    const { pauseState, setPauseState, setSeekTime, playTimeHandler } = useAudio();
 
     const singleLoader = async singleId => {
         await dispatch(getSong(singleId));
@@ -50,11 +50,11 @@ export default function SongList({ focused }) {
                 const handleSeek = (seekTime) => {
                     if (currSong.id !== song.id) {
                         dispatch(playSong(song.id));
-                        dispatch(getTime(0));
+                        playTimeHandler(0)
                         return;
                     };
                     const newSeekTime = (seekTime / 100) * song.duration;
-                    dispatch(getRawTime(newSeekTime));
+                    setSeekTime(newSeekTime);
                 };
 
                 return (
@@ -85,11 +85,11 @@ export default function SongList({ focused }) {
                                 >
                                     {
                                         song.id === currSong.id ?
-                                            paused ?
+                                            pauseState ?
                                                 <button
                                                     className={`user-univ-button${lightMode ? '' : ' night'}`}
 
-                                                    onClick={() => { dispatch(getPaused(false)) }}
+                                                    onClick={() => { setPauseState(false) }}
                                                 >
 
                                                     <i className="fa-solid fa-play" />
@@ -99,7 +99,7 @@ export default function SongList({ focused }) {
                                                 <button
                                                     className={`user-univ-button${lightMode ? '' : ' night'}`}
 
-                                                    onClick={() => { dispatch(getPaused(true)) }}
+                                                    onClick={() => { setPauseState(true) }}
                                                 >
 
                                                     <i className="fa-solid fa-pause user-pause" />

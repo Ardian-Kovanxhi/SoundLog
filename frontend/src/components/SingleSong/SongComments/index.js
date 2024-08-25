@@ -7,7 +7,7 @@ import LoginFormModal from '../../Modals/LoginFormModal';
 import CommentBtnMenu from '../DropdownMenus/edit-deleteComment';
 import userImg from '../../../images/user-img.png'
 import './Comments.scss'
-import { usePage } from '../../../context/Page/Page';
+import { usePage } from '../../../context/Page';
 
 
 

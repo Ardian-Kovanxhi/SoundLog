@@ -5,7 +5,7 @@ import ProfileButton from './ProfileButton';
 import LoginFormModal from '../../Modals/LoginFormModal';
 import OpenModalMenuItem from '../../Modals/OpenModalButton';
 import homeBarLogo from '../../../images/log3.png'
-import { usePage } from '../../../context/Page/Page';
+import { usePage } from '../../../context/Page';
 import Cookies from "js-cookie";
 import './Navigation.scss';
 

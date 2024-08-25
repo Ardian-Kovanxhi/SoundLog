@@ -4,7 +4,7 @@ import OpenModalMenuItem from '../../Modals/OpenModalButton';
 import LoginFormModal from '../../Modals/LoginFormModal';
 import { createLike, getAllSongLikes, getAllUserLikes, getLikesByUser, removeLike } from '../../../store/likes';
 import './LikeButton.scss'
-import { usePage } from '../../../context/Page/Page';
+import { usePage } from '../../../context/Page';
 
 
 export default function LikeButton({ songId, pageRendered }) {

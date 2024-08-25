@@ -2,7 +2,7 @@ import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
 import { playSong404 } from '../../store/songs'
 import { useDispatch } from 'react-redux'
 import { useEffect, useState } from 'react'
-import { usePage } from '../../context/Page/Page';
+import { usePage } from '../../context/Page';
 import './Error.scss'
 
 export default function ErrorPage() {

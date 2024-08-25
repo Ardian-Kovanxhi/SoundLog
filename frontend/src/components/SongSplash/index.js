@@ -2,12 +2,12 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { getSongs, playSong, setCurrPage } from '../../store/songs';
-import { getPaused } from '../../store/audioPlayerState';
 import placeholderImg from '../../images/song-placeholder.png'
 import LikeButton from '../SingleSong/LikeButton';
 import GenClass from '../StoreFunctionClasses/GenClass';
+import { usePage } from '../../context/Page';
+import { useAudio } from '../../context/Audio';
 import './Songs.scss'
-import { usePage } from '../../context/Page/Page';
 
 
 
@@ -18,10 +18,10 @@ export default function AllSongs() {
     const Songs = useSelector(state => state.songs.allSongs);
     const pageCounter = useSelector(state => state.songs.allSongsPage);
     const song = useSelector(state => state.songs.playingSong);
-    const paused = useSelector(state => state.audioState.pauseState);
     const songPageInfo = useSelector(state => state.songs.allSongsPage);
 
     const { lightMode, setLoadState } = usePage();
+    const { pauseState, setPauseState } = useAudio();
 
     const [hoveredIndex, setHoveredIndex] = useState(null);
 
@@ -108,20 +108,19 @@ export default function AllSongs() {
 
                             {
                                 song.id === el.id ?
-                                    paused ?
+                                    pauseState ?
                                         <button
                                             className={btnClass}
-                                            onClick={() => { dispatch(getPaused(false)) }}
+                                            onClick={() => { setPauseState(false) }}
                                         >
 
                                             <i className="fa-solid fa-play fa-2xl" />
-                                            {/* <i class="fa-solid fa-play fa-2xl"></i> */}
-                                            {/* <PlaySvg /> */}
+
                                         </button> :
 
                                         <button
                                             className={`pause ${btnClass}`}
-                                            onClick={() => { dispatch(getPaused(true)) }}
+                                            onClick={() => { setPauseState(true) }}
                                         >
 
                                             <i className="fa-solid fa-pause fa-2xl splash-pause" />
@@ -134,8 +133,6 @@ export default function AllSongs() {
                                     >
 
                                         <i className="fa-solid fa-play fa-2xl" />
-                                        {/* <i class="fa-solid fa-play fa-2xl"></i> */}
-                                        {/* <PlaySvg /> */}
 
                                     </button>
                             }

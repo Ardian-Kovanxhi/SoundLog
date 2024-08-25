@@ -5,13 +5,14 @@ import './index.scss';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
-import { ModalProvider, Modal } from './context/Modal/Modal.js';
+import { ModalProvider, Modal } from './context/Modal.js';
 import App from './App';
 
 import configureStore from './store';
 import { restoreCSRF, csrfFetch } from "./store/csrf";
 import * as sessionActions from './store/session';
-import { PageProvider } from './context/Page/Page.js';
+import { PageProvider } from './context/Page.js';
+import { AudioProvider } from './context/Audio.js';
 
 const store = configureStore();
 
@@ -32,7 +33,9 @@ function Root() {
       <BrowserRouter>
         <PageProvider>
           <ModalProvider>
-            <App />
+            <AudioProvider>
+              <App />
+            </AudioProvider>
             <Modal />
           </ModalProvider>
         </PageProvider>

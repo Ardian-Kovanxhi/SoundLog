@@ -1,5 +1,5 @@
 import React, { useRef, useState, useContext } from 'react';
-import { usePage } from '../Page/Page';
+import { usePage } from './Page';
 import ReactDOM from 'react-dom';
 import './Modal.scss';
 

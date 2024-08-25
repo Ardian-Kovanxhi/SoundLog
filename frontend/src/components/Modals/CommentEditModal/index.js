@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { editComment, getCommentById, getCommentsBySong } from '../../../store/comments';
-import { useModal } from '../../../context/Modal/Modal.js'
-import { usePage } from '../../../context/Page/Page.js';
+import { useModal } from '../../../context/Modal.js'
+import { usePage } from '../../../context/Page.js';
 import './CommentEditModal.scss'
 
 export default function CommentEditModal({ commentId, songId }) {

@@ -6,7 +6,7 @@ import OpenModalMenuItem from './OpenModalMenuItem';
 import LoginFormModal from '../../Modals/LoginFormModal';
 import SignupFormModal from '../../Modals/SignupFormModal';
 import GenClass from "../../StoreFunctionClasses/GenClass";
-import { usePage } from "../../../context/Page/Page";
+import { usePage } from "../../../context/Page";
 
 function ProfileButton({ user }) {
     const dispatch = useDispatch();
