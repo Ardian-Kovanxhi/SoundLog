@@ -9,8 +9,6 @@ const ProgressBar = ({ onSeek, listSong }) => {
     const progressBarRef = useRef(null);
 
     const currSong = useSelector(state => state.songs.playingSong);
-    // const songRawTime = useSelector(state => state.audioState.runtimeState.raw);
-    // const songTime = useSelector(state => state.audioState.runtimeState.str);
     let time = ''
 
     const { lightMode } = usePage();

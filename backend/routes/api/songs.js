@@ -95,7 +95,7 @@ router.get('/:songId', async (req, res) => {
 
     if (!song) {
         res.statusCode = 404;
-        return res.status(404).send({ message: "Song couldn't be found" })
+        return res.status(404).send("Song couldn't be found")
     }
 
     return res.send(song)
