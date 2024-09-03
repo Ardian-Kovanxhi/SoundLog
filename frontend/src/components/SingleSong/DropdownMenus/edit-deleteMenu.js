@@ -37,27 +37,21 @@ export default function BtnMenu() {
         }
     }
 
-
-    const openMenu = () => {
-        if (showMenu) return;
-        setShowMenu(true);
+    const closeMenu = (e) => {
+        if (!btnLstRef.current.contains(e.target)) {
+            setShowMenu(false);
+        }
     };
 
     useEffect(() => {
-        if (!showMenu) return;
+        if (showMenu) {
+            document.addEventListener("mousedown", closeMenu);
+        } else {
+            document.removeEventListener("mousedown", closeMenu);
+        }
 
-        const closeMenu = (e) => {
-            if (!btnLstRef.current.contains(e.target)) {
-                setShowMenu(false);
-            }
-        };
-
-        document.addEventListener('click', closeMenu);
-
-        return () => document.removeEventListener("click", closeMenu);
+        return () => document.removeEventListener("mousedown", closeMenu)
     }, [showMenu]);
-
-    const closeMenu = () => setShowMenu(false);
 
     const ulClassName = `song-drop btn-dropdown-div${showMenu ? "" : " hidden"}${lightMode ? '' : ' night'}`;
 
@@ -65,7 +59,7 @@ export default function BtnMenu() {
         <div className={`btn-drop-container song-elip ${lightMode ? '' : 'night'}`}>
             <button
                 className="elip-btn"
-                onClick={openMenu}
+                onClick={() => setShowMenu(true)}
             >
                 <i className="fa-solid fa-ellipsis-vertical" />
             </button>
@@ -74,10 +68,10 @@ export default function BtnMenu() {
                 <div
                     className={ulClassName}
                     ref={btnLstRef}
+                    onClick={() => setShowMenu(closeMenu)}
                 >
                     <OpenModalMenuItem
                         buttonText='Edit'
-                        onItemClick={closeMenu}
                         modalComponent={<SongEditModal />}
                     />
 

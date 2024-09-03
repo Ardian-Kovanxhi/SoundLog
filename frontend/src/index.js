@@ -1,3 +1,4 @@
+import { createRoot } from "react-dom/client";
 import React from 'react';
 
 import './index.scss';
@@ -44,9 +45,11 @@ function Root() {
   );
 }
 
-ReactDOM.render(
+const container = document.getElementById('root');
+const root = createRoot(container);
+
+root.render(
   <React.StrictMode>
     <Root />
   </React.StrictMode>,
-  document.getElementById('root')
 );

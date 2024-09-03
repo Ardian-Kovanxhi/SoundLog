@@ -1,10 +1,14 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import './ProgressBar.scss'
+import { useDispatch, useSelector } from 'react-redux';
 import { usePage } from '../../../context/Page';
 import { useAudio } from '../../../context/Audio';
+import { playSong } from '../../../store/songs';
+import './ProgressBar.scss'
 
-const ProgressBar = ({ onSeek, Song }) => {
+// const ProgressBar = ({ onSeek, Song }) => {
+const ProgressBar = ({ Song }) => {
+    const dispatch = useDispatch();
+
     const [isSeeking, setIsSeeking] = useState(false);
     const progressBarRef = useRef(null);
 
@@ -13,7 +17,7 @@ const ProgressBar = ({ onSeek, Song }) => {
     let time = ''
 
     const { lightMode } = usePage();
-    const { rawPlayTime, strPlayTime } = useAudio();
+    const { setSeekTime, rawPlayTime, strPlayTime, playTimeHandler } = useAudio();
 
     if (Song.duration) {
         const mins = Math.floor(Song.duration / 60)
@@ -21,6 +25,16 @@ const ProgressBar = ({ onSeek, Song }) => {
 
         time = `${mins < 10 ? `0${mins}` : mins}:${secs < 10 ? `0${secs}` : secs}`
     }
+
+    const onSeek = (seekTime) => {
+        if (currSong.id !== Song.id) {
+            dispatch(playSong(Song.id))
+            playTimeHandler(0)
+            return
+        }
+        const newSeekTime = (seekTime / 100) * Song.duration;
+        setSeekTime(newSeekTime)
+    };
 
     const handleMouseDown = (e) => {
         e.preventDefault();
@@ -105,27 +119,8 @@ const ProgressBar = ({ onSeek, Song }) => {
                         // ''
                         <i
                             className={`fa-solid fa-circle ${lightMode ? '' : 'night'}`}
-                        // style={{
-                        //     color: 'green',
-                        //     fontSize: 'large',
-                        //     position: 'sticky',
-                        //     left: '0'
-                        // }}
                         ></i>
                 }
-                {/* <div
-                    style={{
-                        height: '20px',
-                        width: '20px',
-                        // backgroundColor: 'gray',
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'flex-end',
-                        marginTop: '5px',
-                        // marginBottom: '10px'
-                    }}
-                >
-                </div> */}
             </div>
         </div>
 

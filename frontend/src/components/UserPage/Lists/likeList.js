@@ -9,6 +9,7 @@ import GenClass from "../../StoreFunctionClasses/GenClass";
 import { usePage } from "../../../context/Page";
 import './Lists.scss'
 import { useAudio } from "../../../context/Audio";
+import PlayPauseBtn from "../../Global/AudioUtils/play-pause-btn";
 
 export default function LikeList({ focused }) {
     const history = useHistory();
@@ -19,7 +20,7 @@ export default function LikeList({ focused }) {
     const likeArr = Object.values(likes);
 
     const { lightMode, setLoadState } = usePage();
-    const { pauseState, setPauseState, setSeekTime, playTimeHandler } = useAudio();
+    const { setSeekTime, playTimeHandler } = useAudio();
 
     const singleLoader = async singleId => {
         await dispatch(getSong(singleId));
@@ -77,36 +78,9 @@ export default function LikeList({ focused }) {
                                 <div
                                     style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', width: '100%' }}
                                 >
-                                    {
-                                        like.Song.id === currSong.id ?
-                                            pauseState ?
-                                                <button
-                                                    className={`user-univ-button${lightMode ? '' : ' night'}`}
-                                                    onClick={() => { setPauseState(false) }}
-                                                >
 
-                                                    <i className="fa-solid fa-play" />
+                                    <PlayPauseBtn songId={like.Song.id} classTag={"user-univ-button"} big={false} />
 
-                                                </button> :
-
-                                                <button
-                                                    className={`user-univ-button${lightMode ? '' : ' night'}`}
-                                                    onClick={() => { setPauseState(true) }}
-                                                >
-
-                                                    <i className="fa-solid fa-pause user-pause" />
-
-                                                </button> :
-
-                                            <button
-                                                className={`user-univ-button${lightMode ? '' : ' night'}`}
-                                                onClick={() => dispatch(playSong(like.Song.id))}
-                                            >
-
-                                                <i className="fa-solid fa-play" />
-
-                                            </button>
-                                    }
                                     <div
                                         className="user-list-song-username-div"
                                     >
@@ -131,6 +105,7 @@ export default function LikeList({ focused }) {
                                 </div>
 
                                 <ProgressBar onSeek={handleSeek} listSong={like.Song} />
+
                             </div>
                         </div>
                     </div>

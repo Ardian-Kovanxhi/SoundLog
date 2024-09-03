@@ -10,6 +10,7 @@ import './Lists.scss'
 import GenClass from "../../StoreFunctionClasses/GenClass";
 import { usePage } from "../../../context/Page";
 import { useAudio } from "../../../context/Audio";
+import PlayPauseBtn from "../../Global/AudioUtils/play-pause-btn";
 
 export default function SongList({ focused }) {
     const history = useHistory();
@@ -21,7 +22,7 @@ export default function SongList({ focused }) {
     const songArr = Object.values(Songs);
 
     const { lightMode, setLoadState } = usePage();
-    const { pauseState, setPauseState, setSeekTime, playTimeHandler } = useAudio();
+    const { setSeekTime, playTimeHandler } = useAudio();
 
     const singleLoader = async singleId => {
         await dispatch(getSong(singleId));
@@ -83,39 +84,7 @@ export default function SongList({ focused }) {
                                 <div
                                     style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', width: '100%' }}
                                 >
-                                    {
-                                        song.id === currSong.id ?
-                                            pauseState ?
-                                                <button
-                                                    className={`user-univ-button${lightMode ? '' : ' night'}`}
-
-                                                    onClick={() => { setPauseState(false) }}
-                                                >
-
-                                                    <i className="fa-solid fa-play" />
-
-                                                </button> :
-
-                                                <button
-                                                    className={`user-univ-button${lightMode ? '' : ' night'}`}
-
-                                                    onClick={() => { setPauseState(true) }}
-                                                >
-
-                                                    <i className="fa-solid fa-pause user-pause" />
-
-                                                </button> :
-
-                                            <button
-                                                className={`user-univ-button${lightMode ? '' : ' night'}`}
-
-                                                onClick={() => dispatch(playSong(song.id))}
-                                            >
-
-                                                <i className="fa-solid fa-play" />
-
-                                            </button>
-                                    }
+                                    <PlayPauseBtn songId={song.id} classTag={"user-univ-button"} big={false} />
                                     <div
                                         className="user-list-song-username-div"
                                     >

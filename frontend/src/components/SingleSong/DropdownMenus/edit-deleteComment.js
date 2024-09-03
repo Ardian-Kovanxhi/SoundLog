@@ -1,5 +1,5 @@
-import { useDispatch, useSelector } from "react-redux"
-import { useParams, useHistory } from 'react-router-dom'
+import { useDispatch } from "react-redux"
+import { useParams } from 'react-router-dom'
 import OpenModalMenuItem from '../../Modals/OpenModalButton';
 import CommentEditModal from "../../Modals/CommentEditModal";
 import { removeComment } from "../../../store/comments";
@@ -20,27 +20,24 @@ export default function CommentBtnMenu({ passedCommId }) {
         dispatch(removeComment(commentId, songId))
     }
 
-
-    const openMenu = () => {
-        if (showMenu) return;
-        setShowMenu(true);
+    const closeMenu = (e) => {
+        if (cbtnLstRef.current && !cbtnLstRef.current.contains(e.target)) {
+            setShowMenu(false);
+        }
     };
 
     useEffect(() => {
-        if (!showMenu) return;
+        if (showMenu) {
+            document.addEventListener('mousedown', closeMenu);
+        } else {
+            document.removeEventListener('mousedown', closeMenu);
+        }
 
-        const closeMenu = (e) => {
-            if (!cbtnLstRef.current.contains(e.target)) {
-                setShowMenu(false);
-            }
+        return () => {
+            document.removeEventListener('mousedown', closeMenu);
         };
-
-        document.addEventListener('click', closeMenu);
-
-        return () => document.removeEventListener("click", closeMenu);
     }, [showMenu]);
 
-    const closeMenu = () => setShowMenu(false);
 
     const ulClassName =
         "comment-drop btn-dropdown-div" +
@@ -51,13 +48,14 @@ export default function CommentBtnMenu({ passedCommId }) {
         <div className={`btn-drop-container comment-elip ${lightMode ? '' : 'night'}`}>
             <button
                 className="elip-btn"
-                onClick={openMenu}
+                onClick={() => setShowMenu(true)}
             >
                 <i className="fa-solid fa-ellipsis"></i>
             </button>
             <div
                 className={ulClassName}
                 ref={cbtnLstRef}
+                onClick={() => setShowMenu(false)}
             >
                 <OpenModalMenuItem
                     buttonText='Edit'
@@ -65,10 +63,8 @@ export default function CommentBtnMenu({ passedCommId }) {
                 />
 
                 <button
-                    onClick={() => deleteHandler(passedCommId).then(closeMenu())}
+                    onClick={() => deleteHandler(passedCommId)}
                 >Delete</button>
-                {/* </div> */}
-
             </div>
         </div>
     )

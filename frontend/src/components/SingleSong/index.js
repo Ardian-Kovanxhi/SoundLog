@@ -2,21 +2,25 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { getCommentsBySong } from "../../store/comments";
-import { getSong, playSong } from '../../store/songs';
+import { getSong } from '../../store/songs';
 import { getAllSongLikes } from '../../store/likes';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import { usePage } from '../../context/Page';
 import BtnMenu from './DropdownMenus/edit-deleteMenu';
 import SongComments from './SongComments'
 import ProgressBar from '../Global/AudioUtils/progress-bar';
 import LikeButton from './LikeButton';
 import placeholderImg from '../../images/song-placeholder.png'
-import './SingleSong.scss'
 import GenClass from '../StoreFunctionClasses/GenClass';
-import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
-import { usePage } from '../../context/Page';
-import { useAudio } from '../../context/Audio';
 import PlayPauseBtn from '../Global/AudioUtils/play-pause-btn';
+import './SingleSong.scss'
 
-
+/*
+copied and refactored progress bar from single songs.
+also made play/pause reusable
+need to make the base code universal for the css
+profit
+*/
 
 export default function SingleSong() {
     const dispatch = useDispatch();
@@ -25,12 +29,10 @@ export default function SingleSong() {
 
 
     const Song = useSelector(state => state.songs.singleSong);
-    const currSong = useSelector(state => state.songs.playingSong);
     const User = useSelector(state => state.session.user);
     let Uploader = '';
 
     const { lightMode, setLoadState } = usePage();
-    const { setSeekTime, playTimeHandler } = useAudio();
 
     async function fetchData() {
         setLoadState(true);
@@ -38,6 +40,8 @@ export default function SingleSong() {
             await dispatch(getSong(songId))
         } catch {
             history.push('/404')
+            setLoadState(false);
+            return
         }
         await dispatch(getCommentsBySong(songId));
         await dispatch(getAllSongLikes(songId));
@@ -49,15 +53,6 @@ export default function SingleSong() {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    const handleSeek = (seekTime) => {
-        if (currSong.id !== Song.id) {
-            dispatch(playSong(Song.id))
-            playTimeHandler(0)
-            return
-        }
-        const newSeekTime = (seekTime / 100) * Song.duration;
-        setSeekTime(newSeekTime)
-    };
 
     if (Song.User) {
         Uploader = Song.User.username
@@ -90,7 +85,7 @@ export default function SingleSong() {
                             <div>
                                 <div className='pfp-info-div'>
 
-                                    <PlayPauseBtn songId={Song.id} />
+                                    <PlayPauseBtn songId={Song.id} classTag={"single-univ-button"} big={true} />
 
                                     <div className='song-name-uploader-div'>
 
@@ -139,7 +134,7 @@ export default function SingleSong() {
                             {Song.description}
                         </div>
 
-                        <ProgressBar onSeek={handleSeek} Song={Song} />
+                        <ProgressBar Song={Song} />
 
                         {
                             User ?

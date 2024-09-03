@@ -16,37 +16,33 @@ function ProfileButton({ user }) {
 
     const { lightMode } = usePage();
 
-    const openMenu = () => {
-        if (showMenu) return;
-        setShowMenu(true);
-    };
+    const closeMenu = e => {
+        if (ulRef.current && !ulRef.current.contains(e.target)) {
+            setShowMenu(false)
+        }
+    }
 
     useEffect(() => {
-        if (!showMenu) return;
 
-        const closeMenu = (e) => {
-            if (!ulRef.current.contains(e.target)) {
-                setShowMenu(false);
-            }
-        };
+        if (showMenu) {
+            document.addEventListener("mousedown", closeMenu);
+        } else {
+            document.removeEventListener("mousedown", closeMenu);
+        }
 
-        document.addEventListener('click', closeMenu);
+        return () => document.removeEventListener("mousedown", closeMenu);
 
-        return () => document.removeEventListener("click", closeMenu);
     }, [showMenu]);
-
-    const closeMenu = () => setShowMenu(false);
 
     const logout = (e) => {
         e.preventDefault();
         dispatch(sessionActions.logout());
-        closeMenu();
     };
 
     return (
         <div>
             <button
-                onClick={openMenu}
+                onClick={() => setShowMenu(true)}
                 className={`profile-button-actual ${lightMode ? '' : 'night'}`}
             >
                 <i className="fas fa-user-circle" />
@@ -55,37 +51,23 @@ function ProfileButton({ user }) {
                 className={`profile-dropdown ${showMenu ? "" : "hidden"} ${lightMode ? '' : 'night'}`}
                 ref={ulRef}>
                 {user ? (
-                    <div className="dropdown-logged-in">
-                        {/* <div>{user.username}</div>
-                        <div>{user.firstName} {user.lastName}</div>
-                        <div>{user.email}</div> */}
-
-                        {/* <button
-                            onClick={() => history.push('/likes')}
-                        >Likes</button>
-                        <button
-                            onClick={() => history.push('/playlists')}
-                        >Playlists</button> */}
-
-                        {/* <button onClick={() => history.push(`/users/${Number(user.id) - 1}`)}>View Profile</button> */}
+                    <div className="dropdown-logged-in" onClick={() => setShowMenu(false)}>
                         <button onClick={() => GenClass.userRedirect(Number(user.id), history)}>View Profile</button>
                         <button onClick={logout}>Log Out</button>
 
                     </div>
                 ) : (
-                    <div className="dropdown-logged-out">
+                    <div className="dropdown-logged-out" onClick={() => setShowMenu(false)}>
                         <OpenModalMenuItem
                             itemText="Log In"
-                            onItemClick={closeMenu}
                             modalComponent={<LoginFormModal />}
                         />
                         <OpenModalMenuItem
                             itemText="Sign Up"
-                            onItemClick={closeMenu}
                             modalComponent={<SignupFormModal />}
                         />
                         <button
-                            onClick={() => dispatch(sessionActions.login({ credential: 'demo@user.io', password: 'password' })).then(closeMenu())}
+                            onClick={() => dispatch(sessionActions.login({ credential: 'demo@user.io', password: 'password' }))}
                         >
                             Demo User
                         </button>
