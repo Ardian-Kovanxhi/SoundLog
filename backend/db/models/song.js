@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
       Song.belongsTo(models.User, { foreignKey: 'userId', onDelete: 'CASCADE' })
       Song.hasMany(models.Comment, { foreignKey: 'songId', onDelete: 'CASCADE' })
       Song.hasMany(models.Like, { foreignKey: 'songId', onDelete: 'CASCADE' })
-      Song.hasMany(models.PlaylistSong, { foreignKey: 'songId' })
+      Song.hasMany(models.PlaylistSong, { foreignKey: 'songId', onDelete: 'CASCADE' })
     }
   }
   Song.init({

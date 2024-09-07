@@ -132,6 +132,10 @@
     position: fixed;
     bottom: 0;
     font-weight: 700;
+
+    &.player-img-invis {
+        display: none;
+    }
 }
 
 .currSong-redirect {

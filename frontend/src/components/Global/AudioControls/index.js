@@ -3,15 +3,15 @@ import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import AudioPlayer from 'react-h5-audio-player';
-import 'react-h5-audio-player/lib/styles.css';
 import { getSong } from '../../../store/songs';
 import { getCommentsBySong } from '../../../store/comments';
-import './AudioControls.scss'
 import { usePage } from '../../../context/Page';
 import { useAudio } from '../../../context/Audio';
+import 'react-h5-audio-player/lib/styles.css';
+import './AudioControls.scss'
 
 
-function AudioControls() {
+export default function AudioControls() {
     const dispatch = useDispatch()
     const history = useHistory()
     const player = useRef();
@@ -47,7 +47,7 @@ function AudioControls() {
         player.current.audio.current.currentTime = seekTime;
         setSeekTime(null)
         playTimeHandler(seekTime)
-    }, [seekTime])
+    }, [playTimeHandler, seekTime, setSeekTime])
 
 
     useEffect(() => {
@@ -69,7 +69,7 @@ function AudioControls() {
         }
 
 
-    }, [pauseState])
+    }, [currPause, pauseState, playTimeHandler])
 
     //same as splash page
     const singleLoader = async singleId => {
@@ -103,7 +103,7 @@ function AudioControls() {
                         alt=''
                     />
 
-                    <div className='song-name-display'>
+                    <div className={`song-name-display ${playerVisible ? "" : "player-img-invis"}`}>
                         <div
                             style={{
                                 zIndex: '20',
@@ -155,4 +155,4 @@ function AudioControls() {
 }
 
 
-export default AudioControls
+// export default AudioControls

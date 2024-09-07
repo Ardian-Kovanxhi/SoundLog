@@ -10,24 +10,13 @@ const router = express.Router();
 
 //GET /api/songs | all songs
 router.get('/', async (req, res) => {
-    let { page } = req.query;
-    if (!page) page = 1;
-
-    const pagination = {
-        limit: 20,
-        offset: 20 * (page - 1)
-    };
-
-    const { rows: songs, count } = await Song.findAndCountAll({
-        ...pagination,
+    const Songs = await Song.findAll({
         include: [
             { model: User, attributes: ['id', 'username'] }
         ]
     });
 
-    const pageCount = Math.ceil(count / 20);
-
-    return res.json({ songs, pageCount });
+    return res.json(Songs);
 });
 
 //auth true
@@ -57,7 +46,7 @@ router.post('/', requireAuth, singleMulterUpload('content'), async (req, res) =>
 
 
 
-//GET /api/songs/user/userId | all songs of a user
+//GET /api/songs/user/:userId | all songs of a user
 router.get('/user/:userId', async (req, res) => {
 
     const userId = +req.params.userId;
@@ -89,10 +78,6 @@ router.get('/:songId', async (req, res) => {
         ]
     });
 
-    // console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
-    // console.log(song)
-    // console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
-
     if (!song) {
         res.statusCode = 404;
         return res.status(404).send("Song couldn't be found")
@@ -101,6 +86,7 @@ router.get('/:songId', async (req, res) => {
     return res.send(song)
 })
 
+//Auth true
 //PUT /api/songs/:songId | edit song
 router.put('/:songId', requireAuth, async (req, res) => {
     const { id, name, content, duration, img, description } = req.body;
@@ -128,17 +114,15 @@ router.put('/:songId', requireAuth, async (req, res) => {
 })
 
 //Auth true
-// DELETE /api/songs/:songId
+// DELETE /api/songs/:songId | delete song
 router.delete('/:songId', requireAuth, async (req, res) => {
     const songId = +req.params.songId;
-    const song = await Song.findByPk(songId, { include: Like });
+    const song = await Song.findByPk(songId);
 
     if (!song) {
         res.statusCode = 404;
         return res.json({ message: "Song couldn't be found", statusCode: 404 });
     }
-
-    console.log(`Associated Likes: ${song.Likes}`)
 
     await song.destroy();
     return res.json({ message: "successfully deleted", statusCode: 200 })

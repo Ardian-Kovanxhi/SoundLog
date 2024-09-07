@@ -7,10 +7,10 @@ export function AudioProvider({ children }) {
     //loop
     //shuffle
     // playing song
-    const [pauseState, setPauseState] = useState(true);
-    const [rawPlayTime, setRawPlayTime] = useState(0);
-    const [strPlayTime, setStrPlayTime] = useState("");
-    const [seekTime, setSeekTime] = useState(0);
+    const [pauseState, setPauseState] = useState(true); //global pause/play state
+    const [rawPlayTime, setRawPlayTime] = useState(0); //curr runtime in JS raw time state
+    const [strPlayTime, setStrPlayTime] = useState(""); //Stringified time (replaces doing the math everywhere needed)
+    const [seekTime, setSeekTime] = useState(0); //used then cleared for the seek function
 
     const playTimeHandler = (currRunTime) => {
         const mins = Math.floor(currRunTime / 60)
@@ -25,8 +25,7 @@ export function AudioProvider({ children }) {
     return (
         <AudioContext.Provider value={{
             pauseState, setPauseState,
-            rawPlayTime, setRawPlayTime,
-            strPlayTime, setStrPlayTime,
+            rawPlayTime, strPlayTime,
             seekTime, setSeekTime,
             playTimeHandler
         }}>

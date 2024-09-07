@@ -17,12 +17,10 @@ router.get('/current', requireAuth, async (req, res) => {
                     'id',
                     'userId',
                     'songId',
-                    'comment'
                 ]
             }
         ]
     })
-
     res.json({ Comments })
 })
 

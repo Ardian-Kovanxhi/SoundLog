@@ -13,12 +13,10 @@ module.exports = {
       {
         userId: 6,
         name: 'Pink Floyd Sample Playlist',
-        description: 'Blah blah blah 2'
       },
       {
         userId: 5,
         name: 'The Strokes Sample PLaylist',
-        description: 'Blah blah blah 1'
       },
     ], {})
   },

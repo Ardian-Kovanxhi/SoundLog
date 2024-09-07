@@ -45,7 +45,7 @@ function ProfileButton({ user }) {
                 onClick={() => setShowMenu(true)}
                 className={`profile-button-actual ${lightMode ? '' : 'night'}`}
             >
-                <i className="fas fa-user-circle" />
+                <i className="fas fa-user-circle fa-global-class" />
             </button>
             <div
                 className={`profile-dropdown ${showMenu ? "" : "hidden"} ${lightMode ? '' : 'night'}`}

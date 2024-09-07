@@ -9,9 +9,9 @@ import { getSongs, clearSongStore, /*getSong, getUserSongs*/ } from "../../store
 export default class GenClass {
 
     //Used in useEffect
-    static async fetchData(dispatch, page, setLoadState) {
+    static async fetchData(dispatch, setLoadState) {
         await setLoadState(true)
-        await dispatch(getSongs(page))
+        await dispatch(getSongs())
         await dispatch(clearSongStore())
         await setLoadState(false)
     }

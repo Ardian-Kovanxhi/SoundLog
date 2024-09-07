@@ -10,7 +10,6 @@ const PLAY_SONG_404 = 'song/PLAY_SONG_404';
 const DELETE_SONG = 'song/DELETE_SONG';
 const CLEAR_SONG_STORE = 'song/CLEAR_SONG_STORE';
 const CLEAR_PLAYING_SONG = 'song/CLEAR_PLAYING_SONG';
-const SET_PAGE = 'page/SET_PAGE';
 
 
 const readSongs = (songs) => {
@@ -66,24 +65,14 @@ const clearPlaying = () => {
     }
 }
 
-const setPage = (page) => {
-    return {
-        type: SET_PAGE,
-        page
-    }
-}
-
 
 
 
 export const getSongs = (page = 1) => async dispatch => {
-    if (page < 1) page = 1;
-    const response = await csrfFetch(`/api/songs?page=${page}`)
+    const response = await csrfFetch(`/api/songs`)
 
     if (response.ok) {
         const songs = await response.json();
-        console.log(songs)
-
         dispatch(readSongs(songs))
         return songs
     }
@@ -206,19 +195,10 @@ export const clearPlayingSong = () => dispatch => {
     dispatch(clearPlaying())
 }
 
-export const setCurrPage = (pageNum) => dispatch => {
-    dispatch(setPage(pageNum))
-}
-
 
 
 const initialState = {
     allSongs: {},
-
-    allSongsPage: {
-        totalPages: 1,
-        currPage: 1
-    },
 
     singleSong: {},
 
@@ -233,16 +213,8 @@ export default function songsReducer(state = initialState, action) {
     switch (action.type) {
         case READ_SONGS: {
             newState = { ...state, allSongs: {} };
-            action.songs.songs.forEach(song => newState.allSongs[song.id] = song);
-            newState.allSongsPage.totalPages = action.songs.pageCount
-            if (newState.allSongsPage.currPage > action.songs.pageCount) newState.allSongsPage.currPage = action.songs.pageCount
+            action.songs.forEach(song => newState.allSongs[song.id] = song);
             return newState
-        }
-        case SET_PAGE: {
-            newState = { ...state };
-            if (action.page > newState.allSongsPage.totalPages) newState.allSongsPage.currPage = newState.allSongsPage.totalPages;
-            else newState.allSongsPage.currPage = action.page;
-            return newState;
         }
         case READ_USER_SONGS: {
             newState = { ...state, userSongs: {} };

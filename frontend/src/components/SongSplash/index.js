@@ -1,13 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import { getSongs, setCurrPage } from '../../store/songs';
 import placeholderImg from '../../images/song-placeholder.png'
 import LikeButton from '../SingleSong/LikeButton';
 import GenClass from '../StoreFunctionClasses/GenClass';
+import PlayPauseBtn from '../Global/AudioUtils/play-pause-btn';
 import { usePage } from '../../context/Page';
 import './Songs.scss'
-import PlayPauseBtn from '../Global/AudioUtils/play-pause-btn';
 
 
 
@@ -16,33 +15,14 @@ export default function AllSongs() {
     const history = useHistory();
 
     const Songs = useSelector(state => state.songs.allSongs);
-    const pageCounter = useSelector(state => state.songs.allSongsPage);
-    const songPageInfo = useSelector(state => state.songs.allSongsPage);
 
     const { lightMode, setLoadState } = usePage();
 
     const [hoveredIndex, setHoveredIndex] = useState(null);
 
-    const pageButtons = [];
-
     useEffect(() => {
-        GenClass.fetchData(dispatch, songPageInfo.currPage, setLoadState)
-    }, [dispatch, setLoadState, songPageInfo.currPage])
-
-    for (let i = 1; i < pageCounter.totalPages + 1; i++) {
-        pageButtons.push(
-            <button
-                style={songPageInfo.currPage === i ? { textDecoration: 'underline', fontWeight: 'bold' } : {}}
-                key={i}
-                onClick={() => {
-                    dispatch(getSongs(i));
-                    dispatch(setCurrPage(i));
-                }}
-            >
-                {i}
-            </button>
-        )
-    }
+        GenClass.fetchData(dispatch, setLoadState)
+    }, [dispatch, setLoadState])
 
     return (
         <>
@@ -108,11 +88,6 @@ export default function AllSongs() {
                         </div>
                     )
                 })}
-                <div
-                    className={`page-btns${lightMode ? '' : ' night'}`}
-                >
-                    Page: {pageButtons}
-                </div>
             </div>
         </>
     )

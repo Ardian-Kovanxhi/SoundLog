@@ -13,7 +13,7 @@ function Navigation({ isLoaded }) {
     const sessionUser = useSelector(state => state.session.user);
     const history = useHistory()
 
-    const { setLightMode, lightMode } = usePage();
+    const { setLightMode, lightMode, splashDisplay, setSplashDisplay } = usePage();
 
     const lightHandler = () => {
         setLightMode(lightMode ? false : true);
@@ -44,6 +44,17 @@ function Navigation({ isLoaded }) {
                 <div className='nav-button-div'>
 
                     <div className='brand-btn-div'>
+                        <button className={`profile-button-actual ${lightMode ? "" : "night"}`}>
+                            <i className="fa-solid fa-filter fa-global-class"></i>
+                        </button>
+                    </div>
+                    <div className='brand-btn-div'>
+                        <button className={`profile-button-actual ${lightMode ? "" : "night"}`}>
+                            <i className="fa-solid fa-magnifying-glass fa-global-class"></i>
+                        </button>
+                    </div>
+
+                    <div className='brand-btn-div'>
                         <button
                             // onClick={() => setLightMode(lightMode ? false : true)}
                             onClick={lightHandler}
@@ -53,9 +64,9 @@ function Navigation({ isLoaded }) {
 
                             {
                                 lightMode ?
-                                    <i className="fa-solid fa-moon"></i>
+                                    <i className="fa-solid fa-moon fa-global-class"></i>
                                     :
-                                    <i className="fa-solid fa-sun"></i>
+                                    <i className="fa-solid fa-sun fa-global-class"></i>
                             }
 
                         </button>
@@ -67,7 +78,7 @@ function Navigation({ isLoaded }) {
                             className={`profile-button-actual ${lightMode ? '' : 'night'}`}
                         >
 
-                            <i className="fa-brands fa-linkedin"></i>
+                            <i className="fa-brands fa-linkedin fa-global-class"></i>
 
                         </button>
                     </div>
@@ -78,7 +89,7 @@ function Navigation({ isLoaded }) {
                             // className='profile-button-actual'
                             className={`profile-button-actual ${lightMode ? '' : 'night'}`}
                         >
-                            <i className="fa-brands fa-github"></i>
+                            <i className="fa-brands fa-github fa-global-class"></i>
                         </button>
                     </div>
 

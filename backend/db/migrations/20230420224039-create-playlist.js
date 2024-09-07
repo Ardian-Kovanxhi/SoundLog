@@ -25,7 +25,7 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false
       },
-      description: {
+      coverImg: {
         type: Sequelize.STRING,
         allowNull: true
       },
