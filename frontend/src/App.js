@@ -9,6 +9,7 @@ import nightLoad from './images/dark-mode-load.gif'
 import dayLoad from './images/light-mode-load.gif'
 import Navigation from "./components/Global/Navigation";
 import SongSplash from "./components/SongSplash";
+// import AllSongs from "./components/SongSplash/Songs";
 import UserPage from "./components/UserPage";
 import SongFormPage from "./components/SongFormPage";
 import ErrorPage from "./components/ErrorPage";

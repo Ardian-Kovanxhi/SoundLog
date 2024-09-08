@@ -13,10 +13,12 @@ module.exports = {
       {
         userId: 6,
         name: 'Pink Floyd Sample Playlist',
+        coverImg: "https://upload.wikimedia.org/wikipedia/en/d/d6/Pink_Floyd_-_all_members.jpg",
       },
       {
         userId: 5,
         name: 'The Strokes Sample PLaylist',
+        coverImg: "https://i.scdn.co/image/ab67616100005174c3b137793230f4043feb0089",
       },
     ], {})
   },

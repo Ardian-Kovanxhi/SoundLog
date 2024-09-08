@@ -44,6 +44,18 @@ function Navigation({ isLoaded }) {
                 <div className='nav-button-div'>
 
                     <div className='brand-btn-div'>
+                        <button
+                            className={`profile-button-actual ${lightMode ? "" : "night"}`}
+                            onClick={() => setSplashDisplay(!splashDisplay)}
+                        >
+                            {splashDisplay ?
+                                <i className="fa-solid fa-music fa-global-class"></i>
+                                :
+                                <i className="fa-solid fa-list fa-global-class"></i>
+                            }
+                        </button>
+                    </div>
+                    <div className='brand-btn-div'>
                         <button className={`profile-button-actual ${lightMode ? "" : "night"}`}>
                             <i className="fa-solid fa-filter fa-global-class"></i>
                         </button>
@@ -61,7 +73,6 @@ function Navigation({ isLoaded }) {
 
                             className={`profile-button-actual ${lightMode ? '' : 'night'}`}
                         >
-
                             {
                                 lightMode ?
                                     <i className="fa-solid fa-moon fa-global-class"></i>

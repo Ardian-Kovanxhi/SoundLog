@@ -68,7 +68,7 @@ const clearPlaying = () => {
 
 
 
-export const getSongs = (page = 1) => async dispatch => {
+export const getSongs = () => async dispatch => {
     const response = await csrfFetch(`/api/songs`)
 
     if (response.ok) {

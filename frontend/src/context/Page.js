@@ -9,7 +9,7 @@ export function PageProvider({ children }) {
     const [lightMode, setLightMode] = useState(Cookies.get('pageTheme') ? Cookies.get('pageTheme') === 'day' ? true : false : true); //handles light mode
     const [loadState, setLoadState] = useState(true); //handles visibility loading gif
     const [pageNum, setPageNum] = useState(1); //potentially useful for infinite scroll
-    const [splashDisplay, setSplashDisplay] = useState(0);
+    const [splashDisplay, setSplashDisplay] = useState(true); //decides if the splash screen will display songs or playlists
     const [searchKW, setSearchKW] = useState(""); //to hold searched phrase without changing url
 
     return (

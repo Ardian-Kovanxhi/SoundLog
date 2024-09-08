@@ -4,12 +4,14 @@ import commentsReducer from './comments';
 import sessionReducer from './session';
 import songsReducer from './songs';
 import likesReducer from './likes';
+import playlistsReducer from './playlists';
 
 const rootReducer = combineReducers({
     comments: commentsReducer,
     likes: likesReducer,
     session: sessionReducer,
-    songs: songsReducer
+    songs: songsReducer,
+    playlists: playlistsReducer,
 });
 
 let enhancer;
