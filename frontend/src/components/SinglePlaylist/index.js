@@ -4,7 +4,7 @@ import { getSinglePlaylist } from "../../store/playlists";
 import { usePage } from "../../context/Page";
 import { useHistory, useParams } from "react-router-dom/cjs/react-router-dom.min";
 import GenClass from "../StoreFunctionClasses/GenClass";
-import placeholderImg from "../../images/song-placeholder.png"
+import placeholderImg from "../../images/placeholder.png"
 import "./singlePlaylist.scss"
 
 export default function SinglePlaylist() {
@@ -69,7 +69,7 @@ export default function SinglePlaylist() {
                                             className={`song-uploader-div${lightMode ? '' : ' night'}`}
                                             onClick={() => GenClass.userRedirect(Number(playlist.User.id), history)}
                                         >
-                                            {playlist.User.username}
+                                            {playlist.User ? playlist.User.username : ""}
                                         </div>
 
                                     </div>

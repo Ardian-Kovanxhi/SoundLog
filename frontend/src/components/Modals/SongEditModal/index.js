@@ -18,7 +18,7 @@ export default function SongEditModal() {
 
     // const songUrl = sessionSong.content
     const [name, setName] = useState(sessionSong.name);
-    const [image, setImage] = useState(sessionSong.img);
+    const [image, setImage] = useState(sessionSong.coverImg);
     const [description, setDescription] = useState(sessionSong.description);
     const [content, setContent] = useState(sessionSong.content)
     const [duration, setDuration] = useState(sessionSong.duration)

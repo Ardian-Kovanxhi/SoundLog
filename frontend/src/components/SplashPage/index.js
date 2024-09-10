@@ -1,37 +1,53 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import placeholderImg from '../../../images/song-placeholder.png'
-import LikeButton from '../../SingleSong/LikeButton';
-import GenClass from '../../StoreFunctionClasses/GenClass';
-import PlayPauseBtn from '../../Global/AudioUtils/play-pause-btn';
-import { usePage } from '../../../context/Page';
+import placeholderImg from '../../images/placeholder.png'
+import LikeButton from '../SingleSong/LikeButton';
+import GenClass from '../StoreFunctionClasses/GenClass';
+import PlayPauseBtn from '../Global/AudioUtils/play-pause-btn';
+import { usePage } from '../../context/Page';
+import { getPlaylists } from '../../store/playlists';
+import { clearSongStore, getSongs } from '../../store/songs';
 import './Songs.scss'
 
-
-
-export default function AllSongs() {
+export default function SplashPage() {
     const dispatch = useDispatch();
     const history = useHistory();
-
     const Songs = useSelector(state => state.songs.allSongs);
-
-    const { lightMode, setLoadState } = usePage();
-
+    const Playlists = useSelector(state => state.playlists.allPlaylists);
+    const { lightMode, setLoadState, splashDisplay } = usePage();
     const [hoveredIndex, setHoveredIndex] = useState(null);
 
-    useEffect(() => {
-        GenClass.fetchData(dispatch, setLoadState)
+
+    const fetchSongData = useCallback(async () => {
+        await setLoadState(true)
+        await dispatch(getSongs())
+        await dispatch(clearSongStore())
+        await setLoadState(false)
     }, [dispatch, setLoadState])
+
+
+    const fetchPlaylistData = useCallback(async () => {
+        await setLoadState(true)
+        await dispatch(getPlaylists());
+        await setLoadState(false)
+    }, [dispatch, setLoadState])
+
+
+    useEffect(() => {
+        if (splashDisplay) {
+            fetchSongData()
+        } else {
+            fetchPlaylistData();
+        }
+    }, [dispatch, fetchPlaylistData, fetchSongData, splashDisplay])
 
     return (
         <>
             <div className='all-songs-div-container'>
-                {Object.values(Songs).map((el, index) => {
+                {Object.values(splashDisplay ? Songs : Playlists).map((el, index) => {
 
                     const btnClass = `univ-play-pause-button${hoveredIndex === index ? ' hovered' : ''} ${lightMode ? '' : ' night'}`
-                    // const btnClass = `univ-play-pause-button hovered ${lightMode ? '' : ' night'}` //used for testing
-
 
                     return (
                         <div
@@ -40,9 +56,13 @@ export default function AllSongs() {
                             onMouseLeave={() => setHoveredIndex(null)}
                             key={index}
                         >
-                            <div className={`like-btn-render${hoveredIndex === index ? ' hovered' : ''}`}>
-                                <LikeButton songId={el.id} pageRendered={false} />
-                            </div>
+                            {splashDisplay ?
+                                <div className={`like-btn-render${hoveredIndex === index ? ' hovered' : ''}`}>
+                                    <LikeButton songId={el.id} pageRendered={false} />
+                                </div>
+                                :
+                                null
+                            }
 
                             <div
                                 style={{
@@ -53,15 +73,16 @@ export default function AllSongs() {
                                 }}
                                 onClick={async () => {
                                     setLoadState(true);
-                                    history.push(`/songs/${el.id}`);
-                                    GenClass.singleRedirect(el.id, dispatch, history, setLoadState);
+                                    if (splashDisplay) history.push(`/songs/${el.id}`);
+                                    else history.push(`/playlists/${el.id}`);
                                 }}
                             >
                                 <div className='all-songs-img-div'>
 
                                     <img
                                         className='all-songs-single-img'
-                                        src={el.img || placeholderImg}
+                                        // src={splashDisplay ? el.img : el.coverImg || placeholderImg}
+                                        src={el.coverImg || placeholderImg}
                                         alt='Album Cover'
                                     />
                                     <div className={`gradient-div${hoveredIndex === index ? ' hovered' : ''}`}></div>
@@ -83,7 +104,12 @@ export default function AllSongs() {
                                 {el.User.username}
                             </div>
 
-                            <PlayPauseBtn songId={el.id} classTag={btnClass} big={true} />
+                            {
+                                splashDisplay ?
+                                    <PlayPauseBtn songId={el.id} classTag={btnClass} big={true} />
+                                    :
+                                    null
+                            }
 
                         </div>
                     )

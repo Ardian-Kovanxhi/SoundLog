@@ -96,7 +96,7 @@ export default function AudioControls() {
                     <img
                         className={imgClass}
                         src={
-                            song.img
+                            song.coverImg
                             ||
                             'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png'
                         }
@@ -128,7 +128,7 @@ export default function AudioControls() {
                 className='player-img-testing'
                 src={
                     song ?
-                        song.img
+                        song.coverImg
                         ||
                         'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png'
                         :

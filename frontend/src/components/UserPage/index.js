@@ -8,7 +8,7 @@ import { getUserSongs } from "../../store/songs";
 import ErrorPage from "../ErrorPage";
 import LikeList from "./Lists/likeList";
 import SongList from "./Lists/songList";
-import tempImg from '../../images/song-placeholder.png'
+import tempImg from '../../images/placeholder.png'
 import './UserPage.scss'
 import { usePage } from "../../context/Page";
 

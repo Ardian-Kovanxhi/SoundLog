@@ -54,15 +54,15 @@ export const getSinglePlaylist = (playlistId) => async dispatch => {
 const initialState = { allPlaylists: {}, userPlaylists: {}, singlePlaylist: {} }
 
 export default function playlistsReducer(state = initialState, action) {
-    let newState = { ...state };
+    let newState;
     switch (action.type) {
         case READ_PLAYLISTS: {
-            newState.allPlaylists = {}
+            newState = { ...state, allPlaylists: {} }
             action.playlists.forEach(playlist => newState.allPlaylists[playlist.id] = playlist);
             return newState;
         }
         case READ_PLAYLIST: {
-            newState.singlePlaylist = action.playlist;
+            newState = { ...state, singlePlaylist: action.playlist }
             return newState;
         }
         default:

@@ -77,7 +77,7 @@ router.get("/:playlistId", async (req, res) => {
                         "name",
                         "content",
                         "duration",
-                        "img"
+                        "coverImg"
                     ],
                     include: [{ model: User, attributes: ["id", "username"] }]
                 }]

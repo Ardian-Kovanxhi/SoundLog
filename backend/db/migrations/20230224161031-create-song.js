@@ -32,7 +32,7 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false
       },
-      img: {
+      coverImg: {
         type: Sequelize.STRING,
         allowNull: true
       },

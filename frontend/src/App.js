@@ -8,13 +8,11 @@ import dayImage from './images/forest-day.jpg'
 import nightLoad from './images/dark-mode-load.gif'
 import dayLoad from './images/light-mode-load.gif'
 import Navigation from "./components/Global/Navigation";
-import SongSplash from "./components/SongSplash";
-// import AllSongs from "./components/SongSplash/Songs";
+import SplashPage from "./components/SplashPage";
 import UserPage from "./components/UserPage";
 import SongFormPage from "./components/SongFormPage";
 import ErrorPage from "./components/ErrorPage";
-import SingleSong from "./components/SingleSong";
-import SinglePlaylist from "./components/SinglePlaylist";
+import SinglePage from "./components/SinglePage";
 import AudioControls from './components/Global/AudioControls'
 import { getLikesByUser } from "./store/likes";
 import { usePage } from "./context/Page";
@@ -31,7 +29,8 @@ function App() {
 
 	useEffect(() => {
 		dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
-		if (!Cookies.get('pageTheme')) Cookies.set('pageTheme', 'day', { expires: 604800 })
+		if (!Cookies.get("pageTheme")) Cookies.set("pageTheme", "day", { expires: 604800 })
+		if (!Cookies.get("splashState")) Cookies.set("splashState", "songs", { expires: 604800 })
 	}, [dispatch]);
 
 	useEffect(() => {
@@ -94,11 +93,11 @@ function App() {
 				isLoaded && (
 					<>
 						<Switch>
-							<Route path={'/songs/:songId'} component={SingleSong} />
+							<Route path={'/songs/:songId'} component={SinglePage} />
 							<Route path={'/songs'} component={SongFormPage} />
-							<Route path={'/playlists/:playlistId'} component={SinglePlaylist} />
+							<Route path={'/playlists/:playlistId'} component={SinglePage} />
 							<Route path={'/users/:userId'} component={UserPage} />
-							<Route exact path={'/'} component={SongSplash} />
+							<Route exact path={'/'} component={SplashPage} />
 							<Route path={'*'} component={ErrorPage} />
 						</Switch>
 					</>

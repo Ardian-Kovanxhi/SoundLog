@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { getCommentsBySong } from "../../store/comments";
 import { getSong } from '../../store/songs';
+import { getSinglePlaylist } from '../../store/playlists';
 import { getAllSongLikes } from '../../store/likes';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import { usePage } from '../../context/Page';
@@ -14,6 +15,7 @@ import placeholderImg from '../../images/placeholder.png'
 import GenClass from '../StoreFunctionClasses/GenClass';
 import PlayPauseBtn from '../Global/AudioUtils/play-pause-btn';
 import './SingleSong.scss'
+import PlaylistSongs from './PlaylistSongs';
 
 /*
 copied and refactored progress bar from single songs.
@@ -22,18 +24,19 @@ need to make the base code universal for the css
 profit
 */
 
-export default function SingleSong() {
+export default function SinglePage() {
     const dispatch = useDispatch();
     const history = useHistory();
-    const { songId } = useParams();
-
-
-    const Song = useSelector(state => state.songs.singleSong);
-    const User = useSelector(state => state.session.user);
-
+    const { songId, playlistId } = useParams();
+    // const [pageState, setPageState] = useState(!playlistId);
     const { lightMode, setLoadState } = usePage();
 
-    const fetchData = useCallback(async () => {
+    const pageState = !playlistId;
+    const SingleFocus = useSelector(state => state[pageState ? "songs" : "playlists"][pageState ? "singleSong" : "singlePlaylist"]);
+    const User = useSelector(state => state.session.user);
+
+
+    const fetchSongData = useCallback(async () => {
         setLoadState(true);
         try {
             await dispatch(getSong(songId))
@@ -47,9 +50,15 @@ export default function SingleSong() {
         setLoadState(false);
     }, [dispatch, history, setLoadState, songId])
 
+    const fetchPlaylistData = useCallback(async () => {
+        await dispatch(getSinglePlaylist(playlistId))
+        setLoadState(false);
+    }, [dispatch, playlistId, setLoadState])
+
     useEffect(() => {
-        fetchData();
-    }, [fetchData]);
+        if (pageState) fetchSongData();
+        else fetchPlaylistData();
+    }, [pageState, fetchSongData, fetchPlaylistData]);
 
     return (
         <div className='single-song-container-div'>
@@ -63,7 +72,7 @@ export default function SingleSong() {
 
                     <img
                         className='blur-img'
-                        src={Song.img || placeholderImg}
+                        src={SingleFocus.coverImg || placeholderImg}
                         alt='Blurred Background'
                     />
 
@@ -78,7 +87,11 @@ export default function SingleSong() {
                             <div>
                                 <div className='pfp-info-div'>
 
-                                    <PlayPauseBtn songId={Song.id} classTag={"single-univ-button"} big={true} />
+                                    {pageState ?
+                                        <PlayPauseBtn songId={SingleFocus.id} classTag={"single-univ-button"} big={true} />
+                                        :
+                                        null
+                                    }
 
                                     <div className='song-name-uploader-div'>
 
@@ -89,11 +102,17 @@ export default function SingleSong() {
                                             }}
                                         >
                                             <div className={`song-name-div${lightMode ? '' : ' night'}`}>
-                                                {Song.name}
+                                                {pageState ? SingleFocus.name : SingleFocus.name}
                                             </div>
 
-                                            <LikeButton songId={songId} pageRendered={true} />
+                                            {pageState ?
+                                                <LikeButton songId={songId} pageRendered={true} />
+                                                :
+                                                null
+                                            }
 
+                                            {/* 
+                                            DROPDOWN MENU
                                             {
                                                 User ?
                                                     Song.userId === User.id || User.id === 1
@@ -103,15 +122,20 @@ export default function SingleSong() {
                                                         </div>
                                                         :
                                                         null : null
-                                            }
+                                            } 
+                                             */}
 
                                         </div>
 
                                         <div
                                             className={`song-uploader-div${lightMode ? '' : ' night'}`}
-                                            onClick={() => GenClass.userRedirect(Number(Song.User.id), history)}
+                                        // onClick={() => GenClass.userRedirect(Number(Song.User.id), history)}
                                         >
-                                            {Song.User ? Song.User.username : ""}
+                                            {pageState ?
+                                                SingleFocus.User ? SingleFocus.User.username : ""
+                                                :
+                                                SingleFocus.User ? SingleFocus.User.username : ""
+                                            }
                                         </div>
 
                                     </div>
@@ -121,21 +145,28 @@ export default function SingleSong() {
 
                         </div>
 
-                        <div
-                            className={`single-song-desc ${!!Song.description ? '' : 'false'} ${lightMode ? '' : 'night'}`}
-                        >
-                            {Song.description}
-                        </div>
+                        {pageState ?
+                            <div
+                                className={`single-song-desc ${!!SingleFocus.description ? '' : 'false'} ${lightMode ? '' : 'night'}`}
+                            >
+                                {SingleFocus.description}
+                            </div>
+                            :
+                            null}
 
-                        <ProgressBar Song={Song} />
+                        {pageState ?
+                            <ProgressBar Song={SingleFocus} />
+                            :
+                            null}
+
 
                         {
                             User ?
                                 User.id === 1 ?
-                                    <div>{Song.content}</div> :
+                                    <div>{pageState ? SingleFocus.content : ""}</div> :
                                     null : null
-
                         }
+
 
                     </div>
 
@@ -150,11 +181,7 @@ export default function SingleSong() {
 
                         <img
                             className='single-song-img'
-                            src={
-                                Song.img
-                                ||
-                                'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png'
-                            }
+                            src={SingleFocus.coverImg || placeholderImg}
                             alt='Album Cover' />
 
                     </div>
@@ -164,7 +191,11 @@ export default function SingleSong() {
 
             </div>
 
-            <SongComments />
+            {pageState ?
+                <SongComments />
+                :
+                <PlaylistSongs PlaylistSongs={SingleFocus.PlaylistSongs} />
+            }
 
         </div>
     )

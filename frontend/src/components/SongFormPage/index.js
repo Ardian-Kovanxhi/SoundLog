@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { submitSong } from "../../store/songs";
 import dayLoad from '../../images/light-mode-load.gif'
 import nightLoad from '../../images/dark-mode-load.gif'
-import placeholderImg from '../../images/song-placeholder.png'
+import placeholderImg from '../../images/placeholder.png'
 import { usePage } from "../../context/Page";
 import './SongFormPage.scss'
 

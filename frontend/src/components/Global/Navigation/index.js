@@ -16,8 +16,13 @@ function Navigation({ isLoaded }) {
     const { setLightMode, lightMode, splashDisplay, setSplashDisplay } = usePage();
 
     const lightHandler = () => {
-        setLightMode(lightMode ? false : true);
+        setLightMode(!lightMode);
         Cookies.set('pageTheme', lightMode ? "night" : "day", { expires: 604800 })
+    }
+
+    const splashHandler = () => {
+        setSplashDisplay(!splashDisplay)
+        Cookies.set("splashState", splashDisplay ? "playlists" : "songs", { expires: 604800 })
     }
 
     return (
@@ -46,7 +51,7 @@ function Navigation({ isLoaded }) {
                     <div className='brand-btn-div'>
                         <button
                             className={`profile-button-actual ${lightMode ? "" : "night"}`}
-                            onClick={() => setSplashDisplay(!splashDisplay)}
+                            onClick={splashHandler}
                         >
                             {splashDisplay ?
                                 <i className="fa-solid fa-music fa-global-class"></i>
@@ -55,7 +60,7 @@ function Navigation({ isLoaded }) {
                             }
                         </button>
                     </div>
-                    <div className='brand-btn-div'>
+                    {/* <div className='brand-btn-div'>
                         <button className={`profile-button-actual ${lightMode ? "" : "night"}`}>
                             <i className="fa-solid fa-filter fa-global-class"></i>
                         </button>
@@ -64,7 +69,7 @@ function Navigation({ isLoaded }) {
                         <button className={`profile-button-actual ${lightMode ? "" : "night"}`}>
                             <i className="fa-solid fa-magnifying-glass fa-global-class"></i>
                         </button>
-                    </div>
+                    </div> */}
 
                     <div className='brand-btn-div'>
                         <button

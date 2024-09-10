@@ -1,20 +1,4 @@
-// import { usePage } from "../../context/Page";
-// import { getCommentsBySong } from "../../store/comments";
-// import { getLoad } from "../../store/global";
-// import { getAllSongLikes, getAllUserLikes } from "../../store/likes";
-// import { getUser } from "../../store/session";
-import { getSongs, clearSongStore, /*getSong, getUserSongs*/ } from "../../store/songs";
-
-
 export default class GenClass {
-
-    //Used in useEffect
-    static async fetchData(dispatch, setLoadState) {
-        await setLoadState(true)
-        await dispatch(getSongs())
-        await dispatch(clearSongStore())
-        await setLoadState(false)
-    }
 
     static async singleRedirect(singleId, dispatch, history, setLoadState) {
         await setLoadState(true);

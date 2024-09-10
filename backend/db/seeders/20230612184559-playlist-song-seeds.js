@@ -20,7 +20,23 @@ module.exports = {
       },
       {
         playlistId: 2, //Wish
+        songId: 21
+      },
+      {
+        playlistId: 2, //Wish
+        songId: 24
+      },
+      {
+        playlistId: 2, //Wish
+        songId: 23
+      },
+      {
+        playlistId: 2, //Wish
         songId: 17
+      },
+      {
+        playlistId: 2, //Wish
+        songId: 22
       },
       {
         playlistId: 3, //Comedown
