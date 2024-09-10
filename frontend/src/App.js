@@ -14,6 +14,7 @@ import UserPage from "./components/UserPage";
 import SongFormPage from "./components/SongFormPage";
 import ErrorPage from "./components/ErrorPage";
 import SingleSong from "./components/SingleSong";
+import SinglePlaylist from "./components/SinglePlaylist";
 import AudioControls from './components/Global/AudioControls'
 import { getLikesByUser } from "./store/likes";
 import { usePage } from "./context/Page";
@@ -95,6 +96,7 @@ function App() {
 						<Switch>
 							<Route path={'/songs/:songId'} component={SingleSong} />
 							<Route path={'/songs'} component={SongFormPage} />
+							<Route path={'/playlists/:playlistId'} component={SinglePlaylist} />
 							<Route path={'/users/:userId'} component={UserPage} />
 							<Route exact path={'/'} component={SongSplash} />
 							<Route path={'*'} component={ErrorPage} />

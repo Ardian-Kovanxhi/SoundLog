@@ -53,11 +53,6 @@ export default function SingleSong() {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-
-    if (Song.User) {
-        Uploader = Song.User.username
-    }
-
     return (
         <div className='single-song-container-div'>
 

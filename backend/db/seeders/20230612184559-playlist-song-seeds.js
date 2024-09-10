@@ -11,24 +11,56 @@ module.exports = {
 
     return queryInterface.bulkInsert(options, [
       {
-        playlistId: 1,
+        playlistId: 1, //Live
         songId: 1
       },
       {
-        playlistId: 2,
-        songId: 2
+        playlistId: 1, //Live
+        songId: 7
       },
       {
-        playlistId: 1,
+        playlistId: 2, //Wish
         songId: 17
       },
       {
-        playlistId: 2,
-        songId: 5
+        playlistId: 3, //Comedown
+        songId: 2
       },
       {
-        playlistId: 2,
+        playlistId: 4, //Whatever
+        songId: 3
+      },
+      {
+        playlistId: 5, //2
+        songId: 4
+      },
+      {
+        playlistId: 6, //RAM
+        songId: 5
+      },
+      // {
+      //   playlistId: 7, //Presence
+      //   songId: 0
+      // },
+      {
+        playlistId: 8, //Plastic
+        songId: 9
+      },
+      {
+        playlistId: 9, //Show
+        songId: 10
+      },
+      // {
+      //   playlistId: 10, //Kill
+      //   songId: 0
+      // },
+      {
+        playlistId: 11,//Abnormal
         songId: 13
+      },
+      {
+        playlistId: 12,//Amnesiac
+        songId: 14
       },
     ], {})
   },

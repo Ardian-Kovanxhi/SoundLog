@@ -41,14 +41,28 @@ export const getPlaylists = () => async dispatch => {
     }
 }
 
+export const getSinglePlaylist = (playlistId) => async dispatch => {
+    const response = await csrfFetch(`/api/playlists/${playlistId}`);
+
+    if (response.ok) {
+        const playlist = await response.json();
+        dispatch(readPlaylist(playlist));
+        return playlist;
+    }
+}
+
 const initialState = { allPlaylists: {}, userPlaylists: {}, singlePlaylist: {} }
 
 export default function playlistsReducer(state = initialState, action) {
-    let newState = {};
+    let newState = { ...state };
     switch (action.type) {
         case READ_PLAYLISTS: {
-            newState = { ...state, allPlaylists: {} };
+            newState.allPlaylists = {}
             action.playlists.forEach(playlist => newState.allPlaylists[playlist.id] = playlist);
+            return newState;
+        }
+        case READ_PLAYLIST: {
+            newState.singlePlaylist = action.playlist;
             return newState;
         }
         default:
