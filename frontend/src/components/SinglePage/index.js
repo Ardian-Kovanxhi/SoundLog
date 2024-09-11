@@ -129,7 +129,7 @@ export default function SinglePage() {
 
                                         <div
                                             className={`song-uploader-div${lightMode ? '' : ' night'}`}
-                                        // onClick={() => GenClass.userRedirect(Number(Song.User.id), history)}
+                                            onClick={() => GenClass.userRedirect(Number(SingleFocus.User.id), history)}
                                         >
                                             {pageState ?
                                                 SingleFocus.User ? SingleFocus.User.username : ""

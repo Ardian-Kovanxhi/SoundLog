@@ -7,9 +7,9 @@ import { getUser } from "../../../store/session";
 import ProgressBar from "../ProgressBar";
 import GenClass from "../../StoreFunctionClasses/GenClass";
 import { usePage } from "../../../context/Page";
-import './Lists.scss'
 import { useAudio } from "../../../context/Audio";
 import PlayPauseBtn from "../../Global/AudioUtils/play-pause-btn";
+import './Lists.scss'
 
 export default function LikeList({ focused }) {
     const history = useHistory();
@@ -66,7 +66,7 @@ export default function LikeList({ focused }) {
                         >
                             <img
                                 className='user-list-song-img'
-                                src={like.Song.img}
+                                src={like.Song.coverImg}
                                 onClick={() => {
                                     setLoadState(true)
                                     singleLoader(like.Song.id);

@@ -71,7 +71,7 @@ export default function SongList({ focused }) {
                         >
                             <img
                                 className='user-list-song-img'
-                                src={song.img}
+                                src={song.coverImg}
                                 onClick={() => {
                                     setLoadState(true)
                                     singleLoader(song.id);
