@@ -9,20 +9,22 @@ const router = express.Router();
 router.get("/", async (req, res) => {
     const sanatizedPhrase = `%${req.query.phrase}%`;
     const filter = req.query.filter;
-
+    const test = req.query.test.split(",");
+    console.log(test)
     const results = {};
 
     if (filter === "songs" || !filter) {
-        const song = await Song.findAll({
+        const songs = await Song.findAll({
             attributes: ["id", "name"],
             where: {
                 name: { [Op.like]: sanatizedPhrase }
             }
         })
-        results.songs = song
+        if (!results.songs) results.songs = [];
+        results.songs.push(...songs)
     }
     if (filter === "users" || !filter) {
-        const user = await User.findAll({
+        const users = await User.findAll({
             attributes: ["id", ["username", "name"]],
             where: {
                 [Op.and]: [
@@ -37,16 +39,18 @@ router.get("/", async (req, res) => {
                 ]
             }
         })
-        results.users = user
+        if (!results.users) results.users = []
+        results.users.push(...users)
     }
     if (filter === "playlists" || !filter) {
-        const playlist = await Playlist.findAll({
+        const playlists = await Playlist.findAll({
             attributes: ["id", "name"],
             where: {
                 name: { [Op.like]: sanatizedPhrase }
             }
         })
-        results.playlsits = playlist
+        if (!results.playlists) results.playlists = [];
+        results.playlists.push(...playlists)
     }
 
     return res.json(results);
