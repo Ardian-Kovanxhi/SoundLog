@@ -7,50 +7,68 @@ const router = express.Router();
 
 //GET /api/search | search for x
 router.get("/", async (req, res) => {
-    const sanatizedPhrase = `%${req.query.phrase}%`;
+    const keywords = req.query.phrase.split(" ");
     const filter = req.query.filter;
-    const test = req.query.test.split(",");
-    console.log(test)
     const results = {};
 
-    if (filter === "songs" || !filter) {
-        const songs = await Song.findAll({
-            attributes: ["id", "name"],
-            where: {
-                name: { [Op.like]: sanatizedPhrase }
-            }
-        })
-        if (!results.songs) results.songs = [];
-        results.songs.push(...songs)
-    }
-    if (filter === "users" || !filter) {
-        const users = await User.findAll({
-            attributes: ["id", ["username", "name"]],
-            where: {
-                [Op.and]: [
-                    {
-                        [Op.or]: [
-                            { username: { [Op.like]: sanatizedPhrase } },
-                            { firstName: { [Op.like]: sanatizedPhrase } },
-                            { lastName: { [Op.like]: sanatizedPhrase } },
-                        ],
-                    },
-                    { id: { [Op.ne]: 1 } }
-                ]
-            }
-        })
-        if (!results.users) results.users = []
-        results.users.push(...users)
-    }
-    if (filter === "playlists" || !filter) {
-        const playlists = await Playlist.findAll({
-            attributes: ["id", "name"],
-            where: {
-                name: { [Op.like]: sanatizedPhrase }
-            }
-        })
-        if (!results.playlists) results.playlists = [];
-        results.playlists.push(...playlists)
+    for (let keyword of keywords) {
+
+        const sanitizedPhrase = `%${keyword}%`;
+
+        if (filter === "songs" || !filter) {
+            const songs = await Song.findAll({
+                attributes: ["id", "name", "coverImg"],
+                include: [{ model: User, attributes: ["username"] }],
+                where: {
+                    [Op.or]: [
+                        { name: { [Op.like]: sanitizedPhrase } },
+                        { '$User.username$': { [Op.like]: sanitizedPhrase } },
+                        { '$User.firstName$': { [Op.like]: sanitizedPhrase } },
+                        { '$User.lastName$': { [Op.like]: sanitizedPhrase } }
+                    ]
+                }
+            })
+            if (!results.songs) results.songs = {};
+            songs.forEach(el => results.songs[el.dataValues.name] = el)
+        }
+
+        if (filter === "users" || !filter) {
+            const users = await User.findAll({
+                attributes: ["id", ["username", "name"]],
+                where: {
+                    [Op.and]: [
+                        {
+                            [Op.or]: [
+                                { username: { [Op.like]: sanitizedPhrase } },
+                                { firstName: { [Op.like]: sanitizedPhrase } },
+                                { lastName: { [Op.like]: sanitizedPhrase } },
+                            ],
+                        },
+                        { id: { [Op.ne]: 1 } }
+                    ]
+                }
+            })
+            if (!results.users) results.users = {}
+            users.forEach(el => results.users[el.dataValues.name] = el)
+        }
+
+        if (filter === "playlists" || !filter) {
+            const playlists = await Playlist.findAll({
+                attributes: ["id", "name", "coverImg"],
+                include: [{ model: User, attributes: ["username"] }],
+                where: {
+                    [Op.or]: [
+                        { name: { [Op.like]: sanitizedPhrase } },
+                        { '$User.username$': { [Op.like]: sanitizedPhrase } },
+                        { '$User.firstName$': { [Op.like]: sanitizedPhrase } },
+                        { '$User.lastName$': { [Op.like]: sanitizedPhrase } }
+                    ]
+                }
+            })
+            if (!results.playlists) results.playlists = {};
+            playlists.forEach(el => results.playlists[el.dataValues.name] = el)
+        }
+
     }
 
     return res.json(results);
