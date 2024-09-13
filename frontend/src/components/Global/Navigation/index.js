@@ -1,15 +1,17 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import LoginFormModal from '../../Modals/LoginFormModal';
 import OpenModalMenuItem from '../../Modals/OpenModalButton';
 import homeBarLogo from '../../../images/log3.png'
 import { usePage } from '../../../context/Page';
+import { getSearch } from '../../../store/search';
 import Cookies from "js-cookie";
 import './Navigation.scss';
 
 function Navigation({ isLoaded }) {
+    const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
     const history = useHistory()
 
@@ -23,6 +25,11 @@ function Navigation({ isLoaded }) {
     const splashHandler = () => {
         setSplashDisplay(!splashDisplay)
         Cookies.set("splashState", splashDisplay ? "playlists" : "songs", { expires: 604800 })
+    }
+
+    const searchHandler = async () => {
+        await dispatch(getSearch(["pink", "floyd"], ""))
+        history.push(`/search?q=pink+floyd`)
     }
 
     return (
@@ -46,6 +53,11 @@ function Navigation({ isLoaded }) {
                         SoundLog
                     </div>
                 </div>
+
+                <button onClick={searchHandler}>
+                    SEARCH
+                </button>
+
                 <div className='nav-button-div'>
 
                     <div className='brand-btn-div'>

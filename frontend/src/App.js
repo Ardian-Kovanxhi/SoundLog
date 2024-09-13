@@ -16,6 +16,7 @@ import SinglePage from "./components/SinglePage";
 import AudioControls from './components/Global/AudioControls'
 import { getLikesByUser } from "./store/likes";
 import { usePage } from "./context/Page";
+import SearchPage from "./components/SearchPage/Search";
 
 
 function App() {
@@ -96,7 +97,9 @@ function App() {
 							<Route path={'/songs/:songId'} component={SinglePage} />
 							<Route path={'/songs'} component={SongFormPage} />
 							<Route path={'/playlists/:playlistId'} component={SinglePage} />
+							{/* <Route path={'/playlists'} component={}/> */}
 							<Route path={'/users/:userId'} component={UserPage} />
+							<Route path={'/search'} component={SearchPage} />
 							<Route exact path={'/'} component={SplashPage} />
 							<Route path={'*'} component={ErrorPage} />
 						</Switch>

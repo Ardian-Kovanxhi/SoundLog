@@ -1,6 +1,6 @@
 const express = require("express");
 
-const { Song, User, Playlist } = require("../../db/models");
+const { Song, User, Playlist, Sequelize } = require("../../db/models");
 const { Op } = require("sequelize");
 
 const router = express.Router();
@@ -10,27 +10,10 @@ router.get("/", async (req, res) => {
     const keywords = req.query.phrase.split(" ");
     const filter = req.query.filter;
     const results = {};
-
     for (let keyword of keywords) {
 
         const sanitizedPhrase = `%${keyword}%`;
 
-        if (filter === "songs" || !filter) {
-            const songs = await Song.findAll({
-                attributes: ["id", "name", "coverImg"],
-                include: [{ model: User, attributes: ["username"] }],
-                where: {
-                    [Op.or]: [
-                        { name: { [Op.like]: sanitizedPhrase } },
-                        { '$User.username$': { [Op.like]: sanitizedPhrase } },
-                        { '$User.firstName$': { [Op.like]: sanitizedPhrase } },
-                        { '$User.lastName$': { [Op.like]: sanitizedPhrase } }
-                    ]
-                }
-            })
-            if (!results.songs) results.songs = {};
-            songs.forEach(el => results.songs[el.dataValues.name] = el)
-        }
 
         if (filter === "users" || !filter) {
             const users = await User.findAll({
@@ -55,7 +38,7 @@ router.get("/", async (req, res) => {
         if (filter === "playlists" || !filter) {
             const playlists = await Playlist.findAll({
                 attributes: ["id", "name", "coverImg"],
-                include: [{ model: User, attributes: ["username"] }],
+                include: [{ model: User, attributes: ["id", "username"] }],
                 where: {
                     [Op.or]: [
                         { name: { [Op.like]: sanitizedPhrase } },
@@ -67,6 +50,27 @@ router.get("/", async (req, res) => {
             })
             if (!results.playlists) results.playlists = {};
             playlists.forEach(el => results.playlists[el.dataValues.name] = el)
+        }
+
+        if (filter === "songs" || !filter) {
+            const songs = await Song.findAll({
+                attributes: [
+                    "id",
+                    "name",
+                    "coverImg",
+                ],
+                include: [{ model: User, attributes: ["id", "username"] }],
+                where: {
+                    [Op.or]: [
+                        { name: { [Op.like]: sanitizedPhrase } },
+                        { '$User.username$': { [Op.like]: sanitizedPhrase } },
+                        { '$User.firstName$': { [Op.like]: sanitizedPhrase } },
+                        { '$User.lastName$': { [Op.like]: sanitizedPhrase } }
+                    ]
+                }
+            })
+            if (!results.songs) results.songs = {};
+            songs.forEach(el => { if (!results.songs[el.dataValues.name]) results.songs[el.dataValues.name] = el })
         }
 
     }

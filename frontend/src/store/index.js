@@ -5,6 +5,7 @@ import sessionReducer from './session';
 import songsReducer from './songs';
 import likesReducer from './likes';
 import playlistsReducer from './playlists';
+import searchReducer from './search';
 
 const rootReducer = combineReducers({
     comments: commentsReducer,
@@ -12,6 +13,7 @@ const rootReducer = combineReducers({
     session: sessionReducer,
     songs: songsReducer,
     playlists: playlistsReducer,
+    search: searchReducer,
 });
 
 let enhancer;
