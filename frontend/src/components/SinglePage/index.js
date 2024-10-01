@@ -111,19 +111,18 @@ export default function SinglePage() {
                                                 null
                                             }
 
-                                            {/* 
-                                            DROPDOWN MENU
                                             {
                                                 User ?
-                                                    Song.userId === User.id || User.id === 1
+                                                    // Song.userId === User.id || User.id === 1
+                                                    SingleFocus.userId === User.id || User.id === 1
                                                         ?
                                                         <div className='edit-delete-buttons-div'>
                                                             <BtnMenu />
                                                         </div>
                                                         :
                                                         null : null
-                                            } 
-                                             */}
+                                            }
+
 
                                         </div>
 
