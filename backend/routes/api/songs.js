@@ -11,7 +11,7 @@ const router = express.Router();
 //GET /api/songs | all songs
 router.get('/', async (req, res) => {
     const Songs = await Song.findAll({
-        attributes: ["id", "name", "coverImg"],
+        // attributes: ["id", "name", "coverImg"],
         include: [
             { model: User, attributes: ['id', 'username'] }
         ]
@@ -74,7 +74,7 @@ router.get('/:songId', async (req, res) => {
     const songId = +req.params.songId;
 
     const song = await Song.findByPk(songId, {
-        attributes: ["id", "name", "coverImg", "description", "duration"],
+        // attributes: ["id", "name", "coverImg", "description", "duration"],
         include: [
             { model: User, attributes: ['id', 'username'] }
         ]

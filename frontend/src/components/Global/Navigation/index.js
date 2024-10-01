@@ -54,13 +54,13 @@ function Navigation({ isLoaded }) {
                     </div>
                 </div>
 
-                <button onClick={searchHandler}>
+                {/* <button onClick={searchHandler}>
                     SEARCH
-                </button>
+                </button> */}
 
                 <div className='nav-button-div'>
 
-                    <div className='brand-btn-div'>
+                    {/* <div className='brand-btn-div'>
                         <button
                             className={`profile-button-actual ${lightMode ? "" : "night"}`}
                             onClick={splashHandler}
@@ -71,7 +71,7 @@ function Navigation({ isLoaded }) {
                                 <i className="fa-solid fa-list fa-global-class"></i>
                             }
                         </button>
-                    </div>
+                    </div> */}
                     {/* <div className='brand-btn-div'>
                         <button className={`profile-button-actual ${lightMode ? "" : "night"}`}>
                             <i className="fa-solid fa-filter fa-global-class"></i>
